@@ -1,13 +1,16 @@
-import React from "react";
-
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
-import "../assets/scss/index.scss";
+import '../assets/css/index.css';
+import useConfig from '../hooks/useConfig';
+
+import { dark, light } from '../config/theme';
 
 // ** Declare Theme Provider
-const MaterialThemeProvider = ({ children }) => {
-    const theme = createTheme();
+const MuiThemeProvider = ({ children }) => {
+    const { isDark } = useConfig();
+
+    const theme = createTheme(isDark ? dark : light);
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -16,4 +19,4 @@ const MaterialThemeProvider = ({ children }) => {
     );
 };
 
-export default MaterialThemeProvider;
+export default MuiThemeProvider;

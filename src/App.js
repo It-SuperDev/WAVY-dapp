@@ -1,14 +1,13 @@
-import React, { Suspense, lazy } from "react";
-import Spinner from "./components/Spinner";
+import { BrowserRouter } from 'react-router-dom';
 
-const Router = lazy(() => import("./Router"));
+import Routes from './routes';
 
-const App = () => {
-    return (
-        <Suspense fallback={<Spinner />}>
-            <Router />
-        </Suspense>
-    )
+function App() {
+  return (
+    <BrowserRouter basename="">
+      <Routes />
+    </BrowserRouter>
+  );
 }
 
 export default App;
