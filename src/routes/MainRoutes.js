@@ -7,6 +7,7 @@ import Loadable from '../components/Loadable';
 const Home = Loadable(lazy(() => import('../pages/Home')));
 const Withdraw = Loadable(lazy(() => import('../pages/Withdraw')));
 const Swap = Loadable(lazy(() => import('../pages/Swap')));
+const Send = Loadable(lazy(() => import('../pages/Send')));
 
 const MainRoutes = {
     path: '/',
@@ -23,6 +24,10 @@ const MainRoutes = {
         {
             path: 'swap',
             element: <Swap />
+        },
+        {
+            path: 'send',
+            element: <Send />
         },
     ]
 };
