@@ -11,9 +11,9 @@ const MainRoutes = {
     element: <Layout />,
     children: [
         {
-            path: '/main',
+            path: '',
             element: <Home />
-        }
+        },
     ]
 };
 
