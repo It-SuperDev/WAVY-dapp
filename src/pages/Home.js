@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router-dom';
+
+// MUI
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import List from '@mui/material/List';
@@ -8,6 +11,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
 
+// Icons
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 
 import { ReactComponent as SendIcon } from '../assets/img/icon/send.svg';
@@ -19,6 +23,7 @@ import { ReactComponent as WalletIcon } from '../assets/img/icon/wallet.svg';
 import { ReactComponent as RightIcon } from '../assets/img/icon/right.svg';
 
 const Home = () => {
+    const navigate = useNavigate();
     return (
         <Card className='card' sx={{ px: 12.75, py: 4, minWidth: 700 }}>
             <Stack>
@@ -43,25 +48,25 @@ const Home = () => {
                 </Box>
                 <Stack direction='row' justifyContent='space-between' width='100%' mt={5.7}>
                     <Stack alignItems='center'>
-                        <IconButton variant='contained' sx={{ bgcolor: '#423F51', width: 72, height: 72, boxShadow: '0px 4px 4px 0px #00000080' }}>
+                        <IconButton onClick={() => navigate('send')} variant='contained' sx={{ bgcolor: '#423F51', width: 72, height: 72, boxShadow: '0px 4px 4px 0px #00000080' }}>
                             <SendIcon />
                         </IconButton>
                         <Typography sx={{ fontSize: 18, lineHeight: '26px', mt: 2 }}>Send</Typography>
                     </Stack>
                     <Stack alignItems='center'>
-                        <IconButton variant='contained' sx={{ bgcolor: '#423F51', width: 72, height: 72, boxShadow: '0px 4px 4px 0px #00000080' }}>
+                        <IconButton onClick={() => navigate('swap')} variant='contained' sx={{ bgcolor: '#423F51', width: 72, height: 72, boxShadow: '0px 4px 4px 0px #00000080' }}>
                             <SwapIcon />
                         </IconButton>
                         <Typography sx={{ fontSize: 18, lineHeight: '26px', mt: 2 }}>Swap</Typography>
                     </Stack>
                     <Stack alignItems='center'>
-                        <IconButton variant='contained' sx={{ bgcolor: '#423F51', width: 72, height: 72, boxShadow: '0px 4px 4px 0px #00000080' }}>
+                        <IconButton onClick={() => navigate('bridge')} variant='contained' sx={{ bgcolor: '#423F51', width: 72, height: 72, boxShadow: '0px 4px 4px 0px #00000080' }}>
                             <BridgeIcon />
                         </IconButton>
                         <Typography sx={{ fontSize: 18, lineHeight: '26px', mt: 2 }}>Bridge</Typography>
                     </Stack>
                     <Stack alignItems='center'>
-                        <IconButton variant='contained' sx={{ bgcolor: '#423F51', width: 72, height: 72, boxShadow: '0px 4px 4px 0px #00000080' }}>
+                        <IconButton onClick={() => navigate('spend')} variant='contained' sx={{ bgcolor: '#423F51', width: 72, height: 72, boxShadow: '0px 4px 4px 0px #00000080' }}>
                             <SpendIcon />
                         </IconButton>
                         <Typography sx={{ fontSize: 18, lineHeight: '26px', mt: 2 }}>Spend</Typography>
@@ -93,7 +98,7 @@ const Home = () => {
                             />
                             < RightIcon />
                         </ListItemButton>
-                        <ListItemButton sx={{ borderRadius: 2.5, bgcolor: '#090912', px: 3, mt: 2.5 }}>
+                        <ListItemButton onClick={() => navigate('withdraw')} sx={{ borderRadius: 2.5, bgcolor: '#090912', px: 3, mt: 2.5 }}>
                             <ListItemIcon>
                                 <WalletIcon />
                             </ListItemIcon>

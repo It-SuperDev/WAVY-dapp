@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 
-const MenuList = ({ data, anchor, close, callback }) => {
+const MenuList = ({ data, minWidth, py, anchor, close, callback }) => {
     return (
         <Menu
             anchorEl={anchor}
@@ -15,7 +15,7 @@ const MenuList = ({ data, anchor, close, callback }) => {
             onClose={close}
             sx={{
                 '& .MuiMenu-paper': {
-                    minWidth: 329,
+                    minWidth,
                     bgcolor: '#2E2D4E',
                     borderRadius: 2.5,
                     overflow: 'hidden',
@@ -26,7 +26,7 @@ const MenuList = ({ data, anchor, close, callback }) => {
                 data.map(({ name, icon }, i) => (
                     <Stack key={i}>
                         {Boolean(i) && <Divider sx={{ borderColor: '#ACACAE', my: '0px !important' }} />}
-                        <MenuItem sx={{ py: 2.5, pl: '30px' }} onClick={() => callback(i)}>
+                        <MenuItem sx={{ py: py ? py : 2.5, pl: '30px' }} onClick={() => callback(i)}>
                             <ListItemIcon sx={{ mr: 1, '& img': { width: 24, height: 24 } }}>
                                 <Box component='img' src={icon} alt='currency' />
                             </ListItemIcon>

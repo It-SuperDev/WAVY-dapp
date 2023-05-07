@@ -29,6 +29,16 @@ import ethereumIcon from '../assets/img/network/ethereum.svg';
 import solanaIcon from '../assets/img/network/solana.svg';
 import tronIcon from '../assets/img/network/tron.svg';
 
+// coins
+import brzIcon from '../assets/img/coin/brz.svg';
+import cadcIcon from '../assets/img/coin/cadc.svg';
+import eursIcon from '../assets/img/coin/eurs.svg';
+import jeurIcon from '../assets/img/coin/jeur.svg';
+import ngncIcon from '../assets/img/coin/ngnc.svg';
+import trybIcon from '../assets/img/coin/tryb.svg';
+import unitedStatesIcon from '../assets/img/coin/united_states.svg';
+import usdcIcon from '../assets/img/coin/usdc.svg';
+
 export const CURRENCY = [
     {
         name: 'Nigerian Naira',
@@ -130,5 +140,48 @@ export const NETWORK = [
     {
         name: 'Tron Mainnet',
         icon: tronIcon
+    },
+]
+
+export const TOKEN_LIST = [
+    {
+        name: 'BRZ',
+        sub: 'Brazilian Real',
+        icon: brzIcon,
+    },
+    {
+        name: 'CADC',
+        sub: 'Canadian Dollar',
+        icon: cadcIcon,
+    },
+    {
+        name: 'EURS',
+        sub: 'Euro',
+        icon: eursIcon,
+    },
+    {
+        name: 'JEUR',
+        sub: 'Euro',
+        icon: jeurIcon,
+    },
+    {
+        name: 'NGNC',
+        sub: 'Nigerian Naira',
+        icon: ngncIcon,
+    },
+    {
+        name: 'TRYB',
+        sub: 'Turkish Lira',
+        icon: trybIcon,
+    },
+    {
+        name: 'USDC',
+        sub: 'U.S dollar',
+        icon: usdcIcon,
+    },
+    {
+        name: 'USD',
+        sub: 'U.S dollar',
+        icon: unitedStatesIcon,
     },
 ]
