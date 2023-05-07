@@ -1,0 +1,14 @@
+@import url('./fonts.css');
+
+body {
+    background: linear-gradient(180deg, #151428 0%, #000000 100%);
+}
+
+.card {
+    background: linear-gradient(180deg, rgba(36, 36, 41, 0) 0%, #242429 100%) !important;
+}
+
+.gradient {
+    background: linear-gradient(180deg, #1E1E36 0%, rgba(36, 36, 41, 0) 100%),
+        linear-gradient(0deg, #acacae00, #acacae00);
+}

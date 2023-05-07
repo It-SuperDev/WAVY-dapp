@@ -5,12 +5,15 @@ const Wrapper = () => {
     return (
         <Box
             sx={{
-                marginTop: 8,
-                minHeight: 'calc(100vh - 64px - 48px)',
-                padding: (theme) => theme.spacing(4, 0)
+                display: 'flex',
+                justifyContent: 'center',
+                minHeight: 'calc(100vh - 72px - 62px)',
+                padding: (theme) => theme.spacing(10, 0, 4, 0)
             }}
         >
-            <Outlet />
+            <Box>
+                <Outlet />
+            </Box>
         </Box>
     );
 }

@@ -1,16 +1,16 @@
 import Header from '../components/Header';
-import Footer from '../components/Footer';
 
 import Wrapper from './Wrapper';
 
-import Stack from '@mui/material/Stack';
+import Container from '@mui/material/Container';
 
 const MainLayout = () => (
-    <Stack>
-        <Header />
-        <Wrapper />
-        <Footer />
-    </Stack>
+    <>
+        <Container maxWidth='xl' sx={{ pt: 9 }}>
+            <Header />
+            <Wrapper />
+        </Container>
+    </>
 );
 
 export default MainLayout;

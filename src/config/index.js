@@ -1,5 +1,5 @@
 const Config = {
-    isDark: false
+    isDark: true
 };
 
 export default Config;
