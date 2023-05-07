@@ -8,6 +8,7 @@ const Home = Loadable(lazy(() => import('../pages/Home')));
 const Withdraw = Loadable(lazy(() => import('../pages/Withdraw')));
 const Swap = Loadable(lazy(() => import('../pages/Swap')));
 const Send = Loadable(lazy(() => import('../pages/Send')));
+const Error = Loadable(lazy(() => import('../pages/Error')));
 
 const MainRoutes = {
     path: '/',
@@ -28,6 +29,14 @@ const MainRoutes = {
         {
             path: 'send',
             element: <Send />
+        },
+        {
+            path: 'send-error',
+            element: <Error isSend />
+        },
+        {
+            path: 'swap-error',
+            element: <Error />
         },
     ]
 };
