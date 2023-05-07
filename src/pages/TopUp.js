@@ -41,6 +41,7 @@ const Withdraw = () => {
                         '& .MuiButton-startIcon': { mr: '20px' },
                         '& svg': { width: 27, height: 24 }
                     }}
+                    onClick={() => navigate('/select-stable')}
                     startIcon={<BankIcon />}
                 >
                     Bank Transfer

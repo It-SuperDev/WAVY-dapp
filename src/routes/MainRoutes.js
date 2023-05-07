@@ -10,6 +10,8 @@ const Swap = Loadable(lazy(() => import('../pages/Swap')));
 const Send = Loadable(lazy(() => import('../pages/Send')));
 const Error = Loadable(lazy(() => import('../pages/Error')));
 const TopUp = Loadable(lazy(() => import('../pages/TopUp')));
+const SelectStable = Loadable(lazy(() => import('../pages/SelectStable')));
+const SwapConfirm = Loadable(lazy(() => import('../pages/SwapConfirm')));
 
 const MainRoutes = {
     path: '/',
@@ -42,6 +44,14 @@ const MainRoutes = {
         {
             path: 'swap-error',
             element: <Error />
+        },
+        {
+            path: 'select-stable',
+            element: <SelectStable />
+        },
+        {
+            path: 'swap-confirm',
+            element: <SwapConfirm />
         },
     ]
 };

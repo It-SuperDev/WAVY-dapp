@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // MUI
 import { styled } from '@mui/material/styles';
@@ -26,11 +27,16 @@ const NumberInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const ValueInput = ({ title, value, available, error, errorMessage, tokenList }) => {
+    const navigate = useNavigate();
+
     const [tokenAnchor, setTokenAnchor] = useState(null);
     const [currentToken, setCurrentToken] = useState(0);
 
     const handleClick = (event) => {
-        if (tokenList.length > 1) setTokenAnchor(event.currentTarget);
+        if (tokenList.length > 1) {
+            // setTokenAnchor(event.currentTarget);
+            navigate('/select-stable')
+        }
     };
     const handleClose = () => {
         setTokenAnchor(null);
