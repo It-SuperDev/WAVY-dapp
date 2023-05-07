@@ -14,16 +14,18 @@ import logo from '../assets/img/logo.svg';
 import MenuList from '../components/MenuList';
 
 // Constants
-import { CURRENCY, LANGUAGE, WALLET, NETWORK } from '../config/constants';
+import { CURRENCY, LANGUAGE, WALLET, NETWORK, CONNECTED } from '../config/constants';
 
 const Header = () => {
     const [currencyAnchor, setCurrencyAnchor] = useState(null);
     const [langAnchor, setLangAnchor] = useState(null);
     const [walletAnchor, setWalletAnchor] = useState(null);
     const [netAnchor, setNetAnchor] = useState(null);
+    const [infoAnchor, setInfoAnchor] = useState(null);
     const [currentCurrency, setCurrentCurrency] = useState(0);
     const [currentLang, setCurrentLang] = useState(0);
     const [currentNet, setCurrentNet] = useState(0);
+    const [connect, setConnect] = useState(null);
 
     const currencyHandle = (event) => {
         setCurrencyAnchor(event.currentTarget);
@@ -54,6 +56,7 @@ const Header = () => {
         setWalletAnchor(null);
     };
     const setWallet = (i) => {
+        setConnect(i)
         walletClose();
     }
 
@@ -64,8 +67,21 @@ const Header = () => {
         setNetAnchor(null);
     };
     const setNet = (i) => {
-        setCurrentNet(i);
+        setCurrentNet(i)
         netClose();
+    }
+
+    const infoHandle = (event) => {
+        setInfoAnchor(event.currentTarget);
+    };
+    const infoClose = () => {
+        setInfoAnchor(null);
+    };
+    const setInfo = (i) => {
+        if (i) {
+            setConnect(null);
+        }
+        infoClose();
     }
 
     return (
@@ -91,9 +107,13 @@ const Header = () => {
                         <Box component='img' src={LANGUAGE[currentLang].icon} alt='language' sx={{ width: 35, height: 35 }} />
                     </Button>
                 </Stack>
-                <Button variant='contained' sx={{ py: '13px', px: 2.5, bgcolor: (theme) => theme.palette.primary.light }}>
-                    Connect your wallet
-                </Button>
+                {
+                    !connect ?
+                        < Button variant='contained' sx={{ py: '13px', px: 2.5, bgcolor: (theme) => theme.palette.primary.light }}>
+                            Connect your wallet
+                        </Button>
+                        : null
+                }
                 <Stack direction='row' alignItems='center' justifyContent='center'>
                     <Button
                         onClick={netHandle}
@@ -102,18 +122,31 @@ const Header = () => {
                     >
                         <Box component='img' src={NETWORK[currentNet].icon} alt='language' sx={{ width: 35, height: 35 }} />
                     </Button>
-                    <Button
-                        onClick={walletHandle}
-                        variant='contained'
-                        sx={{ py: '13px', px: 2.5, }}>
-                        Connect wallet
-                    </Button>
+                    {
+                        connect === null ?
+                            <Button
+                                onClick={walletHandle}
+                                variant='contained'
+                                sx={{ py: '13px', px: 2.5, }}>
+                                Connect wallet
+                            </Button>
+                            :
+                            <Button
+                                onClick={infoHandle}
+                                variant='contained'
+                                sx={{ py: '13px', px: 2.5, '& .MuiButton-startIcon': { mr: 2.5, ml: 0 } }}
+                                startIcon={<Box component='img' src={WALLET[connect].icon} alt='currency' sx={{ width: 35, height: 35 }} />}
+                            >
+                                GALH....Z7I7
+                            </Button>
+                    }
                 </Stack>
             </Stack >
             <MenuList data={CURRENCY} minWidth={320} anchor={currencyAnchor} close={currencyClose} callback={setCurrency} />
             <MenuList data={LANGUAGE} minWidth={320} anchor={langAnchor} close={langClose} callback={setLang} />
             <MenuList data={NETWORK} minWidth={280} anchor={netAnchor} close={netClose} callback={setNet} />
             <MenuList data={WALLET} minWidth={280} anchor={walletAnchor} close={walletClose} callback={setWallet} />
+            <MenuList data={CONNECTED} minWidth={280} anchor={infoAnchor} close={infoClose} callback={setInfo} size={34} py={2} />
         </>
     );
 }

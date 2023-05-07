@@ -39,6 +39,10 @@ import trybIcon from '../assets/img/coin/tryb.svg';
 import unitedStatesIcon from '../assets/img/coin/united_states.svg';
 import usdcIcon from '../assets/img/coin/usdc.svg';
 
+// connected
+import copyIcon from '../assets/img/icon/copy.svg';
+import disconnectIcon from '../assets/img/icon/disconnect.svg';
+
 export const CURRENCY = [
     {
         name: 'Nigerian Naira',
@@ -184,4 +188,15 @@ export const TOKEN_LIST = [
         sub: 'U.S dollar',
         icon: unitedStatesIcon,
     },
+]
+
+export const CONNECTED = [
+    {
+        name: 'Copy address',
+        icon: copyIcon
+    },
+    {
+        name: 'Disconnect wallet',
+        icon: disconnectIcon
+    }
 ]

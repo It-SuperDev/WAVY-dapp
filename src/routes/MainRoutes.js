@@ -9,6 +9,7 @@ const Withdraw = Loadable(lazy(() => import('../pages/Withdraw')));
 const Swap = Loadable(lazy(() => import('../pages/Swap')));
 const Send = Loadable(lazy(() => import('../pages/Send')));
 const Error = Loadable(lazy(() => import('../pages/Error')));
+const TopUp = Loadable(lazy(() => import('../pages/TopUp')));
 
 const MainRoutes = {
     path: '/',
@@ -21,6 +22,10 @@ const MainRoutes = {
         {
             path: 'withdraw',
             element: <Withdraw />
+        },
+        {
+            path: 'top-up',
+            element: <TopUp />
         },
         {
             path: 'swap',

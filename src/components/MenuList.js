@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 
-const MenuList = ({ data, minWidth, py, anchor, close, callback }) => {
+const MenuList = ({ data, minWidth, py, size, anchor, close, callback }) => {
     return (
         <Menu
             anchorEl={anchor}
@@ -27,7 +27,7 @@ const MenuList = ({ data, minWidth, py, anchor, close, callback }) => {
                     <Stack key={i}>
                         {Boolean(i) && <Divider sx={{ borderColor: '#ACACAE', my: '0px !important' }} />}
                         <MenuItem sx={{ py: py ? py : 2.5, pl: '30px' }} onClick={() => callback(i)}>
-                            <ListItemIcon sx={{ mr: 1, '& img': { width: 24, height: 24 } }}>
+                            <ListItemIcon sx={{ mr: 1, '& img': { width: size ? size : 24, height: size ? size : 24 } }}>
                                 <Box component='img' src={icon} alt='currency' />
                             </ListItemIcon>
                             <ListItemText sx={{ '& .MuiListItemText-primary': { fontSize: 14 } }}>{name}</ListItemText>
