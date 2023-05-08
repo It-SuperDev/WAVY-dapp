@@ -43,6 +43,10 @@ import usdcIcon from '../assets/img/coin/usdc.svg';
 import copyIcon from '../assets/img/icon/copy.svg';
 import disconnectIcon from '../assets/img/icon/disconnect.svg';
 
+// methods
+import bankIcon from '../assets/img/icon/bank.svg'
+import moneyGramIcon from '../assets/img/icon/moneyGram.svg'
+
 export const CURRENCY = [
     {
         name: 'Nigerian Naira',
@@ -214,5 +218,31 @@ export const CONNECTED = [
     {
         name: 'Disconnect wallet',
         icon: disconnectIcon
+    }
+]
+
+export const TOP_METHOD = [
+    {
+        name: 'Bank Transfer',
+        sub: 'Top up with your bank account',
+        icon: bankIcon
+    },
+    {
+        name: 'MoneyGram',
+        sub: 'Top Up from a MoneyGram station',
+        icon: moneyGramIcon
+    }
+]
+
+export const WITHDRAW_METHOD = [
+    {
+        name: 'Bank Transfer',
+        sub: 'Withdraw your stablecoin to your bank account',
+        icon: bankIcon
+    },
+    {
+        name: 'MoneyGram',
+        sub: 'Withdraw your stablecoin to a MoneyGram station',
+        icon: moneyGramIcon
     }
 ]

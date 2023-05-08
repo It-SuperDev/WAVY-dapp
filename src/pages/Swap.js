@@ -29,7 +29,7 @@ const Withdraw = () => {
                 </Box>
                 <ValueInput title='To' available='Available: 5000 CADC' value={208.91} tokenList={TOKEN_LIST} />
 
-                <Button variant='contained' sx={{ width: '100%', borderRadius: 2.5, py: 2, mt: '66px !important', bgcolor: (theme) => theme.palette.primary.light, '&:hover': { bgcolor: (theme) => theme.palette.primary.light } }}>
+                <Button onClick={() => navigate('/preview-swap')} variant='contained' sx={{ width: '100%', borderRadius: 2.5, py: 2, mt: '66px !important', bgcolor: (theme) => theme.palette.primary.light, '&:hover': { bgcolor: (theme) => theme.palette.primary.light } }}>
                     Preview Swap
                 </Button>
             </Stack>

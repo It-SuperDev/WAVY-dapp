@@ -9,7 +9,7 @@ import { ReactComponent as BackIcon } from '../assets/img/icon/arrow_back.svg';
 
 const MainCard = ({ children, title, back }) => {
     return (
-        <Card className='card' sx={{ px: 5, pt: '33px', pb: '35px', minWidth: 700 }}>
+        <Card className='card' sx={{ px: 5, pt: '33px', pb: '35px', minWidth: 700, minHeight: 650 }}>
             <Stack justifyContent='center' sx={{ position: 'relative', mb: '45px' }}>
                 <IconButton onClick={back} sx={{ position: 'absolute', left: -8 }}>
                     <BackIcon />

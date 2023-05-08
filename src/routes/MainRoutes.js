@@ -11,7 +11,8 @@ const Send = Loadable(lazy(() => import('../pages/Send')));
 const Error = Loadable(lazy(() => import('../pages/Error')));
 const TopUp = Loadable(lazy(() => import('../pages/TopUp')));
 const SelectStable = Loadable(lazy(() => import('../pages/SelectStable')));
-const SwapConfirm = Loadable(lazy(() => import('../pages/SwapConfirm')));
+const Methods = Loadable(lazy(() => import('../pages/Methods')));
+const SwapPreview = Loadable(lazy(() => import('../pages/SwapPreview')));
 
 const MainRoutes = {
     path: '/',
@@ -46,12 +47,20 @@ const MainRoutes = {
             element: <Error />
         },
         {
+            path: 'top-method',
+            element: <Methods title='Top Up Method' description='Select how you want to Top Up' />
+        },
+        {
+            path: 'withdraw-method',
+            element: <Methods title='Withdrawal Method' description='Select the destination to withdraw your stablecoin' isWithdraw />
+        },
+        {
             path: 'select-stable',
             element: <SelectStable />
         },
         {
-            path: 'swap-confirm',
-            element: <SwapConfirm />
+            path: 'preview-swap',
+            element: <SwapPreview />
         },
     ]
 };

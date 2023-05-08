@@ -27,6 +27,7 @@ const Withdraw = () => {
                 <ValueInput title='Receive' value={3100} tokenList={[TOKEN_LIST[7]]} />
 
                 <Button
+                 onClick={() => navigate('/withdraw-method')}
                     sx={{
                         fontSize: 18, fontWeight: 500, bgcolor: '#090912', borderRadius: 2.5, py: 1.25, px: 3, color: '#FFF', justifyContent: 'space-between !important', width: '100%', '&:hover': { bgcolor: '#090912', }
                     }}

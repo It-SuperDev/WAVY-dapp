@@ -16,7 +16,10 @@ import MenuList from '../components/MenuList';
 // Constants
 import { CURRENCY, LANGUAGE, WALLET, NETWORK, CONNECTED } from '../config/constants';
 
+import useConfig from '../hooks/useConfig';
+
 const Header = () => {
+    const { changeData } = useConfig();
     const [currencyAnchor, setCurrencyAnchor] = useState(null);
     const [langAnchor, setLangAnchor] = useState(null);
     const [walletAnchor, setWalletAnchor] = useState(null);
@@ -35,6 +38,7 @@ const Header = () => {
     };
     const setCurrency = (i) => {
         setCurrentCurrency(i);
+        changeData({ key: 'currency', data: CURRENCY[i] });
         currencyClose();
     }
 
@@ -46,6 +50,7 @@ const Header = () => {
     };
     const setLang = (i) => {
         setCurrentLang(i);
+        changeData({ key: 'language', data: LANGUAGE[i] });
         langClose();
     }
 
@@ -56,7 +61,8 @@ const Header = () => {
         setWalletAnchor(null);
     };
     const setWallet = (i) => {
-        setConnect(i)
+        setConnect(i);
+        changeData({ key: 'wallet', data: WALLET[i] });
         walletClose();
     }
 
@@ -67,7 +73,8 @@ const Header = () => {
         setNetAnchor(null);
     };
     const setNet = (i) => {
-        setCurrentNet(i)
+        setCurrentNet(i);
+        changeData({ key: 'network', data: NETWORK[i] });
         netClose();
     }
 
@@ -80,6 +87,7 @@ const Header = () => {
     const setInfo = (i) => {
         if (i) {
             setConnect(null);
+            changeData({ key: 'wallet', data: null });
         }
         infoClose();
     }

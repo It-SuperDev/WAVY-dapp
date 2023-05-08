@@ -13,7 +13,16 @@ const ConfigProvider = ({ children }) => {
         }));
     };
 
-    return <ConfigContext.Provider value={{ ...config, onChangeThemeMode }}>{children}</ConfigContext.Provider>;
+    const changeData = ({ key, data }) => {
+        setConfig((prevState) => ({
+            ...prevState,
+            [key]: data
+        }));
+
+    }
+
+
+    return <ConfigContext.Provider value={{ ...config, onChangeThemeMode, changeData }}>{children}</ConfigContext.Provider>;
 };
 
 export default ConfigProvider;
