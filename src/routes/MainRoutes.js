@@ -7,14 +7,17 @@ import Loadable from '../components/Loadable';
 const Home = Loadable(lazy(() => import('../pages/Home')));
 const Withdraw = Loadable(lazy(() => import('../pages/Withdraw')));
 const Swap = Loadable(lazy(() => import('../pages/Swap')));
-const SwapLoading = Loadable(lazy(() => import('../pages/SwapLoading')));
+const Loading = Loadable(lazy(() => import('../pages/Loading')));
 const Send = Loadable(lazy(() => import('../pages/Send')));
 const Error = Loadable(lazy(() => import('../pages/Error')));
-const Success = Loadable(lazy(() => import('../pages/Success')));
+const SwapSuccess = Loadable(lazy(() => import('../pages/SwapSuccess')));
+const SendSuccess = Loadable(lazy(() => import('../pages/SendSuccess')));
 const TopUp = Loadable(lazy(() => import('../pages/TopUp')));
 const SelectStable = Loadable(lazy(() => import('../pages/SelectStable')));
 const Methods = Loadable(lazy(() => import('../pages/Methods')));
 const SwapPreview = Loadable(lazy(() => import('../pages/SwapPreview')));
+const Offers = Loadable(lazy(() => import('../pages/Offers')));
+const CreateOffer = Loadable(lazy(() => import('../pages/CreateOffer')));
 
 const MainRoutes = {
     path: '/',
@@ -49,12 +52,16 @@ const MainRoutes = {
             element: <Error />
         },
         {
-            path: 'swap-loading',
-            element: <SwapLoading />
+            path: 'loading/:nextRouer',
+            element: <Loading />
         },
         {
-            path: 'success',
-            element: <Success />
+            path: 'swap-success',
+            element: <SwapSuccess />
+        },
+        {
+            path: 'send-success',
+            element: <SendSuccess />
         },
         {
             path: 'top-method',
@@ -71,6 +78,14 @@ const MainRoutes = {
         {
             path: 'preview-swap',
             element: <SwapPreview />
+        },
+        {
+            path: 'create-offer',
+            element: <CreateOffer />
+        },
+        {
+            path: 'offers',
+            element: <Offers />
         },
     ]
 };

@@ -48,7 +48,7 @@ const Home = () => {
                 </Box>
                 <Stack direction='row' justifyContent='space-between' width='100%' mt={5.7}>
                     <Stack alignItems='center'>
-                        <IconButton onClick={() => navigate('send')} variant='contained' sx={{ bgcolor: '#423F51', width: 72, height: 72, boxShadow: '0px 4px 4px 0px #00000080' }}>
+                        <IconButton onClick={() => navigate('offers')} variant='contained' sx={{ bgcolor: '#423F51', width: 72, height: 72, boxShadow: '0px 4px 4px 0px #00000080' }}>
                             <SendIcon />
                         </IconButton>
                         <Typography sx={{ fontSize: 18, lineHeight: '26px', mt: 2 }}>Send</Typography>

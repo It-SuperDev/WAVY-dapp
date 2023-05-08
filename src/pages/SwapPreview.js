@@ -12,7 +12,7 @@ import EastIcon from '@mui/icons-material/East';
 import sendIcon from '../assets/img/icon/sender.svg';
 import receiverIcon from '../assets/img/icon/receiver.svg';
 
-const Home = () => {
+const SwapPreview = () => {
     const navigate = useNavigate();
     return (
         <Card className='card' sx={{ px: 5, pt: '33px', pb: '35px', minWidth: 700 }}>
@@ -51,7 +51,7 @@ const Home = () => {
                     <Button onClick={() => navigate(-1)} variant='outlined' sx={{ borderRadius: 2.5, py: 2, color: '#FFF', minWidth: 200, borderColor: "#FFF" }}>
                         Back
                     </Button>
-                    <Button onClick={()=>navigate('/swap-loading')} variant='contained' sx={{ minWidth: 200, borderRadius: 2.5, py: 2, bgcolor: (theme) => theme.palette.primary.light, '&:hover': { bgcolor: (theme) => theme.palette.primary.light } }}>
+                    <Button onClick={() => navigate('/loading/swap-success')} variant='contained' sx={{ minWidth: 200, borderRadius: 2.5, py: 2, bgcolor: (theme) => theme.palette.primary.light, '&:hover': { bgcolor: (theme) => theme.palette.primary.light } }}>
                         Continue
                     </Button>
                 </Stack>
@@ -60,4 +60,4 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default SwapPreview;

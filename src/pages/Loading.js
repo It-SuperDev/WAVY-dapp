@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 // MUI
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -7,11 +7,12 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 const SwapLoading = () => {
+    const { nextRouer } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
-        setTimeout(() => navigate('/success'), 3000);
-    }, [navigate]);
+        setTimeout(() => navigate(`/${nextRouer}`), 3000);
+    }, [navigate, nextRouer]);
 
     return (
         <Card className='card' sx={{ px: 5, pt: '33px', pb: '35px', minWidth: 700, minHeight: 650 }}>
