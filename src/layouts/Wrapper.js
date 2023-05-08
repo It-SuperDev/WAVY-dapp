@@ -7,7 +7,7 @@ const Wrapper = () => {
             sx={{
                 display: 'flex',
                 justifyContent: 'center',
-                minHeight: 'calc(100vh - 72px - 62px - 136px)',
+                minHeight: 'calc(100vh - 72px - 62px)',
                 padding: (theme) => theme.spacing(10, 0, 4, 0)
             }}
         >
