@@ -7,8 +7,10 @@ import Loadable from '../components/Loadable';
 const Home = Loadable(lazy(() => import('../pages/Home')));
 const Withdraw = Loadable(lazy(() => import('../pages/Withdraw')));
 const Swap = Loadable(lazy(() => import('../pages/Swap')));
+const SwapLoading = Loadable(lazy(() => import('../pages/SwapLoading')));
 const Send = Loadable(lazy(() => import('../pages/Send')));
 const Error = Loadable(lazy(() => import('../pages/Error')));
+const Success = Loadable(lazy(() => import('../pages/Success')));
 const TopUp = Loadable(lazy(() => import('../pages/TopUp')));
 const SelectStable = Loadable(lazy(() => import('../pages/SelectStable')));
 const Methods = Loadable(lazy(() => import('../pages/Methods')));
@@ -45,6 +47,14 @@ const MainRoutes = {
         {
             path: 'swap-error',
             element: <Error />
+        },
+        {
+            path: 'swap-loading',
+            element: <SwapLoading />
+        },
+        {
+            path: 'success',
+            element: <Success />
         },
         {
             path: 'top-method',

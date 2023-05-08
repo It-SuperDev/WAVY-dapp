@@ -51,7 +51,7 @@ const Home = () => {
                     <Button onClick={() => navigate(-1)} variant='outlined' sx={{ borderRadius: 2.5, py: 2, color: '#FFF', minWidth: 200, borderColor: "#FFF" }}>
                         Back
                     </Button>
-                    <Button variant='contained' sx={{ minWidth: 200, borderRadius: 2.5, py: 2, bgcolor: (theme) => theme.palette.primary.light, '&:hover': { bgcolor: (theme) => theme.palette.primary.light } }}>
+                    <Button onClick={()=>navigate('/swap-loading')} variant='contained' sx={{ minWidth: 200, borderRadius: 2.5, py: 2, bgcolor: (theme) => theme.palette.primary.light, '&:hover': { bgcolor: (theme) => theme.palette.primary.light } }}>
                         Continue
                     </Button>
                 </Stack>
