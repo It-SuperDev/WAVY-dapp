@@ -29,7 +29,11 @@ const SelectToken = () => {
                             >
                                 <div className="flex items-center">
                                     <div className="flex items-center justify-center border-2 border-[#FFFFFF] rounded-full mr-2">
-                                        <img src={icon} alt="icon" className="w-[25px] h-[25px]" />
+                                        <img
+                                            src={icon}
+                                            alt="icon"
+                                            className="w-[25px] h-[25px] bg-white rounded-full"
+                                        />
                                     </div>
                                     <div>
                                         <p className="text-sm font-medium font-coinmedium">{name}</p>
