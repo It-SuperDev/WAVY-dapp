@@ -9,9 +9,6 @@ import audd from 'assets/img/coin/audd.svg';
 import Card from 'components/Card';
 import { PrimaryButton, OutlineButton } from 'components/Styled';
 
-// Constatn
-import { TOKEN_LIST } from 'config/constants/demo';
-
 const PreviewSwap = () => {
     const navigate = useNavigate();
 

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { CardDiv, PrimaryButton, WhiteButton } from 'components/Styled';
+import { CardDiv, PrimaryButton } from 'components/Styled';
 
 // Icons
 import { ReactComponent as SuccessIcon } from 'assets/img/icon/success.svg';

@@ -131,26 +131,32 @@ export const WALLET = [
 export const NETWORK = [
     {
         name: 'Stellar Mainnet',
+        sub: 'Stellar',
         icon: stellarIcon
     },
     {
         name: 'Polygon Mainnet',
+        sub: 'Polygon',
         icon: polygonIcon
     },
     {
         name: 'Avalanche Mainnet',
+        sub: 'Avalanche',
         icon: avalancheIcon
     },
     {
         name: 'Ethereum Main Network',
+        sub: 'Ethereum',
         icon: ethereumIcon
     },
     {
         name: 'Solana Mainnet',
+        sub: 'Solana',
         icon: solanaIcon
     },
     {
         name: 'Tron Mainnet',
+        sub: 'Tron',
         icon: tronIcon
     }
 ];

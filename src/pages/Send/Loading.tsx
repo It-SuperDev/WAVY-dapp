@@ -9,7 +9,7 @@ const Loading = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            navigate('/swap/success');
+            navigate('/send/success');
         }, 2000);
     }, [navigate]);
 

@@ -6,8 +6,15 @@ import CompactLayout from 'layouts/Compact';
 import Loadable from 'components/Loadable';
 
 const Home = Loadable(lazy(() => import('pages/Home')));
+const Page404 = Loadable(lazy(() => import('pages/Page404')));
+const Method = Loadable(lazy(() => import('pages/Method')));
+const SelectToken = Loadable(lazy(() => import('pages/SelectToken')));
+const SelectNet = Loadable(lazy(() => import('pages/SelectNet')));
+const Loading = Loadable(lazy(() => import('pages/Loading')));
+
 const Send = Loadable(lazy(() => import('pages/Send')));
 const SendCheck = Loadable(lazy(() => import('pages/Send/Send')));
+
 const NewOffer = Loadable(lazy(() => import('pages/Send/NewOffer')));
 const EditOffer = Loadable(lazy(() => import('pages/Send/EditOffer')));
 const DeleteOffer = Loadable(lazy(() => import('pages/Send/DeleteOffer')));
@@ -17,15 +24,15 @@ const SendSuccess = Loadable(lazy(() => import('pages/Send/Success')));
 const ConfirmOffer = Loadable(lazy(() => import('pages/Send/ConfirmOffer')));
 const DeleteLoading = Loadable(lazy(() => import('pages/Send/DeleteLoading')));
 const Offers = Loadable(lazy(() => import('pages/Send/Offers')));
+
 const Swap = Loadable(lazy(() => import('pages/Swap')));
 const PreviewSwap = Loadable(lazy(() => import('pages/Swap/PreviewSwap')));
 const Success = Loadable(lazy(() => import('pages/Swap/Success')));
+
 const TopUp = Loadable(lazy(() => import('pages/TopUp')));
 const Withdraw = Loadable(lazy(() => import('pages/Withdraw')));
-const Method = Loadable(lazy(() => import('pages/Method')));
-const Page404 = Loadable(lazy(() => import('pages/Page404')));
-const SelectToken = Loadable(lazy(() => import('pages/SelectToken')));
-const Loading = Loadable(lazy(() => import('pages/Loading')));
+
+const Bridge = Loadable(lazy(() => import('pages/Bridge')));
 
 export const MainRoutes = {
     path: '/',
@@ -54,6 +61,10 @@ export const MainRoutes = {
         {
             path: 'select',
             element: <SelectToken />
+        },
+        {
+            path: 'select-net',
+            element: <SelectNet />
         },
         {
             path: 'swap',
@@ -114,6 +125,10 @@ export const MainRoutes = {
         {
             path: 'send/offers',
             element: <Offers />
+        },
+        {
+            path: 'bridge',
+            element: <Bridge />
         }
     ]
 };

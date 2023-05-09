@@ -39,12 +39,14 @@ const Home = () => {
                             <p className="text-md mt-2">Swap</p>
                         </div>
                     </Link>
-                    <div className="flex flex-col items-center">
-                        <button className="bg-[#423F51] rounded-full w-[60px] h-[60px] flex items-center justify-center">
-                            <BridgeIcon className="h-[35px] w-[35px]" />
-                        </button>
-                        <p className="text-md mt-2">Bridge</p>
-                    </div>
+                    <Link to="bridge">
+                        <div className="flex flex-col items-center">
+                            <button className="bg-[#423F51] rounded-full w-[60px] h-[60px] flex items-center justify-center">
+                                <BridgeIcon className="h-[35px] w-[35px]" />
+                            </button>
+                            <p className="text-md mt-2">Bridge</p>
+                        </div>
+                    </Link>
                     <div className="flex flex-col items-center">
                         <button className="bg-[#423F51] rounded-full w-[60px] h-[60px] flex items-center justify-center">
                             <SpendIcon className="h-[35px] w-[35px]" />

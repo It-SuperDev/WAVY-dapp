@@ -20,10 +20,10 @@ const Success = () => {
                     The stables have been settled to both <br /> wallet addresses
                 </h4>
                 <div className="flex justify-between items-center my-5 w-full">
-                    <WhiteButton className="text-center py-4 w-[150px]" onClick={() => navigate(-1)}>
+                    <WhiteButton className="text-center py-4 px-2 min-w-[150px] text-sm" onClick={() => navigate(-1)}>
                         View on Network Explorer
                     </WhiteButton>
-                    <PrimaryButton className="text-center py-4 w-[150px]" onClick={() => navigate('/')}>
+                    <PrimaryButton className="text-center py-4 w-[150px] text-sm" onClick={() => navigate('/')}>
                         Done
                     </PrimaryButton>
                 </div>
