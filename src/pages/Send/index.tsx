@@ -88,10 +88,10 @@ const Send = () => {
                 </div>
             ))}
             <div className="flex justify-around items-center mt-5 w-full">
-                <WhiteButton className="text-center text-bold py-4 w-[150px]" onClick={() => navigate(-1)}>
+                <WhiteButton className="text-center text-bold py-4 w-[150px]" onClick={() => navigate('create-offer')}>
                     My offers
                 </WhiteButton>
-                <PrimaryButton className="text-center py-4 w-[150px]" onClick={() => navigate('/')}>
+                <PrimaryButton className="text-center py-4 w-[150px]" onClick={() => navigate('create-offer')}>
                     Create a new offer
                 </PrimaryButton>
             </div>

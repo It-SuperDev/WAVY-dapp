@@ -6,7 +6,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { VlaueInputProps } from 'types/utils';
 import { Input } from './Styled';
 
-const ValueInput = ({ title, value, available, error, errorMessage, tokenList }: VlaueInputProps) => {
+const ValueInput = ({ title, value, available, error, errorMessage, tokenList, classes }: VlaueInputProps) => {
     const navigate = useNavigate();
 
     const goSelect = () => {
@@ -15,7 +15,7 @@ const ValueInput = ({ title, value, available, error, errorMessage, tokenList }:
 
     return (
         <div
-            className={`flex flex-col rounded-lg w-full border-[0.6px] px-5 py-2 border-[${
+            className={`${classes} flex flex-col rounded-lg w-full border-[0.6px] px-5 py-2 border-[${
                 error ? '#FF0004' : '#ACACAE'
             }]`}
         >

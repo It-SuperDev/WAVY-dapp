@@ -4,9 +4,10 @@ import { ReactComponent as BackIcon } from '../assets/img/icon/arrow_back.svg';
 // Styled
 import { CardDiv } from './Styled';
 
-const Card = ({ children, title, back }: { children: any; title?: string; back?: any }) => {
+const Card = ({ children, title, back, lg }: { children: any; title?: string; back?: any; lg?: number }) => {
+    console.log(lg);
     return (
-        <CardDiv className="py-7 min-h-[500px]">
+        <CardDiv className={lg ? `py-7 min-h-[500px] w-[650px]` : 'py-7 min-h-[500px] w-[550px]'}>
             <div className="flex items-center justify-center relative mb-10 mx-[24px]">
                 {back && (
                     <div
