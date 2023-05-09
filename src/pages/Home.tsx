@@ -13,7 +13,7 @@ import { CardDiv } from 'components/Styled';
 
 const Home = () => {
     return (
-        <CardDiv className="py-7">
+        <CardDiv className="py-7 w-[550px]">
             <div className="flex flex-col w-[400px] items-center mx-auto">
                 <div className="rounded-lg w-full border-[#ACACAE] border-[0.6px] px-6 py-7 gradient-box">
                     <div className="flex items-center">

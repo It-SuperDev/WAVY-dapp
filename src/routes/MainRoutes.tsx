@@ -9,7 +9,14 @@ const Home = Loadable(lazy(() => import('pages/Home')));
 const Send = Loadable(lazy(() => import('pages/Send')));
 const SendCheck = Loadable(lazy(() => import('pages/Send/Send')));
 const NewOffer = Loadable(lazy(() => import('pages/Send/NewOffer')));
+const EditOffer = Loadable(lazy(() => import('pages/Send/EditOffer')));
+const DeleteOffer = Loadable(lazy(() => import('pages/Send/DeleteOffer')));
+const DeleteSuccess = Loadable(lazy(() => import('pages/Send/DeleteSuccess')));
+const SendLoading = Loadable(lazy(() => import('pages/Send/Loading')));
+const SendSuccess = Loadable(lazy(() => import('pages/Send/Success')));
 const ConfirmOffer = Loadable(lazy(() => import('pages/Send/ConfirmOffer')));
+const DeleteLoading = Loadable(lazy(() => import('pages/Send/DeleteLoading')));
+const Offers = Loadable(lazy(() => import('pages/Send/Offers')));
 const Swap = Loadable(lazy(() => import('pages/Swap')));
 const PreviewSwap = Loadable(lazy(() => import('pages/Swap/PreviewSwap')));
 const Success = Loadable(lazy(() => import('pages/Swap/Success')));
@@ -73,12 +80,40 @@ export const MainRoutes = {
             element: <SendCheck />
         },
         {
+            path: 'send/process',
+            element: <SendLoading />
+        },
+        {
+            path: 'send/success',
+            element: <SendSuccess />
+        },
+        {
             path: 'send/create-offer',
             element: <NewOffer />
         },
         {
+            path: 'send/edit-offer',
+            element: <EditOffer />
+        },
+        {
+            path: 'send/delete-offer',
+            element: <DeleteOffer />
+        },
+        {
+            path: 'send/delete-process',
+            element: <DeleteLoading />
+        },
+        {
+            path: 'send/delete-success',
+            element: <DeleteSuccess />
+        },
+        {
             path: 'send/create-offer/confirm',
             element: <ConfirmOffer />
+        },
+        {
+            path: 'send/offers',
+            element: <Offers />
         }
     ]
 };

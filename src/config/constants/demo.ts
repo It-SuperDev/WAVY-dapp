@@ -47,6 +47,10 @@ import disconnectIcon from 'assets/img/icon/disconnect.svg';
 import bankIcon from 'assets/img/icon/bank.svg';
 import moneyGramIcon from 'assets/img/icon/moneyGram.svg';
 
+// my offer actions
+import editIcon from 'assets/img/icon/edit.svg';
+import deleteIcon from 'assets/img/icon/delete.svg';
+
 export const CURRENCY = [
     {
         name: 'Nigerian Naira',
@@ -244,5 +248,16 @@ export const WITHDRAW_METHOD = [
         name: 'MoneyGram',
         sub: 'Withdraw your stablecoin to a MoneyGram station',
         icon: moneyGramIcon
+    }
+];
+
+export const MY_OFFER_ACTION = [
+    {
+        name: 'Edit offer',
+        icon: editIcon
+    },
+    {
+        name: 'Delete offer',
+        icon: deleteIcon
     }
 ];

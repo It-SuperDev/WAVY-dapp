@@ -32,7 +32,7 @@ const TopUp = () => {
                     <OutlineButton className="text-center text-bold py-4 w-[150px]" onClick={() => navigate(-1)}>
                         Cancel
                     </OutlineButton>
-                    <PrimaryButton className="text-center py-4 w-[150px]" onClick={() => navigate('/swap/process')}>
+                    <PrimaryButton className="text-center py-4 w-[150px]" onClick={() => navigate('/send/process')}>
                         Continue
                     </PrimaryButton>
                 </div>

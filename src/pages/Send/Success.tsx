@@ -21,10 +21,10 @@ const Success = () => {
                 </h4>
                 <div className="flex justify-between items-center my-5 w-full">
                     <WhiteButton className="text-center py-4 w-[150px]" onClick={() => navigate(-1)}>
-                        Back
+                        View on Network Explorer
                     </WhiteButton>
                     <PrimaryButton className="text-center py-4 w-[150px]" onClick={() => navigate('/')}>
-                        Continue
+                        Done
                     </PrimaryButton>
                 </div>
                 <p className="text-center text-md">
