@@ -1,4 +1,4 @@
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // Icon
 import ngncIcon from 'assets/img/coin/ngnc.svg';
@@ -56,7 +56,9 @@ const NewOffer = () => {
                     </div>
                 </div>
                 <div className="text-center">
-                    <PrimaryButton className="text-center mt-10 py-4 w-[60%]">Create an offer</PrimaryButton>
+                    <PrimaryButton className="text-center mt-10 py-4 w-[60%]" onClick={() => navigate('confirm')}>
+                        Create an offer
+                    </PrimaryButton>
                 </div>
             </div>
         </Card>

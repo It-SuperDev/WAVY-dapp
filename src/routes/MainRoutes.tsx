@@ -9,6 +9,7 @@ const Home = Loadable(lazy(() => import('pages/Home')));
 const Send = Loadable(lazy(() => import('pages/Send')));
 const SendCheck = Loadable(lazy(() => import('pages/Send/Send')));
 const NewOffer = Loadable(lazy(() => import('pages/Send/NewOffer')));
+const ConfirmOffer = Loadable(lazy(() => import('pages/Send/ConfirmOffer')));
 const Swap = Loadable(lazy(() => import('pages/Swap')));
 const PreviewSwap = Loadable(lazy(() => import('pages/Swap/PreviewSwap')));
 const Success = Loadable(lazy(() => import('pages/Swap/Success')));
@@ -74,6 +75,10 @@ export const MainRoutes = {
         {
             path: 'send/create-offer',
             element: <NewOffer />
+        },
+        {
+            path: 'send/create-offer/confirm',
+            element: <ConfirmOffer />
         }
     ]
 };
