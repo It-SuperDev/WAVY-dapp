@@ -1,63 +1,6 @@
-@import url('./fonts.css');
+@import "./_font.css";
+@import "./_global.css";
 
-body {
-    background: linear-gradient(180deg, #151428 0%, #000000 100%);
-}
-
-.card {
-    background: linear-gradient(180deg, rgba(36, 36, 41, 0) 0%, #242429 100%) !important;
-}
-
-.gradient {
-    background: linear-gradient(180deg, #1E1E36 0%, rgba(36, 36, 41, 0) 100%),
-        linear-gradient(0deg, #acacae00, #acacae00);
-}
-
-input:focus-visible {
-    outline-offset: 0px;
-    border: unset !important;
-}
-
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-    -moz-appearance: textfield;
-}
-
-.loader {
-    border: 10px solid #ffffff4d;
-    border-radius: 50%;
-    border-top: 10px solid #ffffff;
-    width: 60px;
-    height: 60px;
-    -webkit-animation: spin 2s linear infinite;
-    /* Safari */
-    animation: spin 2s linear infinite;
-}
-
-/* Safari */
-@-webkit-keyframes spin {
-    0% {
-        -webkit-transform: rotate(0deg);
-    }
-
-    100% {
-        -webkit-transform: rotate(360deg);
-    }
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
