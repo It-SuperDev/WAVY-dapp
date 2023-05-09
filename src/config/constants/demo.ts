@@ -20,6 +20,11 @@ import turkeyIcon from 'assets/img/lang/turkey.svg';
 import freighterIcon from 'assets/img/wallet/freighter.svg';
 import xbullIcon from 'assets/img/wallet/xbull.svg';
 import coinbaseIcon from 'assets/img/wallet/coinbase.svg';
+import metamaskIcon from 'assets/img/wallet/MetaMask.svg';
+import walletconnectIcon from 'assets/img/wallet/walletconnect.svg';
+import exodusIcon from 'assets/img/wallet/exodus.svg';
+import phantomIcon from 'assets/img/wallet/phantom.svg';
+import tronwalletIcon from 'assets/img/wallet/tron.svg';
 
 // network icons
 import stellarIcon from 'assets/img/network/stellar.svg';
@@ -124,7 +129,7 @@ export const WALLET = [
     },
     {
         name: 'walletConnect',
-        icon: coinbaseIcon
+        icon: walletconnectIcon
     }
 ];
 
@@ -132,32 +137,112 @@ export const NETWORK = [
     {
         name: 'Stellar Mainnet',
         sub: 'Stellar',
-        icon: stellarIcon
+        icon: stellarIcon,
+        wallet: [
+            {
+                name: 'Freighter',
+                icon: freighterIcon
+            },
+            {
+                name: 'xBull',
+                icon: xbullIcon
+            },
+            {
+                name: 'walletConnect',
+                icon: coinbaseIcon
+            }
+        ]
     },
     {
         name: 'Polygon Mainnet',
         sub: 'Polygon',
-        icon: polygonIcon
+        icon: polygonIcon,
+        wallet: [
+            {
+                name: 'MetaMask',
+                icon: metamaskIcon
+            },
+            {
+                name: 'Coinbase',
+                icon: coinbaseIcon
+            },
+            {
+                name: 'walletConnect',
+                icon: walletconnectIcon
+            }
+        ]
     },
     {
         name: 'Avalanche Mainnet',
         sub: 'Avalanche',
-        icon: avalancheIcon
+        icon: avalancheIcon,
+        wallet: [
+            {
+                name: 'MetaMask',
+                icon: metamaskIcon
+            },
+            {
+                name: 'Coinbase',
+                icon: coinbaseIcon
+            },
+            {
+                name: 'walletConnect',
+                icon: walletconnectIcon
+            }
+        ]
     },
     {
         name: 'Ethereum Main Network',
         sub: 'Ethereum',
-        icon: ethereumIcon
+        icon: ethereumIcon,
+        wallet: [
+            {
+                name: 'MetaMask',
+                icon: metamaskIcon
+            },
+            {
+                name: 'Coinbase',
+                icon: coinbaseIcon
+            },
+            {
+                name: 'walletConnect',
+                icon: walletconnectIcon
+            }
+        ]
     },
     {
         name: 'Solana Mainnet',
         sub: 'Solana',
-        icon: solanaIcon
+        icon: solanaIcon,
+        wallet: [
+            {
+                name: 'Exodus Wallet',
+                icon: exodusIcon
+            },
+            {
+                name: 'Phantom',
+                icon: phantomIcon
+            },
+            {
+                name: 'walletConnect',
+                icon: walletconnectIcon
+            }
+        ]
     },
     {
         name: 'Tron Mainnet',
         sub: 'Tron',
-        icon: tronIcon
+        icon: tronIcon,
+        wallet: [
+            {
+                name: 'TronLink',
+                icon: tronwalletIcon
+            },
+            {
+                name: 'walletConnect',
+                icon: walletconnectIcon
+            }
+        ]
     }
 ];
 

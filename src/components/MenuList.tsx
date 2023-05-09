@@ -8,7 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import { MenuListProps } from 'types/utils';
 
-const MenuList = ({ data, minWidth, py, size, anchor, close, callback }: MenuListProps) => {
+const MenuList = ({ data, minWidth, py, size, anchor, close, callback }: MenuListProps | any) => {
     return (
         <Menu
             anchorEl={anchor}

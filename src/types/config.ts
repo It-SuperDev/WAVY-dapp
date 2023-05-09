@@ -14,4 +14,5 @@ export type DemoDataProps = {
     sub?: string;
     amount?: string;
     price?: string;
+    wallet?: any;
 };

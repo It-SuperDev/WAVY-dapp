@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/img/logo.svg';
 
 // Constants
-import { CURRENCY, LANGUAGE, WALLET, NETWORK, CONNECTED } from '../config/constants/demo';
+import { CURRENCY, LANGUAGE, NETWORK, CONNECTED } from '../config/constants/demo';
 import { HeaderButton, IconButton, ConnectButton } from './Styled';
 import MenuList from './MenuList';
 
@@ -101,7 +101,7 @@ const Header = () => {
                     </IconButton>
                 </div>
             </div>
-            <ConnectButton className="bg-[#5A4EE8]">Connect your wallet</ConnectButton>
+            {connect === -1 && <ConnectButton className="bg-[#5A4EE8]">Connect your wallet</ConnectButton>}
             <div className="flex items-center">
                 <div>
                     <IconButton onClick={netHandle}>
@@ -113,7 +113,7 @@ const Header = () => {
                         <HeaderButton onClick={walletHandle}>Connect wallet</HeaderButton>
                     ) : (
                         <HeaderButton onClick={infoHandle}>
-                            <img src={WALLET[connect].icon} alt="currency" className="mr-2" />
+                            <img src={NETWORK[currentNet].wallet[connect].icon} alt="currency" className="mr-2" />
                             GALH....Z7I7
                         </HeaderButton>
                     )}
@@ -122,7 +122,13 @@ const Header = () => {
             <MenuList data={CURRENCY} anchor={currencyAnchor} close={currencyClose} callback={setCurrency} />
             <MenuList data={LANGUAGE} anchor={langAnchor} close={langClose} callback={setLang} />
             <MenuList data={NETWORK} anchor={netAnchor} close={netClose} callback={setNet} />
-            <MenuList data={WALLET} minWidth={150} anchor={walletAnchor} close={walletClose} callback={setWallet} />
+            <MenuList
+                data={NETWORK[currentNet].wallet}
+                minWidth={150}
+                anchor={walletAnchor}
+                close={walletClose}
+                callback={setWallet}
+            />
             <MenuList data={CONNECTED} anchor={infoAnchor} close={infoClose} callback={setInfo} size={25} />
         </header>
     );
