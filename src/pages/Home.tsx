@@ -23,12 +23,14 @@ const Home = () => {
                     <h1 className="gradient-text text-5xl font-coinmedium mt-2">$0.00</h1>
                 </div>
                 <div className="flex justify-between w-full my-11">
-                    <div className="flex flex-col items-center">
-                        <button className="bg-[#423F51] rounded-full w-[60px] h-[60px] flex items-center justify-center">
-                            <SendIcon className="h-[35px] w-[35px]" />
-                        </button>
-                        <p className="text-md mt-2">Send</p>
-                    </div>
+                    <Link to="send">
+                        <div className="flex flex-col items-center">
+                            <button className="bg-[#423F51] rounded-full w-[60px] h-[60px] flex items-center justify-center">
+                                <SendIcon className="h-[35px] w-[35px]" />
+                            </button>
+                            <p className="text-md mt-2">Send</p>
+                        </div>
+                    </Link>
                     <Link to="swap">
                         <div className="flex flex-col items-center">
                             <button className="bg-[#423F51] rounded-full w-[60px] h-[60px] flex items-center justify-center">

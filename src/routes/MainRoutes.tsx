@@ -6,6 +6,8 @@ import CompactLayout from 'layouts/Compact';
 import Loadable from 'components/Loadable';
 
 const Home = Loadable(lazy(() => import('pages/Home')));
+const Send = Loadable(lazy(() => import('pages/Send')));
+const SendCheck = Loadable(lazy(() => import('pages/Send/Send')));
 const Swap = Loadable(lazy(() => import('pages/Swap')));
 const PreviewSwap = Loadable(lazy(() => import('pages/Swap/PreviewSwap')));
 const Success = Loadable(lazy(() => import('pages/Swap/Success')));
@@ -59,6 +61,14 @@ export const MainRoutes = {
         {
             path: 'swap/success',
             element: <Success />
+        },
+        {
+            path: 'send',
+            element: <Send />
+        },
+        {
+            path: 'send/check',
+            element: <SendCheck />
         }
     ]
 };
