@@ -105,7 +105,7 @@ const Header = () => {
         <header className="flex items-center justify-between w-full mt-10">
             <div className="flex items-center">
                 <Link to="/">
-                    <img src={logo} alt="logo" className="h-10" />
+                    <img src={logo} alt="logo" className="h-10 my-[2px]" />
                 </Link>
                 {isHeader && (
                     <>
