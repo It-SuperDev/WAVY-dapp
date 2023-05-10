@@ -17,7 +17,7 @@ const TopUp = () => {
     return (
         <Card title="Top Up" back={() => navigate('/')}>
             <div className="flex flex-col w-full">
-                <ValueInput title="Amount" value={0.0} tokenList={[TOKEN_LIST[7]]} />
+                <ValueInput title="Amount" value={0.0} tokenList={[TOKEN_LIST[4]]} />
                 <p className="bg-[#090912] rounded-lg py-1 px-6 text-[#B8ACFF] my-4">Fee: 0.00</p>
                 <ValueInput title="Receive" available="Available: 3000 USDC" value={0.0} tokenList={TOKEN_LIST} />
                 <Link to="method">

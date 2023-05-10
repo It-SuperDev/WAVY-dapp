@@ -35,14 +35,31 @@ import solanaIcon from 'assets/img/network/solana.svg';
 import tronIcon from 'assets/img/network/tron.svg';
 
 // coins
-import brzIcon from 'assets/img/coin/brz.svg';
-import cadcIcon from 'assets/img/coin/cadc.svg';
-import eursIcon from 'assets/img/coin/eurs.svg';
-import jeurIcon from 'assets/img/coin/jeur.svg';
-import ngncIcon from 'assets/img/coin/ngnc.svg';
-import trybIcon from 'assets/img/coin/tryb.svg';
-import unitedStatesIcon from 'assets/img/coin/united_states.svg';
-import usdcIcon from 'assets/img/coin/usdc.svg';
+// stellar
+import arsIcon from 'assets/img/coin/stellar/ars.svg';
+import arstIcon from 'assets/img/coin/stellar/arst.svg';
+import auddIcon from 'assets/img/coin/stellar/audd.svg';
+import brlIcon from 'assets/img/coin/stellar/brl.svg';
+import eurcIcon from 'assets/img/coin/stellar/eurc.svg';
+import ghscIcon from 'assets/img/coin/stellar/ghsc.svg';
+// polygon
+import brzIcon from 'assets/img/coin/polygon/brz.svg';
+import cadcIcon from 'assets/img/coin/polygon/cadc.svg';
+import eursIcon from 'assets/img/coin/polygon/eurs.svg';
+import jeurIcon from 'assets/img/coin/polygon/jeur.svg';
+import ngncIcon from 'assets/img/coin/polygon/ngnc.svg';
+import trybIcon from 'assets/img/coin/polygon/tryb.svg';
+import usdcIcon from 'assets/img/coin/polygon/usdc.svg';
+// Ethereum
+import cnhcIcon from 'assets/img/coin/ethereum/cnhc.svg';
+import eurocIcon from 'assets/img/coin/ethereum/euroc.svg';
+import eurtIcon from 'assets/img/coin/ethereum/eurt.svg';
+import gbptIcon from 'assets/img/coin/ethereum/gbpt.svg';
+// avalanche
+import tgbpIcon from 'assets/img/coin/avalanche/tgbp.svg';
+
+import tcnhIcon from 'assets/img/coin/tron/tcnh.svg';
+import usdtIcon from 'assets/img/coin/tron/usdt.svg';
 
 // connected
 import copyIcon from 'assets/img/icon/copy.svg';
@@ -133,119 +150,6 @@ export const WALLET = [
     }
 ];
 
-export const NETWORK = [
-    {
-        name: 'Stellar Mainnet',
-        sub: 'Stellar',
-        icon: stellarIcon,
-        wallet: [
-            {
-                name: 'Freighter',
-                icon: freighterIcon
-            },
-            {
-                name: 'xBull',
-                icon: xbullIcon
-            },
-            {
-                name: 'walletConnect',
-                icon: coinbaseIcon
-            }
-        ]
-    },
-    {
-        name: 'Polygon Mainnet',
-        sub: 'Polygon',
-        icon: polygonIcon,
-        wallet: [
-            {
-                name: 'MetaMask',
-                icon: metamaskIcon
-            },
-            {
-                name: 'Coinbase',
-                icon: coinbaseIcon
-            },
-            {
-                name: 'walletConnect',
-                icon: walletconnectIcon
-            }
-        ]
-    },
-    {
-        name: 'Avalanche Mainnet',
-        sub: 'Avalanche',
-        icon: avalancheIcon,
-        wallet: [
-            {
-                name: 'MetaMask',
-                icon: metamaskIcon
-            },
-            {
-                name: 'Coinbase',
-                icon: coinbaseIcon
-            },
-            {
-                name: 'walletConnect',
-                icon: walletconnectIcon
-            }
-        ]
-    },
-    {
-        name: 'Ethereum Main Network',
-        sub: 'Ethereum',
-        icon: ethereumIcon,
-        wallet: [
-            {
-                name: 'MetaMask',
-                icon: metamaskIcon
-            },
-            {
-                name: 'Coinbase',
-                icon: coinbaseIcon
-            },
-            {
-                name: 'walletConnect',
-                icon: walletconnectIcon
-            }
-        ]
-    },
-    {
-        name: 'Solana Mainnet',
-        sub: 'Solana',
-        icon: solanaIcon,
-        wallet: [
-            {
-                name: 'Exodus Wallet',
-                icon: exodusIcon
-            },
-            {
-                name: 'Phantom',
-                icon: phantomIcon
-            },
-            {
-                name: 'walletConnect',
-                icon: walletconnectIcon
-            }
-        ]
-    },
-    {
-        name: 'Tron Mainnet',
-        sub: 'Tron',
-        icon: tronIcon,
-        wallet: [
-            {
-                name: 'TronLink',
-                icon: tronwalletIcon
-            },
-            {
-                name: 'walletConnect',
-                icon: walletconnectIcon
-            }
-        ]
-    }
-];
-
 export const TOKEN_LIST = [
     {
         name: 'BRZ',
@@ -295,13 +199,6 @@ export const TOKEN_LIST = [
         icon: usdcIcon,
         amount: '3000 USDC',
         price: '$3,000.00'
-    },
-    {
-        name: 'USD',
-        sub: 'U.S dollar',
-        icon: unitedStatesIcon,
-        amount: '3,000.00 USD',
-        price: '$3,000.00'
     }
 ];
 
@@ -350,5 +247,395 @@ export const MY_OFFER_ACTION = [
     {
         name: 'Delete offer',
         icon: deleteIcon
+    }
+];
+
+export const stellar = [
+    {
+        name: 'ARS',
+        icon: arsIcon,
+        sub: 'Argentine Peso',
+        amount: '20000.54 ARS',
+        price: '$89.04'
+    },
+    {
+        name: 'ARST',
+        icon: arstIcon,
+        sub: 'Argentine Peso',
+        amount: '15882.39 ARST',
+        price: '$70.70'
+    },
+    {
+        name: 'BRL',
+        icon: brlIcon,
+        sub: 'Brazilian Real',
+        amount: '15000 BRL',
+        price: '$3,004.92'
+    },
+    {
+        name: 'BRLT',
+        icon: brlIcon,
+        sub: 'Brazilian Real',
+        amount: '13000 BRLT',
+        price: '$2,604.26'
+    },
+    {
+        name: 'AUDD',
+        icon: auddIcon,
+        sub: 'Australian Dollar',
+        amount: '5000 AUDD',
+        price: '$3,329.67'
+    },
+    {
+        name: 'EURC',
+        icon: eurcIcon,
+        sub: 'Euro',
+        amount: '3000 EURC',
+        price: '$3,285.39'
+    },
+    {
+        name: 'GHSC',
+        icon: ghscIcon,
+        sub: 'Ghanaian Cedi',
+        amount: '3000 GHSC',
+        price: '$254.24'
+    }
+];
+export const polygon = [
+    {
+        name: 'BRZ',
+        icon: brzIcon,
+        sub: 'Brazilian Real',
+        amount: '13000 BRZ',
+        price: '$2,604.26'
+    },
+    {
+        name: 'CADC',
+        icon: cadcIcon,
+        sub: 'Canadian Dollar',
+        amount: '5000 CADC',
+        price: '$3,669.07'
+    },
+    {
+        name: 'EURS',
+        icon: eursIcon,
+        sub: 'Euro',
+        amount: '3000 EURS',
+        price: '$3,311.55'
+    },
+    {
+        name: 'JEUR',
+        icon: jeurIcon,
+        sub: 'Euro',
+        amount: '3000 JEUR',
+        price: '$3,311.55'
+    },
+    {
+        name: 'NGNC',
+        icon: ngncIcon,
+        sub: 'Nigerian Naira',
+        amount: '5000 NGNC',
+        price: '$6.75'
+    },
+    {
+        name: 'TRYB',
+        icon: trybIcon,
+        sub: 'Turkish Lira',
+        amount: '5000 TRYB',
+        price: '$6.75'
+    },
+    {
+        name: 'USDC',
+        icon: usdcIcon,
+        sub: 'U.S dollar',
+        amount: '3000 USDC',
+        price: '$3,000.00'
+    }
+];
+export const avalanche = [
+    {
+        name: 'BRZ',
+        icon: brzIcon,
+        sub: 'Brazilian Real',
+        amount: '13000 BRZ',
+        price: '$2,604.26'
+    },
+    {
+        name: 'EURT',
+        icon: eurtIcon,
+        sub: 'Euro',
+        amount: '13000 EURT',
+        price: '$2,604.26'
+    },
+    {
+        name: 'JEUR',
+        icon: jeurIcon,
+        sub: 'Euro',
+        amount: '3000 JEUR',
+        price: '$3,311.55'
+    },
+    {
+        name: 'NGNC',
+        icon: ngncIcon,
+        sub: 'Nigerian Naira',
+        amount: '5000 NGNC',
+        price: '$6.75'
+    },
+    {
+        name: 'TRYB',
+        icon: trybIcon,
+        sub: 'Turkish Lira',
+        amount: '5000 TRYB',
+        price: '$6.75'
+    },
+    {
+        name: 'USDC',
+        icon: usdcIcon,
+        sub: 'U.S dollar',
+        amount: '3000 USDC',
+        price: '$3,000.00'
+    },
+    {
+        name: 'TGBP',
+        icon: tgbpIcon,
+        sub: 'British Pound',
+        amount: '3000 TGBP',
+        price: '$3,122.60'
+    }
+];
+export const ethereum = [
+    {
+        name: 'BRZ',
+        icon: brzIcon,
+        sub: 'Brazilian Real',
+        amount: '13000 BRZ',
+        price: '$2,604.26'
+    },
+    {
+        name: 'CADC',
+        sub: 'Canadian Dollar',
+        icon: cadcIcon,
+        amount: '5000 CADC',
+        price: '$3,669.07'
+    },
+    {
+        name: 'CNHC',
+        sub: 'Chiness Yuan',
+        icon: cnhcIcon,
+        amount: '5000 CNHC',
+        price: '$3,669.07'
+    },
+    {
+        name: 'EUROC',
+        sub: 'Euro',
+        icon: eurocIcon,
+        amount: '5000 EUROC',
+        price: '$3,669.07'
+    },
+    {
+        name: 'EURT',
+        icon: eurtIcon,
+        sub: 'Euro',
+        amount: '13000 EURT',
+        price: '$2,604.26'
+    },
+    {
+        name: 'EURS',
+        sub: 'Euro',
+        icon: eursIcon,
+        amount: '3000 EURS',
+        price: '$3,311.55'
+    },
+    {
+        name: 'GBPT',
+        sub: 'British Pound',
+        icon: gbptIcon,
+        amount: '3000 GBPT',
+        price: '$889.20'
+    }
+];
+export const solana = [
+    {
+        name: 'BRZ',
+        icon: brzIcon,
+        sub: 'Brazilian Real',
+        amount: '13000 BRZ',
+        price: '$2,604.26'
+    },
+    {
+        name: 'NGNC',
+        icon: ngncIcon,
+        sub: 'Nigerian Naira',
+        amount: '5000 NGNC',
+        price: '$6.75'
+    },
+    {
+        name: 'TRYB',
+        icon: trybIcon,
+        sub: 'Turkish Lira',
+        amount: '5000 TRYB',
+        price: '$6.75'
+    },
+    {
+        name: 'USDC',
+        icon: usdcIcon,
+        sub: 'U.S dollar',
+        amount: '3000 USDC',
+        price: '$3,000.00'
+    },
+    {
+        name: 'USDT',
+        icon: usdtIcon,
+        sub: 'U.S dollar',
+        amount: '3000 USDT',
+        price: '$3,000.00'
+    }
+];
+export const tron = [
+    {
+        name: 'EURS',
+        sub: 'Euro',
+        icon: eursIcon,
+        amount: '3000 EURS',
+        price: '$3,311.55'
+    },
+    {
+        name: 'TCNH',
+        sub: 'Chines yuan',
+        icon: tcnhIcon,
+        amount: '3000 TCNH',
+        price: '$3,311.55'
+    },
+    {
+        name: 'USDC',
+        sub: 'U.S dollar',
+        icon: usdcIcon,
+        amount: '3000 USDC',
+        price: '$3,000.00'
+    },
+    {
+        name: 'USDT',
+        sub: 'U.S dollar',
+        icon: usdcIcon,
+        amount: '3000 USDT',
+        price: '$3,000.00'
+    }
+];
+export const NETWORK = [
+    {
+        name: 'Stellar Mainnet',
+        sub: 'Stellar',
+        icon: stellarIcon,
+        wallet: [
+            {
+                name: 'Freighter',
+                icon: freighterIcon
+            },
+            {
+                name: 'xBull',
+                icon: xbullIcon
+            },
+            {
+                name: 'walletConnect',
+                icon: coinbaseIcon
+            }
+        ],
+        token: stellar
+    },
+    {
+        name: 'Polygon Mainnet',
+        sub: 'Polygon',
+        icon: polygonIcon,
+        token: polygon,
+        wallet: [
+            {
+                name: 'MetaMask',
+                icon: metamaskIcon
+            },
+            {
+                name: 'Coinbase',
+                icon: coinbaseIcon
+            },
+            {
+                name: 'walletConnect',
+                icon: walletconnectIcon
+            }
+        ]
+    },
+    {
+        name: 'Avalanche Mainnet',
+        sub: 'Avalanche',
+        icon: avalancheIcon,
+        token: avalanche,
+        wallet: [
+            {
+                name: 'MetaMask',
+                icon: metamaskIcon
+            },
+            {
+                name: 'Coinbase',
+                icon: coinbaseIcon
+            },
+            {
+                name: 'walletConnect',
+                icon: walletconnectIcon
+            }
+        ]
+    },
+    {
+        name: 'Ethereum Main Network',
+        sub: 'Ethereum',
+        icon: ethereumIcon,
+        token: ethereum,
+        wallet: [
+            {
+                name: 'MetaMask',
+                icon: metamaskIcon
+            },
+            {
+                name: 'Coinbase',
+                icon: coinbaseIcon
+            },
+            {
+                name: 'walletConnect',
+                icon: walletconnectIcon
+            }
+        ]
+    },
+    {
+        name: 'Solana Mainnet',
+        sub: 'Solana',
+        icon: solanaIcon,
+        token: solana,
+        wallet: [
+            {
+                name: 'Exodus Wallet',
+                icon: exodusIcon
+            },
+            {
+                name: 'Phantom',
+                icon: phantomIcon
+            },
+            {
+                name: 'walletConnect',
+                icon: walletconnectIcon
+            }
+        ]
+    },
+    {
+        name: 'Tron Mainnet',
+        sub: 'Tron',
+        icon: tronIcon,
+        token: tron,
+        wallet: [
+            {
+                name: 'TronLink',
+                icon: tronwalletIcon
+            },
+            {
+                name: 'walletConnect',
+                icon: walletconnectIcon
+            }
+        ]
     }
 ];

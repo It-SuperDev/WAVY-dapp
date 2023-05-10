@@ -16,7 +16,7 @@ const Card = ({ children, title, back, lg }: { children: any; title?: string; ba
                         <BackIcon className="h-7 w-7" />
                     </div>
                 )}
-                {title && <h2 className="text-center text-3xl font-bold textcoinmedium ">{title}</h2>}
+                {title && <h2 className="text-center text-2xl font-bold font-Unbounded ">{title}</h2>}
             </div>
             <div className="flex flex-col items-center px-[64px]">{children}</div>
         </CardDiv>

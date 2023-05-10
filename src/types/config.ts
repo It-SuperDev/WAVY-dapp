@@ -2,6 +2,7 @@ export type EnvProps = {
     development: any;
     production: any;
     test: any;
+    network: any;
 };
 
 export type ConfigProps = {
@@ -15,4 +16,5 @@ export type DemoDataProps = {
     amount?: string;
     price?: string;
     wallet?: any;
+    token?: any;
 };

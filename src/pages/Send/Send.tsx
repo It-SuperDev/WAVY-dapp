@@ -21,7 +21,7 @@ const TopUp = () => {
                         been agreed on or when the order has been cancelled.
                     </p>
                 </div>
-                <ValueInput title="Amount" available="Available: 2500.33 KES" value={0.0} tokenList={[TOKEN_LIST[7]]} />
+                <ValueInput title="Amount" available="Available: 2500.33 KES" value={0.0} tokenList={[TOKEN_LIST[3]]} />
                 <p className="bg-[#090912] rounded-lg py-1 px-6 text-[#B8ACFF] my-4">1 AUDD = 90.67 KES</p>
                 <ValueInput title="Receive" value={0.0} tokenList={[TOKEN_LIST[0]]} />
                 <div className="bg-[#090912] rounded-lg py-3 px-6 mt-4 mb-10 flex flex-col">

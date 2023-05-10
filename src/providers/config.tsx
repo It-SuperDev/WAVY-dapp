@@ -8,11 +8,18 @@ type ConfigProviderProps = {
 
 const ConfigProvider: React.FC<ConfigProviderProps> = ({ children }) => {
     const origin = window?.location.origin ?? 'wavy';
-    const [config] = useLocalStorage(origin, {
+    const [config, setConfig] = useLocalStorage(origin, {
         ...initialState
     });
 
-    return <ConfigContext.Provider value={{ ...config }}>{children}</ConfigContext.Provider>;
+    const changeData = ({ key, data }: { key: string; data: any }) => {
+        setConfig((prevState) => ({
+            ...prevState,
+            [key]: data
+        }));
+    };
+
+    return <ConfigContext.Provider value={{ ...config, changeData }}>{children}</ConfigContext.Provider>;
 };
 
 export default ConfigProvider;

@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useMemo, useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 // Icon
 import logo from '../assets/img/logo.svg';
+import admin from '../assets/img/icon/admin.svg';
 
 // Constants
 import { CURRENCY, LANGUAGE, NETWORK, CONNECTED } from '../config/constants/demo';
 import { HeaderButton, IconButton, ConnectButton } from './Styled';
 import MenuList from './MenuList';
+import useConfig from 'hooks/useConfig';
 
 const Header = () => {
+    const { pathname } = useLocation();
+
     const [connect, setConnect] = useState(-1);
     const [currentNet, setCurrentNet] = useState(0);
     const [currentLang, setCurrentLang] = useState(0);
     const [currentCurrency, setCurrentCurrency] = useState(0);
+    const { changeData } = useConfig();
 
     const [netAnchor, setNetAnchor] = useState<null | HTMLElement>(null);
     const [langAnchor, setLangAnchor] = useState<null | HTMLElement>(null);
@@ -30,7 +35,6 @@ const Header = () => {
     const setCurrency = (i: number) => {
         setCurrentCurrency(i);
         currencyClose();
-        // changeData({ key: 'currency', data: CURRENCY[i] });
     };
 
     const langHandle = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -42,7 +46,6 @@ const Header = () => {
     const setLang = (i: number) => {
         setCurrentLang(i);
         langClose();
-        // changeData({ key: 'language', data: LANGUAGE[i] });
     };
 
     const netHandle = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -54,7 +57,7 @@ const Header = () => {
     const setNet = (i: number) => {
         setCurrentNet(i);
         netClose();
-        // changeData({ key: 'network', data: NETWORK[i] });
+        changeData({ key: 'NETWORK', data: NETWORK[i] });
     };
 
     const walletHandle = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -66,7 +69,6 @@ const Header = () => {
     const setWallet = (i: number) => {
         setConnect(i);
         walletClose();
-        // changeData({ key: 'wallet', data: WALLET[i] });
     };
 
     const infoHandle = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -78,10 +80,22 @@ const Header = () => {
     const setInfo = (i: number) => {
         if (i) {
             setConnect(-1);
-            // changeData({ key: 'wallet', data: null });
         }
         infoClose();
     };
+
+    useEffect(() => {
+        changeData({ key: 'NETWORK', data: NETWORK[0] });
+        // eslint-disable-next-line
+    }, []);
+
+    const isHeader = useMemo(() => {
+        return !(pathname === '/dashboard' || pathname === '/login' || pathname === '/stables');
+    }, [pathname]);
+
+    const isAdmin = useMemo(() => {
+        return pathname === '/dashboard' || pathname === '/stables';
+    }, [pathname]);
 
     return (
         <header className="flex items-center justify-between w-full mt-10">
@@ -89,36 +103,57 @@ const Header = () => {
                 <Link to="/">
                     <img src={logo} alt="logo" className="h-10" />
                 </Link>
-                <div className="ml-10">
-                    <HeaderButton onClick={currencyHandle}>
-                        <img src={CURRENCY[currentCurrency].icon} alt="currency" className="mr-2" />
-                        U.S Dollar
-                    </HeaderButton>
-                </div>
-                <div className="ml-5">
-                    <IconButton onClick={langHandle}>
-                        <img src={LANGUAGE[currentLang].icon} alt="currency" />
-                    </IconButton>
-                </div>
+                {isHeader && (
+                    <>
+                        <div className="ml-10">
+                            <HeaderButton onClick={currencyHandle}>
+                                <img src={CURRENCY[currentCurrency].icon} alt="currency" className="mr-2" />
+                                U.S Dollar
+                            </HeaderButton>
+                        </div>
+                        <div className="ml-5">
+                            <IconButton onClick={langHandle}>
+                                <img src={LANGUAGE[currentLang].icon} alt="currency" />
+                            </IconButton>
+                        </div>
+                    </>
+                )}
             </div>
-            {connect === -1 && <ConnectButton className="bg-[#5A4EE8]">Connect your wallet</ConnectButton>}
+            {connect === -1 && isHeader && <ConnectButton className="bg-[#5A4EE8]">Connect your wallet</ConnectButton>}
+
             <div className="flex items-center">
-                <div>
-                    <IconButton onClick={netHandle}>
-                        <img src={NETWORK[currentNet].icon} alt="currency" />
-                    </IconButton>
-                </div>
+                {isHeader && (
+                    <div>
+                        <IconButton onClick={netHandle}>
+                            <img src={NETWORK[currentNet].icon} alt="currency" />
+                        </IconButton>
+                    </div>
+                )}
                 <div className="ml-5">
-                    {connect === -1 ? (
-                        <HeaderButton onClick={walletHandle}>Connect wallet</HeaderButton>
-                    ) : (
+                    {isAdmin ? (
                         <HeaderButton onClick={infoHandle}>
-                            <img src={NETWORK[currentNet].wallet[connect].icon} alt="currency" className="mr-2" />
-                            GALH....Z7I7
+                            <img src={admin} alt="currency" className="mr-2" />
+                            Admin
                         </HeaderButton>
+                    ) : (
+                        <>
+                            {connect === -1 ? (
+                                <HeaderButton onClick={walletHandle}>Connect wallet</HeaderButton>
+                            ) : (
+                                <HeaderButton onClick={infoHandle}>
+                                    <img
+                                        src={NETWORK[currentNet].wallet[connect].icon}
+                                        alt="currency"
+                                        className="mr-2"
+                                    />
+                                    GALH....Z7I7
+                                </HeaderButton>
+                            )}
+                        </>
                     )}
                 </div>
             </div>
+
             <MenuList data={CURRENCY} anchor={currencyAnchor} close={currencyClose} callback={setCurrency} />
             <MenuList data={LANGUAGE} anchor={langAnchor} close={langClose} callback={setLang} />
             <MenuList data={NETWORK} anchor={netAnchor} close={netClose} callback={setNet} />

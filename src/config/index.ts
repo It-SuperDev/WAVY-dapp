@@ -6,7 +6,8 @@ const NODE_ENV = process.env.NODE_ENV;
 const ENV: EnvProps = {
     development: {},
     production: {},
-    test: {}
+    test: {},
+    network: {}
 };
 
 const Config: ConfigProps = {

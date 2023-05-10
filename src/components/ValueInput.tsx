@@ -31,7 +31,7 @@ const ValueInput = ({ title, value, available, error, errorMessage, tokenList, c
                 <div className="flex items-center justify-center">
                     <div className="flex items-center w-full cursor-pointer" onClick={goSelect}>
                         <img src={tokenList[0].icon} alt="token" className="w-[24px] h-[24px]" />
-                        <span className="text-base mx-2">{tokenList[0].name}</span>
+                        <span className="text-base mx-2 ">{tokenList[0].name}</span>
                         {tokenList.length > 1 ? <KeyboardArrowDownIcon /> : null}
                     </div>
                 </div>

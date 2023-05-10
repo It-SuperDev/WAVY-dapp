@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import Card from 'components/Card';
 import { PrimaryButton } from 'components/Styled';
 import { ReactComponent as UserIcon } from 'assets/img/icon/user.svg';
@@ -17,7 +19,9 @@ const Login = () => {
                     <input className="w-full bg-transparent pl-10 text-lg" placeholder="Password" />
                 </div>
             </div>
-            <PrimaryButton className="w-full text-center py-4">Login</PrimaryButton>
+            <Link to="/dashboard" className="w-full">
+                <PrimaryButton className="w-full text-center py-4">Login</PrimaryButton>
+            </Link>
         </Card>
     );
 };

@@ -2,8 +2,8 @@ import { useNavigate } from 'react-router-dom';
 
 // Icon
 import EastIcon from '@mui/icons-material/East';
-import kes from 'assets/img/coin/kes.svg';
-import audd from 'assets/img/coin/audd.svg';
+import kes from 'assets/img/icon/ar.svg';
+import audd from 'assets/img/icon/man.svg';
 
 // component
 import Card from 'components/Card';

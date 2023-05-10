@@ -18,7 +18,7 @@ const Loading = () => {
             <div className="flex flex-col items-center justify-center h-[500px] w-full">
                 <div className="loader"></div>
                 <h4 className="text-2xl font-medium text-center mt-[55px] mb-5">
-                    One moment, the transaction i<br />s being processed
+                    One moment, the transaction is <br /> being processed
                 </h4>
                 <p className="text-sm text-center text-[#F9FAFA]">
                     Stables are being released to your wallet <br /> address as well as that of the counterparty
