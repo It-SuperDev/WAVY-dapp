@@ -216,6 +216,13 @@ export const CONNECTED = [
     }
 ];
 
+export const LGOUT = [
+    {
+        name: 'Log out',
+        icon: disconnectIcon
+    }
+];
+
 export const TOP_METHOD = [
     {
         name: 'Bank Transfer',

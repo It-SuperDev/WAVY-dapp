@@ -1,18 +1,27 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 // Icon
 import logo from '../assets/img/logo.svg';
 import admin from '../assets/img/icon/admin.svg';
 
 // Constants
-import { CURRENCY, LANGUAGE, NETWORK, CONNECTED } from '../config/constants/demo';
+import { CURRENCY, LANGUAGE, NETWORK, CONNECTED, LGOUT } from '../config/constants/demo';
 import { HeaderButton, IconButton, ConnectButton } from './Styled';
 import MenuList from './MenuList';
 import useConfig from 'hooks/useConfig';
 
 const Header = () => {
     const { pathname } = useLocation();
+    const navigate = useNavigate();
+
+    const isHeader = useMemo(() => {
+        return !(pathname === '/dashboard' || pathname === '/login' || pathname === '/stables');
+    }, [pathname]);
+
+    const isAdmin = useMemo(() => {
+        return pathname === '/dashboard' || pathname === '/stables';
+    }, [pathname]);
 
     const [connect, setConnect] = useState(-1);
     const [currentNet, setCurrentNet] = useState(0);
@@ -81,6 +90,9 @@ const Header = () => {
         if (i) {
             setConnect(-1);
         }
+        if (isAdmin) {
+            navigate('/login');
+        }
         infoClose();
     };
 
@@ -88,14 +100,6 @@ const Header = () => {
         changeData({ key: 'NETWORK', data: NETWORK[0] });
         // eslint-disable-next-line
     }, []);
-
-    const isHeader = useMemo(() => {
-        return !(pathname === '/dashboard' || pathname === '/login' || pathname === '/stables');
-    }, [pathname]);
-
-    const isAdmin = useMemo(() => {
-        return pathname === '/dashboard' || pathname === '/stables';
-    }, [pathname]);
 
     return (
         <header className="flex items-center justify-between w-full mt-10">
@@ -165,7 +169,14 @@ const Header = () => {
                 close={walletClose}
                 callback={setWallet}
             />
-            <MenuList data={CONNECTED} anchor={infoAnchor} close={infoClose} callback={setInfo} size={25} />
+            <MenuList
+                data={isAdmin ? LGOUT : CONNECTED}
+                anchor={infoAnchor}
+                close={infoClose}
+                callback={setInfo}
+                size={25}
+                minWidth={200}
+            />
         </header>
     );
 };
