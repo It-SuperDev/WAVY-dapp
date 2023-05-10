@@ -17,10 +17,10 @@ const Home = () => {
             <div className="flex flex-col w-[400px] items-center mx-auto">
                 <div className="rounded-lg w-full border-[#ACACAE] border-[0.6px] px-6 py-7 gradient-box">
                     <div className="flex items-center">
-                        <p className="text-base font-coinmedium">Total Balance</p>
+                        <p className="text-base font-Extended">Total Balance</p>
                         <VisibilityOutlinedIcon sx={{ fontSize: 20, ml: 1 }} />
                     </div>
-                    <h1 className="gradient-text text-5xl font-coinmedium mt-2">$0.00</h1>
+                    <h1 className="gradient-text text-5xl font-Unbounded font-medium	 mt-2">$0.00</h1>
                 </div>
                 <div className="flex justify-between w-full my-11">
                     <Link to="send">

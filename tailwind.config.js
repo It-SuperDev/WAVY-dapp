@@ -11,6 +11,7 @@ module.exports = {
       'sansmedium': ['CoinbaseSans-Medium'],
       'sansregular': ['CoinbaseSans-Regular'],
       'text': ['CoinbaseText-Regular'],
+      'Unbounded': ['Unbounded'],
     },
     extend: {
       maxWidth: {

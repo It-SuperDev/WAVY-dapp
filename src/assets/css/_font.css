@@ -27,3 +27,13 @@
     font-family: 'CoinbaseText-Regular';
     src: url('../fonts/CoinbaseText-Regular.d65a3b1d9255924adbeeabac46787723.ttf');
 }
+
+@font-face {
+    font-family: 'Unbounded';
+    src: url('../fonts/Unbounded/Unbounded-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: 'Extended';
+    src: url('../fonts/Unbounded/static/Unbounded-Medium.ttf');
+}

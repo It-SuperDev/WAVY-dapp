@@ -6,6 +6,9 @@ import CompactLayout from 'layouts/Compact';
 import Loadable from 'components/Loadable';
 
 const Home = Loadable(lazy(() => import('pages/Home')));
+const Login = Loadable(lazy(() => import('pages/Login')));
+const Dashboard = Loadable(lazy(() => import('pages/Dashboard')));
+const Stables = Loadable(lazy(() => import('pages/Stables')));
 const Page404 = Loadable(lazy(() => import('pages/Page404')));
 const Method = Loadable(lazy(() => import('pages/Method')));
 const SelectToken = Loadable(lazy(() => import('pages/SelectToken')));
@@ -41,6 +44,18 @@ export const MainRoutes = {
         {
             path: '',
             element: <Home />
+        },
+        {
+            path: '/login',
+            element: <Login />
+        },
+        {
+            path: '/dashboard',
+            element: <Dashboard />
+        },
+        {
+            path: '/stables',
+            element: <Stables />
         },
         {
             path: 'top-up',
