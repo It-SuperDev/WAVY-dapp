@@ -11,6 +11,12 @@ import { HeaderButton, IconButton, ConnectButton } from './Styled';
 import MenuList from './MenuList';
 import useConfig from 'hooks/useConfig';
 
+// MUI
+import Stack from '@mui/material/Stack';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
+
 const Header = () => {
     const { pathname } = useLocation();
     const navigate = useNavigate();
@@ -23,11 +29,13 @@ const Header = () => {
         return pathname === '/dashboard' || pathname === '/stables';
     }, [pathname]);
 
+    const { changeData } = useConfig();
+
+    const [logout, setLogout] = useState(false);
     const [connect, setConnect] = useState(-1);
     const [currentNet, setCurrentNet] = useState(0);
     const [currentLang, setCurrentLang] = useState(1);
     const [currentCurrency, setCurrentCurrency] = useState(0);
-    const { changeData } = useConfig();
 
     const [netAnchor, setNetAnchor] = useState<null | HTMLElement>(null);
     const [langAnchor, setLangAnchor] = useState<null | HTMLElement>(null);
@@ -87,13 +95,15 @@ const Header = () => {
         setInfoAnchor(null);
     };
     const setInfo = (i: number) => {
+        setInfoAnchor(null);
         if (i) {
             setConnect(-1);
         }
-        if (isAdmin) {
-            navigate('/login');
-        }
-        infoClose();
+    };
+
+    const logoutHandle = () => {
+        navigate('/login');
+        setLogout(false);
     };
 
     useEffect(() => {
@@ -149,14 +159,31 @@ const Header = () => {
                         </div>
                     </>
                 )}
-                <div className="ml-5">
-                    {isAdmin && (
-                        <HeaderButton onClick={infoHandle}>
+                {isAdmin && (
+                    <div className="ml-5 relative">
+                        <HeaderButton onClick={() => setLogout(true)}>
                             <img src={admin} alt="currency" className="mr-2" />
                             Admin
                         </HeaderButton>
-                    )}
-                </div>
+                        {logout && (
+                            <div
+                                onClick={logoutHandle}
+                                className="bg-[#474764] absolute top-[48px] right-0 rounded-lg overflow-hidden"
+                            >
+                                <Stack>
+                                    <MenuItem sx={{ py: 1.5, px: 2.5, minWidth: 180 }}>
+                                        <ListItemIcon sx={{ mr: 1, '& img': { width: 24, height: 24 } }}>
+                                            <img src={LGOUT[0].icon} alt="currency" />
+                                        </ListItemIcon>
+                                        <ListItemText sx={{ '& .MuiListItemText-primary': { fontSize: 14 } }}>
+                                            {LGOUT[0].name}
+                                        </ListItemText>
+                                    </MenuItem>
+                                </Stack>
+                            </div>
+                        )}
+                    </div>
+                )}
             </div>
 
             <MenuList data={CURRENCY} anchor={currencyAnchor} close={currencyClose} callback={setCurrency} />
@@ -169,14 +196,7 @@ const Header = () => {
                 close={walletClose}
                 callback={setWallet}
             />
-            <MenuList
-                data={isAdmin ? LGOUT : CONNECTED}
-                anchor={infoAnchor}
-                close={infoClose}
-                callback={setInfo}
-                size={25}
-                minWidth={200}
-            />
+            <MenuList data={CONNECTED} anchor={infoAnchor} close={infoClose} callback={setInfo} size={25} />
         </header>
     );
 };
