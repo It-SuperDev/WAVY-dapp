@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // component
-import Card from 'components/Card';
+import { CardDiv } from 'components/Styled';
 
 const Loading = () => {
     const navigate = useNavigate();
@@ -14,17 +14,17 @@ const Loading = () => {
     }, [navigate]);
 
     return (
-        <Card>
+        <CardDiv className="py-7 min-h-[500px] w-[550px]">
             <div className="flex flex-col items-center justify-center h-[500px] w-full">
                 <div className="loader"></div>
-                <h4 className="text-2xl font-medium text-center mt-[55px] mb-5">
-                    One moment, the transaction is <br /> being processed
+                <h4 className="text-xl font-medium text-center font-Unbounded mt-[55px] mb-6">
+                    One moment, the transaction <br /> is being processed
                 </h4>
                 <p className="text-sm text-center text-[#F9FAFA]">
                     Stables are being released to your wallet <br /> address as well as that of the counterparty
                 </p>
             </div>
-        </Card>
+        </CardDiv>
     );
 };
 export default Loading;

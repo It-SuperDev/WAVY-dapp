@@ -9,25 +9,31 @@ const Success = () => {
     const navigate = useNavigate();
 
     return (
-        <CardDiv className="py-7 min-h-[500px] w-[550px] px-[24px]">
-            <h2 className="text-4xl font-bold text-coinmedium text-center">
+        <CardDiv className="py-7 min-h-[500px] w-[550px] px-[10px]">
+            <h2 className="text-4xl font-bold font-Unbounded text-center">
                 Transaction <br />
                 Successful!
             </h2>
             <div className="flex flex-col items-center justify-center px-[64px]">
                 <SuccessIcon className="my-[33px] h-[130px] w-[130px]" />
-                <h4 className="text-lg font-medium text-center  mb-5">
+                <h4 className="text-sm font-medium font-Unbounded text-center  mb-5">
                     The stables have been settled to both <br /> wallet addresses
                 </h4>
-                <div className="flex justify-between items-center my-5 w-full">
-                    <WhiteButton className="text-center py-4 w-[150px]" onClick={() => navigate(-1)}>
+                <div className="flex justify-between items-center my-8 w-full">
+                    <WhiteButton
+                        className="text-center py-4 px-2 min-w-[150px] text-xs font-medium"
+                        onClick={() => navigate(-1)}
+                    >
                         Back
                     </WhiteButton>
-                    <PrimaryButton className="text-center py-4 w-[150px]" onClick={() => navigate('/')}>
+                    <PrimaryButton
+                        className="text-center py-4 min-w-[150px] text-xs font-medium"
+                        onClick={() => navigate('/')}
+                    >
                         Continue
                     </PrimaryButton>
                 </div>
-                <p className="text-center text-md">
+                <p className="text-center text-md mb-5">
                     Incase of any disputes, contact our support <br /> team at{' '}
                     <a href="mailto:support@usewavy.xyz" className="text-[#B8ACFF]">
                         support@usewavy.xyz

@@ -63,7 +63,8 @@ input[type=number] {
 }
 
 .gradient-text {
-    background: -webkit-linear-gradient(95.4deg, #5A50CF 15.58%, #453CC4 48.25%, #C79BEA 100%);
+    /* background: -webkit-linear-gradient(95.4deg, #5A50CF 15.58%, #453CC4 48.25%, #C79BEA 100%); */
+    background: -webkit-linear-gradient(21deg, #5A50CF -3.42%, #453CC4 20.25%, #C79BEA 67%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }

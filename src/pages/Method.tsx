@@ -15,7 +15,7 @@ const Method = () => {
     return (
         <Card title={pathname === '/top-up/method' ? 'Top Up Method' : 'Withdrawal Method'} back={() => navigate(-1)}>
             <div className="flex flex-col w-full">
-                <p className="text-center mb-5 text-xs">
+                <p className="text-center mb-5 text-sm">
                     {pathname === '/top-up/method'
                         ? 'Select how you want to Top Up '
                         : 'Select the destination to withdraw your stablecoin'}

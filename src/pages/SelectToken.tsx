@@ -17,9 +17,9 @@ const SelectToken = () => {
     return (
         <Card title="Select Stable" back={() => navigate(-1)}>
             <div className="flex flex-col w-full">
-                <div className="relative rounded-lg border-[0.6px] border-[#ACACAE] py-1 px-5">
+                <div className="relative rounded-lg border-[0.6px] border-[#ACACAE] py-1 px-4">
                     <SearchIcon className="absolute" />
-                    <input className="w-full bg-transparent pl-8 " />
+                    <input className="w-full bg-transparent pl-8" placeholder="Search" />
                 </div>
                 <div className="flex flex-col w-full rounded-lg bg-dark py-3 pl-5 mt-5">
                     <div className="h-[450px] overflow-auto w-full pr-5">
@@ -38,13 +38,13 @@ const SelectToken = () => {
                                             />
                                         </div>
                                         <div>
-                                            <p className="text-sm font-medium font-coinmedium">{name}</p>
+                                            <p className="text-sm font-medium font-Unbounded">{name}</p>
                                             <p className="text-xs text-light-dark">{sub}</p>
                                         </div>
                                     </div>
                                     <div>
-                                        <p className="text-sm font-medium font-coinmedium">{amount}</p>
-                                        <p className="text-xs text-light-dark text-right">{price}</p>
+                                        <p className="text-sm font-medium font-Unbounded">{amount}</p>
+                                        <p className="text-xs font-medium text-light-dark text-right">{price}</p>
                                     </div>
                                 </div>
                             ))}

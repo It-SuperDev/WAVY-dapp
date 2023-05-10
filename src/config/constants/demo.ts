@@ -35,6 +35,7 @@ import solanaIcon from 'assets/img/network/solana.svg';
 import tronIcon from 'assets/img/network/tron.svg';
 
 // coins
+import usdIcon from 'assets/img/coin/united_states.svg';
 // stellar
 import arsIcon from 'assets/img/coin/stellar/ars.svg';
 import arstIcon from 'assets/img/coin/stellar/arst.svg';
@@ -648,6 +649,17 @@ export const NETWORK = [
                 icon: coinbaseIcon
             }
         ],
+        topUp: {
+            first: {
+                name: 'USD',
+                icon: usdIcon
+            },
+            second: {
+                name: 'USDC',
+                icon: usdcIcon
+            },
+            method: TOP_METHOD
+        },
         token: stellar
     },
     {
@@ -655,6 +667,16 @@ export const NETWORK = [
         sub: 'Polygon',
         icon: polygonIcon,
         token: polygon,
+        topUp: {
+            first: {
+                name: 'USD',
+                icon: usdIcon
+            },
+            second: {
+                name: 'USDC',
+                icon: usdcIcon
+            }
+        },
         wallet: [
             {
                 name: 'MetaMask',
@@ -675,6 +697,16 @@ export const NETWORK = [
         sub: 'Avalanche',
         icon: avalancheIcon,
         token: avalanche,
+        topUp: {
+            first: {
+                name: 'USD',
+                icon: usdIcon
+            },
+            second: {
+                name: 'USDC',
+                icon: usdcIcon
+            }
+        },
         wallet: [
             {
                 name: 'MetaMask',
@@ -695,6 +727,16 @@ export const NETWORK = [
         sub: 'Ethereum',
         icon: ethereumIcon,
         token: ethereum,
+        topUp: {
+            first: {
+                name: 'USD',
+                icon: usdIcon
+            },
+            second: {
+                name: 'USDC',
+                icon: usdcIcon
+            }
+        },
         wallet: [
             {
                 name: 'MetaMask',
@@ -715,6 +757,16 @@ export const NETWORK = [
         sub: 'Solana',
         icon: solanaIcon,
         token: solana,
+        topUp: {
+            first: {
+                name: 'USD',
+                icon: usdIcon
+            },
+            second: {
+                name: 'USDC',
+                icon: usdcIcon
+            }
+        },
         wallet: [
             {
                 name: 'Exodus Wallet',
@@ -735,6 +787,16 @@ export const NETWORK = [
         sub: 'Tron',
         icon: tronIcon,
         token: tron,
+        topUp: {
+            first: {
+                name: 'USD',
+                icon: usdIcon
+            },
+            second: {
+                name: 'USDC',
+                icon: usdcIcon
+            }
+        },
         wallet: [
             {
                 name: 'TronLink',

@@ -17,4 +17,5 @@ export type DemoDataProps = {
     price?: string;
     wallet?: any;
     token?: any;
+    topUp?: any;
 };
