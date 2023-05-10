@@ -42,6 +42,7 @@ import auddIcon from 'assets/img/coin/stellar/audd.svg';
 import brlIcon from 'assets/img/coin/stellar/brl.svg';
 import eurcIcon from 'assets/img/coin/stellar/eurc.svg';
 import ghscIcon from 'assets/img/coin/stellar/ghsc.svg';
+import kesIcon from 'assets/img/coin/stellar/kes.svg';
 // polygon
 import brzIcon from 'assets/img/coin/polygon/brz.svg';
 import cadcIcon from 'assets/img/coin/polygon/cadc.svg';
@@ -55,6 +56,8 @@ import cnhcIcon from 'assets/img/coin/ethereum/cnhc.svg';
 import eurocIcon from 'assets/img/coin/ethereum/euroc.svg';
 import eurtIcon from 'assets/img/coin/ethereum/eurt.svg';
 import gbptIcon from 'assets/img/coin/ethereum/gbpt.svg';
+import qcadIcon from 'assets/img/coin/ethereum/qcad.svg';
+import zarpIcon from 'assets/img/coin/ethereum/zarp.svg';
 // avalanche
 import tgbpIcon from 'assets/img/coin/avalanche/tgbp.svg';
 
@@ -266,6 +269,13 @@ export const stellar = [
         price: '$70.70'
     },
     {
+        name: 'AUDD',
+        icon: auddIcon,
+        sub: 'Australian Dollar',
+        amount: '5000 AUDD',
+        price: '$3,329.67'
+    },
+    {
         name: 'BRL',
         icon: brlIcon,
         sub: 'Brazilian Real',
@@ -280,13 +290,6 @@ export const stellar = [
         price: '$2,604.26'
     },
     {
-        name: 'AUDD',
-        icon: auddIcon,
-        sub: 'Australian Dollar',
-        amount: '5000 AUDD',
-        price: '$3,329.67'
-    },
-    {
         name: 'EURC',
         icon: eurcIcon,
         sub: 'Euro',
@@ -299,6 +302,41 @@ export const stellar = [
         sub: 'Ghanaian Cedi',
         amount: '3000 GHSC',
         price: '$254.24'
+    },
+    {
+        name: 'KES',
+        icon: kesIcon,
+        sub: 'Kenyan Shilling',
+        amount: '5000 KES',
+        price: '$10.75'
+    },
+    {
+        name: 'NGNC',
+        icon: ngncIcon,
+        sub: 'Nigerian Naira',
+        amount: '5000 NGNC',
+        price: '$6.75'
+    },
+    {
+        name: 'RWF',
+        icon: kesIcon,
+        sub: 'Rwandan Franc',
+        amount: '5000 RWF',
+        price: '$10.75'
+    },
+    {
+        name: 'TZS',
+        icon: kesIcon,
+        sub: 'Tanzanian Shilling',
+        amount: '5000 TZS',
+        price: '$10.75'
+    },
+    {
+        name: 'USDC',
+        icon: usdcIcon,
+        sub: 'U.S dollar',
+        amount: '3000 USDC',
+        price: '$3,000.00'
     }
 ];
 export const polygon = [
@@ -343,6 +381,13 @@ export const polygon = [
         sub: 'Turkish Lira',
         amount: '5000 TRYB',
         price: '$6.75'
+    },
+    {
+        name: 'USDT',
+        icon: usdtIcon,
+        sub: 'U.S dollar',
+        amount: '3000 USDT',
+        price: '$3,000.00'
     },
     {
         name: 'USDC',
@@ -401,6 +446,13 @@ export const avalanche = [
         sub: 'British Pound',
         amount: '3000 TGBP',
         price: '$3,122.60'
+    },
+    {
+        name: 'USDT',
+        icon: usdtIcon,
+        sub: 'U.S dollar',
+        amount: '3000 USDT',
+        price: '$3,000.00'
     }
 ];
 export const ethereum = [
@@ -452,6 +504,55 @@ export const ethereum = [
         icon: gbptIcon,
         amount: '3000 GBPT',
         price: '$889.20'
+    },
+    {
+        name: 'JEUR',
+        sub: 'Euro',
+        icon: jeurIcon,
+        amount: '3000 JEUR',
+        price: '$3,311.55'
+    },
+    {
+        name: 'QCAD',
+        sub: 'Euro',
+        icon: qcadIcon,
+        amount: '3000 QCAD',
+        price: '$3,311.55'
+    },
+    {
+        name: 'TGBP',
+        icon: tgbpIcon,
+        sub: 'British Pound',
+        amount: '3000 TGBP',
+        price: '$3,122.60'
+    },
+    {
+        name: 'TRYB',
+        icon: trybIcon,
+        sub: 'Turkish Lira',
+        amount: '5000 TRYB',
+        price: '$6.75'
+    },
+    {
+        name: 'USDT',
+        icon: usdtIcon,
+        sub: 'U.S dollar',
+        amount: '3000 USDT',
+        price: '$3,000.00'
+    },
+    {
+        name: 'USDC',
+        icon: usdcIcon,
+        sub: 'U.S dollar',
+        amount: '3000 USDC',
+        price: '$3,000.00'
+    },
+    {
+        name: 'ZARP',
+        icon: zarpIcon,
+        sub: 'zarp',
+        amount: '3000 ZARP',
+        price: '$3,000.00'
     }
 ];
 export const solana = [

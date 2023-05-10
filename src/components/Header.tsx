@@ -16,7 +16,7 @@ const Header = () => {
 
     const [connect, setConnect] = useState(-1);
     const [currentNet, setCurrentNet] = useState(0);
-    const [currentLang, setCurrentLang] = useState(0);
+    const [currentLang, setCurrentLang] = useState(1);
     const [currentCurrency, setCurrentCurrency] = useState(0);
     const { changeData } = useConfig();
 
@@ -123,20 +123,13 @@ const Header = () => {
 
             <div className="flex items-center">
                 {isHeader && (
-                    <div>
-                        <IconButton onClick={netHandle}>
-                            <img src={NETWORK[currentNet].icon} alt="currency" />
-                        </IconButton>
-                    </div>
-                )}
-                <div className="ml-5">
-                    {isAdmin ? (
-                        <HeaderButton onClick={infoHandle}>
-                            <img src={admin} alt="currency" className="mr-2" />
-                            Admin
-                        </HeaderButton>
-                    ) : (
-                        <>
+                    <>
+                        <div>
+                            <IconButton onClick={netHandle}>
+                                <img src={NETWORK[currentNet].icon} alt="currency" />
+                            </IconButton>
+                        </div>
+                        <div className="ml-5">
                             {connect === -1 ? (
                                 <HeaderButton onClick={walletHandle}>Connect wallet</HeaderButton>
                             ) : (
@@ -149,7 +142,15 @@ const Header = () => {
                                     GALH....Z7I7
                                 </HeaderButton>
                             )}
-                        </>
+                        </div>
+                    </>
+                )}
+                <div className="ml-5">
+                    {isAdmin && (
+                        <HeaderButton onClick={infoHandle}>
+                            <img src={admin} alt="currency" className="mr-2" />
+                            Admin
+                        </HeaderButton>
                     )}
                 </div>
             </div>

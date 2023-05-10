@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { CardDiv, PrimaryButton, WhiteButton } from 'components/Styled';
-import { TOKEN_LIST, NETWORK } from 'config/constants/demo';
+import { NETWORK } from 'config/constants/demo';
 import { DemoDataProps } from 'types/config';
 
 import Dialog from '@mui/material/Dialog';
@@ -11,9 +11,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import { ReactComponent as SuccessIcon } from 'assets/img/icon/success.svg';
 import { ReactComponent as BackIcon } from '../assets/img/icon/arrow_back.svg';
 import { useNavigate } from 'react-router-dom';
+import useConfig from 'hooks/useConfig';
 
 const Dashboard = () => {
     const navigate = useNavigate();
+    const contextData = useConfig();
 
     const [open, setOpen] = useState(false);
     const [delopen, setDelOpen] = useState(false);
@@ -42,6 +44,10 @@ const Dashboard = () => {
         handleClose();
     };
 
+    useEffect(() => {
+        if (!contextData || !contextData.SelectedNet) navigate('/dashboard');
+    }, [contextData, navigate]);
+
     return (
         <>
             <CardDiv className="p-8 min-w-[760px]">
@@ -54,11 +60,11 @@ const Dashboard = () => {
                     </div>
                     <div className="flex items-center">
                         <img
-                            src={NETWORK[0].icon}
+                            src={contextData.SelectedNet.icon}
                             alt="logo"
                             className="rounded-full bg-white h-[40px] w-[40px] mr-2"
                         />
-                        <h1 className="text-3xl font-bold font-Unbounded">Stellar Stables</h1>
+                        <h1 className="text-3xl font-bold font-Unbounded">{`${contextData.SelectedNet.sub} Stables`}</h1>
                     </div>
                     <button onClick={handleOpen} className="px-6 py-3 rounded-md bg-primary text-xs">
                         Add Stables
@@ -66,7 +72,7 @@ const Dashboard = () => {
                 </div>
                 <div className="px-5 mb-5">
                     <div className="grid grid-cols-3 gap-4 mt-10">
-                        {TOKEN_LIST.map(({ name, sub, icon }: DemoDataProps, i: number) => (
+                        {contextData.SelectedNet.token.map(({ name, sub, icon }: DemoDataProps, i: number) => (
                             <div
                                 key={i}
                                 onClick={delHandleOpen}
