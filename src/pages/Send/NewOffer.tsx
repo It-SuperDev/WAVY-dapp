@@ -15,7 +15,7 @@ const NewOffer = () => {
     const navigate = useNavigate();
 
     return (
-        <Card title="Create a new offer" back={() => navigate(-1)} lg={650}>
+        <Card title="Create a new offer" back={() => navigate('/send')} lg={650}>
             <div className="flex flex-col w-full">
                 <div className="flex items-center justify-between mb-10">
                     <ValueInput

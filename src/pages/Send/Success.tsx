@@ -22,13 +22,13 @@ const Success = () => {
                 <div className="flex justify-between items-center my-8 w-full">
                     <WhiteButton
                         className="text-center py-4 px-2 min-w-[150px] text-xs font-medium"
-                        onClick={() => navigate(-1)}
+                        onClick={() => navigate('/send/offers')}
                     >
                         View on Network Explorer
                     </WhiteButton>
                     <PrimaryButton
                         className="text-center py-4 min-w-[170px] text-xs font-medium"
-                        onClick={() => navigate('/')}
+                        onClick={() => navigate('/send')}
                     >
                         Done
                     </PrimaryButton>

@@ -630,11 +630,66 @@ export const tron = [
         price: '$3,000.00'
     }
 ];
+
 export const NETWORK = [
     {
         name: 'Stellar Mainnet',
         sub: 'Stellar',
         icon: stellarIcon,
+        token: stellar,
+        topUp: {
+            first: {
+                name: 'USD',
+                icon: usdIcon
+            },
+            second: {
+                name: 'USDC',
+                icon: usdcIcon
+            },
+            method: TOP_METHOD
+        },
+        swap: {
+            from: {
+                value: 10000,
+                available: 'Available: 20000.54 ARS',
+                name: 'ARS',
+                icon: arsIcon
+            },
+            to: {
+                value: 20.57,
+                available: 'Available: 3000 EURC',
+                name: 'EURC',
+                icon: eurcIcon
+            },
+            equal: '1 EURC = 486.04 ARS'
+        },
+        send: {
+            send: {
+                name: 'KES',
+                icon: kesIcon
+            },
+            receive: {
+                name: 'AUDD',
+                icon: auddIcon
+            },
+            list: [
+                {
+                    rate: ' 1 AUDD = 90.67 KES',
+                    available: '3000 AUDD',
+                    limit: '1 - 500 AUDD'
+                },
+                {
+                    rate: ' 1 AUDD = 89.52 KES',
+                    available: '2500 AUDD',
+                    limit: '1 - 600 AUDD'
+                },
+                {
+                    rate: ' 1 AUDD = 91.25 KES',
+                    available: '1250 AUDD',
+                    limit: '1 - 800 AUDD'
+                }
+            ]
+        },
         wallet: [
             {
                 name: 'Freighter',
@@ -649,18 +704,64 @@ export const NETWORK = [
                 icon: coinbaseIcon
             }
         ],
-        topUp: {
-            first: {
-                name: 'USD',
-                icon: usdIcon
+        offers: [
+            {
+                send: {
+                    name: 'TZS',
+                    icon: kesIcon
+                },
+                receive: {
+                    name: 'NGNC',
+                    icon: ngncIcon
+                },
+                rate: '1 NGNC = 5.01 TZS',
+                available: '30000 TZS',
+                limit: '1 - 10000 TZS',
+                status: 'active'
             },
-            second: {
-                name: 'USDC',
-                icon: usdcIcon
+            {
+                send: {
+                    name: 'ARST',
+                    icon: arstIcon
+                },
+                receive: {
+                    name: 'RWF',
+                    icon: kesIcon
+                },
+                rate: '1 ARST = 5.03 RWF',
+                available: '7250 ARST',
+                limit: '1 - 50000 ARST',
+                status: 'accpted'
             },
-            method: TOP_METHOD
-        },
-        token: stellar
+            {
+                send: {
+                    name: 'GHSC',
+                    icon: ghscIcon
+                },
+                receive: {
+                    name: 'USDC',
+                    icon: usdcIcon
+                },
+                rate: '1 USDC = 11.95 GHSC',
+                available: '12250 GHSC',
+                limit: '1 - 18000 GHSC',
+                status: 'completed'
+            },
+            {
+                send: {
+                    name: 'ARS',
+                    icon: arsIcon
+                },
+                receive: {
+                    name: 'NGNC',
+                    icon: ngncIcon
+                },
+                rate: '1 ARS = 11.95 NGNC',
+                available: '12250 ARS',
+                limit: '1 - 18000 ARS',
+                status: 'Cancelled'
+            }
+        ]
     },
     {
         name: 'Polygon Mainnet',
@@ -676,6 +777,48 @@ export const NETWORK = [
                 name: 'USDC',
                 icon: usdcIcon
             }
+        },
+        swap: {
+            from: {
+                value: 144,
+                available: 'Available: 5000 CADC',
+                name: 'CADC',
+                icon: cadcIcon
+            },
+            to: {
+                value: 2068.09,
+                available: 'Available: 2880.33 TRYB',
+                name: 'TRYB',
+                icon: trybIcon
+            },
+            equal: '1 CADC = 14.36 TRYB'
+        },
+        send: {
+            send: {
+                name: 'JEUR',
+                icon: jeurIcon
+            },
+            receive: {
+                name: 'BRZ',
+                icon: brzIcon
+            },
+            list: [
+                {
+                    rate: '1 JEUR = 5.48 BRZ',
+                    available: '3000 JEUR',
+                    limit: '1 - 500 JEUR'
+                },
+                {
+                    rate: '1 JEUR = 5.45 BRZ',
+                    available: '2500 JEUR',
+                    limit: '1 - 600 JEUR'
+                },
+                {
+                    rate: '1 JEUR = 5.40 BRZ',
+                    available: '1250 JEUR',
+                    limit: '1 - 800 JEUR'
+                }
+            ]
         },
         wallet: [
             {
@@ -707,6 +850,48 @@ export const NETWORK = [
                 icon: usdcIcon
             }
         },
+        swap: {
+            from: {
+                value: 0.0,
+                available: 'Available: 3000 EURT',
+                name: 'EURT',
+                icon: eurtIcon
+            },
+            to: {
+                value: 2068.09,
+                available: 'Available: 5000 NGNC',
+                name: 'NGNC',
+                icon: ngncIcon
+            },
+            equal: '1 EURT = 821.98 NGNC'
+        },
+        send: {
+            send: {
+                name: 'JEUR',
+                icon: jeurIcon
+            },
+            receive: {
+                name: 'BRZ',
+                icon: brzIcon
+            },
+            list: [
+                {
+                    rate: '1 JEUR = 5.48 BRZ',
+                    available: '3000 JEUR',
+                    limit: '1 - 500 JEUR'
+                },
+                {
+                    rate: '1 JEUR = 5.45 BRZ',
+                    available: '2500 JEUR',
+                    limit: '1 - 600 JEUR'
+                },
+                {
+                    rate: '1 JEUR = 5.40 BRZ',
+                    available: '1250 JEUR',
+                    limit: '1 - 800 JEUR'
+                }
+            ]
+        },
         wallet: [
             {
                 name: 'MetaMask',
@@ -736,6 +921,48 @@ export const NETWORK = [
                 name: 'USDC',
                 icon: usdcIcon
             }
+        },
+        swap: {
+            from: {
+                value: 2068.09,
+                available: 'Available: 5045.40 TRYB',
+                name: 'TRYB',
+                icon: trybIcon
+            },
+            to: {
+                value: 734.05,
+                available: 'Available: 5000 CNHC',
+                name: 'CNHC',
+                icon: cnhcIcon
+            },
+            equal: '1 CNHC = 2.82 TRYB'
+        },
+        send: {
+            send: {
+                name: 'JEUR',
+                icon: jeurIcon
+            },
+            receive: {
+                name: 'BRZ',
+                icon: brzIcon
+            },
+            list: [
+                {
+                    rate: '1 JEUR = 5.48 BRZ',
+                    available: '3000 JEUR',
+                    limit: '1 - 500 JEUR'
+                },
+                {
+                    rate: '1 JEUR = 5.45 BRZ',
+                    available: '2500 JEUR',
+                    limit: '1 - 600 JEUR'
+                },
+                {
+                    rate: '1 JEUR = 5.40 BRZ',
+                    available: '1250 JEUR',
+                    limit: '1 - 800 JEUR'
+                }
+            ]
         },
         wallet: [
             {
@@ -767,6 +994,48 @@ export const NETWORK = [
                 icon: usdcIcon
             }
         },
+        swap: {
+            from: {
+                value: 255,
+                available: 'Available: 1500 USDT',
+                name: 'USDT',
+                icon: usdtIcon
+            },
+            to: {
+                value: 187787.1,
+                available: 'Available: 5000 NGNC',
+                name: 'NGNC',
+                icon: ngncIcon
+            },
+            equal: '1 USDT = 736.42 NGNC'
+        },
+        send: {
+            send: {
+                name: 'TRYB',
+                icon: trybIcon
+            },
+            receive: {
+                name: 'BRZ',
+                icon: brzIcon
+            },
+            list: [
+                {
+                    rate: '1 BRZ = 3.90 TRYB',
+                    available: '3000 TRYB',
+                    limit: '1 - 500 TRYB'
+                },
+                {
+                    rate: '1 BRZ = 3.93 TRYB',
+                    available: '2500 TRYB',
+                    limit: '1 - 600 TRYB'
+                },
+                {
+                    rate: '1 BRZ = 3.91 TRYB',
+                    available: '1250 TRYB',
+                    limit: '1 - 800 TRYB'
+                }
+            ]
+        },
         wallet: [
             {
                 name: 'Exodus Wallet',
@@ -796,6 +1065,48 @@ export const NETWORK = [
                 name: 'USDC',
                 icon: usdcIcon
             }
+        },
+        swap: {
+            from: {
+                value: 255,
+                available: 'Available: 1500 USDT',
+                name: 'USDT',
+                icon: usdtIcon
+            },
+            to: {
+                value: 1763.89,
+                available: 'Available: 2880.33 TCNH',
+                name: 'TCNH',
+                icon: tcnhIcon
+            },
+            equal: '1 USDT = 6.92 TCNH'
+        },
+        send: {
+            send: {
+                name: 'TCNH',
+                icon: tcnhIcon
+            },
+            receive: {
+                name: 'EURS',
+                icon: eursIcon
+            },
+            list: [
+                {
+                    rate: '1 EURS = 7.64 TCNH',
+                    available: '3000 TCNH',
+                    limit: '1 - 500 TCNH'
+                },
+                {
+                    rate: '1 EURS = 7.67 TCNH',
+                    available: '2500 TCNH',
+                    limit: '1 - 600 TCNH'
+                },
+                {
+                    rate: '1 EURS = 6.99 TCNH',
+                    available: '1250 TCNH',
+                    limit: '1 - 800 TCNH'
+                }
+            ]
         },
         wallet: [
             {

@@ -102,7 +102,7 @@ export const MainRoutes = {
             element: <Send />
         },
         {
-            path: 'send/check',
+            path: 'send/check/:index',
             element: <SendCheck />
         },
         {

@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Icon
@@ -13,6 +14,12 @@ const ValueInput = ({ title, value, available, error, errorMessage, tokenList, c
         if (tokenList.length > 1) navigate('/select');
     };
 
+    const [val, setVal] = useState(value);
+
+    useEffect(() => {
+        setVal(value);
+    }, [value]);
+
     return (
         <div
             className={`${classes} flex flex-col rounded-lg w-full border-[0.6px] px-5 py-2 border-[${
@@ -25,7 +32,7 @@ const ValueInput = ({ title, value, available, error, errorMessage, tokenList, c
             </div>
             <div className="flex flex-row w-full align-center justify-between">
                 <div className="flex flex-col w-4/5">
-                    <Input type="number" defaultValue={value} className="w-full" />
+                    <Input type="number" value={val} onChange={(e: any) => setVal(e.target.value)} className="w-full" />
                     {error ? <span className="text-xs text-rose-700">{errorMessage}</span> : null}
                 </div>
                 <div className="flex items-center justify-center">

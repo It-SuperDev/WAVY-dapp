@@ -9,20 +9,31 @@ import ValueInput from 'components/ValueInput';
 import { PrimaryButton } from 'components/Styled';
 
 // Constatn
-import { TOKEN_LIST } from 'config/constants/demo';
+import useConfig from 'hooks/useConfig';
 
 const Swap = () => {
     const navigate = useNavigate();
+    const data = useConfig();
 
     return (
         <Card title="Swap" back={() => navigate(-1)}>
             <div className="flex flex-col w-full">
-                <ValueInput title="From" available="Available: 20000.54 ARS" value={0.0} tokenList={TOKEN_LIST} />
+                <ValueInput
+                    title="From"
+                    available={data.NETWORK.swap.from.available}
+                    value={data.NETWORK.swap.from.value}
+                    tokenList={[data.NETWORK.swap.from, data.NETWORK.swap.from]}
+                />
                 <div className="flex justify-center my-3">
                     <SwapIcon className="h-[28px] w-[28px]" />
                 </div>
-                <ValueInput title="To" available="Available: 3000 EURC" value={0.0} tokenList={TOKEN_LIST} />
-                <p className="bg-[#090912] rounded-lg py-1 px-6 text-[#B8ACFF] my-4">1 EURC = 486.04 ARS</p>
+                <ValueInput
+                    title="To"
+                    available={data.NETWORK.swap.to.available}
+                    value={data.NETWORK.swap.to.value}
+                    tokenList={[data.NETWORK.swap.to, data.NETWORK.swap.from]}
+                />
+                <p className="bg-[#090912] rounded-lg py-1 px-6 text-[#B8ACFF] my-4">{data.NETWORK.swap.equal}</p>
 
                 <PrimaryButton className="w-full text-center py-4 mt-10" onClick={() => navigate('preview')}>
                     Preview Swap

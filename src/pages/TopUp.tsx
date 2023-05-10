@@ -16,8 +16,6 @@ const TopUp = () => {
     const navigate = useNavigate();
     const data = useConfig();
 
-    if (!data.NETWORK) return null;
-
     return (
         <Card title="Top Up" back={() => navigate('/')}>
             <div className="flex flex-col w-full">
