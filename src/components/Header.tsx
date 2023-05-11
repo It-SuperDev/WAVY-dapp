@@ -35,7 +35,7 @@ const Header = () => {
     const [connect, setConnect] = useState(-1);
     const [currentNet, setCurrentNet] = useState(0);
     const [currentLang, setCurrentLang] = useState(1);
-    const [currentCurrency, setCurrentCurrency] = useState(0);
+    const [currentCurrency, setCurrentCurrency] = useState(1);
 
     const [netAnchor, setNetAnchor] = useState<null | HTMLElement>(null);
     const [langAnchor, setLangAnchor] = useState<null | HTMLElement>(null);
@@ -122,7 +122,7 @@ const Header = () => {
                         <div className="ml-10">
                             <HeaderButton onClick={currencyHandle}>
                                 <img src={CURRENCY[currentCurrency].icon} alt="currency" className="mr-2" />
-                                U.S Dollar
+                                {CURRENCY[currentCurrency].name}
                             </HeaderButton>
                         </div>
                         <div className="ml-5">
