@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// Icon
-import ngncIcon from 'assets/img/coin/ngnc.svg';
-
 // component
 import Card from 'components/Card';
 import ValueInput from 'components/ValueInput';
@@ -60,7 +57,11 @@ const NewOffer = () => {
                         >
                             <HInput type="number" className="text-lg" value={rate} onChange={handleRate} />
                             <div className="flex items-center w-full cursor-pointer">
-                                <img src={ngncIcon} alt="token" className="w-[24px] h-[24px]" />
+                                <img
+                                    src={data.NETWORK.newOffer.receive.icon}
+                                    alt="token"
+                                    className="w-[24px] h-[24px]"
+                                />
                                 <span className="text-base mx-2">{data.NETWORK.newOffer.receive.name}</span>
                             </div>
                         </div>
