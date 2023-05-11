@@ -70,7 +70,6 @@ const NewOffer = () => {
                             <span className="text-sm">{`Min. order (${data.NETWORK.newOffer.receive.name})`}</span>
                             <Input
                                 type="number"
-                                defaultValue={1}
                                 className=""
                                 value={min}
                                 onChange={(e: any) => setMin(e.target.value)}
@@ -81,7 +80,6 @@ const NewOffer = () => {
                             <span className="text-sm">{`Max. order (${data.NETWORK.newOffer.receive.name})`}</span>
                             <Input
                                 type="number"
-                                defaultValue={500}
                                 className=""
                                 value={max}
                                 onChange={(e: any) => setMax(e.target.value)}
