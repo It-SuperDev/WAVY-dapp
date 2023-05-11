@@ -17,7 +17,12 @@ const Home = () => {
     const navigate = useNavigate();
 
     const goPage = (params: string) => {
-        if (data.connect) navigate(params);
+        if (data.connect) {
+            if (params === '/bridge') {
+                if (data.NETWORK.sub === 'Stellar') return;
+            }
+            navigate(params);
+        }
     };
 
     return (
