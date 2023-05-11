@@ -32,7 +32,7 @@ const EditOffer = () => {
     }, [data.NETWORK]);
 
     return (
-        <Card title="Create a new offer" back={() => navigate('/send')} lg={650}>
+        <Card title="Edit offer" back={() => navigate('/send')} lg={650}>
             <div className="flex flex-col w-full">
                 <div className="flex items-center justify-between mb-10">
                     <div className="relative mr-2">
@@ -98,7 +98,7 @@ const EditOffer = () => {
                     </div>
                 </div>
                 <div className="text-center">
-                    <PrimaryButton className="text-center mt-10 py-4 w-[60%]" onClick={() => navigate('confirm')}>
+                    <PrimaryButton className="text-center mt-10 py-4 w-[60%]" onClick={() => navigate('/send/offers')}>
                         Confirm offer details
                     </PrimaryButton>
                 </div>

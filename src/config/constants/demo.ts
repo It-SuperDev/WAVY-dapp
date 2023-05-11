@@ -65,6 +65,7 @@ import tgbpIcon from 'assets/img/coin/avalanche/tgbp.svg';
 
 import tcnhIcon from 'assets/img/coin/tron/tcnh.svg';
 import usdtIcon from 'assets/img/coin/tron/usdt.svg';
+import tronUsdtIcon from 'assets/img/coin/tron/usdt-tron.svg';
 
 // connected
 import copyIcon from 'assets/img/icon/copy.svg';
@@ -523,7 +524,7 @@ export const ethereum = [
     },
     {
         name: 'QCAD',
-        sub: 'Euro',
+        sub: 'Canadian Dollar',
         icon: qcadIcon,
         amount: '3000 QCAD',
         price: '$3,311.55'
@@ -559,7 +560,7 @@ export const ethereum = [
     {
         name: 'ZARP',
         icon: zarpIcon,
-        sub: 'zarp',
+        sub: 'South African Rand',
         amount: '3000 ZARP',
         price: '$3,000.00'
     }
@@ -626,7 +627,7 @@ export const tron = [
     {
         name: 'USDT',
         sub: 'U.S dollar',
-        icon: usdcIcon,
+        icon: tronUsdtIcon,
         amount: '3000 USDT',
         price: '$3,000.00'
     }
@@ -1132,7 +1133,7 @@ export const NETWORK = [
         newOffer: {
             send: {
                 name: 'EUROC',
-                icon: euroIcon,
+                icon: eurocIcon,
                 value: 2000,
                 available: 'Available: 2450 EUROC'
             },
