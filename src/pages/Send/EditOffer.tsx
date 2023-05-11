@@ -19,6 +19,12 @@ const EditOffer = () => {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(100);
     const [rate, setRate] = useState('');
+    const [rateError, setRateError] = useState(false);
+
+    const handleRate = (e: any) => {
+        setRate(e.target.value);
+        setRateError(data.NETWORK.newOffer.receive.value < e.target.value);
+    };
 
     useEffect(() => {
         if (data.NETWORK) {
@@ -54,13 +60,11 @@ const EditOffer = () => {
                     <p className="text-sm">Exchange rate</p>
                     <div className="flex items-center">
                         <p className="text-2xl">{`1 ${data.NETWORK.newOffer.send.name} =`}</p>
-                        <div className="flex rounded-lg border-[0.6px] px-5 py-2 border-[#ACACAE}] ml-10">
-                            <HInput
-                                type="number"
-                                className="text-lg"
-                                value={rate}
-                                onChange={(e: any) => setRate(e.target.value)}
-                            />
+                        <div
+                            className="flex rounded-lg border-[0.6px] px-5 py-2 border-[#ACACAE}] ml-10"
+                            style={{ borderColor: rateError ? '#FF0004' : '#ACACAE' }}
+                        >
+                            <HInput type="number" className="text-lg" value={rate} onChange={handleRate} />
                             <div className="flex items-center w-full cursor-pointer">
                                 <img src={ngncIcon} alt="token" className="w-[24px] h-[24px]" />
                                 <span className="text-base mx-2">{data.NETWORK.newOffer.receive.name}</span>

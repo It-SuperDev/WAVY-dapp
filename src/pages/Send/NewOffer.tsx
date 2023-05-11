@@ -19,6 +19,12 @@ const NewOffer = () => {
     const [min, setMin] = useState(data.NETWORK.newOffer.min);
     const [max, setMax] = useState(data.NETWORK.newOffer.max);
     const [rate, setRate] = useState(data.NETWORK.newOffer.rate);
+    const [rateError, setRateError] = useState(false);
+
+    const handleRate = (e: any) => {
+        setRate(e.target.value);
+        setRateError(data.NETWORK.newOffer.receive.value < e.target.value);
+    };
 
     useEffect(() => {
         if (data.NETWORK) {
@@ -27,7 +33,6 @@ const NewOffer = () => {
             setRate(data.NETWORK.newOffer.rate);
         }
     }, [data.NETWORK]);
-
     return (
         <Card title="Create a new offer" back={() => navigate('/send')} lg={650}>
             <div className="flex flex-col w-full">
@@ -40,7 +45,7 @@ const NewOffer = () => {
                         classes="mr-2"
                     />
                     <ValueInput
-                        title="Send"
+                        title="Receive"
                         value={data.NETWORK.newOffer.receive.value}
                         tokenList={[data.NETWORK.newOffer.receive, data.NETWORK.newOffer.receive]}
                     />
@@ -49,13 +54,11 @@ const NewOffer = () => {
                     <p className="text-sm">Exchange rate</p>
                     <div className="flex items-center">
                         <p className="text-2xl">{`1 ${data.NETWORK.newOffer.send.name} =`}</p>
-                        <div className="flex rounded-lg border-[0.6px] px-5 py-2 border-[#ACACAE}] ml-10">
-                            <HInput
-                                type="number"
-                                className="text-lg"
-                                value={rate}
-                                onChange={(e: any) => setRate(e.target.value)}
-                            />
+                        <div
+                            className="flex rounded-lg border-[0.6px] px-5 py-2 ml-10"
+                            style={{ borderColor: rateError ? '#FF0004' : '#ACACAE' }}
+                        >
+                            <HInput type="number" className="text-lg" value={rate} onChange={handleRate} />
                             <div className="flex items-center w-full cursor-pointer">
                                 <img src={ngncIcon} alt="token" className="w-[24px] h-[24px]" />
                                 <span className="text-base mx-2">{data.NETWORK.newOffer.receive.name}</span>
