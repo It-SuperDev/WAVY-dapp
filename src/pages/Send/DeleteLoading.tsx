@@ -9,7 +9,7 @@ const Loading = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            // navigate('/send/delete-success');
+            navigate('/send/delete-success');
         }, 2000);
     }, [navigate]);
 

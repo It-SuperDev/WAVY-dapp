@@ -155,7 +155,7 @@ export const MainRoutes = {
             )
         },
         {
-            path: 'send/delete-offer',
+            path: 'send/delete-offer/:idx',
             element: (
                 <Auth>
                     <DeleteOffer />

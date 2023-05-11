@@ -5,24 +5,27 @@ import { ReactComponent as InfoIcon } from 'assets/img/icon/info.svg';
 
 import Card from 'components/Card';
 import { OutlineButton, PrimaryButton } from 'components/Styled';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import useConfig from 'hooks/useConfig';
 
 const ConfirmOffer = () => {
     const navigate = useNavigate();
+    const data = useConfig();
+    const { idx } = useParams();
 
     return (
         <Card title="Confirm Offer Delete">
             <div className="w-full flex items-center justify-around mb-8">
                 <div className="flex flex-col items-center">
-                    <img src={kes} alt="token" className="w-[60px] h-[60px] mb-3" />
+                    <img src={data.NETWORK.offers[idx].send.icon} alt="token" className="w-[60px] h-[60px] mb-3" />
                     <p className="text-sm mb-2">From</p>
-                    <p className="text-base font-bold font-Unbounded">TZS</p>
+                    <p className="text-base font-bold font-Unbounded">{data.NETWORK.offers[idx].send.name}</p>
                 </div>
                 <EastIcon />
                 <div className="flex flex-col items-center">
-                    <img src={audd} alt="token" className="w-[60px] h-[60px]  mb-3" />
+                    <img src={data.NETWORK.offers[idx].receive.icon} alt="token" className="w-[60px] h-[60px]  mb-3" />
                     <p className="text-sm mb-2">Receive</p>
-                    <p className="text-base font-bold font-Unbounded">NGNC</p>
+                    <p className="text-base font-bold font-Unbounded">{data.NETWORK.offers[idx].receive.name}</p>
                 </div>
             </div>
             <div className="flex">

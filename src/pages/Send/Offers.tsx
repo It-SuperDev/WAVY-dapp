@@ -17,9 +17,11 @@ const Send = () => {
     const data = useConfig();
 
     const [anchor, setAnchor] = useState<null | HTMLElement>(null);
+    const [index, setIndex] = useState(0);
 
-    const anchorHandle = (event: any) => {
+    const anchorHandle = (event: any, i: number) => {
         setAnchor(event.currentTarget);
+        setIndex(i);
     };
     const handleClose = () => {
         setAnchor(null);
@@ -28,7 +30,7 @@ const Send = () => {
         if (!i) {
             navigate('/send/edit-offer');
         } else {
-            navigate('/send/delete-offer');
+            navigate(`/send/delete-offer/${index}`);
         }
         handleClose();
     };
@@ -79,7 +81,7 @@ const Send = () => {
                             </div>
                             <div className="flex flex-col justify-end relative">
                                 <div
-                                    onClick={anchorHandle}
+                                    onClick={(e: any) => anchorHandle(e, i)}
                                     className="absolute flex items-center justify-center cursor-pointer w-[30px] h-[30px] border-light-dark border-[0.6px] rounded-full top-0 right-0"
                                 >
                                     <MoreVertIcon sx={{ fontSize: 16 }} />
