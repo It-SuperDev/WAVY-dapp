@@ -1,44 +1,46 @@
 import EastIcon from '@mui/icons-material/East';
-import kes from 'assets/img/coin/kes.svg';
-import audd from 'assets/img/coin/audd.svg';
 
 import Card from 'components/Card';
 import { OutlineButton, PrimaryButton } from 'components/Styled';
 import { useNavigate } from 'react-router-dom';
+import useConfig from 'hooks/useConfig';
 
 const ConfirmOffer = () => {
     const navigate = useNavigate();
+    const data = useConfig();
 
     return (
         <Card title="Confirm offer">
             <div className="w-full flex items-center justify-around mb-8">
                 <div className="flex flex-col items-center">
-                    <img src={kes} alt="token" className="w-[60px] h-[60px] mb-3" />
+                    <img src={data.NETWORK.newOffer.send.icon} alt="token" className="w-[60px] h-[60px] mb-3" />
                     <p className="text-xs mb-2">From</p>
-                    <p className="text-base font-bold">TZS</p>
+                    <p className="text-base font-Unbounded font-bold">{data.NETWORK.newOffer.send.name}</p>
                 </div>
                 <EastIcon />
                 <div className="flex flex-col items-center">
-                    <img src={audd} alt="token" className="w-[60px] h-[60px]  mb-3" />
+                    <img src={data.NETWORK.newOffer.receive.icon} alt="token" className="w-[60px] h-[60px]  mb-3" />
                     <p className="text-xs mb-2">Receive</p>
-                    <p className="text-base font-bold">NGNC</p>
+                    <p className="text-base font-Unbounded font-bold">{data.NETWORK.newOffer.receive.name}</p>
                 </div>
             </div>
             <div className="flex flex-col w-full rounded-lg border-[0.6px] px-5 py-4 border-[#ACACAE}]">
                 <div className="flex w-full items-center justify-between mb-5 text-sm">
-                    <p>Send currency</p> <p>TZS</p>
+                    <p>Send currency</p> <p>{data.NETWORK.newOffer.send.name}</p>
                 </div>
                 <div className="flex w-full items-center justify-between mb-5 text-sm">
-                    <p>Receive currency</p> <p>NGNC</p>
+                    <p>Receive currency</p> <p>{data.NETWORK.newOffer.receive.name}</p>
                 </div>
                 <div className="flex w-full items-center justify-between mb-5 text-sm">
-                    <p>Exchange rate</p> <p>1 NGNC = 5.01 TZS</p>
+                    <p>Exchange rate</p>{' '}
+                    <p>{`1 ${data.NETWORK.newOffer.send.name} = ${data.NETWORK.newOffer.rate} ${data.NETWORK.newOffer.receive.name}`}</p>
                 </div>
                 <div className="flex w-full items-center justify-between mb-5 text-sm">
-                    <p>Limit</p> <p>1 - 500 NGNC</p>
+                    <p>Limit</p>{' '}
+                    <p>{`${data.NETWORK.newOffer.min} - ${data.NETWORK.newOffer.max} ${data.NETWORK.newOffer.receive.name}`}</p>
                 </div>
                 <div className="flex w-full items-center justify-between text-sm">
-                    <p>Available</p> <p>30000 TZS</p>
+                    <p>Available</p> <p>{`30000 ${data.NETWORK.newOffer.send.name}`}</p>
                 </div>
             </div>
             <div className="flex justify-between items-center w-full mt-10">
