@@ -75,6 +75,8 @@ const Header = () => {
     };
     const setNet = (i: number) => {
         setCurrentNet(i);
+        setConnect(0);
+        changeData({ key: 'connect', data: NETWORK[currentNet].wallet[0] });
         netClose();
         changeData({ key: 'NETWORK', data: NETWORK[i] });
     };

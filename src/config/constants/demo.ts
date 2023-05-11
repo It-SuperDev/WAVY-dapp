@@ -1172,7 +1172,7 @@ export const NETWORK = [
                 rate: '1 QADC = 14.35 TRYB',
                 available: '2500 QADC',
                 limit: '1 - 500 TRYB',
-                status: 'accepted'
+                status: 'accpted'
             },
             {
                 send: {
@@ -1186,7 +1186,7 @@ export const NETWORK = [
                 rate: '1 TGBP = 735.21 USDC',
                 available: '12250 USDC',
                 limit: '1 - 800 TGBP',
-                status: 'Completed'
+                status: 'completed'
             },
             {
                 send: {
@@ -1318,7 +1318,7 @@ export const NETWORK = [
                 rate: '1 USDT = 14.35 NGNC',
                 available: '2500 USDT',
                 limit: '10000 - 500000 NGNC',
-                status: 'accepted'
+                status: 'accpted'
             },
             {
                 send: {
@@ -1332,7 +1332,7 @@ export const NETWORK = [
                 rate: '1 BRZ = 735.21 USDC',
                 available: '12250 USDC',
                 limit: '1 - 800 BRZ',
-                status: 'Completed'
+                status: 'completed'
             },
             {
                 send: {
@@ -1460,7 +1460,7 @@ export const NETWORK = [
                 rate: '1 USDT = 14.35 EURS',
                 available: '2500 USDT',
                 limit: '10 - 500 EURS',
-                status: 'accepted'
+                status: 'accpted'
             }
         ]
     }
