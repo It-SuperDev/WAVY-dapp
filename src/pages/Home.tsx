@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Icon
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import { ReactComponent as SendIcon } from '../assets/img/icon/send.svg';
 import { ReactComponent as SwapIcon } from '../assets/img/icon/swap.svg';
 import { ReactComponent as BridgeIcon } from '../assets/img/icon/bridge.svg';
@@ -13,9 +15,10 @@ import { CardDiv } from 'components/Styled';
 import useConfig from 'hooks/useConfig';
 
 const Home = () => {
+    const allowBridgNet = ['Avalanche', 'Ethereum'];
     const data = useConfig();
     const navigate = useNavigate();
-    const allowBridgNet = ['Avalanche', 'Ethereum'];
+    const [visible, setVisible] = useState(true);
 
     const goPage = (params: string) => {
         if (data.connect) {
@@ -24,16 +27,24 @@ const Home = () => {
         }
     };
 
+    const visibleHandle = () => {
+        setVisible((pre: boolean) => !pre);
+    };
+
     return (
         <CardDiv className="py-7 w-[550px]">
             <div className="flex flex-col w-[400px] items-center mx-auto">
                 <div className="rounded-lg w-full border-[#ACACAE] border-[0.6px] px-6 py-7 gradient-box">
                     <div className="flex items-center">
                         <p className="text-base font-Extended">Total Balance</p>
-                        <VisibilityOutlinedIcon sx={{ fontSize: 20, ml: 1 }} />
+                        {visible ? (
+                            <VisibilityOutlinedIcon onClick={visibleHandle} sx={{ fontSize: 20, ml: 1 }} />
+                        ) : (
+                            <VisibilityOffOutlinedIcon onClick={visibleHandle} sx={{ fontSize: 20, ml: 1 }} />
+                        )}
                     </div>
                     <h1 className="gradient-text text-5xl font-Unbounded font-medium mt-2">
-                        {data.connect ? '$15,749.54' : '$0.00'}
+                        {data.connect ? (visible ? '$15,749.54' : '$****') : '$0.00'}
                     </h1>
                 </div>
                 <div className="flex justify-between w-full my-11">
