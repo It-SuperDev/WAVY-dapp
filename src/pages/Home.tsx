@@ -11,7 +11,7 @@ import { ReactComponent as BankIcon } from '../assets/img/icon/bank.svg';
 import { ReactComponent as WalletIcon } from '../assets/img/icon/wallet.svg';
 import { ReactComponent as RightIcon } from '../assets/img/icon/right.svg';
 
-import { CardDiv } from 'components/Styled';
+import { CardDiv, ConnectButton } from 'components/Styled';
 import useConfig from 'hooks/useConfig';
 
 const Home = () => {
@@ -19,11 +19,15 @@ const Home = () => {
     const data = useConfig();
     const navigate = useNavigate();
     const [visible, setVisible] = useState(true);
+    const [propt, setPropt] = useState(false);
 
     const goPage = (params: string) => {
         if (data.connect) {
             if (params === '/bridge') if (allowBridgNet.findIndex((e: string) => e === data.NETWORK.sub) === -1) return;
             navigate(params);
+        } else {
+            setPropt(true);
+            setTimeout(() => setPropt(false), 1000);
         }
     };
 
@@ -32,77 +36,92 @@ const Home = () => {
     };
 
     return (
-        <CardDiv className="py-7 w-[550px]">
-            <div className="flex flex-col w-[400px] items-center mx-auto">
-                <div className="rounded-lg w-full border-[#ACACAE] border-[0.6px] px-6 py-7 gradient-box">
-                    <div className="flex items-center">
-                        <p className="text-base font-Extended">Total Balance</p>
-                        {visible ? (
-                            <VisibilityOutlinedIcon onClick={visibleHandle} sx={{ fontSize: 20, ml: 1 }} />
-                        ) : (
-                            <VisibilityOffOutlinedIcon onClick={visibleHandle} sx={{ fontSize: 20, ml: 1 }} />
-                        )}
-                    </div>
-                    <h1 className="gradient-text text-5xl font-Unbounded font-medium mt-2">
-                        {data.connect ? (visible ? '$15,749.54' : '$****') : '$0.00'}
-                    </h1>
-                </div>
-                <div className="flex justify-between w-full my-11">
-                    <div onClick={() => goPage('/send')} className="flex flex-col items-center">
-                        <button className="bg-[#423F51] rounded-full w-[60px] h-[60px] flex items-center justify-center">
-                            <SendIcon className="h-[35px] w-[35px]" />
-                        </button>
-                        <p className="text-md mt-2">Send</p>
-                    </div>
-                    <div onClick={() => goPage('/swap')} className="flex flex-col items-center">
-                        <button className="bg-[#423F51] rounded-full w-[60px] h-[60px] flex items-center justify-center">
-                            <SwapIcon className="h-[35px] w-[35px]" />
-                        </button>
-                        <p className="text-md mt-2">Swap</p>
-                    </div>
-                    <div onClick={() => goPage('/bridge')} className="flex flex-col items-center">
-                        <button className="bg-[#423F51] rounded-full w-[60px] h-[60px] flex items-center justify-center">
-                            <BridgeIcon className="h-[35px] w-[35px]" />
-                        </button>
-                        <p className="text-md mt-2">Bridge</p>
-                    </div>
-                    <div className="flex flex-col items-center">
-                        <button className="bg-[#423F51] rounded-full w-[60px] h-[60px] flex items-center justify-center">
-                            <SpendIcon className="h-[35px] w-[35px]" />
-                        </button>
-                        <p className="text-md mt-2">Spend</p>
-                    </div>
-                </div>
-                <div className="flex flex-col w-full">
-                    <div
-                        onClick={() => goPage('/top-up')}
-                        className="py-3 px-6 rounded-lg bg-dark w-full flex justify-between items-center cursor-pointer"
-                    >
+        <>
+            <CardDiv className="py-7 w-[550px]">
+                <div className="flex flex-col w-[400px] items-center mx-auto">
+                    <div className="rounded-lg w-full border-[#ACACAE] border-[0.6px] px-6 py-7 gradient-box">
                         <div className="flex items-center">
-                            <BankIcon className="h-[30px] w-[30px]" />
-                            <div className="ml-4">
-                                <p className="text-md font-medium">Top Up</p>
-                                <p className="text-xs text-light-dark">On-ramp fiat-to-stablecoin</p>
-                            </div>
+                            <p className="text-base font-Extended">Total Balance</p>
+                            {visible ? (
+                                <VisibilityOutlinedIcon
+                                    onClick={visibleHandle}
+                                    sx={{ fontSize: 20, ml: 1, cursor: 'pointer' }}
+                                />
+                            ) : (
+                                <VisibilityOffOutlinedIcon
+                                    onClick={visibleHandle}
+                                    sx={{ fontSize: 20, ml: 1, cursor: 'pointer' }}
+                                />
+                            )}
                         </div>
-                        <RightIcon />
+                        <h1 className="gradient-text text-5xl font-Unbounded font-medium mt-2">
+                            {data.connect
+                                ? visible
+                                    ? `${data.CURRENCY}15,749.54`
+                                    : `${data.CURRENCY}****`
+                                : `${data.CURRENCY}0.00`}
+                        </h1>
                     </div>
-                    <div
-                        onClick={() => goPage('/withdraw')}
-                        className="my-4 py-3 px-6 rounded-lg bg-dark w-full flex justify-between items-center cursor-pointer"
-                    >
-                        <div className="flex items-center">
-                            <WalletIcon className="h-[30px] w-[30px]" />
-                            <div className="ml-4">
-                                <p className="text-md font-medium">Withdraw</p>
-                                <p className="text-xs text-light-dark">Withdraw your stablecoins to Fiat</p>
-                            </div>
+                    <div className="flex justify-between w-full my-11">
+                        <div onClick={() => goPage('/send')} className="flex flex-col items-center">
+                            <button className="bg-[#423F51] rounded-full w-[60px] h-[60px] flex items-center justify-center">
+                                <SendIcon className="h-[35px] w-[35px]" />
+                            </button>
+                            <p className="text-md mt-2">Send</p>
                         </div>
-                        <RightIcon />
+                        <div onClick={() => goPage('/swap')} className="flex flex-col items-center">
+                            <button className="bg-[#423F51] rounded-full w-[60px] h-[60px] flex items-center justify-center">
+                                <SwapIcon className="h-[35px] w-[35px]" />
+                            </button>
+                            <p className="text-md mt-2">Swap</p>
+                        </div>
+                        <div onClick={() => goPage('/bridge')} className="flex flex-col items-center">
+                            <button className="bg-[#423F51] rounded-full w-[60px] h-[60px] flex items-center justify-center">
+                                <BridgeIcon className="h-[35px] w-[35px]" />
+                            </button>
+                            <p className="text-md mt-2">Bridge</p>
+                        </div>
+                        <div className="flex flex-col items-center">
+                            <button className="bg-[#423F51] rounded-full w-[60px] h-[60px] flex items-center justify-center">
+                                <SpendIcon className="h-[35px] w-[35px]" />
+                            </button>
+                            <p className="text-md mt-2">Spend</p>
+                        </div>
+                    </div>
+                    <div className="flex flex-col w-full">
+                        <div
+                            onClick={() => goPage('/top-up')}
+                            className="py-3 px-6 rounded-lg bg-dark w-full flex justify-between items-center cursor-pointer"
+                        >
+                            <div className="flex items-center">
+                                <BankIcon className="h-[30px] w-[30px]" />
+                                <div className="ml-4">
+                                    <p className="text-md font-medium">Top Up</p>
+                                    <p className="text-xs text-light-dark">On-ramp fiat-to-stablecoin</p>
+                                </div>
+                            </div>
+                            <RightIcon />
+                        </div>
+                        <div
+                            onClick={() => goPage('/withdraw')}
+                            className="my-4 py-3 px-6 rounded-lg bg-dark w-full flex justify-between items-center cursor-pointer"
+                        >
+                            <div className="flex items-center">
+                                <WalletIcon className="h-[30px] w-[30px]" />
+                                <div className="ml-4">
+                                    <p className="text-md font-medium">Withdraw</p>
+                                    <p className="text-xs text-light-dark">Withdraw your stablecoins to Fiat</p>
+                                </div>
+                            </div>
+                            <RightIcon />
+                        </div>
                     </div>
                 </div>
-            </div>
-        </CardDiv>
+            </CardDiv>
+            {!data.connect && propt && (
+                <ConnectButton className="bg-[#5A4EE8] absolute top-[40px]">Connect your wallet</ConnectButton>
+            )}
+        </>
     );
 };
 

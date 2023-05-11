@@ -7,7 +7,7 @@ import admin from '../assets/img/icon/admin.svg';
 
 // Constants
 import { CURRENCY, LANGUAGE, NETWORK, CONNECTED, LGOUT } from '../config/constants/demo';
-import { HeaderButton, IconButton, ConnectButton } from './Styled';
+import { HeaderButton, IconButton } from './Styled';
 import MenuList from './MenuList';
 import useConfig from 'hooks/useConfig';
 
@@ -53,6 +53,7 @@ const Header = () => {
     };
     const setCurrency = (i: number) => {
         setCurrentCurrency(i);
+        changeData({ key: 'CURRENCY', data: CURRENCY[i].mark });
         currencyClose();
     };
 
@@ -113,17 +114,10 @@ const Header = () => {
         setLogout(false);
     };
 
-    const openWalletlist = () => {
-        if (walletAnchor) {
-            setWalletAnchor(null);
-        } else {
-            setWalletAnchor(connectBtn.current);
-        }
-    };
-
     useEffect(() => {
         changeData({ key: 'NETWORK', data: NETWORK[0] });
         changeData({ key: 'connect', data: null });
+        changeData({ key: 'CURRENCY', data: '$' });
         // eslint-disable-next-line
     }, []);
 
@@ -149,7 +143,6 @@ const Header = () => {
                     </>
                 )}
             </div>
-            {connect === -1 && isHeader && <ConnectButton className="bg-[#5A4EE8]">Connect your wallet</ConnectButton>}
 
             <div className="flex items-center">
                 {isHeader && (
@@ -215,13 +208,6 @@ const Header = () => {
                 callback={setWallet}
             />
             <MenuList data={CONNECTED} anchor={infoAnchor} close={infoClose} callback={setInfo} size={25} />
-            {connect === -1 && !isAdmin && (
-                <div
-                    className="fixed w-screen top-[84px] left-0"
-                    style={{ height: 'calc(100vh - 84px)' }}
-                    onClick={openWalletlist}
-                />
-            )}
         </header>
     );
 };

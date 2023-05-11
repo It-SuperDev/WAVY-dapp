@@ -1,6 +1,4 @@
 import EastIcon from '@mui/icons-material/East';
-import kes from 'assets/img/coin/kes.svg';
-import audd from 'assets/img/coin/audd.svg';
 import { ReactComponent as InfoIcon } from 'assets/img/icon/info.svg';
 
 import Card from 'components/Card';

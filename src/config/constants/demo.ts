@@ -82,23 +82,28 @@ import deleteIcon from 'assets/img/icon/delete.svg';
 export const CURRENCY = [
     {
         name: 'Nigerian Naira',
-        icon: nairaIcon
+        icon: nairaIcon,
+        mark: '₦'
     },
     {
         name: 'U.S Dollar',
-        icon: dollarIcon
+        icon: dollarIcon,
+        mark: '$'
     },
     {
         name: 'British Pound',
-        icon: poundIcon
+        icon: poundIcon,
+        mark: '£'
     },
     {
         name: 'Euro',
-        icon: euroIcon
+        icon: euroIcon,
+        mark: '€'
     },
     {
         name: 'Ghanaian Cedi',
-        icon: cediIcon
+        icon: cediIcon,
+        mark: '₵'
     }
 ];
 

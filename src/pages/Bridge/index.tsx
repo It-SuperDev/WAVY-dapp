@@ -9,7 +9,6 @@ import ValueInput from 'components/ValueInput';
 import { PrimaryButton } from 'components/Styled';
 
 // Constatn
-import { NETWORK, TOKEN_LIST } from 'config/constants/demo';
 import useConfig from 'hooks/useConfig';
 
 const Index = () => {
