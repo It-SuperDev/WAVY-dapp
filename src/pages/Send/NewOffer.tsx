@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Icon
@@ -19,6 +19,15 @@ const NewOffer = () => {
     const [min, setMin] = useState(data.NETWORK.newOffer.min);
     const [max, setMax] = useState(data.NETWORK.newOffer.max);
     const [rate, setRate] = useState(data.NETWORK.newOffer.rate);
+
+    useEffect(() => {
+        if (data.NETWORK) {
+            setMin(data.NETWORK.newOffer.min);
+            setMax(data.NETWORK.newOffer.max);
+            setRate(data.NETWORK.newOffer.rate);
+        }
+    }, [data.NETWORK]);
+
     return (
         <Card title="Create a new offer" back={() => navigate('/send')} lg={650}>
             <div className="flex flex-col w-full">
