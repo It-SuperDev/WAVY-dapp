@@ -21,7 +21,11 @@ const Send = () => {
                         className="flex items-center cursor-pointer border-[0.6px] border-[#ACACAE] rounded-md px-2 py-1"
                         onClick={() => navigate('/select')}
                     >
-                        <img src={data.NETWORK.send.send.icon} alt="token" className="w-[24px] h-[24px]" />
+                        <img
+                            src={data.NETWORK.send.send.icon}
+                            alt="token"
+                            className="w-[24px] h-[24px] bg-white rounded-full"
+                        />
                         <span className="text-base mx-2">{data.NETWORK.send.send.name}</span>
                         <KeyboardArrowDownIcon />
                     </div>
@@ -33,7 +37,11 @@ const Send = () => {
                         className="flex items-center cursor-pointer border-[0.6px] border-[#ACACAE] rounded-md px-2 py-1"
                         onClick={() => navigate('/select')}
                     >
-                        <img src={data.NETWORK.send.receive.icon} alt="token" className="w-[24px] h-[24px]" />
+                        <img
+                            src={data.NETWORK.send.receive.icon}
+                            alt="token"
+                            className="w-[24px] h-[24px] bg-white rounded-full"
+                        />
                         <span className="text-base mx-2">{data.NETWORK.send.receive.name}</span>
                         <KeyboardArrowDownIcon />
                     </div>
@@ -49,7 +57,11 @@ const Send = () => {
                         <p className="text-xs">You send</p>
                         <div className="flex items-center justify-between w-full">
                             <div className="flex items-center cursor-pointer mt-1 mb-2">
-                                <img src={data.NETWORK.send.send.icon} alt="token" className="w-[24px] h-[24px]" />
+                                <img
+                                    src={data.NETWORK.send.send.icon}
+                                    alt="token"
+                                    className="w-[24px] h-[24px] bg-white rounded-full"
+                                />
                                 <span className="text-base ml-2">{data.NETWORK.send.send.name}</span>
                             </div>
                             <EastIcon sx={{ fontSize: 20 }} />
@@ -62,7 +74,11 @@ const Send = () => {
                     <div className="flex flex-col mx-auto">
                         <p className="text-xs">You receive</p>
                         <div className="flex items-center cursor-pointer mt-1 mb-2">
-                            <img src={data.NETWORK.send.receive.icon} alt="token" className="w-[24px] h-[24px]" />
+                            <img
+                                src={data.NETWORK.send.receive.icon}
+                                alt="token"
+                                className="w-[24px] h-[24px] bg-white rounded-full"
+                            />
                             <span className="text-base ml-2">{data.NETWORK.send.receive.name}</span>
                         </div>
                         <div>
