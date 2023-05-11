@@ -9,7 +9,7 @@ const Loading = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            // navigate('/swap/success');
+            navigate('/swap/success');
         }, 2000);
     }, [navigate]);
 
@@ -20,8 +20,8 @@ const Loading = () => {
                 <h4 className="text-xl font-medium text-center font-Unbounded mt-[55px] mb-6">
                     One moment, the transaction <br /> is being processed
                 </h4>
-                <p className="text-sm text-center text-[#F9FAFA]">
-                    Stables are being released to your wallet <br /> address as well as that of the counterparty
+                <p className="text-base text-center text-[#F9FAFA]">
+                    Stables are being swapped and should be <br /> deposited in your wallet any moment now
                 </p>
             </div>
         </CardDiv>

@@ -14,7 +14,6 @@ const Page404 = Loadable(lazy(() => import('pages/Page404')));
 const Method = Loadable(lazy(() => import('pages/Method')));
 const SelectToken = Loadable(lazy(() => import('pages/SelectToken')));
 const SelectNet = Loadable(lazy(() => import('pages/SelectNet')));
-const Loading = Loadable(lazy(() => import('pages/Loading')));
 
 const Send = Loadable(lazy(() => import('pages/Send')));
 const SendCheck = Loadable(lazy(() => import('pages/Send/Send')));
@@ -31,6 +30,7 @@ const Offers = Loadable(lazy(() => import('pages/Send/Offers')));
 
 const Swap = Loadable(lazy(() => import('pages/Swap')));
 const PreviewSwap = Loadable(lazy(() => import('pages/Swap/PreviewSwap')));
+const SwapLoading = Loadable(lazy(() => import('pages/Swap/Loading')));
 const Success = Loadable(lazy(() => import('pages/Swap/Success')));
 
 const TopUp = Loadable(lazy(() => import('pages/TopUp')));
@@ -108,7 +108,7 @@ export const MainRoutes = {
         },
         {
             path: 'swap/process',
-            element: <Loading />
+            element: <SwapLoading />
         },
         {
             path: 'swap/success',
