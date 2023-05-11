@@ -74,3 +74,11 @@ export const Input = styled.input`
     margin-top: 4px;
     background-color: transparent;
 `;
+
+export const HInput = styled.input`
+    padding: 0;
+    border: unset;
+    line-height: 1;
+    color: #ffffff;
+    background-color: transparent;
+`;

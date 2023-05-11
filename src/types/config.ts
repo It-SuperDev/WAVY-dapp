@@ -18,4 +18,6 @@ export type DemoDataProps = {
     wallet?: any;
     token?: any;
     topUp?: any;
+    newOffer?: any;
+    offers?: any;
 };

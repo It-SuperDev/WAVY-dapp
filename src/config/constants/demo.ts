@@ -704,6 +704,22 @@ export const NETWORK = [
                 icon: coinbaseIcon
             }
         ],
+        newOffer: {
+            send: {
+                name: 'TZS',
+                icon: kesIcon,
+                value: 30000,
+                available: 'Available: 30000 TZS'
+            },
+            receive: {
+                name: 'NGNC',
+                icon: ngncIcon,
+                value: 5988.02
+            },
+            rate: 5.01,
+            min: 1,
+            max: 500
+        },
         offers: [
             {
                 send: {
@@ -833,7 +849,23 @@ export const NETWORK = [
                 name: 'walletConnect',
                 icon: walletconnectIcon
             }
-        ]
+        ],
+        newOffer: {
+            send: {
+                name: 'JEUR',
+                icon: jeurIcon,
+                value: 2500,
+                available: 'Available: 3000 JEUR'
+            },
+            receive: {
+                name: 'BRZ',
+                icon: brzIcon,
+                value: 13700
+            },
+            rate: 5.48,
+            min: 1,
+            max: 200
+        }
     },
     {
         name: 'Avalanche Mainnet',
@@ -905,7 +937,23 @@ export const NETWORK = [
                 name: 'walletConnect',
                 icon: walletconnectIcon
             }
-        ]
+        ],
+        newOffer: {
+            send: {
+                name: 'TGBP',
+                icon: tgbpIcon,
+                value: 2000,
+                available: 'Available: 2500.33 TGBP'
+            },
+            receive: {
+                name: 'TRYB',
+                icon: trybIcon,
+                value: 48400
+            },
+            rate: 24.2,
+            min: 1,
+            max: 500
+        }
     },
     {
         name: 'Ethereum Main Network',
@@ -977,7 +1025,23 @@ export const NETWORK = [
                 name: 'walletConnect',
                 icon: walletconnectIcon
             }
-        ]
+        ],
+        newOffer: {
+            send: {
+                name: 'EUROC',
+                icon: euroIcon,
+                value: 2000,
+                available: 'Available: 2450 EUROC'
+            },
+            receive: {
+                name: 'BRZ',
+                icon: brzIcon,
+                value: 10960
+            },
+            rate: 5.48,
+            min: 1,
+            max: 200
+        }
     },
     {
         name: 'Solana Mainnet',
@@ -1049,7 +1113,23 @@ export const NETWORK = [
                 name: 'walletConnect',
                 icon: walletconnectIcon
             }
-        ]
+        ],
+        newOffer: {
+            send: {
+                name: 'USDC',
+                icon: usdcIcon,
+                value: 2000,
+                available: 'Available: 3000 USDC'
+            },
+            receive: {
+                name: 'TRYB',
+                icon: trybIcon,
+                value: 40800
+            },
+            rate: 20.4,
+            min: 500,
+            max: 2000
+        }
     },
     {
         name: 'Tron Mainnet',
@@ -1117,6 +1197,22 @@ export const NETWORK = [
                 name: 'walletConnect',
                 icon: walletconnectIcon
             }
-        ]
+        ],
+        newOffer: {
+            send: {
+                name: 'USDC',
+                icon: usdcIcon,
+                value: 2000,
+                available: 'Available: 3000 USDC'
+            },
+            receive: {
+                name: 'TCNH',
+                icon: tcnhIcon,
+                value: 13800
+            },
+            rate: 6.9,
+            min: 500,
+            max: 2000
+        }
     }
 ];

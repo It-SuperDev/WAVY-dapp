@@ -85,6 +85,7 @@ const Header = () => {
     };
     const setWallet = (i: number) => {
         setConnect(i);
+        changeData({ key: 'connect', data: NETWORK[currentNet].wallet[i] });
         walletClose();
     };
 
@@ -108,6 +109,7 @@ const Header = () => {
 
     useEffect(() => {
         changeData({ key: 'NETWORK', data: NETWORK[0] });
+        changeData({ key: 'connect', data: null });
         // eslint-disable-next-line
     }, []);
 

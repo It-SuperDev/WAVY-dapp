@@ -6,13 +6,15 @@ import ngncIcon from 'assets/img/coin/ngnc.svg';
 // component
 import Card from 'components/Card';
 import ValueInput from 'components/ValueInput';
-import { Input, PrimaryButton } from 'components/Styled';
+import { HInput, Input, PrimaryButton } from 'components/Styled';
 
 // Constatn
 import { TOKEN_LIST } from 'config/constants/demo';
+import useConfig from 'hooks/useConfig';
 
 const NewOffer = () => {
     const navigate = useNavigate();
+    const data = useConfig();
 
     return (
         <Card title="Create a new offer" back={() => navigate('/send')} lg={650}>
@@ -20,23 +22,27 @@ const NewOffer = () => {
                 <div className="flex items-center justify-between mb-10">
                     <ValueInput
                         title="Send"
-                        available="Available: 30000 TZS"
-                        value={0.0}
-                        tokenList={TOKEN_LIST}
+                        available={data.NETWORK.newOffer.send.available}
+                        value={data.NETWORK.newOffer.send.value}
+                        tokenList={[data.NETWORK.newOffer.send, data.NETWORK.newOffer.send]}
                         classes="mr-2"
                     />
-
-                    <ValueInput title="Receive" value={0.0} tokenList={TOKEN_LIST} />
+                    <ValueInput
+                        title="Send"
+                        value={data.NETWORK.newOffer.receive.value}
+                        tokenList={[data.NETWORK.newOffer.receive, data.NETWORK.newOffer.receive]}
+                    />
                 </div>
                 <div>
                     <p className="text-sm">Exchange rate</p>
                     <div className="flex items-center">
-                        <p className="text-2xl">1 NGNC =</p>
+                        <p className="text-2xl">{`1 ${data.NETWORK.newOffer.send.name} =`}</p>
                         <div className="flex rounded-lg border-[0.6px] px-5 py-2 border-[#ACACAE}] ml-10">
-                            <div className="text-3xl mr-20">0</div>
+                            <HInput type="number text-3xl mr-20" value={data.NETWORK.newOffer.rate} />
+                            {/* <div className="text-3xl ">0</div> */}
                             <div className="flex items-center w-full cursor-pointer">
                                 <img src={ngncIcon} alt="token" className="w-[24px] h-[24px]" />
-                                <span className="text-base mx-2">TZS</span>
+                                <span className="text-base mx-2">{data.NETWORK.newOffer.receive.name}</span>
                             </div>
                         </div>
                     </div>
@@ -45,13 +51,13 @@ const NewOffer = () => {
                     <p className="text-2xl mb-2">Set order limit</p>
                     <div className="flex items-center">
                         <div className="flex flex-col rounded-lg border-[0.6px] px-5 py-2 border-[#ACACAE}] w-[35%] ">
-                            <span className="text-sm">Min. order (NGNC)</span>
-                            <Input type="number" defaultValue={1} className="" />
+                            <span className="text-sm">{`Min. order (${data.NETWORK.newOffer.receive.name})`}</span>
+                            <Input type="number" defaultValue={1} className="" value={data.NETWORK.newOffer.min} />
                         </div>
                         <div className="text-3xl mx-5">-</div>
                         <div className="flex flex-col rounded-lg border-[0.6px] px-5 py-2 border-[#ACACAE}] w-[35%] ">
-                            <span className="text-sm">Max. order (NGNC)</span>
-                            <Input type="number" defaultValue={500} className="" />
+                            <span className="text-sm">{`Max. order (${data.NETWORK.newOffer.receive.name})`}</span>
+                            <Input type="number" defaultValue={500} className="" value={data.NETWORK.newOffer.max} />
                         </div>
                     </div>
                 </div>
