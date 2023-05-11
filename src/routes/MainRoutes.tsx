@@ -4,6 +4,7 @@ import { lazy } from 'react';
 import Layout from 'layouts';
 import CompactLayout from 'layouts/Compact';
 import Loadable from 'components/Loadable';
+import Auth from 'components/Auth';
 
 const Home = Loadable(lazy(() => import('pages/Home')));
 const Login = Loadable(lazy(() => import('pages/Login')));
@@ -59,7 +60,11 @@ export const MainRoutes = {
         },
         {
             path: 'top-up',
-            element: <TopUp />
+            element: (
+                <Auth>
+                    <TopUp />
+                </Auth>
+            )
         },
         {
             path: 'top-up/method',
@@ -67,7 +72,11 @@ export const MainRoutes = {
         },
         {
             path: 'withdraw',
-            element: <Withdraw />
+            element: (
+                <Auth>
+                    <Withdraw />
+                </Auth>
+            )
         },
         {
             path: 'withdraw/method',
@@ -83,11 +92,19 @@ export const MainRoutes = {
         },
         {
             path: 'swap',
-            element: <Swap />
+            element: (
+                <Auth>
+                    <Swap />
+                </Auth>
+            )
         },
         {
             path: 'swap/preview',
-            element: <PreviewSwap />
+            element: (
+                <Auth>
+                    <PreviewSwap />
+                </Auth>
+            )
         },
         {
             path: 'swap/process',
@@ -99,11 +116,19 @@ export const MainRoutes = {
         },
         {
             path: 'send',
-            element: <Send />
+            element: (
+                <Auth>
+                    <Send />
+                </Auth>
+            )
         },
         {
             path: 'send/check/:index',
-            element: <SendCheck />
+            element: (
+                <Auth>
+                    <SendCheck />
+                </Auth>
+            )
         },
         {
             path: 'send/process',
@@ -115,15 +140,27 @@ export const MainRoutes = {
         },
         {
             path: 'send/create-offer',
-            element: <NewOffer />
+            element: (
+                <Auth>
+                    <NewOffer />
+                </Auth>
+            )
         },
         {
             path: 'send/edit-offer',
-            element: <EditOffer />
+            element: (
+                <Auth>
+                    <EditOffer />
+                </Auth>
+            )
         },
         {
             path: 'send/delete-offer',
-            element: <DeleteOffer />
+            element: (
+                <Auth>
+                    <DeleteOffer />
+                </Auth>
+            )
         },
         {
             path: 'send/delete-process',
@@ -135,15 +172,27 @@ export const MainRoutes = {
         },
         {
             path: 'send/create-offer/confirm',
-            element: <ConfirmOffer />
+            element: (
+                <Auth>
+                    <ConfirmOffer />
+                </Auth>
+            )
         },
         {
             path: 'send/offers',
-            element: <Offers />
+            element: (
+                <Auth>
+                    <Offers />
+                </Auth>
+            )
         },
         {
             path: 'bridge',
-            element: <Bridge />
+            element: (
+                <Auth>
+                    <Bridge />
+                </Auth>
+            )
         }
     ]
 };

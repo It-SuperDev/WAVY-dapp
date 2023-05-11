@@ -29,8 +29,8 @@ const Header = () => {
         return pathname === '/dashboard' || pathname === '/stables';
     }, [pathname]);
 
-    const { changeData } = useConfig();
-
+    const gData = useConfig();
+    const { changeData } = gData;
     const connectBtn = useRef();
 
     const [logout, setLogout] = useState(false);
@@ -101,16 +101,22 @@ const Header = () => {
         setInfoAnchor(null);
         if (i) {
             setConnect(-1);
+            navigate('/');
+            changeData({ key: 'connect', data: null });
         }
     };
 
-    const logoutHandle = () => {
+    const logoutHandle = (e: any) => {
         navigate('/login');
         setLogout(false);
     };
 
     const openWalletlist = () => {
-        setWalletAnchor(connectBtn.current);
+        if (walletAnchor) {
+            setWalletAnchor(null);
+        } else {
+            setWalletAnchor(connectBtn.current);
+        }
     };
 
     useEffect(() => {
@@ -120,7 +126,7 @@ const Header = () => {
     }, []);
 
     return (
-        <header className="flex items-center justify-between w-full mt-10">
+        <header className="flex items-center justify-between w-full pt-10">
             <div className="flex items-center">
                 <Link to="/">
                     <img src={logo} alt="logo" className="h-10 my-[2px]" />
@@ -208,7 +214,11 @@ const Header = () => {
             />
             <MenuList data={CONNECTED} anchor={infoAnchor} close={infoClose} callback={setInfo} size={25} />
             {connect === -1 && !isAdmin && (
-                <div className="fixed w-screen h-screen top-0 left-0" onClick={openWalletlist} />
+                <div
+                    className="fixed w-screen top-[84px] left-0"
+                    style={{ height: 'calc(100vh - 84px)' }}
+                    onClick={openWalletlist}
+                />
             )}
         </header>
     );
