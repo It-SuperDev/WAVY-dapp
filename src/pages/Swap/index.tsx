@@ -16,7 +16,7 @@ const Swap = () => {
     const data = useConfig();
 
     return (
-        <Card title="Swap" back={() => navigate(-1)}>
+        <Card title="Swap" back={() => navigate('/')}>
             <div className="flex flex-col w-full">
                 <ValueInput
                     title="From"
