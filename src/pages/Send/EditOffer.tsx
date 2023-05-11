@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Icon
@@ -12,13 +12,22 @@ import { HInput, Input, PrimaryButton } from 'components/Styled';
 // Constatn
 import useConfig from 'hooks/useConfig';
 
-const NewOffer = () => {
+const EditOffer = () => {
     const navigate = useNavigate();
     const data = useConfig();
 
-    const [min, setMin] = useState(data.NETWORK.newOffer.min);
-    const [max, setMax] = useState(data.NETWORK.newOffer.max);
-    const [rate, setRate] = useState(data.NETWORK.newOffer.rate);
+    const [min, setMin] = useState(0);
+    const [max, setMax] = useState(100);
+    const [rate, setRate] = useState('');
+
+    useEffect(() => {
+        if (data.NETWORK) {
+            setMin(data.NETWORK.newOffer.min);
+            setMax(data.NETWORK.newOffer.max);
+            setRate(data.NETWORK.newOffer.rate);
+        }
+    }, [data.NETWORK]);
+
     return (
         <Card title="Create a new offer" back={() => navigate('/send')} lg={650}>
             <div className="flex flex-col w-full">
@@ -34,7 +43,7 @@ const NewOffer = () => {
                     </div>
                     <div className="relative">
                         <ValueInput
-                            title="Send"
+                            title="Receive"
                             value={data.NETWORK.newOffer.receive.value}
                             tokenList={[data.NETWORK.newOffer.receive, data.NETWORK.newOffer.receive]}
                         />
@@ -66,7 +75,6 @@ const NewOffer = () => {
                             <span className="text-sm">{`Min. order (${data.NETWORK.newOffer.receive.name})`}</span>
                             <Input
                                 type="number"
-                                defaultValue={1}
                                 className=""
                                 value={min}
                                 onChange={(e: any) => setMin(e.target.value)}
@@ -77,7 +85,6 @@ const NewOffer = () => {
                             <span className="text-sm">{`Max. order (${data.NETWORK.newOffer.receive.name})`}</span>
                             <Input
                                 type="number"
-                                defaultValue={500}
                                 className=""
                                 value={max}
                                 onChange={(e: any) => setMax(e.target.value)}
@@ -87,7 +94,7 @@ const NewOffer = () => {
                 </div>
                 <div className="text-center">
                     <PrimaryButton className="text-center mt-10 py-4 w-[60%]" onClick={() => navigate('confirm')}>
-                        Create an offer
+                        Confirm offer details
                     </PrimaryButton>
                 </div>
             </div>
@@ -95,4 +102,4 @@ const NewOffer = () => {
     );
 };
 
-export default NewOffer;
+export default EditOffer;
