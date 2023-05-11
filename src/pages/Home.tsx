@@ -19,7 +19,7 @@ const Home = () => {
     const goPage = (params: string) => {
         if (data.connect) {
             if (params === '/bridge') {
-                if (data.NETWORK.sub === 'Stellar') return;
+                if (data.NETWORK.sub !== 'Avalanche') return;
             }
             navigate(params);
         }
