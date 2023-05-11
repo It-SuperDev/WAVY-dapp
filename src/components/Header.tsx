@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 // Icon
@@ -30,6 +30,8 @@ const Header = () => {
     }, [pathname]);
 
     const { changeData } = useConfig();
+
+    const connectBtn = useRef();
 
     const [logout, setLogout] = useState(false);
     const [connect, setConnect] = useState(-1);
@@ -107,6 +109,10 @@ const Header = () => {
         setLogout(false);
     };
 
+    const openWalletlist = () => {
+        setWalletAnchor(connectBtn.current);
+    };
+
     useEffect(() => {
         changeData({ key: 'NETWORK', data: NETWORK[0] });
         changeData({ key: 'connect', data: null });
@@ -147,7 +153,9 @@ const Header = () => {
                         </div>
                         <div className="ml-5">
                             {connect === -1 ? (
-                                <HeaderButton onClick={walletHandle}>Connect wallet</HeaderButton>
+                                <HeaderButton onClick={walletHandle} ref={connectBtn}>
+                                    Connect wallet
+                                </HeaderButton>
                             ) : (
                                 <HeaderButton onClick={infoHandle}>
                                     <img
@@ -199,6 +207,9 @@ const Header = () => {
                 callback={setWallet}
             />
             <MenuList data={CONNECTED} anchor={infoAnchor} close={infoClose} callback={setInfo} size={25} />
+            {connect === -1 && !isAdmin && (
+                <div className="fixed w-screen h-screen top-0 left-0" onClick={openWalletlist} />
+            )}
         </header>
     );
 };

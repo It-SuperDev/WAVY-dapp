@@ -37,9 +37,9 @@ const ValueInput = ({ title, value, available, error, errorMessage, tokenList, c
                 </div>
                 <div className="flex items-center justify-center">
                     <div className="flex items-center w-full cursor-pointer" onClick={goSelect}>
-                        <img src={tokenList[0].icon} alt="token" className="w-[28px] h-[28px]" />
+                        <img src={tokenList[0].icon} alt="token" className="w-[28px] h-[28px] rounded-full bg-white" />
                         <span className="text-sm ml-2 ">{tokenList[0].name}</span>
-                        {tokenList.length > 1 ? <KeyboardArrowDownIcon className="ml-2" /> : null}
+                        {tokenList.length > 1 ? <KeyboardArrowDownIcon className="mx-2" /> : null}
                     </div>
                 </div>
             </div>

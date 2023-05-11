@@ -22,6 +22,7 @@ import xbullIcon from 'assets/img/wallet/xbull.svg';
 import coinbaseIcon from 'assets/img/wallet/coinbase.svg';
 import metamaskIcon from 'assets/img/wallet/MetaMask.svg';
 import walletconnectIcon from 'assets/img/wallet/walletconnect.svg';
+import walletconnectIcon1 from 'assets/img/wallet/walletconnect-1.svg';
 import exodusIcon from 'assets/img/wallet/exodus.svg';
 import phantomIcon from 'assets/img/wallet/phantom.svg';
 import tronwalletIcon from 'assets/img/wallet/tron.svg';
@@ -701,7 +702,7 @@ export const NETWORK = [
             },
             {
                 name: 'walletConnect',
-                icon: coinbaseIcon
+                icon: walletconnectIcon1
             }
         ],
         newOffer: {
@@ -865,7 +866,65 @@ export const NETWORK = [
             rate: 5.48,
             min: 1,
             max: 200
-        }
+        },
+        offers: [
+            {
+                send: {
+                    name: 'JEUR',
+                    icon: jeurIcon
+                },
+                receive: {
+                    name: 'BRZ',
+                    icon: brzIcon
+                },
+                rate: '1 JEUR = 5.48 BRZ',
+                available: '2500 JEUR',
+                limit: '1 - 200 BRZ',
+                status: 'active'
+            },
+            {
+                send: {
+                    name: 'CADC',
+                    icon: cadcIcon
+                },
+                receive: {
+                    name: 'TRYB',
+                    icon: trybIcon
+                },
+                rate: '1 CADC = 14.35 TRYB',
+                available: '2500 CADC',
+                limit: '1 - 500 TRYB',
+                status: 'accpted'
+            },
+            {
+                send: {
+                    name: 'USDC',
+                    icon: usdcIcon
+                },
+                receive: {
+                    name: 'NGNC',
+                    icon: ngncIcon
+                },
+                rate: '1 USDC = 735.21 NGNC',
+                available: '12250 USDC',
+                limit: '1 - 800 NGNC',
+                status: 'completed'
+            },
+            {
+                send: {
+                    name: 'USDT',
+                    icon: usdtIcon
+                },
+                receive: {
+                    name: 'BRZ',
+                    icon: brzIcon
+                },
+                rate: '1 USDT = 5.04 BRZ',
+                available: '3050 USDT',
+                limit: '1 - 600 BRZ',
+                status: 'Cancelled'
+            }
+        ]
     },
     {
         name: 'Avalanche Mainnet',
@@ -953,7 +1012,51 @@ export const NETWORK = [
             rate: 24.2,
             min: 1,
             max: 500
-        }
+        },
+        offers: [
+            {
+                send: {
+                    name: 'TGBP',
+                    icon: tgbpIcon
+                },
+                receive: {
+                    name: 'TRYB',
+                    icon: trybIcon
+                },
+                rate: '1 TGBP = 24.20 TRYB',
+                available: '2500 TGBP',
+                limit: '1 - 200 TGBP',
+                status: 'active'
+            },
+            {
+                send: {
+                    name: 'USDC',
+                    icon: usdcIcon
+                },
+                receive: {
+                    name: 'BRZ',
+                    icon: brzIcon
+                },
+                rate: '1 USDC = 14.35 BRZ',
+                available: '2500 USDC',
+                limit: '1 - 800 BRZ',
+                status: 'completed'
+            },
+            {
+                send: {
+                    name: 'USDT',
+                    icon: usdtIcon
+                },
+                receive: {
+                    name: 'JEUR',
+                    icon: jeurIcon
+                },
+                rate: '1 JEUR = 735.21 USDT',
+                available: '12250 USDT',
+                limit: '1 - 800 JEUR',
+                status: 'Cancelled'
+            }
+        ]
     },
     {
         name: 'Ethereum Main Network',
@@ -1041,7 +1144,65 @@ export const NETWORK = [
             rate: 5.48,
             min: 1,
             max: 200
-        }
+        },
+        offers: [
+            {
+                send: {
+                    name: 'EUROC',
+                    icon: eurocIcon
+                },
+                receive: {
+                    name: 'BRZ',
+                    icon: brzIcon
+                },
+                rate: '1 EUROC = 5.48 BRZ',
+                available: '2500 EUROC',
+                limit: '1 - 200 BRZ',
+                status: 'active'
+            },
+            {
+                send: {
+                    name: 'QADC',
+                    icon: qcadIcon
+                },
+                receive: {
+                    name: 'TRYB',
+                    icon: trybIcon
+                },
+                rate: '1 QADC = 14.35 TRYB',
+                available: '2500 QADC',
+                limit: '1 - 500 TRYB',
+                status: 'accepted'
+            },
+            {
+                send: {
+                    name: 'USDC',
+                    icon: usdcIcon
+                },
+                receive: {
+                    name: 'TGBP',
+                    icon: tgbpIcon
+                },
+                rate: '1 TGBP = 735.21 USDC',
+                available: '12250 USDC',
+                limit: '1 - 800 TGBP',
+                status: 'Completed'
+            },
+            {
+                send: {
+                    name: 'USDT',
+                    icon: usdtIcon
+                },
+                receive: {
+                    name: 'ZARP',
+                    icon: zarpIcon
+                },
+                rate: '1 USDT = 735.21 ZARP',
+                available: '12250 USDT',
+                limit: '1 - 600 ZARP',
+                status: 'Cancelled'
+            }
+        ]
     },
     {
         name: 'Solana Mainnet',
@@ -1129,7 +1290,65 @@ export const NETWORK = [
             rate: 20.4,
             min: 500,
             max: 2000
-        }
+        },
+        offers: [
+            {
+                send: {
+                    name: 'USDC',
+                    icon: usdcIcon
+                },
+                receive: {
+                    name: 'TRYB',
+                    icon: trybIcon
+                },
+                rate: '1 USDC = 5.48 TRYB',
+                available: '2500 USDC',
+                limit: '500 - 2000 TRYB',
+                status: 'active'
+            },
+            {
+                send: {
+                    name: 'USDT',
+                    icon: usdtIcon
+                },
+                receive: {
+                    name: 'NGNC',
+                    icon: ngncIcon
+                },
+                rate: '1 USDT = 14.35 NGNC',
+                available: '2500 USDT',
+                limit: '10000 - 500000 NGNC',
+                status: 'accepted'
+            },
+            {
+                send: {
+                    name: 'USDC',
+                    icon: usdcIcon
+                },
+                receive: {
+                    name: 'BRZ',
+                    icon: brzIcon
+                },
+                rate: '1 BRZ = 735.21 USDC',
+                available: '12250 USDC',
+                limit: '1 - 800 BRZ',
+                status: 'Completed'
+            },
+            {
+                send: {
+                    name: 'USDT',
+                    icon: usdtIcon
+                },
+                receive: {
+                    name: 'TRYB',
+                    icon: trybIcon
+                },
+                rate: '1 USDT = 735.21 TRYB',
+                available: '12250 USDT',
+                limit: '250 - 1500 TRYB',
+                status: 'Cancelled'
+            }
+        ]
     },
     {
         name: 'Tron Mainnet',
@@ -1213,6 +1432,36 @@ export const NETWORK = [
             rate: 6.9,
             min: 500,
             max: 2000
-        }
+        },
+        offers: [
+            {
+                send: {
+                    name: 'USDC',
+                    icon: usdcIcon
+                },
+                receive: {
+                    name: 'TCNH',
+                    icon: tcnhIcon
+                },
+                rate: '1 USDC = 5.48 TCNH',
+                available: '2500 USDC',
+                limit: '500 - 2000 TCNH',
+                status: 'active'
+            },
+            {
+                send: {
+                    name: 'USDT',
+                    icon: usdtIcon
+                },
+                receive: {
+                    name: 'EURS',
+                    icon: eursIcon
+                },
+                rate: '1 USDT = 14.35 EURS',
+                available: '2500 USDT',
+                limit: '10 - 500 EURS',
+                status: 'accepted'
+            }
+        ]
     }
 ];

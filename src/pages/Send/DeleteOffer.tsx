@@ -15,14 +15,14 @@ const ConfirmOffer = () => {
             <div className="w-full flex items-center justify-around mb-8">
                 <div className="flex flex-col items-center">
                     <img src={kes} alt="token" className="w-[60px] h-[60px] mb-3" />
-                    <p className="text-xs mb-2">From</p>
-                    <p className="text-base font-bold">TZS</p>
+                    <p className="text-sm mb-2">From</p>
+                    <p className="text-base font-bold font-Unbounded">TZS</p>
                 </div>
                 <EastIcon />
                 <div className="flex flex-col items-center">
                     <img src={audd} alt="token" className="w-[60px] h-[60px]  mb-3" />
-                    <p className="text-xs mb-2">Receive</p>
-                    <p className="text-base font-bold">NGNC</p>
+                    <p className="text-sm mb-2">Receive</p>
+                    <p className="text-base font-bold font-Unbounded">NGNC</p>
                 </div>
             </div>
             <div className="flex">
