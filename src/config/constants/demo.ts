@@ -998,6 +998,27 @@ export const NETWORK = [
                 icon: walletconnectIcon
             }
         ],
+        bridge: {
+            from: {
+                name: 'USDC',
+                icon: usdcIcon,
+                available: 'Available: 3000 USDC',
+                value: 0,
+                network: {
+                    icon: avalancheIcon,
+                    name: 'Avalanche'
+                }
+            },
+            to: {
+                name: 'USDC',
+                icon: usdcIcon,
+                value: 0,
+                network: {
+                    icon: ethereumIcon,
+                    name: 'Ethereum'
+                }
+            }
+        },
         newOffer: {
             send: {
                 name: 'TGBP',

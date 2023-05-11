@@ -10,9 +10,11 @@ import { PrimaryButton } from 'components/Styled';
 
 // Constatn
 import { NETWORK, TOKEN_LIST } from 'config/constants/demo';
+import useConfig from 'hooks/useConfig';
 
 const Index = () => {
     const navigate = useNavigate();
+    const data = useConfig();
 
     return (
         <Card title="Bridge" back={() => navigate('/')}>
@@ -24,13 +26,22 @@ const Index = () => {
                         onClick={() => navigate('/select-net')}
                     >
                         <div className="w-[24px] h-[24px] bg-white rounded-full border-[2px] flex items-center justify-center">
-                            <img src={NETWORK[1].icon} alt="token" className="bg-white rounded-full" />
+                            <img
+                                src={data.NETWORK.bridge.from.network.icon}
+                                alt="token"
+                                className="bg-white rounded-full"
+                            />
                         </div>
-                        <span className="text-base mx-2">{NETWORK[1].sub}</span>
+                        <span className="text-base mx-2">{data.NETWORK.bridge.from.network.name}</span>
                         <KeyboardArrowDownIcon />
                     </div>
                 </div>
-                <ValueInput title="Amount" available="Available: 3000 USDC" value={0.0} tokenList={TOKEN_LIST} />
+                <ValueInput
+                    title="Amount"
+                    available={data.NETWORK.bridge.from.available}
+                    value={data.NETWORK.bridge.from.value}
+                    tokenList={[data.NETWORK.bridge.from, data.NETWORK.bridge.from]}
+                />
 
                 <div className="flex items-center mb-5 mt-8">
                     <p className="text-base w-[40px] mx-5">To </p>
@@ -39,13 +50,17 @@ const Index = () => {
                         onClick={() => navigate('/select-net')}
                     >
                         <div className="w-[24px] h-[24px] bg-white rounded-full border-[2px] flex items-center justify-center">
-                            <img src={NETWORK[2].icon} alt="token" className="bg-white rounded-full" />
+                            <img
+                                src={data.NETWORK.bridge.to.network.icon}
+                                alt="token"
+                                className="bg-white rounded-full"
+                            />
                         </div>
-                        <span className="text-base mx-2">{NETWORK[2].sub}</span>
+                        <span className="text-base mx-2">{data.NETWORK.bridge.to.network.name}</span>
                         <KeyboardArrowDownIcon />
                     </div>
                 </div>
-                <ValueInput title="Receive" value={0.0} tokenList={[TOKEN_LIST[3]]} />
+                <ValueInput title="Receive" value={0.0} tokenList={[data.NETWORK.bridge.to]} />
 
                 <PrimaryButton className="w-full text-center py-4 mt-10" onClick={() => navigate('/send/process')}>
                     Continue
