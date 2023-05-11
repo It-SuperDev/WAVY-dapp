@@ -15,10 +15,11 @@ import useConfig from 'hooks/useConfig';
 const Home = () => {
     const data = useConfig();
     const navigate = useNavigate();
+    const allowBridgNet = ['Avalanche', 'Ethereum'];
 
     const goPage = (params: string) => {
         if (data.connect) {
-            if (params === '/bridge') if (data.NETWORK.sub !== 'Avalanche') return;
+            if (params === '/bridge') if (allowBridgNet.findIndex((e: string) => e === data.NETWORK.sub) === -1) return;
             navigate(params);
         }
     };
