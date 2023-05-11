@@ -11,11 +11,69 @@ import { PrimaryButton } from 'components/Styled';
 
 // Constatn
 import useConfig from 'hooks/useConfig';
+import { useEffect } from 'react';
+import { FLAG } from 'config/constants/demo';
 
 const TopUp = () => {
     const navigate = useNavigate();
     const data = useConfig();
 
+    const getMatch = (name: string) => {
+        switch (name) {
+            case 'BRZ':
+            case 'BRL':
+            case 'BRLT':
+                return FLAG['BRS'];
+            case 'EURC':
+            case 'EUROC':
+            case 'EURT':
+            case 'JEUR':
+            case 'EURS':
+                return FLAG['EUR'];
+            case 'CADC':
+            case 'QCAD':
+                return FLAG['CAD'];
+            case 'CNHC':
+            case 'TCNH':
+                return FLAG['CNY'];
+            case 'USDC':
+            case 'USDT':
+                return FLAG['USD'];
+            case 'ARS':
+            case 'ARST':
+                return FLAG['ARS'];
+            case 'GBPT':
+            case 'TGBP':
+                return FLAG['GBP'];
+            case 'GHSC':
+                return FLAG['GHS'];
+            case 'TZS':
+                return FLAG['TZS'];
+            case 'RWF':
+                return FLAG['RWF'];
+            case 'KES':
+                return FLAG['KES'];
+            case 'TRYB':
+                return FLAG['TRY'];
+            case 'AUDD':
+                return FLAG['AUD'];
+            case 'ZARP':
+                return FLAG['ZAR'];
+            case 'NGNC':
+                return FLAG['NGN'];
+            default:
+                return FLAG['USD'];
+        }
+    };
+
+    useEffect(() => {
+        if (!data.WITHDRAW) {
+            data.changeData({ key: 'WITHDRAW', data: getMatch(data.NETWORK.topUp.second.name) });
+        }
+        // eslint-disable-next-line
+    }, []);
+
+    if (!data.WITHDRAW) return null;
     return (
         <Card title="Withdraw" back={() => navigate(-1)}>
             <div className="flex flex-col w-full">
@@ -26,7 +84,7 @@ const TopUp = () => {
                     tokenList={[data.NETWORK.topUp.second, data.NETWORK.topUp.first]}
                 />
                 <p className="bg-[#090912] rounded-lg py-1 px-6 text-[#B8ACFF] my-4">Fee: 0.00</p>
-                <ValueInput title="Receive" value={0.0} tokenList={[data.NETWORK.topUp.first]} />
+                <ValueInput title="Receive" value={0.0} tokenList={[data.WITHDRAW]} />
                 {data.NETWORK.topUp.method ? (
                     <Link to="method">
                         <div className="bg-[#090912] rounded-lg py-2 px-6 mt-4 mb-16 flex items-center justify-between">

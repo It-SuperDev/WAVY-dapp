@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // icons
 import SearchIcon from '@mui/icons-material/Search';
@@ -10,16 +10,69 @@ import Card from 'components/Card';
 // Constatn
 import { DemoDataProps } from 'types/config';
 import useConfig from 'hooks/useConfig';
+import { FLAG } from 'config/constants/demo';
 
 const SelectToken = () => {
     const navigate = useNavigate();
     const data = useConfig();
+    const { search } = useLocation();
 
     const [value, setValue] = useState('');
+
+    const getMatch = (name: string) => {
+        switch (name) {
+            case 'BRZ':
+            case 'BRL':
+            case 'BRLT':
+                return FLAG['BRS'];
+            case 'EURC':
+            case 'EUROC':
+            case 'EURT':
+            case 'JEUR':
+            case 'EURS':
+                return FLAG['EUR'];
+            case 'CADC':
+            case 'QCAD':
+                return FLAG['CAD'];
+            case 'CNHC':
+            case 'TCNH':
+                return FLAG['CNY'];
+            case 'USDC':
+            case 'USDT':
+                return FLAG['USD'];
+            case 'ARS':
+            case 'ARST':
+                return FLAG['ARS'];
+            case 'GBPT':
+            case 'TGBP':
+                return FLAG['GBP'];
+            case 'GHSC':
+                return FLAG['GHS'];
+            case 'TZS':
+                return FLAG['TZS'];
+            case 'RWF':
+                return FLAG['RWF'];
+            case 'KES':
+                return FLAG['KES'];
+            case 'TRYB':
+                return FLAG['TRY'];
+            case 'AUDD':
+                return FLAG['AUD'];
+            case 'ZARP':
+                return FLAG['ZAR'];
+            case 'NGNC':
+                return FLAG['NGN'];
+            default:
+                return FLAG['USD'];
+        }
+    };
 
     const setToken = (token: any) => {
         if (data.token && data.token.required) {
             data.changeData({ key: 'token', data: { ...data.token, required: false, data: token } });
+            if (search === `?before=/top-up` || search === '?before=/withdraw') {
+                data.changeData({ key: 'WITHDRAW', data: getMatch(token.name) });
+            }
             navigate(-1);
         }
     };
@@ -41,7 +94,7 @@ const SelectToken = () => {
                             data.NETWORK.token
                                 .filter((e: any) => {
                                     const string = e.name.toLowerCase() + ' ' + e.sub.toLowerCase();
-                                    return string.search(value) !== -1;
+                                    return string.search(value.toLocaleLowerCase()) !== -1;
                                 })
                                 .map(({ name, sub, icon, amount, price }: DemoDataProps, i: number) => (
                                     <div

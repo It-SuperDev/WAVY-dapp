@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // Icon
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -10,13 +10,18 @@ import useConfig from 'hooks/useConfig';
 
 const ValueInput = ({ title, value, available, error, errorMessage, tokenList, classes }: VlaueInputProps) => {
     const navigate = useNavigate();
+    const { pathname } = useLocation();
     const data = useConfig();
     const { changeData } = data;
 
     const goSelect = () => {
         if (tokenList.length > 1) {
             changeData({ key: 'token', data: { key: title, required: true, data: {} } });
-            navigate('/select');
+            if (pathname === '/top-up' || pathname === '/withdraw') {
+                navigate('/select?before=' + pathname);
+            } else {
+                navigate('/select');
+            }
         }
     };
 
@@ -41,6 +46,7 @@ const ValueInput = ({ title, value, available, error, errorMessage, tokenList, c
     }, [available]);
 
     useEffect(() => {
+        console.log(tokenList);
         setName(tokenList[0].name);
         setIcon(tokenList[0].icon);
     }, [tokenList]);
@@ -61,7 +67,7 @@ const ValueInput = ({ title, value, available, error, errorMessage, tokenList, c
             const num = token.amount.split(' ')[0];
             if (num && Number(num)) setLimit(Number(num));
         }
-    }, [data]);
+    }, [data, title]);
 
     return (
         <div
