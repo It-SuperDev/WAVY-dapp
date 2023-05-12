@@ -13,6 +13,8 @@ export type MenuListProps = {
     anchor: null | HTMLElement;
     close: any;
     callback: any;
+    title?: any;
+    sub?: any;
 };
 
 export type VlaueInputProps = {

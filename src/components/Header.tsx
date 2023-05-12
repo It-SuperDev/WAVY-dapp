@@ -16,10 +16,14 @@ import Stack from '@mui/material/Stack';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import MobileList from './MobileList';
+import MoreInfo from './MoreInfo';
 
 const Header = () => {
     const { pathname } = useLocation();
     const navigate = useNavigate();
+    const gData = useConfig();
+    const { changeData, isMobile } = gData;
 
     const isHeader = useMemo(() => {
         return !(pathname === '/dashboard' || pathname === '/login' || pathname === '/stables');
@@ -29,8 +33,6 @@ const Header = () => {
         return pathname === '/dashboard' || pathname === '/stables';
     }, [pathname]);
 
-    const gData = useConfig();
-    const { changeData, isMobile } = gData;
     const connectBtn = useRef();
 
     const [logout, setLogout] = useState(false);
@@ -44,6 +46,7 @@ const Header = () => {
     const [infoAnchor, setInfoAnchor] = useState<null | HTMLElement>(null);
     const [currencyAnchor, setCurrencyAnchor] = useState<null | HTMLElement>(null);
     const [walletAnchor, setWalletAnchor] = useState<null | HTMLElement>(null);
+    const [mobileInfo, setMobileInfo] = useState(false);
 
     const currencyHandle = (event: React.MouseEvent<HTMLButtonElement>) => {
         setCurrencyAnchor(event.currentTarget);
@@ -76,7 +79,7 @@ const Header = () => {
     };
     const setNet = (i: number) => {
         setCurrentNet(i);
-        setConnect(0);
+        if (connect !== -1) setConnect(0);
         changeData({ key: 'connect', data: NETWORK[currentNet].wallet[0] });
         netClose();
         changeData({ key: 'NETWORK', data: NETWORK[i] });
@@ -146,7 +149,7 @@ const Header = () => {
                     </>
                 )}
             </div>
-            <div className="md:hidden">
+            <div className="md:hidden" onClick={() => setMobileInfo(true)}>
                 <img src={admin} alt="user" className="w-[44px] h-[44px] rounded-full" />
             </div>
 
@@ -215,18 +218,56 @@ const Header = () => {
                     </div>
                 )}
             </div>
-
-            <MenuList data={CURRENCY} anchor={currencyAnchor} close={currencyClose} callback={setCurrency} />
-            <MenuList data={LANGUAGE} anchor={langAnchor} close={langClose} callback={setLang} />
-            <MenuList data={NETWORK} anchor={netAnchor} close={netClose} callback={setNet} />
-            <MenuList
-                data={NETWORK[currentNet].wallet}
-                minWidth={150}
-                anchor={walletAnchor}
-                close={walletClose}
-                callback={setWallet}
-            />
-            <MenuList data={CONNECTED} anchor={infoAnchor} close={infoClose} callback={setInfo} size={25} />
+            {isMobile ? (
+                <>
+                    {Boolean(netAnchor) && (
+                        <MobileList
+                            title="Choose network"
+                            sub="Choose your preferred network"
+                            data={NETWORK}
+                            close={netClose}
+                            callback={setNet}
+                        />
+                    )}
+                    {Boolean(walletAnchor) && (
+                        <MobileList
+                            title="Connect wallet"
+                            sub="Connect your wallet compatible with the  network"
+                            data={NETWORK[currentNet].wallet}
+                            close={walletClose}
+                            callback={setWallet}
+                        />
+                    )}
+                    {Boolean(mobileInfo) && (
+                        <MoreInfo
+                            connect={connect}
+                            infoData={CONNECTED}
+                            infoHandle={infoHandle}
+                            infoCallback={setInfo}
+                            wallet={NETWORK[currentNet].wallet}
+                            langIcon={LANGUAGE[currentLang].icon}
+                            currency={CURRENCY[currentCurrency]}
+                            currencyCallback={setCurrency}
+                            langCallback={setLang}
+                            close={() => setMobileInfo(false)}
+                        />
+                    )}
+                </>
+            ) : (
+                <>
+                    <MenuList data={CURRENCY} anchor={currencyAnchor} close={currencyClose} callback={setCurrency} />
+                    <MenuList data={LANGUAGE} anchor={langAnchor} close={langClose} callback={setLang} />
+                    <MenuList data={NETWORK} anchor={netAnchor} close={netClose} callback={setNet} />
+                    <MenuList
+                        data={NETWORK[currentNet].wallet}
+                        minWidth={150}
+                        anchor={walletAnchor}
+                        close={walletClose}
+                        callback={setWallet}
+                    />
+                    <MenuList data={CONNECTED} anchor={infoAnchor} close={infoClose} callback={setInfo} size={25} />
+                </>
+            )}
         </header>
     );
 };

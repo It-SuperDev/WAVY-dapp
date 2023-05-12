@@ -87,6 +87,8 @@ import tronUsdtIcon from 'assets/img/coin/tron/usdt-tron.svg';
 // connected
 import copyIcon from 'assets/img/icon/copy.svg';
 import disconnectIcon from 'assets/img/icon/disconnect.svg';
+import mobileCopyIcon from 'assets/img/icon/mobile-copy.svg';
+import mobileDisconnectIcon from 'assets/img/icon/mobile-disconnect.svg';
 
 // methods
 import bankIcon from 'assets/img/icon/bank.svg';
@@ -233,11 +235,13 @@ export const TOKEN_LIST = [
 export const CONNECTED = [
     {
         name: 'Copy address',
-        icon: copyIcon
+        icon: copyIcon,
+        mIcon: mobileCopyIcon
     },
     {
         name: 'Disconnect wallet',
-        icon: disconnectIcon
+        icon: disconnectIcon,
+        mIcon: mobileDisconnectIcon
     }
 ];
 

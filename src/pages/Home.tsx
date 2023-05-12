@@ -104,7 +104,7 @@ const Home = () => {
                             <p className="text-md mt-2">Spend</p>
                         </div>
                     </div>
-                    <div className="flex flex-col w-full md:relative absolute bottom-0 md:p-0 px-5 pt-12 pb-[120px] md:bg-transparent bg-[#242429] rounded-t-3xl">
+                    <div className="flex flex-col w-full md:relative absolute top-[528px] md:p-0 px-5 pt-12 pb-[120px] md:bg-transparent bg-[#242429] rounded-t-3xl">
                         <div
                             onClick={() => goPage('/top-up')}
                             className="py-3 px-6 rounded-lg md:bg-dark bg-[#242429] w-full flex justify-between items-center cursor-pointer"
