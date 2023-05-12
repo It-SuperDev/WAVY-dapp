@@ -14,7 +14,7 @@ const Loading = () => {
     }, [navigate]);
 
     return (
-        <CardDiv className="py-7 min-h-[500px] w-[550px]">
+        <CardDiv className="card py-7 min-h-[500px] w-[550px]">
             <div className="flex flex-col items-center justify-center h-[500px] w-full">
                 <div className="loader"></div>
                 <h4 className="text-xl font-medium text-center font-Unbounded mt-[55px] mb-6">

@@ -9,7 +9,7 @@ const Success = () => {
     const navigate = useNavigate();
 
     return (
-        <CardDiv className="py-7 min-h-[500px] w-[550px] px-[24px]">
+        <CardDiv className="card py-7 min-h-[500px] w-[550px] px-[24px]">
             <h2 className="text-4xl font-bold font-Unbounded text-center">Offer deleted</h2>
             <div className="flex flex-col items-center justify-center px-[64px]">
                 <SuccessIcon className="my-[33px] h-[130px] w-[130px]" />

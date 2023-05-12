@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const HeaderButton = styled.button`
-    background-color: #2e2d4e;
     border-radius: 10px;
     font-family: CoinbaseDisplay;
     padding: 10px 20px;
@@ -17,9 +16,7 @@ export const HeaderButton = styled.button`
 
 export const ConnectButton = styled.button`
     background-color: #5a4ee8;
-    border-radius: 10px;
     font-family: CoinbaseDisplay;
-    padding: 10px 20px;
     display: flex;
     align-items: center;
     font-size: 16px;
@@ -27,7 +24,6 @@ export const ConnectButton = styled.button`
 `;
 
 export const IconButton = styled.button`
-    background-color: #2e2d4e;
     border-radius: 10px;
     padding: 10px;
     display: flex;

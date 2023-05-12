@@ -30,7 +30,7 @@ const Header = () => {
     }, [pathname]);
 
     const gData = useConfig();
-    const { changeData } = gData;
+    const { changeData, isMobile } = gData;
     const connectBtn = useRef();
 
     const [logout, setLogout] = useState(false);
@@ -122,43 +122,59 @@ const Header = () => {
     }, []);
 
     return (
-        <header className="flex items-center justify-between w-full pt-10">
-            <div className="flex items-center">
+        <header className="flex items-center justify-between w-full pt-10 md:px-0 px-5">
+            <div className="hidden md:flex items-center">
                 <Link to="/">
                     <img src={logo} alt="logo" className="h-10 my-[2px]" />
                 </Link>
                 {isHeader && (
                     <>
                         <div className="ml-10">
-                            <HeaderButton onClick={currencyHandle}>
+                            <HeaderButton
+                                className="md:bg-[#2e2d4e] bg-[#242429] md:border-[0px] border-[0.5px] border-[#ACACAE]"
+                                onClick={currencyHandle}
+                            >
                                 <img src={CURRENCY[currentCurrency].icon} alt="currency" className="mr-2" />
                                 {CURRENCY[currentCurrency].name}
                             </HeaderButton>
                         </div>
                         <div className="ml-5">
-                            <IconButton onClick={langHandle}>
+                            <IconButton onClick={langHandle} className="bg-[#2e2d4e]">
                                 <img src={LANGUAGE[currentLang].icon} alt="currency" />
                             </IconButton>
                         </div>
                     </>
                 )}
             </div>
+            <div className="md:hidden">
+                <img src={admin} alt="user" className="w-[44px] h-[44px] rounded-full" />
+            </div>
 
             <div className="flex items-center">
                 {isHeader && (
                     <>
                         <div>
-                            <IconButton onClick={netHandle}>
+                            <IconButton
+                                onClick={netHandle}
+                                className="md:bg-[#2e2d4e] bg-[#242429] md:border-[0px] border-[0.5px] border-[#ACACAE] h-[44px]"
+                            >
                                 <img src={NETWORK[currentNet].icon} alt="currency" />
                             </IconButton>
                         </div>
-                        <div className="ml-5">
+                        <div className="ml-5 h-[44px]">
                             {connect === -1 ? (
-                                <HeaderButton onClick={walletHandle} ref={connectBtn}>
-                                    Connect wallet
+                                <HeaderButton
+                                    className="md:bg-[#2e2d4e] bg-[#242429] md:border-[0px] border-[0.5px] border-[#ACACAE]"
+                                    onClick={walletHandle}
+                                    ref={connectBtn}
+                                >
+                                    {isMobile ? 'Connect' : 'Connect wallet'}
                                 </HeaderButton>
                             ) : (
-                                <HeaderButton onClick={infoHandle}>
+                                <HeaderButton
+                                    className="md:bg-[#2e2d4e] bg-[#242429] md:border-[0px] border-[0.5px] border-[#ACACAE]"
+                                    onClick={infoHandle}
+                                >
                                     <img
                                         src={NETWORK[currentNet].wallet[connect].icon}
                                         alt="currency"
@@ -172,7 +188,10 @@ const Header = () => {
                 )}
                 {isAdmin && (
                     <div className="ml-5 relative">
-                        <HeaderButton onClick={() => setLogout(true)}>
+                        <HeaderButton
+                            className="md:bg-[#2e2d4e] bg-[#242429] md:border-[0px] border-[0.5px] border-[#ACACAE]"
+                            onClick={() => setLogout(true)}
+                        >
                             <img src={admin} alt="currency" className="mr-2" />
                             Admin
                         </HeaderButton>

@@ -14,7 +14,7 @@ const themeConfig: ThemeOptions = {
         },
         background: {
             paper: '#171717',
-            default: '#0d1117'
+            default: '#151518'
         }
     },
     typography: {

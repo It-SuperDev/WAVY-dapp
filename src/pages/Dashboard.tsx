@@ -14,7 +14,7 @@ const Dashboard = () => {
     };
 
     return (
-        <CardDiv className="p-8">
+        <CardDiv className="card p-8">
             <div className="px-10 mb-5">
                 <h1 className="text-4xl font-bold font-Unbounded">Welcome, Admin</h1>
 

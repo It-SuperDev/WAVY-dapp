@@ -50,7 +50,7 @@ const Dashboard = () => {
 
     return (
         <>
-            <CardDiv className="p-8 min-w-[760px]">
+            <CardDiv className="card p-8 min-w-[760px]">
                 <div className="flex items-center justify-between relative mb-10 mx-[24px]">
                     <div
                         onClick={() => navigate(-1)}

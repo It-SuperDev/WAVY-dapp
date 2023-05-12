@@ -20,14 +20,30 @@ const Home = () => {
     const navigate = useNavigate();
     const [visible, setVisible] = useState(true);
     const [propt, setPropt] = useState(false);
+    const [spend, setSpend] = useState(false);
 
     const goPage = (params: string) => {
         if (data.connect) {
-            if (params === '/bridge') if (allowBridgNet.findIndex((e: string) => e === data.NETWORK.sub) === -1) return;
+            if (params === '/bridge')
+                if (allowBridgNet.findIndex((e: string) => e === data.NETWORK.sub) === -1) {
+                    setSpend(true);
+                    setTimeout(() => setSpend(false), 1000);
+                    return;
+                }
             navigate(params);
         } else {
             setPropt(true);
             setTimeout(() => setPropt(false), 1000);
+        }
+    };
+
+    const goSpend = () => {
+        if (!data.connect) {
+            setPropt(true);
+            setTimeout(() => setPropt(false), 1000);
+        } else {
+            setSpend(true);
+            setTimeout(() => setSpend(false), 1000);
         }
     };
 
@@ -37,8 +53,8 @@ const Home = () => {
 
     return (
         <>
-            <CardDiv className="py-7 w-[550px]">
-                <div className="flex flex-col w-[400px] items-center mx-auto">
+            <CardDiv className={`card py-7 md:w-[550px] w-full md:px-0 px-5 `}>
+                <div className="flex flex-col md:w-[400px] w-full items-center mx-auto">
                     <div className="rounded-lg w-full border-[#ACACAE] border-[0.6px] px-6 py-7 gradient-box">
                         <div className="flex items-center">
                             <p className="text-base font-Extended">Total Balance</p>
@@ -64,34 +80,34 @@ const Home = () => {
                     </div>
                     <div className="flex justify-between w-full my-11">
                         <div onClick={() => goPage('/send')} className="flex flex-col items-center">
-                            <button className="bg-[#423F51] rounded-full w-[60px] h-[60px] flex items-center justify-center">
+                            <button className="bg-[#423F51] rounded-full md:w-[60px] w-[50px] md:h-[60px] h-[50px] flex items-center justify-center">
                                 <SendIcon className="h-[35px] w-[35px]" />
                             </button>
                             <p className="text-md mt-2">Send</p>
                         </div>
                         <div onClick={() => goPage('/swap')} className="flex flex-col items-center">
-                            <button className="bg-[#423F51] rounded-full w-[60px] h-[60px] flex items-center justify-center">
+                            <button className="bg-[#423F51] rounded-full md:w-[60px] w-[50px] md:h-[60px] h-[50px] flex items-center justify-center">
                                 <SwapIcon className="h-[35px] w-[35px]" />
                             </button>
                             <p className="text-md mt-2">Swap</p>
                         </div>
                         <div onClick={() => goPage('/bridge')} className="flex flex-col items-center">
-                            <button className="bg-[#423F51] rounded-full w-[60px] h-[60px] flex items-center justify-center">
+                            <button className="bg-[#423F51] rounded-full md:w-[60px] w-[50px] md:h-[60px] h-[50px] flex items-center justify-center">
                                 <BridgeIcon className="h-[35px] w-[35px]" />
                             </button>
                             <p className="text-md mt-2">Bridge</p>
                         </div>
-                        <div className="flex flex-col items-center">
-                            <button className="bg-[#423F51] rounded-full w-[60px] h-[60px] flex items-center justify-center">
+                        <div onClick={() => goSpend()} className="flex flex-col items-center">
+                            <button className="bg-[#423F51] rounded-full md:w-[60px] w-[50px] md:h-[60px] h-[50px] flex items-center justify-center">
                                 <SpendIcon className="h-[35px] w-[35px]" />
                             </button>
                             <p className="text-md mt-2">Spend</p>
                         </div>
                     </div>
-                    <div className="flex flex-col w-full">
+                    <div className="flex flex-col w-full md:relative absolute bottom-0 md:p-0 px-5 pt-12 pb-[120px] md:bg-transparent bg-[#242429] rounded-t-3xl">
                         <div
                             onClick={() => goPage('/top-up')}
-                            className="py-3 px-6 rounded-lg bg-dark w-full flex justify-between items-center cursor-pointer"
+                            className="py-3 px-6 rounded-lg md:bg-dark bg-[#242429] w-full flex justify-between items-center cursor-pointer"
                         >
                             <div className="flex items-center">
                                 <BankIcon className="h-[30px] w-[30px]" />
@@ -104,7 +120,7 @@ const Home = () => {
                         </div>
                         <div
                             onClick={() => goPage('/withdraw')}
-                            className="my-4 py-3 px-6 rounded-lg bg-dark w-full flex justify-between items-center cursor-pointer"
+                            className="my-4 py-3 px-6 rounded-lg md:bg-dark bg-[#242429] w-full flex justify-between items-center cursor-pointer"
                         >
                             <div className="flex items-center">
                                 <WalletIcon className="h-[30px] w-[30px]" />
@@ -119,7 +135,14 @@ const Home = () => {
                 </div>
             </CardDiv>
             {!data.connect && propt && (
-                <ConnectButton className="bg-[#5A4EE8] absolute top-[40px]">Connect your wallet</ConnectButton>
+                <ConnectButton className="bg-[#5A4EE8] md:text-base px-[20px]  md:py-[8px] py-[5px] text-sm absolute md:rounded-lg rounded-full md:top-[40px] top-[0px]">
+                    Connect your wallet
+                </ConnectButton>
+            )}
+            {spend && (
+                <ConnectButton className="bg-[#5A4EE8] md:text-base px-[20px]  md:py-[8px] py-[5px] text-sm absolute md:rounded-lg rounded-full md:top-[40px] top-[0px]">
+                    Coming soon
+                </ConnectButton>
             )}
         </>
     );

@@ -46,7 +46,6 @@ const ValueInput = ({ title, value, available, error, errorMessage, tokenList, c
     }, [available]);
 
     useEffect(() => {
-        console.log(tokenList);
         setName(tokenList[0].name);
         setIcon(tokenList[0].icon);
     }, [tokenList]);

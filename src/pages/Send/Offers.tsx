@@ -36,7 +36,7 @@ const Send = () => {
     };
 
     return (
-        <CardDiv className="py-7 min-h-[500px] w-[650px]">
+        <CardDiv className="card py-7 min-h-[500px] w-[650px]">
             <div className="flex items-center justify-center relative mb-10 mx-[24px]">
                 <div
                     onClick={() => navigate('/send')}

@@ -68,3 +68,14 @@ input[type=number] {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+@media screen and (max-width: 760px) {
+    body {
+        background: #151518;
+    }
+
+    .card {
+        box-shadow: unset !important;
+        background: unset !important;
+    }
+}
