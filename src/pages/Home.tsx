@@ -78,7 +78,7 @@ const Home = () => {
                                 : `${data.CURRENCY}0.00`}
                         </h1>
                     </div>
-                    <div className="flex justify-between w-full md:mt-11 mt-10 md:mb-11 mb-10">
+                    <div className="flex justify-between w-full md:mt-11 mt-5 md:mb-11 mb-10">
                         <div onClick={() => goPage('/send')} className="flex flex-col items-center">
                             <button className="bg-[#423F51] rounded-full md:w-[60px] w-[50px] md:h-[60px] h-[50px] flex items-center justify-center">
                                 <SendIcon className="h-[35px] w-[35px]" />
