@@ -27,7 +27,7 @@ const PreviewSwap = () => {
                     <p className="text-base font-Unbounded font-medium">{`${data.NETWORK.swap.to.value} ${data.NETWORK.swap.to.name}`}</p>
                 </div>
             </div>
-            <div className="flex flex-col w-full rounded-lg border-[0.6px] px-5 py-4 border-[#ACACAE}]">
+            <div className="flex flex-col w-full rounded-lg border-[0.6px] px-5 py-4 border-[#ACACAE]">
                 <div className="flex w-full items-center justify-between mb-5 text-sm">
                     <p>Conversion Fee</p> <p>No fees</p>
                 </div>
