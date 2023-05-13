@@ -26,4 +26,5 @@ export type VlaueInputProps = {
     tokenList?: DemoDataProps[];
     classes?: string;
     disable?: boolean;
+    hideTitle?: boolean;
 };

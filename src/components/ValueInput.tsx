@@ -8,7 +8,17 @@ import { VlaueInputProps } from 'types/utils';
 import { Input } from './Styled';
 import useConfig from 'hooks/useConfig';
 
-const ValueInput = ({ title, value, available, error, errorMessage, tokenList, classes, disable }: VlaueInputProps) => {
+const ValueInput = ({
+    title,
+    value,
+    available,
+    error,
+    errorMessage,
+    tokenList,
+    classes,
+    disable,
+    hideTitle
+}: VlaueInputProps) => {
     const navigate = useNavigate();
     const { pathname } = useLocation();
     const data = useConfig();
@@ -72,7 +82,7 @@ const ValueInput = ({ title, value, available, error, errorMessage, tokenList, c
         return (
             <div>
                 <div className="flex w-full align-center justify-between mb-3">
-                    <span className="text-sm text-light-dark">{title ? title : ''}</span>
+                    <span className="text-sm text-light-dark">{title && !hideTitle ? title : ''}</span>
                 </div>
                 <div className="relative rounded-lg overflow-hidden">
                     <div

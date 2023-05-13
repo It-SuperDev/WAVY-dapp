@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Icon
@@ -5,68 +6,141 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 // component
 import Card from 'components/Card';
+import MobileCard from 'components/MobileCard';
 import ValueInput from 'components/ValueInput';
 import { PrimaryButton } from 'components/Styled';
 
 // Constatn
 import useConfig from 'hooks/useConfig';
+import MobileList from 'components/MobileList';
+import { NETWORK } from 'config/constants/demo';
 
 const Index = () => {
     const navigate = useNavigate();
     const data = useConfig();
 
-    return (
-        <Card title="Bridge" back={() => navigate('/')}>
-            <div className="flex flex-col w-full">
-                <div className="flex items-center mb-5">
-                    <p className="text-base w-[40px] mx-5">From </p>
-                    <div
-                        className="flex items-center cursor-pointer border-[0.6px] border-[#ACACAE] rounded-md px-2 py-2"
-                        onClick={() => navigate('/select-net')}
-                    >
-                        <div className="w-[24px] h-[24px] bg-white rounded-full border-[2px] flex items-center justify-center">
-                            <img
-                                src={data.NETWORK.bridge.from.network.icon}
-                                alt="token"
-                                className="bg-white rounded-full"
-                            />
+    const [network, setNetwork] = useState(false);
+
+    useEffect(() => {
+        if (!data.NETWORK.bridge) navigate('/');
+    }, [data.NETWORK, navigate]);
+    if (data.isMobile) {
+        return (
+            <MobileCard title="Bridge" back={() => navigate('/')}>
+                <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5">
+                    <div className="flex flex-col w-full" style={{ height: 'calc(100vh - 72px - 28px - 60px)' }}>
+                        <div className="flex items-center mb-5">
+                            <p className="text-sm mr-5 text-[#ACACAE] w-[40px]">From </p>
+                            <div className="flex items-center cursor-pointer border-[0.6px] border-[#ACACAE] rounded-2xl px-2 py-2">
+                                <div className="w-[24px] h-[24px] bg-white rounded-full border-[2px] flex items-center justify-center">
+                                    <img
+                                        src={data.NETWORK.bridge.from.network.icon}
+                                        alt="token"
+                                        className="bg-white rounded-full"
+                                    />
+                                </div>
+                                <span className="text-sm mx-2">{data.NETWORK.bridge.from.network.name}</span>
+                            </div>
                         </div>
-                        <span className="text-base mx-2">{data.NETWORK.bridge.from.network.name}</span>
-                        <KeyboardArrowDownIcon />
+                        <ValueInput
+                            title="Amount"
+                            hideTitle={true}
+                            available={data.NETWORK.bridge.from.available}
+                            value={data.NETWORK.bridge.from.value}
+                            tokenList={[data.NETWORK.bridge.from, data.NETWORK.bridge.from]}
+                        />
+
+                        <div className="flex items-center mb-5 mt-8">
+                            <p className="text-sm mr-5 text-[#ACACAE] w-[40px]">To </p>
+                            <div
+                                className="flex items-center cursor-pointer border-[0.6px] border-[#ACACAE] rounded-2xl px-2 py-2"
+                                onClick={() => setNetwork(true)}
+                            >
+                                <div className="w-[24px] h-[24px] bg-white rounded-full border-[2px] flex items-center justify-center">
+                                    <img
+                                        src={data.NETWORK.bridge.to.network.icon}
+                                        alt="token"
+                                        className="bg-white rounded-full"
+                                    />
+                                </div>
+                                <span className="text-sm mx-2">{data.NETWORK.bridge.to.network.name}</span>
+                                <KeyboardArrowDownIcon />
+                            </div>
+                        </div>
+                        <ValueInput title="Receive" hideTitle={true} value={0.0} tokenList={[data.NETWORK.bridge.to]} />
+
+                        <PrimaryButton
+                            className="w-full text-center py-4 mt-20"
+                            onClick={() => navigate('/send/process')}
+                        >
+                            Continue
+                        </PrimaryButton>
                     </div>
                 </div>
-                <ValueInput
-                    title="Amount"
-                    available={data.NETWORK.bridge.from.available}
-                    value={data.NETWORK.bridge.from.value}
-                    tokenList={[data.NETWORK.bridge.from, data.NETWORK.bridge.from]}
-                />
-
-                <div className="flex items-center mb-5 mt-8">
-                    <p className="text-base w-[40px] mx-5">To </p>
-                    <div
-                        className="flex items-center cursor-pointer border-[0.6px] border-[#ACACAE] rounded-md px-2 py-2"
-                        onClick={() => navigate('/select-net')}
-                    >
-                        <div className="w-[24px] h-[24px] bg-white rounded-full border-[2px] flex items-center justify-center">
-                            <img
-                                src={data.NETWORK.bridge.to.network.icon}
-                                alt="token"
-                                className="bg-white rounded-full"
-                            />
+                {network && (
+                    <MobileList
+                        title="Choose network"
+                        sub="Choose your preferred network"
+                        data={NETWORK.slice(0, -1)}
+                        close={() => setNetwork(false)}
+                        callback={(i: number) => {
+                            setNetwork(false);
+                            console.log(NETWORK[i]);
+                        }}
+                    />
+                )}
+            </MobileCard>
+        );
+    } else {
+        return (
+            <Card title="Bridge" back={() => navigate('/')}>
+                <div className="flex flex-col w-full">
+                    <div className="flex items-center mb-5">
+                        <p className="text-base w-[40px] mx-5">From </p>
+                        <div className="flex items-center cursor-pointer border-[0.6px] border-[#ACACAE] rounded-md px-2 py-2">
+                            <div className="w-[24px] h-[24px] bg-white rounded-full border-[2px] flex items-center justify-center">
+                                <img
+                                    src={data.NETWORK.bridge.from.network.icon}
+                                    alt="token"
+                                    className="bg-white rounded-full"
+                                />
+                            </div>
+                            <span className="text-base mx-2">{data.NETWORK.bridge.from.network.name}</span>
                         </div>
-                        <span className="text-base mx-2">{data.NETWORK.bridge.to.network.name}</span>
-                        <KeyboardArrowDownIcon />
                     </div>
-                </div>
-                <ValueInput title="Receive" value={0.0} tokenList={[data.NETWORK.bridge.to]} />
+                    <ValueInput
+                        title="Amount"
+                        available={data.NETWORK.bridge.from.available}
+                        value={data.NETWORK.bridge.from.value}
+                        tokenList={[data.NETWORK.bridge.from, data.NETWORK.bridge.from]}
+                    />
 
-                <PrimaryButton className="w-full text-center py-4 mt-10" onClick={() => navigate('/send/process')}>
-                    Continue
-                </PrimaryButton>
-            </div>
-        </Card>
-    );
+                    <div className="flex items-center mb-5 mt-8">
+                        <p className="text-base w-[40px] mx-5">To </p>
+                        <div
+                            className="flex items-center cursor-pointer border-[0.6px] border-[#ACACAE] rounded-md px-2 py-2"
+                            onClick={() => navigate('/select-net')}
+                        >
+                            <div className="w-[24px] h-[24px] bg-white rounded-full border-[2px] flex items-center justify-center">
+                                <img
+                                    src={data.NETWORK.bridge.to.network.icon}
+                                    alt="token"
+                                    className="bg-white rounded-full"
+                                />
+                            </div>
+                            <span className="text-base mx-2">{data.NETWORK.bridge.to.network.name}</span>
+                            <KeyboardArrowDownIcon />
+                        </div>
+                    </div>
+                    <ValueInput title="Receive" value={0.0} tokenList={[data.NETWORK.bridge.to]} />
+
+                    <PrimaryButton className="w-full text-center py-4 mt-10" onClick={() => navigate('/send/process')}>
+                        Continue
+                    </PrimaryButton>
+                </div>
+            </Card>
+        );
+    }
 };
 
 export default Index;
