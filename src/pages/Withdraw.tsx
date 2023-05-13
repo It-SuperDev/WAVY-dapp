@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
 // Icon
 import { ReactComponent as BankIcon } from '../assets/img/icon/bank.svg';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import SearchIcon from '@mui/icons-material/Search';
 
 // component
 import Card from 'components/Card';
@@ -11,12 +13,17 @@ import { PrimaryButton } from 'components/Styled';
 
 // Constatn
 import useConfig from 'hooks/useConfig';
-import { useEffect } from 'react';
 import { FLAG } from 'config/constants/demo';
+import MobileCard from 'components/MobileCard';
+import MobileMethod from 'components/MobileMethod';
+import { DemoDataProps } from 'types/config';
 
 const TopUp = () => {
     const navigate = useNavigate();
     const data = useConfig();
+
+    const [value, setValue] = useState('');
+    const [page, setPage] = useState(1);
 
     const getMatch = (name: string) => {
         switch (name) {
@@ -66,6 +73,16 @@ const TopUp = () => {
         }
     };
 
+    const setToken = (token: any) => {
+        data.changeData({ key: 'token', data: { ...data.token, required: false, data: token } });
+        data.changeData({ key: 'WITHDRAW', data: getMatch(token.name) });
+        setPage(2);
+    };
+
+    const callback = () => {
+        setPage(3);
+    };
+
     useEffect(() => {
         if (!data.WITHDRAW) {
             data.changeData({ key: 'WITHDRAW', data: getMatch(data.NETWORK.topUp.second.name) });
@@ -74,33 +91,138 @@ const TopUp = () => {
     }, []);
 
     if (!data.WITHDRAW) return null;
-    return (
-        <Card title="Withdraw" back={() => navigate(-1)}>
-            <div className="flex flex-col w-full">
-                <ValueInput
-                    title="Amount"
-                    available="Available: 3000 USDC"
-                    value={0.0}
-                    tokenList={[data.NETWORK.topUp.second, data.NETWORK.topUp.first]}
-                />
-                <p className="bg-[#090912] rounded-lg py-1 px-6 text-[#B8ACFF] my-4">Fee: 0.00</p>
-                <ValueInput title="Receive" value={0.0} tokenList={[data.WITHDRAW]} />
-                {data.NETWORK.topUp.method ? (
-                    <Link to="method">
-                        <div className="bg-[#090912] rounded-lg py-2 px-6 mt-4 mb-16 flex items-center justify-between">
-                            <span>Choose payment method</span>
-                            <KeyboardArrowDownIcon />
+    if (data.isMobile) {
+        return (
+            <>
+                {(() => {
+                    if (page === 3) {
+                        return (
+                            <MobileCard title="Withdraw" back={() => setPage(1)}>
+                                <div className="flex flex-col w-full px-5">
+                                    <div className="flex flex-col w-full">
+                                        <ValueInput title="Amount" value={0.0} tokenList={[data.WITHDRAW]} />
+                                        <p className="text-[#B8ACFF] my-4">Fee: 0.00</p>
+                                        <ValueInput
+                                            title="Receive"
+                                            available="Available: 3000 USDC"
+                                            value={0.0}
+                                            tokenList={[data.NETWORK.topUp.second]}
+                                        />
+
+                                        <div className="rounded-lg w-full border-[0.6px]  bg-[#242429] rounded-lg py-3 px-6 mt-9 mb-16 flex items-center">
+                                            <BankIcon className="h-[30px] w-[30px] mr-4" />
+                                            <div>
+                                                <p>Withdraw to</p>
+                                                <p className="text-xs text-[#ACACAE]">Select withdrawal option</p>
+                                            </div>
+                                        </div>
+                                        <PrimaryButton className="w-full text-center py-4">Continue</PrimaryButton>
+                                    </div>
+                                </div>
+                            </MobileCard>
+                        );
+                    } else {
+                        return (
+                            <MobileCard title="Withdraw" back={() => navigate(-1)}>
+                                <div className="flex flex-col w-full px-5">
+                                    <div className="relative rounded-lg border-[0.6px] border-[#ACACAE] py-1 px-4">
+                                        <SearchIcon className="absolute" />
+                                        <input
+                                            className="w-full bg-transparent pl-8"
+                                            placeholder="Search"
+                                            onChange={(e: any) => setValue(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="flex flex-col w-full rounded-lg py-3 mt-5 pl-5 rounded-lg bg-[#242429]">
+                                        <div
+                                            className="overflow-auto w-full pr-5"
+                                            style={{ height: 'calc(100vh - 72px - 28px - 78px - 20px)' }}
+                                        >
+                                            {data.NETWORK &&
+                                                data.NETWORK.token
+                                                    .filter((e: any) => {
+                                                        const string = e.name.toLowerCase() + ' ' + e.sub.toLowerCase();
+                                                        return string.search(value.toLocaleLowerCase()) !== -1;
+                                                    })
+                                                    .map(
+                                                        (
+                                                            { name, sub, icon, amount, price }: DemoDataProps,
+                                                            i: number
+                                                        ) => (
+                                                            <div
+                                                                key={i}
+                                                                onClick={() =>
+                                                                    setToken({ name, sub, icon, amount, price })
+                                                                }
+                                                                className="flex items-center justify-between border-b-[1px] border-[#36363A] py-3 cursor-pointer"
+                                                            >
+                                                                <div className="flex items-center">
+                                                                    <div className="flex items-center justify-center border-2 border-[#FFFFFF] rounded-full mr-2">
+                                                                        <img
+                                                                            src={icon}
+                                                                            alt="icon"
+                                                                            className="w-[25px] h-[25px] bg-white rounded-full"
+                                                                        />
+                                                                    </div>
+                                                                    <div>
+                                                                        <p className="text-sm font-medium font-Unbounded">
+                                                                            {name}
+                                                                        </p>
+                                                                        <p className="text-xs text-light-dark">{sub}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <p className="text-sm font-medium font-Unbounded">
+                                                                        {amount}
+                                                                    </p>
+                                                                    <p className="text-xs font-medium text-light-dark text-right">
+                                                                        {price}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    )}
+                                        </div>
+                                    </div>
+                                </div>
+                                {page === 2 && (
+                                    <MobileMethod isTop={false} close={() => setPage(1)} callback={callback} />
+                                )}
+                            </MobileCard>
+                        );
+                    }
+                })()}
+            </>
+        );
+    } else {
+        return (
+            <Card title="Withdraw" back={() => navigate(-1)}>
+                <div className="flex flex-col w-full">
+                    <ValueInput
+                        title="Amount"
+                        available="Available: 3000 USDC"
+                        value={0.0}
+                        tokenList={[data.NETWORK.topUp.second, data.NETWORK.topUp.first]}
+                    />
+                    <p className="bg-[#090912] rounded-lg py-1 px-6 text-[#B8ACFF] my-4">Fee: 0.00</p>
+                    <ValueInput title="Receive" value={0.0} tokenList={[data.WITHDRAW]} />
+                    {data.NETWORK.topUp.method ? (
+                        <Link to="method">
+                            <div className="bg-[#090912] rounded-lg py-2 px-6 mt-4 mb-16 flex items-center justify-between">
+                                <span>Choose payment method</span>
+                                <KeyboardArrowDownIcon />
+                            </div>
+                        </Link>
+                    ) : (
+                        <div className="bg-[#090912] rounded-lg py-3 px-6 mt-4 mb-16 flex items-center">
+                            <BankIcon className="h-[24px] w-[24px] mr-2" /> <span>Bank Transfer</span>
                         </div>
-                    </Link>
-                ) : (
-                    <div className="bg-[#090912] rounded-lg py-3 px-6 mt-4 mb-16 flex items-center">
-                        <BankIcon className="h-[24px] w-[24px] mr-2" /> <span>Bank Transfer</span>
-                    </div>
-                )}
-                <PrimaryButton className="w-full text-center py-4">Continue</PrimaryButton>
-            </div>
-        </Card>
-    );
+                    )}
+                    <PrimaryButton className="w-full text-center py-4">Continue</PrimaryButton>
+                </div>
+            </Card>
+        );
+    }
 };
 
 export default TopUp;
