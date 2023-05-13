@@ -24,7 +24,7 @@ const TopUp = () => {
                     </p>
                 </div>
                 <div
-                    style={{ height: 'calc(100vh - 120px - 72px - 8px)' }}
+                    style={{ minHeight: 'calc(100vh - 160px)' }}
                     className="bg-[#242429] rounded-t-3xl py-[30px] px-5 flex flex-col justify-between"
                 >
                     <div className="w-full">
@@ -39,7 +39,7 @@ const TopUp = () => {
 
                         <ValueInput title="Receive" value={0.0} tokenList={[data.NETWORK.send.receive]} />
 
-                        <div className="py-3 px-6 mt-4 mb-10 flex flex-col">
+                        <div className="py-3 px-6 my-4 flex flex-col">
                             <div className="flex items-center justify-between">
                                 <span className="text-sm text-light-dark">Available</span>
                                 <span className="text-sm">{data.NETWORK.send.list[index].available}</span>

@@ -25,7 +25,7 @@ const Swap = () => {
         return (
             <MobileCard title="Swap" back={() => navigate('/')}>
                 <div
-                    style={{ height: 'calc(100vh - 72px - 28px)' }}
+                    style={{ height: 'calc(100vh - 28px - 32px - 60px)' }}
                     className=" py-[30px] px-5 flex flex-col justify-between"
                 >
                     <div className="w-full">
@@ -56,7 +56,7 @@ const Swap = () => {
                         />
                         <p className="rounded-lg py-1 text-[#CCC8F8] my-4">{data.NETWORK.swap.equal}</p>
 
-                        <PrimaryButton className="w-full text-center py-4 mt-40" onClick={() => setIsConfirm(true)}>
+                        <PrimaryButton className="w-full text-center py-4" onClick={() => setIsConfirm(true)}>
                             Preview Swap
                         </PrimaryButton>
                     </div>

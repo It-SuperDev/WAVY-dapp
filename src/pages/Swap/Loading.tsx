@@ -25,10 +25,10 @@ const Loading = () => {
                     style={{ height: 'calc(100vh - 72px - 28px)' }}
                 >
                     <div className="loader"></div>
-                    <h4 className="text-xl font-medium text-center font-Unbounded mt-[55px] mb-6">
+                    <h4 className="text-lg font-medium text-center font-Unbounded mt-[55px] mb-6">
                         One moment, the transaction <br /> is being processed
                     </h4>
-                    <p className="text-base text-center text-[#F9FAFA]">
+                    <p className="text-sm text-center text-[#F9FAFA]">
                         Stables are being swapped and should
                         <br />
                         be deposited in your wallet any

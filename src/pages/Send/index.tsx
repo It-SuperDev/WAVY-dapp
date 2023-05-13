@@ -103,7 +103,7 @@ const Send = () => {
                         ))}
                     </div>
                 </div>
-                <div className="flex w-full fixed items-center justify-between bottom-0 px-5 pt-6 pb-12 bg-[#151518] rounded-t-3xl">
+                <div className="flex w-full fixed items-center justify-between bottom-0 px-5 py-6 bg-[#151518] rounded-t-3xl">
                     <WhiteButton
                         className="text-center text-bold py-4 px-3 min-w-[150px] text-sm font-medium"
                         onClick={() => navigate('offers')}

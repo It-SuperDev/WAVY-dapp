@@ -53,7 +53,7 @@ const Home = () => {
 
     return (
         <>
-            <CardDiv className={`card py-7 md:w-[550px] w-full md:px-0 px-5 `}>
+            <CardDiv className={`card py-7 md:w-[550px] w-full md:px-0 px-5 rounded-xl`}>
                 <div className="flex flex-col md:w-[400px] w-full items-center mx-auto">
                     <div className="rounded-lg w-full border-[#ACACAE] border-[0.6px] px-6 py-7 gradient-box">
                         <div className="flex items-center">
@@ -78,7 +78,7 @@ const Home = () => {
                                 : `${data.CURRENCY}0.00`}
                         </h1>
                     </div>
-                    <div className="flex justify-between w-full my-11">
+                    <div className="flex justify-between w-full md:my-11 my-5">
                         <div onClick={() => goPage('/send')} className="flex flex-col items-center">
                             <button className="bg-[#423F51] rounded-full md:w-[60px] w-[50px] md:h-[60px] h-[50px] flex items-center justify-center">
                                 <SendIcon className="h-[35px] w-[35px]" />
@@ -104,7 +104,10 @@ const Home = () => {
                             <p className="text-md mt-2">Spend</p>
                         </div>
                     </div>
-                    <div className="flex flex-col w-full md:relative absolute md:top-0 top-[528px] md:p-0 px-5 pt-12 pb-[120px] md:bg-transparent bg-[#242429] rounded-t-3xl">
+                    <div
+                        className="flex flex-col w-full md:relative absolute md:top-0 top-[378px] md:p-0 px-5 pt-12 md:bg-transparent bg-[#242429] rounded-t-3xl"
+                        style={data.isMobile ? { height: 'calc(100vh - 378px)' } : {}}
+                    >
                         <div
                             onClick={() => goPage('/top-up')}
                             className="py-3 px-6 rounded-lg md:bg-dark bg-[#242429] w-full flex justify-between items-center cursor-pointer"
@@ -135,12 +138,12 @@ const Home = () => {
                 </div>
             </CardDiv>
             {!data.connect && propt && (
-                <ConnectButton className="bg-[#5A4EE8] md:text-base px-[20px]  md:py-[8px] py-[5px] text-sm absolute md:rounded-lg rounded-full md:top-[40px] top-[0px]">
+                <ConnectButton className="bg-[#5A4EE8] md:text-base px-[20px]  md:py-[8px] py-[5px] text-sm absolute md:rounded-lg rounded-full md:top-[40px] top-[8px]">
                     Connect your wallet
                 </ConnectButton>
             )}
             {spend && (
-                <ConnectButton className="bg-[#5A4EE8] md:text-base px-[20px]  md:py-[8px] py-[5px] text-sm absolute md:rounded-lg rounded-full md:top-[40px] top-[0px]">
+                <ConnectButton className="bg-[#5A4EE8] md:text-base px-[20px]  md:py-[8px] py-[5px] text-sm absolute md:rounded-lg rounded-full md:top-[40px] top-[8px]">
                     Coming soon
                 </ConnectButton>
             )}

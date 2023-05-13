@@ -19,10 +19,10 @@ const Success = () => {
                     className="bg-[#242429] rounded-t-3xl py-[30px] px-5 flex flex-col items-center justify-center w-full absolute bottom-0"
                     style={{ height: 'calc(100vh - 72px - 28px)' }}
                 >
-                    <h2 className="text-4xl font-bold font-Unbounded text-center">Offer deleted</h2>
+                    <h2 className="text-2xl font-bold font-Unbounded text-center">Offer deleted</h2>
                     <div className="flex flex-col items-center justify-center w-full">
-                        <SuccessIcon className="my-[33px] h-[130px] w-[130px]" />
-                        <h4 className="text-base font-medium font-Unbounded text-center  mb-5">
+                        <SuccessIcon className="my-[33px] h-[100px] w-[100px]" />
+                        <h4 className="text-sm font-medium font-Unbounded text-center  mb-5">
                             The stables have been settled to both <br /> wallet addresses
                         </h4>
                         <div className="flex flex-col my-8 w-full">

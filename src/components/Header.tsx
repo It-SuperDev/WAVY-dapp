@@ -125,7 +125,7 @@ const Header = () => {
     }, []);
 
     return (
-        <header className="flex items-center justify-between w-full pt-10 md:px-0 px-5">
+        <header className="flex items-center justify-between w-full md:pt-10 pt-2 md:px-0 px-5">
             <div className="hidden md:flex items-center">
                 <Link to="/">
                     <img src={logo} alt="logo" className="h-10 my-[2px]" />

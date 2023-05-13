@@ -8,17 +8,7 @@ import { VlaueInputProps } from 'types/utils';
 import { Input } from './Styled';
 import useConfig from 'hooks/useConfig';
 
-const ValueInput = ({
-    title,
-    value,
-    available,
-    error,
-    errorMessage,
-    tokenList,
-    classes,
-    disable,
-    hideTitle
-}: VlaueInputProps) => {
+const ValueInput = ({ title, value, available, tokenList, classes, disable, hideTitle }: VlaueInputProps) => {
     const navigate = useNavigate();
     const { pathname } = useLocation();
     const data = useConfig();

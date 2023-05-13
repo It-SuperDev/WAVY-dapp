@@ -32,17 +32,17 @@ const ConfirmOffer = () => {
                         </div>
                     </div>
                     <div className="flex flex-col w-full rounded-lg px-5 py-6 bg-[#242429]">
-                        <div className="flex w-full items-center justify-between mb-5 text-sm">
+                        <div className="flex w-full items-center justify-between mb-2 text-sm">
                             <p>Send currency</p> <p>{data.NETWORK.newOffer.send.name}</p>
                         </div>
-                        <div className="flex w-full items-center justify-between my-5 text-sm">
+                        <div className="flex w-full items-center justify-between my-2 text-sm">
                             <p>Receive currency</p> <p>{data.NETWORK.newOffer.receive.name}</p>
                         </div>
-                        <div className="flex w-full items-center justify-between my-5 text-sm">
+                        <div className="flex w-full items-center justify-between my-2 text-sm">
                             <p>Exchange rate</p>{' '}
                             <p>{`1 ${data.NETWORK.newOffer.send.name} = ${data.NETWORK.newOffer.rate} ${data.NETWORK.newOffer.receive.name}`}</p>
                         </div>
-                        <div className="flex w-full items-center justify-between my-5 text-sm">
+                        <div className="flex w-full items-center justify-between my-2 text-sm">
                             <p>Limit</p>{' '}
                             <p>{`${data.NETWORK.newOffer.min} - ${data.NETWORK.newOffer.max} ${data.NETWORK.newOffer.receive.name}`}</p>
                         </div>
