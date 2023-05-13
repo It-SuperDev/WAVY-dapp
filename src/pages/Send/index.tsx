@@ -12,7 +12,15 @@ import MobileCard from 'components/MobileCard';
 const Send = () => {
     const navigate = useNavigate();
     const data = useConfig();
-    const { isMobile } = data;
+    const { isMobile, changeData } = data;
+
+    const changOrder = () => {
+        const temp = data.NETWORK.send.send;
+        let final = data.NETWORK;
+        final.send.send = final.send.receive;
+        final.send.receive = temp;
+        changeData({ key: 'NETWORK', data: final });
+    };
 
     if (isMobile) {
         return (
@@ -33,7 +41,7 @@ const Send = () => {
                             <KeyboardArrowDownIcon />
                         </div>
                     </div>
-                    <img src={exchange} alt="token" className="w-[40px] h-[40px]" />
+                    <img src={exchange} alt="token" className="w-[30px] h-[30px]" onClick={changOrder} />
                     <div className="flex flex-col">
                         <p className="text-sm text-[#ACACAE] mb-2">Receive</p>
                         <div
@@ -138,7 +146,7 @@ const Send = () => {
                             <KeyboardArrowDownIcon />
                         </div>
                     </div>
-                    <img src={exchange} alt="token" className="w-[24px] h-[24px]" />
+                    <img src={exchange} alt="token" className="w-[24px] h-[24px]" onClick={changOrder} />
                     <div className="flex items-center">
                         <p className="text-base mr-2">Receive</p>
                         <div

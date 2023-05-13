@@ -54,7 +54,7 @@ const Home = () => {
     return (
         <>
             <CardDiv className={`card py-7 md:w-[550px] w-full md:px-0 px-5 rounded-xl`}>
-                <div className="flex flex-col md:w-[400px] w-full items-center mx-auto">
+                <div className="flex flex-col md:w-[400px] w-full items-center mx-auto mt-10">
                     <div className="rounded-lg w-full border-[#ACACAE] border-[0.6px] px-6 py-7 gradient-box">
                         <div className="flex items-center">
                             <p className="text-base font-Extended">Total Balance</p>
@@ -78,7 +78,7 @@ const Home = () => {
                                 : `${data.CURRENCY}0.00`}
                         </h1>
                     </div>
-                    <div className="flex justify-between w-full md:mt-11 mt-5 md:mb-11 mb-10">
+                    <div className="flex justify-between w-full md:mt-11 mt-10 md:mb-11 mb-10">
                         <div onClick={() => goPage('/send')} className="flex flex-col items-center">
                             <button className="bg-[#423F51] rounded-full md:w-[60px] w-[50px] md:h-[60px] h-[50px] flex items-center justify-center">
                                 <SendIcon className="h-[35px] w-[35px]" />
@@ -105,8 +105,8 @@ const Home = () => {
                         </div>
                     </div>
                     <div
-                        className="flex flex-col w-full md:relative absolute md:top-0 top-[398px] md:p-0 px-5 pt-12 md:bg-transparent bg-[#242429] rounded-t-3xl"
-                        style={data.isMobile ? { height: 'calc(100vh - 398px)' } : {}}
+                        className="flex flex-col w-full md:relative absolute bottom-0 md:p-0 px-5 pt-12 md:bg-transparent bg-[#242429] rounded-t-3xl"
+                        style={data.isMobile ? { height: '280px' } : {}}
                     >
                         <div
                             onClick={() => goPage('/top-up')}

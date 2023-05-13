@@ -41,7 +41,7 @@ const Swap = () => {
 
                         <div className="flex justify-center my-3">
                             <SwapIcon
-                                className="h-[52px] w-[52px] cursor-pointer"
+                                className="h-[30px] w-[30px] cursor-pointer"
                                 onClick={() => setStatus((pre: boolean) => !pre)}
                             />
                         </div>

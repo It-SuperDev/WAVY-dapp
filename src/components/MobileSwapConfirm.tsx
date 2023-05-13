@@ -27,7 +27,7 @@ const MobileDeleteOffer = ({ close }: any) => {
                 <div className="py-[30px]">
                     <div className="w-full flex items-center justify-around mb-8">
                         <div className="flex flex-col items-center">
-                            <img src={data.NETWORK.swap.from.icon} alt="token" className="w-[60px] h-[60px] mb-3" />
+                            <img src={data.NETWORK.swap.from.icon} alt="token" className="w-[50px] h-[50px] mb-3" />
                             <p className="text-sm mb-2">From</p>
                             <p className="text-base font-bold font-Unbounded">
                                 {`${data.NETWORK.swap.from.value} ${data.NETWORK.swap.from.name}`}
@@ -35,7 +35,7 @@ const MobileDeleteOffer = ({ close }: any) => {
                         </div>
                         <EastIcon />
                         <div className="flex flex-col items-center">
-                            <img src={data.NETWORK.swap.to.icon} alt="token" className="w-[60px] h-[60px]  mb-3" />
+                            <img src={data.NETWORK.swap.to.icon} alt="token" className="w-[50px] h-[50px]  mb-3" />
                             <p className="text-sm mb-2">Receive</p>
                             <p className="text-base font-bold font-Unbounded">
                                 {`${data.NETWORK.swap.to.value} ${data.NETWORK.swap.to.name}`}
