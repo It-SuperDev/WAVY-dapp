@@ -54,7 +54,7 @@ const Home = () => {
     return (
         <>
             <CardDiv className={`card py-7 md:w-[550px] w-full md:px-0 px-5 rounded-xl`}>
-                <div className="flex flex-col md:w-[400px] w-full items-center mx-auto mt-10">
+                <div className="flex flex-col md:w-[400px] w-full items-center mx-auto">
                     <div className="rounded-lg w-full border-[#ACACAE] border-[0.6px] px-6 py-7 gradient-box">
                         <div className="flex items-center">
                             <p className="text-base font-Extended">Total Balance</p>
