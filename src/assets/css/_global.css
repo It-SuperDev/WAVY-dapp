@@ -73,9 +73,11 @@ input[type=number] {
     body {
         background: #151518;
     }
-
+    
     .card {
         box-shadow: unset !important;
         background: unset !important;
+        background-color: #151518 !important;
+
     }
 }

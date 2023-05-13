@@ -36,7 +36,7 @@ export const IconButton = styled.button`
 `;
 
 export const CardDiv = styled.div`
-    border-radius: 10px;
+    // border-radius: 10px;
     background: linear-gradient(180deg, rgba(36, 36, 41, 0) 0%, #242429 100%);
     box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 10px 0px;
 `;

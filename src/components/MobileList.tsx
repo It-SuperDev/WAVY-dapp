@@ -8,7 +8,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import { MenuListProps } from 'types/utils';
 import CloseIcon from '@mui/icons-material/Close';
 
-const MobileList = ({ title, sub, data, py, size, close, callback }: MenuListProps | any) => {
+const MobileList = ({ title, sub, data, py, size, close, callback, notClose }: MenuListProps | any) => {
     const prevent = (e: any) => {
         e.preventDefault();
     };
@@ -16,11 +16,11 @@ const MobileList = ({ title, sub, data, py, size, close, callback }: MenuListPro
     return (
         <>
             <div
-                className="flex flex-col w-full fixed bottom-0 left-0 z-10 px-5 pt-10 bg-[#151518] rounded-t-3xl"
+                className="flex flex-col w-full fixed bottom-0 left-0 z-10 px-5 pt-10 bg-[#151518] rounded-t-3xl shadow-[0px_-4px_20px_13px_black]"
                 onClick={prevent}
             >
                 <div className="flex items-start justify-center relative">
-                    {close && (
+                    {close && !notClose && (
                         <div
                             onClick={close}
                             className="absolute right-0 flex justify-center items-center p-1 rounded-full hover:bg-[#ffffff1a] cursor-pointer"
