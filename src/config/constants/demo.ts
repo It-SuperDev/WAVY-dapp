@@ -267,7 +267,7 @@ export const TOP_METHOD = [
 
 export const WITHDRAW_METHOD = [
     {
-        name: 'Bank Transfer',
+        name: 'Bank Account',
         sub: 'Withdraw your stablecoin to your bank account',
         icon: bankIcon
     },

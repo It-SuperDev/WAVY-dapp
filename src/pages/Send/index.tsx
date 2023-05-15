@@ -59,7 +59,7 @@ const Send = () => {
                     </div>
                 </div>
                 <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5">
-                    <div className="mb-20">
+                    <div>
                         {data.NETWORK.send.list.map(({ rate, available, limit }: any, i: number) => (
                             <div
                                 key={i}
@@ -110,6 +110,7 @@ const Send = () => {
                             </div>
                         ))}
                     </div>
+                    <div className="h-[80px]" />
                 </div>
                 <div className="flex w-full fixed items-center justify-between bottom-0 px-5 py-6 bg-[#151518] rounded-t-3xl">
                     <WhiteButton

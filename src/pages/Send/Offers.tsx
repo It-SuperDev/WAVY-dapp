@@ -46,8 +46,8 @@ const Send = () => {
     if (data.isMobile) {
         return (
             <MobileCard title="My offers" back={() => navigate('/send')}>
-                <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5 mb-10">
-                    <div className="mb-20">
+                <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5">
+                    <div>
                         {data.NETWORK.offers.map((one: any, i: number) => (
                             <div
                                 key={i}
@@ -121,6 +121,7 @@ const Send = () => {
                             </div>
                         ))}
                     </div>
+                    <div className="h-[100px]" />
                 </div>
                 <div className="flex w-full fixed items-center justify-between bottom-0 px-5 pt-6 pb-12 bg-[#151518] rounded-t-3xl">
                     <PrimaryButton
