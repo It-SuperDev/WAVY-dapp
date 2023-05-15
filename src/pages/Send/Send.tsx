@@ -23,10 +23,7 @@ const TopUp = () => {
                         been agreed on or when the order has been cancelled.
                     </p>
                 </div>
-                <div
-                    style={{ minHeight: 'calc(100vh - 160px)' }}
-                    className="bg-[#242429] rounded-t-3xl py-[30px] px-5 flex flex-col justify-between"
-                >
+                <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5 flex flex-col justify-between">
                     <div className="w-full">
                         <ValueInput
                             title="Amount"
