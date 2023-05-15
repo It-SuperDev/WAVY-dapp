@@ -24,6 +24,7 @@ const TopUp = () => {
 
     const [value, setValue] = useState('');
     const [page, setPage] = useState(1);
+    const [tokenName, setTokenName] = useState('');
 
     const getMatch = (name: string) => {
         switch (name) {
@@ -74,6 +75,7 @@ const TopUp = () => {
     };
 
     const setToken = (token: any) => {
+        setTokenName(token.name);
         data.changeData({ key: 'token', data: { ...data.token, required: false, data: token } });
         data.changeData({ key: 'WITHDRAW', data: getMatch(token.name) });
         setPage(2);
@@ -186,7 +188,12 @@ const TopUp = () => {
                                     </div>
                                 </div>
                                 {page === 2 && (
-                                    <MobileMethod isTop={true} close={() => setPage(1)} callback={callback} />
+                                    <MobileMethod
+                                        isTop={true}
+                                        close={() => setPage(1)}
+                                        callback={callback}
+                                        tokenName={tokenName}
+                                    />
                                 )}
                             </MobileCard>
                         );

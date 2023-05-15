@@ -10,7 +10,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { TOP_METHOD, WITHDRAW_METHOD } from 'config/constants/demo';
 import useConfig from 'hooks/useConfig';
 
-const MobileMethod = ({ isTop, size, close, callback }: any) => {
+const MobileMethod = ({ isTop, size, close, callback, tokenName }: any) => {
     const prevent = (e: any) => {
         e.preventDefault();
     };
@@ -18,7 +18,7 @@ const MobileMethod = ({ isTop, size, close, callback }: any) => {
     const gData = useConfig();
 
     const data = isTop ? TOP_METHOD : WITHDRAW_METHOD;
-    console.log(gData.NETWORK.sub);
+
     return (
         <>
             <div
@@ -65,30 +65,39 @@ const MobileMethod = ({ isTop, size, close, callback }: any) => {
                             </Stack>
                         ) : (
                             <>
-                                {data.map(
-                                    ({ name, sub, icon }: { name: string; sub: string; icon: string }, i: number) => (
-                                        <Stack key={i}>
-                                            <MenuItem
-                                                sx={{ py: 2, px: 2.5, bgcolor: '#242429', borderRadius: 2, mb: 1 }}
-                                                onClick={() => callback(i)}
-                                            >
-                                                <ListItemIcon
-                                                    sx={{
-                                                        mr: 1,
-                                                        '& img': { width: size ? size : 34, height: size ? size : 34 }
-                                                    }}
+                                {(() => {
+                                    const redata = tokenName === 'USDC' ? data : data.slice(0, -1);
+                                    return redata.map(
+                                        (
+                                            { name, sub, icon }: { name: string; sub: string; icon: string },
+                                            i: number
+                                        ) => (
+                                            <Stack key={i}>
+                                                <MenuItem
+                                                    sx={{ py: 2, px: 2.5, bgcolor: '#242429', borderRadius: 2, mb: 1 }}
+                                                    onClick={() => callback(i)}
                                                 >
-                                                    <Box component="img" src={icon} alt="currency" />
-                                                </ListItemIcon>
-                                                <div className="mr-auto">
-                                                    <p> {name}</p>
-                                                    <p className="text-xs text-[#ACACAE]"> {sub}</p>
-                                                </div>
-                                                <ChevronRightIcon />
-                                            </MenuItem>
-                                        </Stack>
-                                    )
-                                )}
+                                                    <ListItemIcon
+                                                        sx={{
+                                                            mr: 1,
+                                                            '& img': {
+                                                                width: size ? size : 34,
+                                                                height: size ? size : 34
+                                                            }
+                                                        }}
+                                                    >
+                                                        <Box component="img" src={icon} alt="currency" />
+                                                    </ListItemIcon>
+                                                    <div className="mr-auto">
+                                                        <p> {name}</p>
+                                                        <p className="text-xs text-[#ACACAE]"> {sub}</p>
+                                                    </div>
+                                                    <ChevronRightIcon />
+                                                </MenuItem>
+                                            </Stack>
+                                        )
+                                    );
+                                })()}
                             </>
                         )}
                     </div>

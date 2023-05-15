@@ -482,17 +482,17 @@ export const polygon = [
         price: '$6.75'
     },
     {
-        name: 'USDT',
-        icon: usdtIcon,
-        sub: 'U.S dollar',
-        amount: '3000 USDT',
-        price: '$3,000.00'
-    },
-    {
         name: 'USDC',
         icon: usdcIcon,
         sub: 'U.S dollar',
         amount: '3000 USDC',
+        price: '$3,000.00'
+    },
+    {
+        name: 'USDT',
+        icon: usdtIcon,
+        sub: 'U.S dollar',
+        amount: '3000 USDT',
         price: '$3,000.00'
     }
 ];
@@ -1294,15 +1294,15 @@ export const NETWORK = [
             },
             {
                 send: {
-                    name: 'QADC',
+                    name: 'QCAD',
                     icon: qcadIcon
                 },
                 receive: {
                     name: 'TRYB',
                     icon: trybIcon
                 },
-                rate: '1 QADC = 14.35 TRYB',
-                available: '2500 QADC',
+                rate: '1 QCAD = 14.35 TRYB',
+                available: '2500 QCAD',
                 limit: '1 - 500 TRYB',
                 status: 'accpted'
             },

@@ -47,11 +47,11 @@ const Send = () => {
         return (
             <MobileCard title="My offers" back={() => navigate('/send')}>
                 <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5">
-                    <div className="overflow-auto" style={{ height: 'calc(100vh - 124px - 72px - 28px - 30px)' }}>
+                    <div className="overflow-auto" style={{ height: 'calc(100vh - 124px - 72px - 28px - 60px)' }}>
                         {data.NETWORK.offers.map((one: any, i: number) => (
                             <div
                                 key={i}
-                                className="w-full grid mt-4 border-light-dark border-[0.6px] px-5 py-6 rounded-lg flex flex-col"
+                                className="w-full grid mb-4 border-light-dark border-[0.6px] px-5 py-6 rounded-lg flex flex-col"
                             >
                                 <div className="flex  justify-between">
                                     <div className="flex flex-col w-1/2">
