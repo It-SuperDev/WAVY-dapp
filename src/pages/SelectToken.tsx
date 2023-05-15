@@ -89,7 +89,7 @@ const SelectToken = () => {
                             onChange={(e: any) => setValue(e.target.value)}
                         />
                     </div>
-                    <div className="flex flex-col w-full rounded-lg py-3 mt-5">
+                    <div className="flex flex-col w-full rounded-lg py-3 mt-5 mb-[100px]">
                         <div className="w-full">
                             {data.NETWORK &&
                                 data.NETWORK.token
