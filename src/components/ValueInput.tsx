@@ -60,6 +60,7 @@ const ValueInput = ({ title, value, available, tokenList, classes, disable, hide
     useEffect(() => {
         if (data.token && data.token.key === title && !data.token.required) {
             const token = data.token.data;
+            console.log(token, '------');
             setName(token.name);
             setIcon(token.icon);
             if (onChange) onChange({ name: token.name, icon: token.icon, value: token.amount.split(' ')[0] });

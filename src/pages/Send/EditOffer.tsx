@@ -36,7 +36,7 @@ const EditOffer = () => {
         return (
             <MobileCard title="Edit offer" back={() => navigate('/send/offers')}>
                 <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5 flex flex-col items-center justify-center w-full">
-                    <div className="w-full h-full overflow-auto">
+                    <div className="w-full h-full pb-[100px]">
                         <div className="mr-2">
                             <ValueInput
                                 title="Send"

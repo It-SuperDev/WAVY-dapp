@@ -29,6 +29,9 @@ const NewOffer = () => {
     const changeReceive = (token: any) => {
         data.NETWORK.newOffer.receive = token;
     };
+    const changeSend = (token: any) => {
+        data.NETWORK.newOffer.send = token;
+    };
 
     useEffect(() => {
         if (data.NETWORK) {
@@ -46,6 +49,7 @@ const NewOffer = () => {
                 <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5 flex flex-col items-center justify-center w-full">
                     <div className="w-full h-full pb-[100px]">
                         <ValueInput
+                            onChange={changeSend}
                             title="Send"
                             available={data.NETWORK.newOffer.send.available}
                             value={data.NETWORK.newOffer.send.value}
