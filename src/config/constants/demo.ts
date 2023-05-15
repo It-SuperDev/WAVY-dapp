@@ -526,6 +526,13 @@ export const avalanche = [
         price: '$6.75'
     },
     {
+        name: 'TGBP',
+        icon: tgbpIcon,
+        sub: 'British Pound',
+        amount: '3000 TGBP',
+        price: '$3,122.60'
+    },
+    {
         name: 'TRYB',
         icon: trybIcon,
         sub: 'Turkish Lira',
@@ -538,13 +545,6 @@ export const avalanche = [
         sub: 'U.S dollar',
         amount: '3000 USDC',
         price: '$3,000.00'
-    },
-    {
-        name: 'TGBP',
-        icon: tgbpIcon,
-        sub: 'British Pound',
-        amount: '3000 TGBP',
-        price: '$3,122.60'
     },
     {
         name: 'USDT',
@@ -633,17 +633,17 @@ export const ethereum = [
         price: '$6.75'
     },
     {
-        name: 'USDT',
-        icon: usdtIcon,
-        sub: 'U.S dollar',
-        amount: '3000 USDT',
-        price: '$3,000.00'
-    },
-    {
         name: 'USDC',
         icon: usdcIcon,
         sub: 'U.S dollar',
         amount: '3000 USDC',
+        price: '$3,000.00'
+    },
+    {
+        name: 'USDT',
+        icon: usdtIcon,
+        sub: 'U.S dollar',
+        amount: '3000 USDT',
         price: '$3,000.00'
     },
     {
