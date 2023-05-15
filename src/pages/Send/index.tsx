@@ -59,7 +59,7 @@ const Send = () => {
                     </div>
                 </div>
                 <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5">
-                    <div className="overflow-auto mb-[100px]">
+                    <div className="pb-[100px]">
                         {data.NETWORK.send.list.map(({ rate, available, limit }: any, i: number) => (
                             <div
                                 key={i}

@@ -34,9 +34,9 @@ const NewOffer = () => {
 
     if (data.isMobile) {
         return (
-            <MobileCard title="Create a new offer" back={() => navigate('/send')}>
+            <MobileCard title="Create a new offer" fontSize={20} back={() => navigate('/send')}>
                 <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5 flex flex-col items-center justify-center w-full">
-                    <div className="w-full h-full overflow-auto">
+                    <div className="w-full h-full">
                         <ValueInput
                             title="Send"
                             available={data.NETWORK.newOffer.send.available}

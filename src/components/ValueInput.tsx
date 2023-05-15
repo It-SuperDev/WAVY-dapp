@@ -82,6 +82,8 @@ const ValueInput = ({ title, value, available, tokenList, classes, disable, hide
                         <div className="flex flex-row w-full align-center justify-start">
                             <Input
                                 type="number"
+                                min="0"
+                                pattern="[0-9]*"
                                 value={val}
                                 onChange={handleValue}
                                 className="w-1/2"

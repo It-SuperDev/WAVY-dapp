@@ -71,7 +71,7 @@ const Home = () => {
                                     />
                                 )}
                             </div>
-                            <h1 className="gradient-text text-5xl font-Unbounded font-medium mt-2">
+                            <h1 className="gradient-text md:text-5xl text-4xl font-Unbounded font-medium mt-2">
                                 {data.connect
                                     ? visible
                                         ? `${data.CURRENCY}15,749.54`
@@ -143,7 +143,7 @@ const Home = () => {
                 {data.isMobile && (
                     <div
                         className="flex flex-col w-full  px-5 pt-12 bg-[#242429] rounded-t-3xl"
-                        style={{ height: 'calc(100vh - 388px)', minHeight: '230px' }}
+                        style={{ height: 'calc(100vh - 380px)', minHeight: '230px' }}
                     >
                         <div
                             onClick={() => goPage('/top-up')}
