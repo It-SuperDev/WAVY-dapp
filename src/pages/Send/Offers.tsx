@@ -121,7 +121,7 @@ const Send = () => {
                             </div>
                         ))}
                     </div>
-                    <div className="h-[100px]" />
+                    <div className="h-[200px]" />
                 </div>
                 <div className="flex w-full fixed items-center justify-between bottom-0 px-5 pt-6 pb-12 bg-[#151518] rounded-t-3xl">
                     <PrimaryButton
