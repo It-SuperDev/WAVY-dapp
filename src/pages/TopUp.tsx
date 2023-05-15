@@ -135,7 +135,7 @@ const TopUp = () => {
                                             onChange={(e: any) => setValue(e.target.value)}
                                         />
                                     </div>
-                                    <div className="flex flex-col w-full rounded-lg py-3 my-5 pl-5 rounded-lg bg-[#242429]">
+                                    <div className="flex flex-col w-full rounded-lg py-3 my-5 pl-5  mb-[120px] rounded-lg bg-[#242429]">
                                         <div className="w-full pr-5">
                                             {data.NETWORK &&
                                                 data.NETWORK.token
