@@ -35,10 +35,7 @@ const NewOffer = () => {
     if (data.isMobile) {
         return (
             <MobileCard title="Create a new offer" back={() => navigate('/send')}>
-                <div
-                    className="bg-[#242429] rounded-t-3xl py-[30px] px-5 flex flex-col items-center justify-center w-full"
-                    style={{ height: 'calc(100vh - 72px - 28px)' }}
-                >
+                <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5 flex flex-col items-center justify-center w-full">
                     <div className="w-full h-full overflow-auto">
                         <ValueInput
                             title="Send"
