@@ -11,7 +11,7 @@ const Loading = () => {
     const { isMobile } = useConfig();
     useEffect(() => {
         setTimeout(() => {
-            // navigate('/send/success');
+            navigate('/send/success');
         }, 2000);
     }, [navigate]);
 
