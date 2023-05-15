@@ -135,11 +135,8 @@ const TopUp = () => {
                                             onChange={(e: any) => setValue(e.target.value)}
                                         />
                                     </div>
-                                    <div className="flex flex-col w-full rounded-lg py-3 mt-5 pl-5 rounded-lg bg-[#242429]">
-                                        <div
-                                            className="overflow-auto w-full pr-5"
-                                            style={{ height: 'calc(100vh - 72px - 28px - 78px - 20px)' }}
-                                        >
+                                    <div className="flex flex-col w-full rounded-lg py-3 my-5 pl-5 rounded-lg bg-[#242429]">
+                                        <div className="w-full pr-5">
                                             {data.NETWORK &&
                                                 data.NETWORK.token
                                                     .filter((e: any) => {
