@@ -17,6 +17,8 @@ const NewOffer = () => {
     const [min, setMin] = useState(data.NETWORK.newOffer.min);
     const [max, setMax] = useState(data.NETWORK.newOffer.max);
     const [rate, setRate] = useState(data.NETWORK.newOffer.rate);
+    const [name, setName] = useState('');
+    const [icon, setIcon] = useState('');
     const [rateError, setRateError] = useState(false);
 
     const handleRate = (e: any) => {
@@ -24,11 +26,17 @@ const NewOffer = () => {
         setRateError(data.NETWORK.newOffer.receive.value < e.target.value);
     };
 
+    const changeReceive = (token: any) => {
+        data.NETWORK.newOffer.receive = token;
+    };
+
     useEffect(() => {
         if (data.NETWORK) {
             setMin(data.NETWORK.newOffer.min);
             setMax(data.NETWORK.newOffer.max);
             setRate(data.NETWORK.newOffer.rate);
+            setName(data.NETWORK.newOffer.receive.name);
+            setIcon(data.NETWORK.newOffer.receive.icon);
         }
     }, [data.NETWORK]);
 
@@ -45,6 +53,7 @@ const NewOffer = () => {
                             classes="mr-2"
                         />
                         <ValueInput
+                            onChange={changeReceive}
                             title="Receive"
                             value={data.NETWORK.newOffer.receive.value}
                             tokenList={[data.NETWORK.newOffer.receive, data.NETWORK.newOffer.receive]}
@@ -64,12 +73,8 @@ const NewOffer = () => {
                                         onChange={handleRate}
                                     />
                                     <div className="flex items-center w-full cursor-pointer">
-                                        <img
-                                            src={data.NETWORK.newOffer.receive.icon}
-                                            alt="token"
-                                            className="w-[24px] h-[24px]"
-                                        />
-                                        <span className="text-base mx-2">{data.NETWORK.newOffer.receive.name}</span>
+                                        <img src={icon} alt="token" className="w-[24px] h-[24px]" />
+                                        <span className="text-base mx-2">{name}</span>
                                     </div>
                                 </div>
                             </div>

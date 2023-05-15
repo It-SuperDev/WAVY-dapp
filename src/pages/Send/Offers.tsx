@@ -46,8 +46,8 @@ const Send = () => {
     if (data.isMobile) {
         return (
             <MobileCard title="My offers" back={() => navigate('/send')}>
-                <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5">
-                    <div className="overflow-auto pb-[100px]">
+                <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5 mb-10">
+                    <div className="mb-20">
                         {data.NETWORK.offers.map((one: any, i: number) => (
                             <div
                                 key={i}

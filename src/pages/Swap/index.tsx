@@ -56,7 +56,7 @@ const Swap = () => {
                         />
                         <p className="rounded-lg py-1 text-[#CCC8F8] my-4">{data.NETWORK.swap.equal}</p>
 
-                        <PrimaryButton className="w-full text-center py-4" onClick={() => setIsConfirm(true)}>
+                        <PrimaryButton className="w-full text-center py-4 mt-10" onClick={() => setIsConfirm(true)}>
                             Preview Swap
                         </PrimaryButton>
                     </div>

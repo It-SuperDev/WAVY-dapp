@@ -8,7 +8,7 @@ import { VlaueInputProps } from 'types/utils';
 import { Input } from './Styled';
 import useConfig from 'hooks/useConfig';
 
-const ValueInput = ({ title, value, available, tokenList, classes, disable, hideTitle }: VlaueInputProps) => {
+const ValueInput = ({ title, value, available, tokenList, classes, disable, hideTitle, onChange }: VlaueInputProps) => {
     const navigate = useNavigate();
     const { pathname } = useLocation();
     const data = useConfig();
@@ -62,10 +62,12 @@ const ValueInput = ({ title, value, available, tokenList, classes, disable, hide
             const token = data.token.data;
             setName(token.name);
             setIcon(token.icon);
+            if (onChange) onChange({ name: token.name, icon: token.icon, value: token.amount.split(' ')[0] });
             setAvail(`Available: ${token.amount}`);
             const num = token.amount.split(' ')[0];
             if (num && Number(num)) setLimit(Number(num));
         }
+        // eslint-disable-next-line
     }, [data, title]);
 
     if (data.isMobile) {

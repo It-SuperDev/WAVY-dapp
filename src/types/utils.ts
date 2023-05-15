@@ -27,4 +27,5 @@ export type VlaueInputProps = {
     classes?: string;
     disable?: boolean;
     hideTitle?: boolean;
+    onChange?: any;
 };

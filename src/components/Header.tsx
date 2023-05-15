@@ -99,7 +99,11 @@ const Header = () => {
     };
 
     const infoHandle = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setInfoAnchor(event.currentTarget);
+        if (isMobile) {
+            setMobileInfo(true);
+        } else {
+            setInfoAnchor(event.currentTarget);
+        }
     };
     const infoClose = () => {
         setInfoAnchor(null);

@@ -52,9 +52,23 @@ const MobileMethod = ({ isTop, size, close, callback, tokenName }: any) => {
                                     onClick={() => callback()}
                                 >
                                     <ListItemIcon
-                                        sx={{ mr: 1, '& img': { width: size ? size : 34, height: size ? size : 34 } }}
+                                        sx={{
+                                            mr: 1,
+                                            width: 34,
+                                            height: 34,
+                                            bgcolor: '#494979',
+                                            borderRadius: 50,
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center'
+                                        }}
                                     >
-                                        <Box component="img" src={data[0].icon} alt="currency" />
+                                        <Box
+                                            component="img"
+                                            src={data[0].icon}
+                                            sx={{ height: 20, width: 20 }}
+                                            alt="currency"
+                                        />
                                     </ListItemIcon>
                                     <div className="mr-auto">
                                         <p> {data[0].name}</p>
@@ -80,13 +94,21 @@ const MobileMethod = ({ isTop, size, close, callback, tokenName }: any) => {
                                                     <ListItemIcon
                                                         sx={{
                                                             mr: 1,
-                                                            '& img': {
-                                                                width: size ? size : 34,
-                                                                height: size ? size : 34
-                                                            }
+                                                            width: 34,
+                                                            height: 34,
+                                                            bgcolor: '#494979',
+                                                            borderRadius: 50,
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'center'
                                                         }}
                                                     >
-                                                        <Box component="img" src={icon} alt="currency" />
+                                                        <Box
+                                                            component="img"
+                                                            src={icon}
+                                                            sx={{ height: 20, width: 20 }}
+                                                            alt="currency"
+                                                        />
                                                     </ListItemIcon>
                                                     <div className="mr-auto">
                                                         <p> {name}</p>
