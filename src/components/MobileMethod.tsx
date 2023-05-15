@@ -58,7 +58,7 @@ const MobileMethod = ({ isTop, size, close, callback, tokenName }: any) => {
                                     </ListItemIcon>
                                     <div className="mr-auto">
                                         <p> {data[0].name}</p>
-                                        <p className="text-xs text-[#ACACAE]"> {data[0].sub}</p>
+                                        <p className="text-xs text-[#ACACAE] whitespace-pre-wrap"> {data[0].sub}</p>
                                     </div>
                                     <ChevronRightIcon />
                                 </MenuItem>
@@ -90,7 +90,10 @@ const MobileMethod = ({ isTop, size, close, callback, tokenName }: any) => {
                                                     </ListItemIcon>
                                                     <div className="mr-auto">
                                                         <p> {name}</p>
-                                                        <p className="text-xs text-[#ACACAE]"> {sub}</p>
+                                                        <p className="text-xs text-[#ACACAE] whitespace-pre-wrap">
+                                                            {' '}
+                                                            {sub}
+                                                        </p>
                                                     </div>
                                                     <ChevronRightIcon />
                                                 </MenuItem>
