@@ -6,6 +6,8 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { ReactComponent as BackIcon } from 'assets/img/icon/arrow_back.svg';
 import { useState } from 'react';
@@ -59,16 +61,24 @@ const MoreInfo = ({
                         </div>
                     )}
                     <div className="flex items-center justify-between">
-                        {connect !== -1
-                            ? infoData.map((one: any, i: number) => (
-                                  <div
-                                      onClick={() => infoCallback(i)}
-                                      className="flex items-center justify-center h-[42px] w-[42px] bg-[#423F51] rounded-full mr-7"
-                                  >
-                                      <img src={one.mIcon} alt="lang" className="h-[24px] w-[24px]" />
-                                  </div>
-                              ))
-                            : null}
+                        {connect !== -1 ? (
+                            <>
+                                <CopyToClipboard
+                                    text={'0xCC70F722FA203D78580314817B7875cd90FED2d5'}
+                                    onCopy={() => infoCallback(0)}
+                                >
+                                    <div className="flex items-center justify-center h-[42px] w-[42px] bg-[#423F51] rounded-full mr-7">
+                                        <img src={infoData[0].mIcon} alt="lang" className="h-[24px] w-[24px]" />
+                                    </div>
+                                </CopyToClipboard>
+                                <div
+                                    onClick={() => infoCallback(1)}
+                                    className="flex items-center justify-center h-[42px] w-[42px] bg-[#423F51] rounded-full mr-7"
+                                >
+                                    <img src={infoData[1].mIcon} alt="lang" className="h-[24px] w-[24px]" />
+                                </div>
+                            </>
+                        ) : null}
                         <div
                             className="flex items-center justify-center h-[42px] w-[42px] bg-[#423F51] rounded-full"
                             onClick={() => setShowList('lang')}

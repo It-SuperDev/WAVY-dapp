@@ -17,6 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MobileList from './MobileList';
+import InfoList from './InfoList';
 import MoreInfo from './MoreInfo';
 
 const Header = () => {
@@ -265,7 +266,7 @@ const Header = () => {
                         close={walletClose}
                         callback={setWallet}
                     />
-                    <MenuList data={CONNECTED} anchor={infoAnchor} close={infoClose} callback={setInfo} size={25} />
+                    <InfoList anchor={infoAnchor} close={infoClose} callback={setInfo} size={25} />
                 </>
             )}
         </header>
