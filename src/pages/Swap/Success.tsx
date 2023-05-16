@@ -34,7 +34,7 @@ const Success = () => {
                     <div className="flex flex-col items-center justify-center w-full">
                         <SuccessIcon className="my-[33px] h-[100px] w-[100px]" />
                         <h4 className="text-sm font-medium font-Unbounded text-center  mb-5">
-                            {`${swapData.from.amount} ${swapData.from.name} has been converted to ${swapData.to.name}`}
+                            {`${swapData.from.amount / 20} ${swapData.from.name} has been converted to ${swapData.to.name}`}
                         </h4>
                         <div className="flex flex-col my-8 w-full">
                             <PrimaryButton
@@ -58,7 +58,7 @@ const Success = () => {
                 <div className="flex flex-col items-center justify-center px-[64px]">
                     <SuccessIcon className="my-[33px] h-[130px] w-[130px]" />
                     <h4 className="text-sm font-medium font-Unbounded text-center  mb-[60px]">
-                        {`${swapData.from.amount} ${swapData.from.name} has been converted to ${swapData.to.name}`}
+                        {`${swapData.from.amount / 20} ${swapData.from.name} has been converted to ${swapData.to.name}`}
                     </h4>
 
                     <PrimaryButton
