@@ -6,7 +6,7 @@ import InfoList from './InfoList';
 import MoreInfo from './MoreInfo';
 import MenuList from './MenuList';
 import MobileList from './MobileList';
-import { HeaderButton, IconButton } from './Styled';
+import { ConnectButton, HeaderButton, IconButton } from './Styled';
 
 // Icon
 import logo from '../assets/img/logo.svg';
@@ -56,6 +56,7 @@ const Header = () => {
     const [currencyAnchor, setCurrencyAnchor] = useState<null | HTMLElement>(null);
     const [walletAnchor, setWalletAnchor] = useState<null | HTMLElement>(null);
     const [mobileInfo, setMobileInfo] = useState(false);
+    const [copied, setCopied] = useState(false);
 
     const currencyHandle = (event: React.MouseEvent<HTMLButtonElement>) => {
         setCurrencyAnchor(event.currentTarget);
@@ -133,6 +134,9 @@ const Header = () => {
             setConnect(-1);
             navigate('/');
             changeData({ key: 'connect', data: null });
+        } else {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 1000);
         }
     };
 
@@ -200,6 +204,14 @@ const Header = () => {
             <div className="md:hidden" onClick={() => setMobileInfo(true)}>
                 <img src={admin} alt="user" className="w-[44px] h-[44px] rounded-full" />
             </div>
+
+            {copied && (
+                <div className="absolute flex top-0 left-0 z-30 w-full justify-center">
+                    <ConnectButton className="bg-[#5A4EE8] md:text-base px-[20px]  md:py-[8px] py-[5px] text-sm absolute md:rounded-lg rounded-full md:top-[40px] top-[8px]">
+                        Address copied
+                    </ConnectButton>
+                </div>
+            )}
 
             <div className="flex items-center">
                 {isHeader && (

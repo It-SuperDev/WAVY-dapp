@@ -7,7 +7,7 @@ const MenuList = ({ minWidth, py, size, top, anchor, close, callback }: MenuList
         e.preventDefault();
         callback(params);
     };
-
+    console.log(anchor, 'anchor');
     return (
         <>
             {Boolean(anchor) && (
@@ -16,7 +16,7 @@ const MenuList = ({ minWidth, py, size, top, anchor, close, callback }: MenuList
                         <div className="flex flex-col">
                             <CopyToClipboard
                                 text={'0xCC70F722FA203D78580314817B7875cd90FED2d5'}
-                                onClick={(e: any) => event(e, 0)}
+                                onCopy={() => callback(0)}
                             >
                                 <li className="py-2 px-5 flex cursor-pointer">
                                     <div className="mr-3" style={{ width: size ? size : 24, height: size ? size : 24 }}>
