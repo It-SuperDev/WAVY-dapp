@@ -192,7 +192,6 @@ const Send = () => {
                                             <div className="relative">
                                                 <MenuList
                                                     top={20}
-                                                    left={-140}
                                                     minWidth={160}
                                                     data={MY_OFFER_ACTION}
                                                     anchor={anchor}
