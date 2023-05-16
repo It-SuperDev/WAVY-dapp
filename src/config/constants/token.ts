@@ -204,13 +204,6 @@ export const avalanche = [
         price: 6.75
     },
     {
-        name: 'TGBP',
-        icon: tgbpIcon,
-        sub: 'British Pound',
-        amount: 3000,
-        price: 3122.6
-    },
-    {
         name: 'TRYB',
         icon: trybIcon,
         sub: 'Turkish Lira',
