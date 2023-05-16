@@ -127,18 +127,22 @@ const EditOffer = () => {
                     <div className="flex items-center justify-between mb-10">
                         <div className="relative mr-2">
                             <ValueInput
+                                onChange={() => selectToken(OFFER.rIdx, 'sIdx')}
                                 title="Send"
-                                available={offerData.send.available}
-                                value={offerData.send.value}
-                                tokenList={[offerData.send, offerData.send]}
+                                available={true}
+                                value={offerData.send.amount / 10}
+                                token={offerData.send}
+                                disable={true}
                             />
                             <div className="absolute w-full h-full top-0 left-0 bg-[#00000082]" />
                         </div>
                         <div className="relative">
                             <ValueInput
+                                onChange={() => selectToken(OFFER.sIdx, 'rIdx')}
                                 title="Receive"
-                                value={offerData.receive.value}
-                                tokenList={[offerData.receive, offerData.receive]}
+                                value={offerData.receive.amount / 10}
+                                token={offerData.receive}
+                                disable={true}
                             />
                             <div className="absolute w-full h-full top-0 left-0 bg-[#00000082]" />
                         </div>

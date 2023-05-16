@@ -102,7 +102,6 @@ const Index = () => {
                         close={() => setNetwork(false)}
                         callback={(i: number) => {
                             setNetwork(false);
-                            console.log(NETWORK[i]);
                         }}
                     />
                 )}

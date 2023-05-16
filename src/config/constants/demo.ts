@@ -445,14 +445,14 @@ export const NETWORK = [
         offers: [
             {
                 send: {
-                    name: 'TGBP',
-                    icon: tgbpIcon
-                },
-                receive: {
                     name: 'TRYB',
                     icon: trybIcon
                 },
-                rate: '1 TGBP = 24.20 TRYB',
+                receive: {
+                    name: 'NGNC',
+                    icon: ngncIcon
+                },
+                rate: '1 TRYB = 23.36 NGNC',
                 available: '2500 TGBP',
                 limit: '1 - 200 TGBP',
                 status: 'active'

@@ -7,7 +7,7 @@ const MenuList = ({ minWidth, py, size, top, anchor, close, callback }: MenuList
         e.preventDefault();
         callback(params);
     };
-    console.log(anchor, 'anchor');
+
     return (
         <>
             {Boolean(anchor) && (

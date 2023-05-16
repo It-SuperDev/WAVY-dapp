@@ -188,6 +188,20 @@ const Send = () => {
                                         className="absolute flex items-center justify-center cursor-pointer w-[30px] h-[30px] border-light-dark border-[0.6px] rounded-full top-0 right-0"
                                     >
                                         <MoreIcon />
+                                        {index === i && (
+                                            <div className="relative">
+                                                <MenuList
+                                                    top={20}
+                                                    left={-140}
+                                                    minWidth={160}
+                                                    data={MY_OFFER_ACTION}
+                                                    anchor={anchor}
+                                                    close={handleClose}
+                                                    callback={callBack}
+                                                    size={25}
+                                                />
+                                            </div>
+                                        )}
                                     </div>
                                     <p className="text-xs"></p>
                                     <div className="line-flex text-[#242429] font-bold">
@@ -236,13 +250,6 @@ const Send = () => {
                             Create a new offer
                         </PrimaryButton>
                     </div>
-                    <MenuList
-                        data={MY_OFFER_ACTION}
-                        anchor={anchor}
-                        close={handleClose}
-                        callback={callBack}
-                        size={25}
-                    />
                 </div>
             </CardDiv>
         );

@@ -8,7 +8,6 @@ import useConfig from 'hooks/useConfig';
 
 const ValueInput = ({ title, value, available, token, classes, disable, hideTitle, onChange }: any) => {
     const data = useConfig();
-
     const [val, setVal] = useState(value);
     const [isError, setIsError] = useState(false);
 
