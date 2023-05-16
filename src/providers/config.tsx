@@ -1,7 +1,7 @@
 import useLocalStorage from 'hooks/useLocalStorage';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { ConfigContext, initialState } from 'contexts/config';
+import useMediaQuery from 'hooks/useMediaQuery';
 
 type ConfigProviderProps = {
     children: React.ReactNode;

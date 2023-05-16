@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 // Icon
 import { ReactComponent as BackIcon } from 'assets/img/icon/arrow_back.svg';
-import EastIcon from '@mui/icons-material/East';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { ReactComponent as EastIcon } from 'assets/img/icon/arrow-right.svg';
+import { ReactComponent as MoreIcon } from 'assets/img/icon/more.svg';
 
 // Styled
 import { PrimaryButton, CardDiv } from 'components/Styled';
@@ -61,7 +61,7 @@ const Send = () => {
                                                 <img src={one.send.icon} alt="token" className="w-[24px] h-[24px]" />
                                                 <span className="text-base ml-2">{one.send.name}</span>
                                             </div>
-                                            <EastIcon sx={{ fontSize: 20, mr: 4 }} />
+                                            <EastIcon className="mr-8" />
                                         </div>
                                     </div>
                                     <div className="flex flex-col w-1/2 relative">
@@ -69,7 +69,7 @@ const Send = () => {
                                             onClick={(e: any) => anchorHandle(e, i)}
                                             className="absolute flex items-center justify-center cursor-pointer w-[30px] h-[30px] border-light-dark border-[0.6px] rounded-full top-0 right-0"
                                         >
-                                            <MoreVertIcon sx={{ fontSize: 16 }} />
+                                            <MoreIcon />
                                         </div>
                                         <p className="text-xs">You receive</p>
                                         <div className="flex items-center cursor-pointer mt-1 mb-2">
@@ -164,7 +164,7 @@ const Send = () => {
                                             <img src={one.send.icon} alt="token" className="w-[24px] h-[24px]" />
                                             <span className="text-base ml-2">{one.send.name}</span>
                                         </div>
-                                        <EastIcon sx={{ fontSize: 20 }} />
+                                        <EastIcon />
                                     </div>
                                     <div>
                                         <p className="text-xs text-light-dark">Exchange rate</p>
@@ -187,7 +187,7 @@ const Send = () => {
                                         onClick={(e: any) => anchorHandle(e, i)}
                                         className="absolute flex items-center justify-center cursor-pointer w-[30px] h-[30px] border-light-dark border-[0.6px] rounded-full top-0 right-0"
                                     >
-                                        <MoreVertIcon sx={{ fontSize: 16 }} />
+                                        <MoreIcon />
                                     </div>
                                     <p className="text-xs"></p>
                                     <div className="line-flex text-[#242429] font-bold">

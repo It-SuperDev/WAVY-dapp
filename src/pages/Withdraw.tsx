@@ -3,19 +3,19 @@ import { useNavigate, Link } from 'react-router-dom';
 
 // Icon
 import { ReactComponent as BankIcon } from '../assets/img/icon/bank.svg';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import SearchIcon from '@mui/icons-material/Search';
+import { ReactComponent as SearchIcon } from 'assets/img/icon/search.svg';
+import { ReactComponent as KeyboardArrowDownIcon } from 'assets/img/icon/chevron-down.svg';
 
-// component
+// Component
 import Card from 'components/Card';
 import ValueInput from 'components/ValueInput';
-import { PrimaryButton } from 'components/Styled';
-
-// Constatn
-import useConfig from 'hooks/useConfig';
-import { FLAG } from 'config/constants/demo';
 import MobileCard from 'components/MobileCard';
 import MobileMethod from 'components/MobileMethod';
+import { PrimaryButton } from 'components/Styled';
+
+// Constant
+import useConfig from 'hooks/useConfig';
+import { FLAG } from 'config/constants/demo';
 import { DemoDataProps } from 'types/config';
 
 const TopUp = () => {
@@ -128,7 +128,7 @@ const TopUp = () => {
                             <MobileCard title="Withdraw" back={() => navigate(-1)}>
                                 <div className="flex flex-col w-full px-5">
                                     <div className="relative rounded-lg border-[0.6px] border-[#ACACAE] py-1 px-4">
-                                        <SearchIcon className="absolute" />
+                                        <SearchIcon className="absolute h-[25px]" />
                                         <input
                                             className="w-full bg-transparent pl-8"
                                             placeholder="Search"

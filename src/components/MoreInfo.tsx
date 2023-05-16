@@ -1,16 +1,11 @@
-// MUI
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Divider from '@mui/material/Divider';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-
+import { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+// Icon
 import { ReactComponent as BackIcon } from 'assets/img/icon/arrow_back.svg';
-import { useState } from 'react';
+import { ReactComponent as KeyboardArrowDownIcon } from 'assets/img/icon/chevron-down.svg';
+
+// Constant
 import { CURRENCY, LANGUAGE } from 'config/constants/demo';
 
 const data = {
@@ -93,7 +88,7 @@ const MoreInfo = ({
                 >
                     <img src={currency.icon} alt="currency" className="h-[30px] w-[30px]" />
                     <p className="mx-5">{currency.name}</p>
-                    <KeyboardArrowDownIcon sx={{ color: '#FFF' }} />
+                    <KeyboardArrowDownIcon />
                 </div>
             </div>
             <div className="fixed w-screen h-screen top-0 left-0 bg-[#00000066]" onClick={close} />
@@ -109,17 +104,17 @@ const MoreInfo = ({
                         <h2 className="text-center text-base font-bold font-Unbounded ">Select Currency</h2>
                     </div>
                     {data[showList].map(({ name, icon }: { name: string; icon: string }, i: number) => (
-                        <Stack key={i}>
-                            {Boolean(i) && <Divider sx={{ borderColor: '#36363A', my: '0px !important' }} />}
-                            <MenuItem onClick={() => setData(i)} sx={{ py: 1.5, px: 2.5 }}>
-                                <ListItemIcon sx={{ mr: 1, '& img': { width: 30, height: 30 } }}>
-                                    <Box component="img" src={icon} alt="currency" />
-                                </ListItemIcon>
-                                <ListItemText sx={{ '& .MuiListItemText-primary': { fontSize: 16 } }}>
-                                    {name}
-                                </ListItemText>
-                            </MenuItem>
-                        </Stack>
+                        <div className="flex flex-col" key={i}>
+                            {Boolean(i) && <div className="border-[#ACACAE] border-t-[0.6px]" />}
+                            <li className="py-4 px-5 flex cursor-pointer" onClick={() => setData(i)}>
+                                <div className="mr-3 w-[30px] h-[30px]">
+                                    <img src={icon} alt="currency" />
+                                </div>
+                                <div>
+                                    <span className="text-md">{name}</span>
+                                </div>
+                            </li>
+                        </div>
                     ))}
                 </div>
             )}

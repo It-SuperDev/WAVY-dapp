@@ -1,11 +1,14 @@
-// MUI
-import EastIcon from '@mui/icons-material/East';
-
-import useConfig from 'hooks/useConfig';
 import { useNavigate } from 'react-router-dom';
+
+// Component
 import { OutlineButton, PrimaryButton } from './Styled';
 
-const MobileDeleteOffer = ({ close }: any) => {
+// Icon
+import { ReactComponent as EastIcon } from 'assets/img/icon/arrow-right.svg';
+
+import useConfig from 'hooks/useConfig';
+
+const MobileSwapConfirm = ({ close }: any) => {
     const navigate = useNavigate();
     const data = useConfig();
 
@@ -65,4 +68,4 @@ const MobileDeleteOffer = ({ close }: any) => {
     );
 };
 
-export default MobileDeleteOffer;
+export default MobileSwapConfirm;

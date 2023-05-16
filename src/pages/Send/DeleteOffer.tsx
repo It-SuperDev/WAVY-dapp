@@ -1,4 +1,4 @@
-import EastIcon from '@mui/icons-material/East';
+import { ReactComponent as EastIcon } from 'assets/img/icon/arrow-right.svg';
 import { ReactComponent as InfoIcon } from 'assets/img/icon/info.svg';
 
 import Card from 'components/Card';

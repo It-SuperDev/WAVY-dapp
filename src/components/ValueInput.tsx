@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // Icon
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { ReactComponent as KeyboardArrowDownIcon } from 'assets/img/icon/chevron-down.svg';
 
 import { VlaueInputProps } from 'types/utils';
 import { Input } from './Styled';
@@ -60,7 +60,6 @@ const ValueInput = ({ title, value, available, tokenList, classes, disable, hide
     useEffect(() => {
         if (data.token && data.token.key === title && !data.token.required) {
             const token = data.token.data;
-            console.log(token, '------');
             setName(token.name);
             setIcon(token.icon);
             if (onChange) onChange({ name: token.name, icon: token.icon, value: token.amount.split(' ')[0] });

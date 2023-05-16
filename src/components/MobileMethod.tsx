@@ -1,14 +1,9 @@
-// MUI
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
+// Icons
+import { ReactComponent as CloseIcon } from 'assets/img/icon/close.svg';
+import { ReactComponent as ChevronRightIcon } from 'assets/img/icon/chevron-right.svg';
 
-import CloseIcon from '@mui/icons-material/Close';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-
-import { TOP_METHOD, WITHDRAW_METHOD } from 'config/constants/demo';
 import useConfig from 'hooks/useConfig';
+import { TOP_METHOD, WITHDRAW_METHOD } from 'config/constants/demo';
 
 const MobileMethod = ({ isTop, size, close, callback, tokenName }: any) => {
     const prevent = (e: any) => {
@@ -31,7 +26,7 @@ const MobileMethod = ({ isTop, size, close, callback, tokenName }: any) => {
                             onClick={close}
                             className="absolute right-0 flex justify-center items-center p-1 rounded-full hover:bg-[#ffffff1a] cursor-pointer"
                         >
-                            <CloseIcon className="h-7 w-7" />
+                            <CloseIcon className="h-4 w-4" />
                         </div>
                     )}
                     <div>
@@ -46,37 +41,21 @@ const MobileMethod = ({ isTop, size, close, callback, tokenName }: any) => {
                 <div className="py-[30px]">
                     <div className="py-2">
                         {gData.NETWORK.sub !== 'Stellar' ? (
-                            <Stack>
-                                <MenuItem
-                                    sx={{ py: 2, px: 2.5, bgcolor: '#242429', borderRadius: 2, mb: 1 }}
+                            <div className="flex flex-col">
+                                <li
+                                    className="cursor-pointer px-5 py-4 mb-2 bg-[#242429] rounded-lg flex items-center "
                                     onClick={() => callback()}
                                 >
-                                    <ListItemIcon
-                                        sx={{
-                                            mr: 1,
-                                            width: 34,
-                                            height: 34,
-                                            bgcolor: '#494979',
-                                            borderRadius: 50,
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center'
-                                        }}
-                                    >
-                                        <Box
-                                            component="img"
-                                            src={data[0].icon}
-                                            sx={{ height: 20, width: 20 }}
-                                            alt="currency"
-                                        />
-                                    </ListItemIcon>
+                                    <div className="bg-[#494979] mr-2 w-[34px] h-[34px] flex items-center justify-center rounded-full">
+                                        <img src={data[0].icon} className="h-[20px] w-[20px]" alt="currency" />
+                                    </div>
                                     <div className="mr-auto">
                                         <p> {data[0].name}</p>
                                         <p className="text-xs text-[#ACACAE] whitespace-pre-wrap"> {data[0].sub}</p>
                                     </div>
-                                    <ChevronRightIcon />
-                                </MenuItem>
-                            </Stack>
+                                    <ChevronRightIcon className="w-4 h-4" />
+                                </li>
+                            </div>
                         ) : (
                             <>
                                 {(() => {
@@ -86,40 +65,23 @@ const MobileMethod = ({ isTop, size, close, callback, tokenName }: any) => {
                                             { name, sub, icon }: { name: string; sub: string; icon: string },
                                             i: number
                                         ) => (
-                                            <Stack key={i}>
-                                                <MenuItem
-                                                    sx={{ py: 2, px: 2.5, bgcolor: '#242429', borderRadius: 2, mb: 1 }}
+                                            <div className="flex flex-col" key={i}>
+                                                <li
+                                                    className="cursor-pointer px-5 py-4 mb-2 bg-[#242429] rounded-lg flex items-center "
                                                     onClick={() => callback(i)}
                                                 >
-                                                    <ListItemIcon
-                                                        sx={{
-                                                            mr: 1,
-                                                            width: 34,
-                                                            height: 34,
-                                                            bgcolor: '#494979',
-                                                            borderRadius: 50,
-                                                            display: 'flex',
-                                                            alignItems: 'center',
-                                                            justifyContent: 'center'
-                                                        }}
-                                                    >
-                                                        <Box
-                                                            component="img"
-                                                            src={icon}
-                                                            sx={{ height: 20, width: 20 }}
-                                                            alt="currency"
-                                                        />
-                                                    </ListItemIcon>
+                                                    <div className="bg-[#494979] mr-2 w-[34px] h-[34px] flex items-center justify-center rounded-full">
+                                                        <img src={icon} className="h-[20px] w-[20px]" alt="currency" />
+                                                    </div>
                                                     <div className="mr-auto">
                                                         <p> {name}</p>
                                                         <p className="text-xs text-[#ACACAE] whitespace-pre-wrap">
-                                                            {' '}
                                                             {sub}
                                                         </p>
                                                     </div>
-                                                    <ChevronRightIcon />
-                                                </MenuItem>
-                                            </Stack>
+                                                    <ChevronRightIcon className="w-4 h-4" />
+                                                </li>
+                                            </div>
                                         )
                                     );
                                 })()}

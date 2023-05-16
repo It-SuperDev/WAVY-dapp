@@ -1,41 +1,34 @@
-// MUI
-import Box from '@mui/material/Box';
-import Menu from '@mui/material/Menu';
-import Stack from '@mui/material/Stack';
-import Divider from '@mui/material/Divider';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import { MenuListProps } from 'types/utils';
 
-const MenuList = ({ data, minWidth, py, size, anchor, close, callback }: MenuListProps | any) => {
+const MenuList = ({ data, minWidth, py, size, top, anchor, close, callback }: MenuListProps | any) => {
+    const event = (e: any, params: any) => {
+        e.preventDefault();
+        callback(params);
+    };
+
     return (
-        <Menu
-            anchorEl={anchor}
-            open={Boolean(anchor)}
-            onClose={close}
-            sx={{
-                '& .MuiMenu-paper': {
-                    minWidth: minWidth ? minWidth : 0,
-                    bgcolor: '#2E2D4E',
-                    borderRadius: 2.5,
-                    overflow: 'hidden',
-                    mt: 0.5
-                }
-            }}
-        >
-            {data.map(({ name, icon }: { name: string; icon: string }, i: number) => (
-                <Stack key={i}>
-                    {Boolean(i) && <Divider sx={{ borderColor: '#ACACAE', my: '0px !important' }} />}
-                    <MenuItem sx={{ py: py ? py : 1, px: 2.5 }} onClick={() => callback(i)}>
-                        <ListItemIcon sx={{ mr: 1, '& img': { width: size ? size : 24, height: size ? size : 24 } }}>
-                            <Box component="img" src={icon} alt="currency" />
-                        </ListItemIcon>
-                        <ListItemText sx={{ '& .MuiListItemText-primary': { fontSize: 14 } }}>{name}</ListItemText>
-                    </MenuItem>
-                </Stack>
-            ))}
-        </Menu>
+        <>
+            {Boolean(anchor) && (
+                <>
+                    <div className="absolute left-0 py-2 rounded-lg bg-[#2e2d4e] z-20" style={{ top, minWidth }}>
+                        {data.map(({ name, icon }: { name: string; icon: string }, i: number) => (
+                            <div className="flex flex-col" key={i}>
+                                {Boolean(i) && <div className="border-[#ACACAE] border-t-[0.6px]" />}
+                                <li className="py-2 px-5 flex cursor-pointer" onClick={(e: any) => event(e, i)}>
+                                    <div className="mr-3 w-[24px] h-[24px]">
+                                        <img src={icon} alt="currency" className="w-[24px] h-[24px]" />
+                                    </div>
+                                    <div>
+                                        <span className="text-sm">{name}</span>
+                                    </div>
+                                </li>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="fixed w-screen h-screen z-10 top-0 left-0" onClick={close} />
+                </>
+            )}
+        </>
     );
 };
 

@@ -1,10 +1,14 @@
-import EastIcon from '@mui/icons-material/East';
-
-import Card from 'components/Card';
-import { OutlineButton, PrimaryButton } from 'components/Styled';
 import { useNavigate } from 'react-router-dom';
-import useConfig from 'hooks/useConfig';
+
+// Icon
+import { ReactComponent as EastIcon } from 'assets/img/icon/arrow-right.svg';
+
+// Component
+import Card from 'components/Card';
 import MobileCard from 'components/MobileCard';
+import { OutlineButton, PrimaryButton } from 'components/Styled';
+
+import useConfig from 'hooks/useConfig';
 
 const ConfirmOffer = () => {
     const navigate = useNavigate();

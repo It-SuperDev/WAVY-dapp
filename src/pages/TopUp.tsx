@@ -3,8 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 
 // Icon
 import { ReactComponent as BankIcon } from '../assets/img/icon/bank.svg';
-import SearchIcon from '@mui/icons-material/Search';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { ReactComponent as SearchIcon } from 'assets/img/icon/search.svg';
+import { ReactComponent as KeyboardArrowDownIcon } from 'assets/img/icon/chevron-down.svg';
 
 // component
 import Card from 'components/Card';
@@ -12,11 +12,11 @@ import MobileCard from 'components/MobileCard';
 import ValueInput from 'components/ValueInput';
 import { PrimaryButton } from 'components/Styled';
 
-// Constatn
+// Constant
 import useConfig from 'hooks/useConfig';
+import MobileMethod from 'components/MobileMethod';
 import { FLAG } from 'config/constants/demo';
 import { DemoDataProps } from 'types/config';
-import MobileMethod from 'components/MobileMethod';
 
 const TopUp = () => {
     const navigate = useNavigate();
@@ -128,7 +128,7 @@ const TopUp = () => {
                             <MobileCard title="Top up" back={() => navigate(-1)}>
                                 <div className="flex flex-col w-full px-5">
                                     <div className="relative rounded-lg border-[0.6px] border-[#ACACAE] py-1 px-4">
-                                        <SearchIcon className="absolute" />
+                                        <SearchIcon className="absolute h-[25px]" />
                                         <input
                                             className="w-full bg-transparent pl-8"
                                             placeholder="Search"

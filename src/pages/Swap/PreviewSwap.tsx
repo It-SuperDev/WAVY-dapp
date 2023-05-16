@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 // Icon
-import EastIcon from '@mui/icons-material/East';
+import { ReactComponent as EastIcon } from 'assets/img/icon/arrow-right.svg';
 
 // component
 import Card from 'components/Card';

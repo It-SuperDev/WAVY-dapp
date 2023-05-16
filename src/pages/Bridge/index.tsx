@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Icon
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { ReactComponent as KeyboardArrowDownIcon } from 'assets/img/icon/chevron-down.svg';
 
 // component
 import Card from 'components/Card';
@@ -64,7 +64,7 @@ const Index = () => {
                                     />
                                 </div>
                                 <span className="text-sm mx-2">{data.NETWORK.bridge.to.network.name}</span>
-                                <KeyboardArrowDownIcon />
+                                <KeyboardArrowDownIcon className="w-4" />
                             </div>
                         </div>
                         <ValueInput title="Receive" hideTitle={true} value={0.0} tokenList={[data.NETWORK.bridge.to]} />
@@ -129,7 +129,7 @@ const Index = () => {
                                 />
                             </div>
                             <span className="text-base mx-2">{data.NETWORK.bridge.to.network.name}</span>
-                            <KeyboardArrowDownIcon />
+                            <KeyboardArrowDownIcon className="w-4" />
                         </div>
                     </div>
                     <ValueInput title="Receive" value={0.0} tokenList={[data.NETWORK.bridge.to]} />

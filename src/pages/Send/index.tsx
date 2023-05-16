@@ -1,13 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 
+// Component
 import Card from 'components/Card';
-
-import exchange from 'assets/img/icon/exchange.svg';
-import EastIcon from '@mui/icons-material/East';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { PrimaryButton, WhiteButton } from 'components/Styled';
-import useConfig from 'hooks/useConfig';
 import MobileCard from 'components/MobileCard';
+import { PrimaryButton, WhiteButton } from 'components/Styled';
+
+// Icon
+import exchange from 'assets/img/icon/exchange.svg';
+import { ReactComponent as EastIcon } from 'assets/img/icon/arrow-right.svg';
+import { ReactComponent as KeyboardArrowDownIcon } from 'assets/img/icon/chevron-down.svg';
+
+import useConfig from 'hooks/useConfig';
 
 const Send = () => {
     const navigate = useNavigate();
@@ -38,7 +41,7 @@ const Send = () => {
                                 className="w-[35px] h-[35px] bg-white rounded-full"
                             />
                             <span className="text-sm mx-2">{data.NETWORK.send.send.name}</span>
-                            <KeyboardArrowDownIcon />
+                            <KeyboardArrowDownIcon className="w-3" />
                         </div>
                     </div>
                     <img src={exchange} alt="token" className="w-[30px] h-[30px]" onClick={changOrder} />
@@ -54,7 +57,7 @@ const Send = () => {
                                 className="w-[35px] h-[35px] bg-white rounded-full"
                             />
                             <span className="text-sm mx-2">{data.NETWORK.send.receive.name}</span>
-                            <KeyboardArrowDownIcon />
+                            <KeyboardArrowDownIcon className="w-3" />
                         </div>
                     </div>
                 </div>
@@ -78,7 +81,7 @@ const Send = () => {
                                                 />
                                                 <span className="text-base ml-2">{data.NETWORK.send.send.name}</span>
                                             </div>
-                                            <EastIcon sx={{ fontSize: 20 }} />
+                                            <EastIcon />
                                         </div>
                                     </div>
                                     <div className="flex flex-col w-1/2 ml-10">
@@ -181,7 +184,7 @@ const Send = () => {
                                     />
                                     <span className="text-base ml-2">{data.NETWORK.send.send.name}</span>
                                 </div>
-                                <EastIcon sx={{ fontSize: 20 }} />
+                                <EastIcon />
                             </div>
                             <div>
                                 <p className="text-xs text-light-dark">Exchange rate</p>
@@ -208,7 +211,7 @@ const Send = () => {
                             <div className="line-flex">
                                 <div className="inline-flex py-2 px-2 items-center text-xs cursor-pointer mt-1 mb-2 rounded-lg bg-dark-primary">
                                     Accept offer
-                                    <EastIcon sx={{ fontSize: 14, ml: 1 }} />
+                                    <EastIcon />
                                 </div>
                             </div>
                             <div>

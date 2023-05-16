@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-// icons
-import SearchIcon from '@mui/icons-material/Search';
+// Icon
+import { ReactComponent as SearchIcon } from 'assets/img/icon/search.svg';
 
-// component
+// Component
 import Card from 'components/Card';
-
-// Constatn
-import { DemoDataProps } from 'types/config';
-import useConfig from 'hooks/useConfig';
-import { FLAG } from 'config/constants/demo';
 import MobileCard from 'components/MobileCard';
+
+// Constant
+import useConfig from 'hooks/useConfig';
+import { DemoDataProps } from 'types/config';
+import { FLAG } from 'config/constants/demo';
 
 const SelectToken = () => {
     const navigate = useNavigate();
@@ -82,7 +82,7 @@ const SelectToken = () => {
             <MobileCard title="Select Currency" back={() => navigate(-1)}>
                 <div className="flex flex-col w-full px-5">
                     <div className="relative rounded-lg border-[0.6px] border-[#ACACAE] py-1 px-4">
-                        <SearchIcon className="absolute" />
+                        <SearchIcon className="absolute h-[25px]" />
                         <input
                             className="w-full bg-transparent pl-8"
                             placeholder="Search"
@@ -134,7 +134,7 @@ const SelectToken = () => {
             <Card title="Select Stable" back={() => navigate(-1)}>
                 <div className="flex flex-col w-full">
                     <div className="relative rounded-lg border-[0.6px] border-[#ACACAE] py-1 px-4">
-                        <SearchIcon className="absolute" />
+                        <SearchIcon className="absolute h-[25px]" />
                         <input
                             className="w-full bg-transparent pl-8"
                             placeholder="Search"

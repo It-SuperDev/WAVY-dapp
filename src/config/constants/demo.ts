@@ -245,7 +245,7 @@ export const CONNECTED = [
     }
 ];
 
-export const LGOUT = [
+export const LOGOUT = [
     {
         name: 'Log out',
         icon: disconnectIcon

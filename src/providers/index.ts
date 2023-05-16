@@ -6,9 +6,4 @@ import APIProvider from './api';
 
 const Root = createRoot(document.getElementById('wavy-app') as HTMLElement);
 
-export {
-    Root,
-    MuiThemeProvider,
-    ConfigProvider,
-    APIProvider
-};
+export { Root, MuiThemeProvider, ConfigProvider, APIProvider };

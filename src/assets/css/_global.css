@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0px !important;
     background: linear-gradient(180deg, #151428 0%, #000000 100%);
+    color: #ffffff;
 }
 
 input:focus-visible {
@@ -73,7 +74,7 @@ input[type=number] {
     body {
         background: #151518;
     }
-    
+
     .card {
         box-shadow: unset !important;
         background: unset !important;

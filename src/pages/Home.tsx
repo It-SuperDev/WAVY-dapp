@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Icon
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
+import { ReactComponent as VisibilityIcon } from '../assets/img/icon/Visibility.svg';
+import { ReactComponent as VisibilityOffIcon } from '../assets/img/icon/VisibilityOff.svg';
 import { ReactComponent as SendIcon } from '../assets/img/icon/send.svg';
 import { ReactComponent as SwapIcon } from '../assets/img/icon/swap.svg';
 import { ReactComponent as BridgeIcon } from '../assets/img/icon/bridge.svg';
@@ -60,14 +60,11 @@ const Home = () => {
                             <div className="flex items-center">
                                 <p className="text-base font-Extended">Total Balance</p>
                                 {visible ? (
-                                    <VisibilityOutlinedIcon
-                                        onClick={visibleHandle}
-                                        sx={{ fontSize: 20, ml: 1, cursor: 'pointer' }}
-                                    />
+                                    <VisibilityIcon onClick={visibleHandle} className="ml-1 cursor-pointer" />
                                 ) : (
-                                    <VisibilityOffOutlinedIcon
+                                    <VisibilityOffIcon
                                         onClick={visibleHandle}
-                                        sx={{ fontSize: 20, ml: 1, cursor: 'pointer' }}
+                                        className="h-[18px] ml-1 cursor-pointer"
                                     />
                                 )}
                             </div>

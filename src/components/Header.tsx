@@ -1,24 +1,20 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
+// Componant
+import InfoList from './InfoList';
+import MoreInfo from './MoreInfo';
+import MenuList from './MenuList';
+import MobileList from './MobileList';
+import { HeaderButton, IconButton } from './Styled';
+
 // Icon
 import logo from '../assets/img/logo.svg';
 import admin from '../assets/img/icon/admin.svg';
 
 // Constants
-import { CURRENCY, LANGUAGE, NETWORK, CONNECTED, LGOUT } from '../config/constants/demo';
-import { HeaderButton, IconButton } from './Styled';
-import MenuList from './MenuList';
+import { CURRENCY, LANGUAGE, NETWORK, CONNECTED, LOGOUT } from '../config/constants/demo';
 import useConfig from 'hooks/useConfig';
-
-// MUI
-import Stack from '@mui/material/Stack';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import MobileList from './MobileList';
-import InfoList from './InfoList';
-import MoreInfo from './MoreInfo';
 
 const Header = () => {
     const { pathname } = useLocation();
@@ -137,7 +133,7 @@ const Header = () => {
                 </Link>
                 {isHeader && (
                     <>
-                        <div className="ml-10">
+                        <div className="ml-10 relative">
                             <HeaderButton
                                 className="md:bg-[#2e2d4e] bg-[#242429] md:border-[0px] border-[0.5px] border-[#ACACAE]"
                                 onClick={currencyHandle}
@@ -145,11 +141,27 @@ const Header = () => {
                                 <img src={CURRENCY[currentCurrency].icon} alt="currency" className="mr-2" />
                                 {CURRENCY[currentCurrency].name}
                             </HeaderButton>
+                            <MenuList
+                                top={50}
+                                minWidth={200}
+                                data={CURRENCY}
+                                anchor={currencyAnchor}
+                                close={currencyClose}
+                                callback={setCurrency}
+                            />
                         </div>
-                        <div className="ml-5">
+                        <div className="ml-5 relative">
                             <IconButton onClick={langHandle} className="bg-[#2e2d4e]">
-                                <img src={LANGUAGE[currentLang].icon} alt="currency" />
+                                <img src={LANGUAGE[currentLang].icon} alt="lang" />
                             </IconButton>
+                            <MenuList
+                                top={50}
+                                minWidth={200}
+                                data={LANGUAGE}
+                                anchor={langAnchor}
+                                close={langClose}
+                                callback={setLang}
+                            />
                         </div>
                     </>
                 )}
@@ -161,15 +173,25 @@ const Header = () => {
             <div className="flex items-center">
                 {isHeader && (
                     <>
-                        <div>
+                        <div className="relative">
                             <IconButton
                                 onClick={netHandle}
                                 className="md:bg-[#2e2d4e] bg-[#242429] md:border-[0px] border-[0.5px] border-[#ACACAE] h-[44px]"
                             >
-                                <img src={NETWORK[currentNet].icon} alt="currency" />
+                                <img src={NETWORK[currentNet].icon} alt="net" />
                             </IconButton>
+                            {!isMobile && (
+                                <MenuList
+                                    top={50}
+                                    minWidth={230}
+                                    data={NETWORK}
+                                    anchor={netAnchor}
+                                    close={netClose}
+                                    callback={setNet}
+                                />
+                            )}
                         </div>
-                        <div className="ml-5 h-[44px]">
+                        <div className="ml-5 h-[44px] relative">
                             {connect === -1 ? (
                                 <HeaderButton
                                     className="md:bg-[#2e2d4e] bg-[#242429] md:border-[0px] border-[0.5px] border-[#ACACAE]"
@@ -191,6 +213,26 @@ const Header = () => {
                                     GALH....Z7I7
                                 </HeaderButton>
                             )}
+                            {!isMobile && (
+                                <>
+                                    <MenuList
+                                        top={50}
+                                        data={NETWORK[currentNet].wallet}
+                                        minWidth={150}
+                                        anchor={walletAnchor}
+                                        close={walletClose}
+                                        callback={setWallet}
+                                    />
+                                    <InfoList
+                                        top={50}
+                                        minWidth={150}
+                                        anchor={infoAnchor}
+                                        close={infoClose}
+                                        callback={setInfo}
+                                        size={25}
+                                    />
+                                </>
+                            )}
                         </div>
                     </>
                 )}
@@ -204,26 +246,33 @@ const Header = () => {
                             Admin
                         </HeaderButton>
                         {logout && (
-                            <div
-                                onClick={logoutHandle}
-                                className="bg-[#474764] absolute top-[48px] right-0 rounded-lg overflow-hidden"
-                            >
-                                <Stack>
-                                    <MenuItem sx={{ py: 1.5, px: 2.5, minWidth: 180 }}>
-                                        <ListItemIcon sx={{ mr: 1, '& img': { width: 24, height: 24 } }}>
-                                            <img src={LGOUT[0].icon} alt="currency" />
-                                        </ListItemIcon>
-                                        <ListItemText sx={{ '& .MuiListItemText-primary': { fontSize: 14 } }}>
-                                            {LGOUT[0].name}
-                                        </ListItemText>
-                                    </MenuItem>
-                                </Stack>
-                            </div>
+                            <>
+                                <div className="absolute left-0 py-2 rounded-lg bg-[#2e2d4e] z-20 top-[50px] min-w-[150px]">
+                                    <div className="flex flex-col">
+                                        <li className="py-2 px-5 flex cursor-pointer" onClick={logoutHandle}>
+                                            <div className="mr-3 w-[24px] h-[24px]">
+                                                <img
+                                                    src={LOGOUT[0].icon}
+                                                    alt="currency"
+                                                    className="w-[24px] h-[24px]"
+                                                />
+                                            </div>
+                                            <div>
+                                                <span className="text-sm">{LOGOUT[0].name}</span>
+                                            </div>
+                                        </li>
+                                    </div>
+                                </div>
+                                <div
+                                    className="fixed w-screen h-screen z-10 top-0 left-0"
+                                    onClick={() => setLogout(false)}
+                                />
+                            </>
                         )}
                     </div>
                 )}
             </div>
-            {isMobile ? (
+            {isMobile && (
                 <>
                     {Boolean(netAnchor) && (
                         <MobileList
@@ -257,20 +306,6 @@ const Header = () => {
                             close={() => setMobileInfo(false)}
                         />
                     )}
-                </>
-            ) : (
-                <>
-                    <MenuList data={CURRENCY} anchor={currencyAnchor} close={currencyClose} callback={setCurrency} />
-                    <MenuList data={LANGUAGE} anchor={langAnchor} close={langClose} callback={setLang} />
-                    <MenuList data={NETWORK} anchor={netAnchor} close={netClose} callback={setNet} />
-                    <MenuList
-                        data={NETWORK[currentNet].wallet}
-                        minWidth={150}
-                        anchor={walletAnchor}
-                        close={walletClose}
-                        callback={setWallet}
-                    />
-                    <InfoList anchor={infoAnchor} close={infoClose} callback={setInfo} size={25} />
                 </>
             )}
         </header>

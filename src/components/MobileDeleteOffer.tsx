@@ -1,18 +1,19 @@
-// MUI
-import EastIcon from '@mui/icons-material/East';
+import { useNavigate } from 'react-router-dom';
+
+// Components
+import { OutlineButton, PrimaryButton } from './Styled';
+
+// Icons
 import { ReactComponent as InfoIcon } from 'assets/img/icon/info.svg';
+import { ReactComponent as EastIcon } from 'assets/img/icon/arrow-right.svg';
 
 import useConfig from 'hooks/useConfig';
-import { useNavigate } from 'react-router-dom';
-import { OutlineButton, PrimaryButton } from './Styled';
 
 const MobileDeleteOffer = ({ idx, close }: any) => {
     const navigate = useNavigate();
     const data = useConfig();
 
-    const prevent = (e: any) => {
-        e.preventDefault();
-    };
+    const prevent = (e: any) => e.preventDefault();
 
     return (
         <>
