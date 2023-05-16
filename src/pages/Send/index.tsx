@@ -40,7 +40,7 @@ const Send = () => {
     if (isMobile) {
         return (
             <MobileCard title="Send" back={() => navigate('/')}>
-                <div className="w-full flex items-end justify-between px-5 mb-10 relative">
+                <div className="w-full flex items-center justify-between px-5 mb-10 relative">
                     <div className="flex flex-col">
                         <p className="text-sm text-[#ACACAE] mb-2">Send</p>
                         <div
@@ -59,7 +59,7 @@ const Send = () => {
                     <img
                         src={exchange}
                         alt="token"
-                        className="w-[30px] h-[30px] cursor-pointer absolute bottom-0"
+                        className="w-[30px] h-[30px] cursor-pointer absolute"
                         style={{ left: 'calc(50% - 12px)' }}
                         onClick={changOrder}
                     />
