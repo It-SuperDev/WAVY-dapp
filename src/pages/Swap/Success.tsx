@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { CardDiv, PrimaryButton } from 'components/Styled';
@@ -10,6 +11,14 @@ import MobileCard from 'components/MobileCard';
 const Success = () => {
     const navigate = useNavigate();
     const data = useConfig();
+    const { SWAP, NETWORK } = data;
+
+    const swapData = useMemo(() => {
+        return {
+            from: NETWORK.token[SWAP.sIdx],
+            to: NETWORK.token[SWAP.rIdx]
+        };
+    }, [NETWORK.token, SWAP]);
 
     if (data.isMobile) {
         return (
@@ -25,7 +34,7 @@ const Success = () => {
                     <div className="flex flex-col items-center justify-center w-full">
                         <SuccessIcon className="my-[33px] h-[100px] w-[100px]" />
                         <h4 className="text-sm font-medium font-Unbounded text-center  mb-5">
-                            0.00 NGNC has been converted <br /> to USDC
+                            {`${swapData.from.amount} ${swapData.from.name} has been converted to ${swapData.to.name}`}
                         </h4>
                         <div className="flex flex-col my-8 w-full">
                             <PrimaryButton
@@ -49,7 +58,7 @@ const Success = () => {
                 <div className="flex flex-col items-center justify-center px-[64px]">
                     <SuccessIcon className="my-[33px] h-[130px] w-[130px]" />
                     <h4 className="text-sm font-medium font-Unbounded text-center  mb-[60px]">
-                        {`${data.NETWORK.swap.from.value} ${data.NETWORK.swap.from.name} has been converted to ${data.NETWORK.swap.to.name}`}
+                        {`${swapData.from.amount} ${swapData.from.name} has been converted to ${swapData.to.name}`}
                     </h4>
 
                     <PrimaryButton
