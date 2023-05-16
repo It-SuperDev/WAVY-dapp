@@ -68,7 +68,11 @@ export const MainRoutes = {
         },
         {
             path: 'top-up/method',
-            element: <Method />
+            element: (
+                <Auth>
+                    <Method />
+                </Auth>
+            )
         },
         {
             path: 'withdraw',
@@ -92,7 +96,11 @@ export const MainRoutes = {
         },
         {
             path: 'select-net',
-            element: <SelectNet />
+            element: (
+                <Auth>
+                    <SelectNet />
+                </Auth>
+            )
         },
         {
             path: 'swap',
@@ -112,11 +120,19 @@ export const MainRoutes = {
         },
         {
             path: 'swap/process',
-            element: <SwapLoading />
+            element: (
+                <Auth>
+                    <SwapLoading />
+                </Auth>
+            )
         },
         {
             path: 'swap/success',
-            element: <Success />
+            element: (
+                <Auth>
+                    <Success />
+                </Auth>
+            )
         },
         {
             path: 'send',
@@ -136,11 +152,19 @@ export const MainRoutes = {
         },
         {
             path: 'send/process',
-            element: <SendLoading />
+            element: (
+                <Auth>
+                    <SendLoading />
+                </Auth>
+            )
         },
         {
             path: 'send/success',
-            element: <SendSuccess />
+            element: (
+                <Auth>
+                    <SendSuccess />
+                </Auth>
+            )
         },
         {
             path: 'send/create-offer',
@@ -168,11 +192,19 @@ export const MainRoutes = {
         },
         {
             path: 'send/delete-process',
-            element: <DeleteLoading />
+            element: (
+                <Auth>
+                    <DeleteLoading />
+                </Auth>
+            )
         },
         {
             path: 'send/delete-success',
-            element: <DeleteSuccess />
+            element: (
+                <Auth>
+                    <DeleteSuccess />
+                </Auth>
+            )
         },
         {
             path: 'send/create-offer/confirm',
