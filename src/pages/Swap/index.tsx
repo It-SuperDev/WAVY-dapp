@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Icon
@@ -17,11 +17,30 @@ import MobileSwapConfirm from 'components/MobileSwapConfirm';
 const Swap = () => {
     const navigate = useNavigate();
     const data = useConfig();
+    const { isMobile, changeData, SWAP, NETWORK } = data;
 
-    const [status, setStatus] = useState(true);
+    const swapData = useMemo(() => {
+        return {
+            from: NETWORK.token[SWAP.sIdx],
+            to: NETWORK.token[SWAP.rIdx]
+        };
+    }, [NETWORK.token, SWAP]);
+
+    const changOrder = () => {
+        const tRIsx = SWAP.sIdx;
+        const tSIsx = SWAP.rIdx;
+        const tSEND = { ...SWAP, sIdx: tSIsx, rIdx: tRIsx };
+        changeData({ key: 'SWAP', data: tSEND });
+    };
+
+    const selectToken = (param: number, order: string) => {
+        changeData({ key: 'TOKEN_SELECT', data: ['SWAP', order, param] });
+        navigate('/select');
+    };
+
     const [isConfirm, setIsConfirm] = useState(false);
 
-    if (data.isMobile) {
+    if (isMobile) {
         return (
             <MobileCard title="Swap" back={() => navigate('/')}>
                 <div
@@ -30,38 +49,34 @@ const Swap = () => {
                 >
                     <div className="w-full">
                         <ValueInput
-                            title="Amount"
-                            available={`Available: 2500.33 ${data.NETWORK.send.send.name}`}
-                            value={0.0}
-                            tokenList={[
-                                data.NETWORK.swap[`${status ? 'from' : 'to'}`],
-                                data.NETWORK.swap[`${status ? 'from' : 'to'}`]
-                            ]}
+                            title="From"
+                            available={true}
+                            value={swapData.from.amount / 10}
+                            token={swapData.from}
+                            onChange={() => selectToken(SWAP.rIdx, 'sIdx')}
                         />
 
                         <div className="flex justify-center my-3">
-                            <SwapIcon
-                                className="h-[30px] w-[30px] cursor-pointer"
-                                onClick={() => setStatus((pre: boolean) => !pre)}
-                            />
+                            <SwapIcon className="h-[30px] w-[30px] cursor-pointer" onClick={changOrder} />
                         </div>
 
                         <ValueInput
                             title="Receive"
-                            value={0.0}
-                            tokenList={[
-                                data.NETWORK.swap[`${!status ? 'from' : 'to'}`],
-                                data.NETWORK.swap[`${!status ? 'from' : 'to'}`]
-                            ]}
+                            available={true}
+                            value={swapData.to.amount / 10}
+                            token={swapData.to}
+                            onChange={() => selectToken(SWAP.sIdx, 'rIdx')}
                         />
-                        <p className="rounded-lg py-1 text-[#CCC8F8] my-4">{data.NETWORK.swap.equal}</p>
+                        <p className="rounded-lg py-1 text-[#CCC8F8] my-4">{`1 ${swapData.from.name} = ${SWAP.equal} ${swapData.to.name}`}</p>
 
                         <PrimaryButton className="w-full text-center py-4 mt-10" onClick={() => setIsConfirm(true)}>
                             Preview Swap
                         </PrimaryButton>
                     </div>
                 </div>
-                {isConfirm && <MobileSwapConfirm close={() => setIsConfirm(false)} />}
+                {isConfirm && (
+                    <MobileSwapConfirm data={swapData} equal={SWAP.equal} close={() => setIsConfirm(false)} />
+                )}
             </MobileCard>
         );
     } else {
@@ -70,29 +85,22 @@ const Swap = () => {
                 <div className="flex flex-col w-full">
                     <ValueInput
                         title="From"
-                        available={data.NETWORK.swap[`${status ? 'from' : 'to'}`].available}
-                        value={data.NETWORK.swap[`${status ? 'from' : 'to'}`].value}
-                        tokenList={[
-                            data.NETWORK.swap[`${status ? 'from' : 'to'}`],
-                            data.NETWORK.swap[`${status ? 'from' : 'to'}`]
-                        ]}
+                        available={true}
+                        value={swapData.from.amount / 10}
+                        token={swapData.from}
+                        onChange={() => selectToken(SWAP.rIdx, 'sIdx')}
                     />
                     <div className="flex justify-center my-3">
-                        <SwapIcon
-                            className="h-[28px] w-[28px] cursor-pointer"
-                            onClick={() => setStatus((pre: boolean) => !pre)}
-                        />
+                        <SwapIcon className="h-[28px] w-[28px] cursor-pointer" onClick={changOrder} />
                     </div>
                     <ValueInput
                         title="To"
-                        available={data.NETWORK.swap[`${!status ? 'from' : 'to'}`].available}
-                        value={data.NETWORK.swap[`${!status ? 'from' : 'to'}`].value}
-                        tokenList={[
-                            data.NETWORK.swap[`${!status ? 'from' : 'to'}`],
-                            data.NETWORK.swap[`${!status ? 'from' : 'to'}`]
-                        ]}
+                        available={true}
+                        value={swapData.to.amount / 10}
+                        token={swapData.to}
+                        onChange={() => selectToken(SWAP.sIdx, 'rIdx')}
                     />
-                    <p className="bg-[#090912] rounded-lg py-1 px-6 text-[#B8ACFF] my-4">{data.NETWORK.swap.equal}</p>
+                    <p className="bg-[#090912] rounded-lg py-1 px-6 text-[#B8ACFF] my-4">{`1 ${swapData.from.name} = ${SWAP.equal} ${swapData.to.name}`}</p>
 
                     <PrimaryButton className="w-full text-center py-4 mt-10" onClick={() => navigate('preview')}>
                         Preview Swap

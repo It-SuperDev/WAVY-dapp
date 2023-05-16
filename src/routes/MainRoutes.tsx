@@ -84,7 +84,11 @@ export const MainRoutes = {
         },
         {
             path: 'select',
-            element: <SelectToken />
+            element: (
+                <Auth>
+                    <SelectToken />
+                </Auth>
+            )
         },
         {
             path: 'select-net',

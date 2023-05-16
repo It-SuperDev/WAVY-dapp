@@ -13,14 +13,26 @@ import logo from '../assets/img/logo.svg';
 import admin from '../assets/img/icon/admin.svg';
 
 // Constants
-import { CURRENCY, LANGUAGE, NETWORK, CONNECTED, LOGOUT } from '../config/constants/demo';
+import {
+    CURRENCY,
+    LANGUAGE,
+    NETWORK,
+    CONNECTED,
+    LOGOUT,
+    SEND_DATA,
+    SWAP_DATA,
+    OFFER,
+    BRIDGE,
+    TOPUP,
+    WITHDRAW
+} from '../config/constants/demo';
 import useConfig from 'hooks/useConfig';
 
 const Header = () => {
     const { pathname } = useLocation();
     const navigate = useNavigate();
     const gData = useConfig();
-    const { changeData, isMobile } = gData;
+    const { changeData, initData, isMobile } = gData;
 
     const isHeader = useMemo(() => {
         return !(pathname === '/dashboard' || pathname === '/login' || pathname === '/stables');
@@ -80,6 +92,17 @@ const Header = () => {
         changeData({ key: 'connect', data: NETWORK[currentNet].wallet[0] });
         netClose();
         changeData({ key: 'NETWORK', data: NETWORK[i] });
+        if (i === 1 || i === 3) {
+            changeData({
+                key: 'BRIDGE',
+                data: {
+                    sIdx: 0,
+                    rIdx: 0,
+                    sNet: i,
+                    rNet: i === 1 ? 3 : 1
+                }
+            });
+        }
     };
 
     const walletHandle = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -119,9 +142,17 @@ const Header = () => {
     };
 
     useEffect(() => {
-        changeData({ key: 'NETWORK', data: NETWORK[0] });
-        changeData({ key: 'connect', data: null });
-        changeData({ key: 'CURRENCY', data: '$' });
+        initData({
+            NETWORK: NETWORK[0],
+            SEND: SEND_DATA,
+            SWAP: SWAP_DATA,
+            OFFER,
+            BRIDGE,
+            TOPUP,
+            WITHDRAW,
+            connect: null,
+            CURRENCY: '$'
+        });
         // eslint-disable-next-line
     }, []);
 

@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 // component
@@ -13,8 +14,16 @@ const TopUp = () => {
     const navigate = useNavigate();
     const { index } = useParams();
     const data = useConfig();
+    const { isMobile, SEND, NETWORK } = data;
 
-    if (data.isMobile) {
+    const sendData = useMemo(() => {
+        return {
+            sender: NETWORK.token[SEND.sIdx],
+            receiver: NETWORK.token[SEND.rIdx]
+        };
+    }, [NETWORK.token, SEND]);
+
+    if (isMobile) {
         return (
             <MobileCard title="Send">
                 <div className="p-5 pt-0">
@@ -25,25 +34,20 @@ const TopUp = () => {
                 </div>
                 <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5 flex flex-col justify-between">
                     <div className="w-full">
-                        <ValueInput
-                            title="Amount"
-                            available={`Available: 2500.33 ${data.NETWORK.send.send.name}`}
-                            value={0.0}
-                            tokenList={[data.NETWORK.send.send]}
-                        />
+                        <ValueInput title="Amount" available={true} value={0.0} token={sendData.sender} />
 
-                        <p className="text-[#B8ACFF] relative -top-5">{data.NETWORK.send.list[index].rate}</p>
+                        <p className="text-[#B8ACFF] relative -top-5">{`1${sendData.sender.name} = ${SEND.list[index].rate} ${sendData.receiver.name}`}</p>
 
-                        <ValueInput title="Receive" value={0.0} tokenList={[data.NETWORK.send.receive]} />
+                        <ValueInput title="Receive" value={0.0} token={sendData.receiver} />
 
                         <div className="py-3 px-6 my-4 flex flex-col">
                             <div className="flex items-center justify-between">
                                 <span className="text-sm text-light-dark">Available</span>
-                                <span className="text-sm">{data.NETWORK.send.list[index].available}</span>
+                                <span className="text-sm">{sendData.sender.amount}</span>
                             </div>
                             <div className="flex items-center justify-between mt-2">
                                 <span className="text-sm text-light-dark">Limit</span>
-                                <span className="text-sm">{data.NETWORK.send.list[index].limit}</span>
+                                <span className="text-sm">{`${SEND.list[index].limit} ${sendData.sender.name}`}</span>
                             </div>
                         </div>
                     </div>
@@ -73,24 +77,17 @@ const TopUp = () => {
                             has been agreed on or when the order has been cancelled.
                         </p>
                     </div>
-                    <ValueInput
-                        title="Amount"
-                        available={`Available: 2500.33 ${data.NETWORK.send.send.name}`}
-                        value={0.0}
-                        tokenList={[data.NETWORK.send.send]}
-                    />
-                    <p className="bg-[#090912] rounded-lg py-1 px-6 text-[#B8ACFF] my-4">
-                        {data.NETWORK.send.list[index].rate}
-                    </p>
-                    <ValueInput title="Receive" value={0.0} tokenList={[data.NETWORK.send.receive]} />
+                    <ValueInput title="Amount" available={true} value={0.0} token={sendData.sender} />
+                    <p className="bg-[#090912] rounded-lg py-1 px-6 text-[#B8ACFF] my-4">{`1${sendData.sender.name} = ${SEND.list[index].rate} ${sendData.receiver.name}`}</p>
+                    <ValueInput title="Receive" value={0.0} token={sendData.receiver} />
                     <div className="bg-[#090912] rounded-lg py-3 px-6 mt-4 mb-10 flex flex-col">
                         <div className="flex items-center justify-between">
-                            <span className="text-xs text-light-dark">Available</span>
-                            <span className="text-xs">{data.NETWORK.send.list[index].available}</span>
+                            <span className="text-sm text-light-dark">Available</span>
+                            <span className="text-sm">{sendData.sender.amount}</span>
                         </div>
                         <div className="flex items-center justify-between mt-2">
-                            <span className="text-xs text-light-dark">Limit</span>
-                            <span className="text-xs">{data.NETWORK.send.list[index].limit}</span>
+                            <span className="text-sm text-light-dark">Limit</span>
+                            <span className="text-sm">{`${SEND.list[index].limit} ${sendData.sender.name}`}</span>
                         </div>
                     </div>
 

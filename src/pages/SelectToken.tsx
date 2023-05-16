@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Icon
 import { ReactComponent as SearchIcon } from 'assets/img/icon/search.svg';
@@ -10,74 +10,38 @@ import MobileCard from 'components/MobileCard';
 
 // Constant
 import useConfig from 'hooks/useConfig';
-import { DemoDataProps } from 'types/config';
-import { FLAG } from 'config/constants/demo';
+import { NETWORK as AllNets } from 'config/constants/demo';
 
 const SelectToken = () => {
     const navigate = useNavigate();
-    const data = useConfig();
-    const { search } = useLocation();
+    const gData = useConfig();
+    const { isMobile, NETWORK, TOKEN_SELECT } = gData;
 
     const [value, setValue] = useState('');
 
-    const getMatch = (name: string) => {
-        switch (name) {
-            case 'BRZ':
-            case 'BRL':
-            case 'BRLT':
-                return FLAG['BRS'];
-            case 'EURC':
-            case 'EUROC':
-            case 'EURT':
-            case 'JEUR':
-            case 'EURS':
-                return FLAG['EUR'];
-            case 'CADC':
-            case 'QCAD':
-                return FLAG['CAD'];
-            case 'CNHC':
-            case 'TCNH':
-                return FLAG['CNY'];
-            case 'USDC':
-            case 'USDT':
-                return FLAG['USD'];
-            case 'ARS':
-            case 'ARST':
-                return FLAG['ARS'];
-            case 'GBPT':
-            case 'TGBP':
-                return FLAG['GBP'];
-            case 'GHSC':
-                return FLAG['GHS'];
-            case 'TZS':
-                return FLAG['TZS'];
-            case 'RWF':
-                return FLAG['RWF'];
-            case 'KES':
-                return FLAG['KES'];
-            case 'TRYB':
-                return FLAG['TRY'];
-            case 'AUDD':
-                return FLAG['AUD'];
-            case 'ZARP':
-                return FLAG['ZAR'];
-            case 'NGNC':
-                return FLAG['NGN'];
-            default:
-                return FLAG['USD'];
-        }
+    const setToken = (one: any) => {
+        let temp = gData[TOKEN_SELECT[0]];
+        temp[TOKEN_SELECT[1]] = one.idx;
+        navigate(-1);
     };
 
-    const setToken = (token: any) => {
-        if (data.token && data.token.required) {
-            data.changeData({ key: 'token', data: { ...data.token, required: false, data: token } });
-            if (search === `?before=/top-up` || search === '?before=/withdraw') {
-                data.changeData({ key: 'WITHDRAW', data: getMatch(token.name) });
+    const tokens = useMemo(() => {
+        if (NETWORK && NETWORK.token && TOKEN_SELECT) {
+            let tokenData = [];
+            if (TOKEN_SELECT[3]) {
+                tokenData = AllNets[TOKEN_SELECT[3]].token;
+            } else {
+                tokenData = NETWORK.token;
             }
-            navigate(-1);
+            return tokenData
+                .map((e: any, i: number) => ({ ...e, idx: i }))
+                .filter((_: any, i: number) => i !== TOKEN_SELECT[2]);
+        } else {
+            return [];
         }
-    };
-    if (data.isMobile) {
+    }, [NETWORK, TOKEN_SELECT]);
+
+    if (isMobile) {
         return (
             <MobileCard title="Select Currency" back={() => navigate(-1)}>
                 <div className="flex flex-col w-full px-5">
@@ -91,39 +55,36 @@ const SelectToken = () => {
                     </div>
                     <div className="flex flex-col w-full rounded-lg py-3 mt-5 mb-[100px]">
                         <div className="w-full">
-                            {data.NETWORK &&
-                                data.NETWORK.token
-                                    .filter((e: any) => {
-                                        const string = e.name.toLowerCase() + ' ' + e.sub.toLowerCase();
-                                        return string.search(value.toLocaleLowerCase()) !== -1;
-                                    })
-                                    .map(({ name, sub, icon, amount, price }: DemoDataProps, i: number) => (
-                                        <div
-                                            key={i}
-                                            onClick={() => setToken({ name, sub, icon, amount, price })}
-                                            className="flex items-center justify-between border-b-[1px] border-[#36363A] py-3 cursor-pointer"
-                                        >
-                                            <div className="flex items-center">
-                                                <div className="flex items-center justify-center border-2 border-[#FFFFFF] rounded-full mr-2">
-                                                    <img
-                                                        src={icon}
-                                                        alt="icon"
-                                                        className="w-[25px] h-[25px] bg-white rounded-full"
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <p className="text-sm font-medium font-Unbounded">{name}</p>
-                                                    <p className="text-xs text-light-dark">{sub}</p>
-                                                </div>
+                            {tokens
+                                .filter((e: any) => {
+                                    const string = e.name.toLowerCase() + ' ' + e.sub.toLowerCase();
+                                    return string.search(value.toLocaleLowerCase()) !== -1;
+                                })
+                                .map(({ name, sub, icon, amount, price, idx }: any, i: number) => (
+                                    <div
+                                        key={i}
+                                        onClick={() => setToken({ name, sub, icon, amount, price, idx })}
+                                        className="flex items-center justify-between border-b-[1px] border-[#36363A] py-3 cursor-pointer"
+                                    >
+                                        <div className="flex items-center">
+                                            <div className="flex items-center justify-center border-2 border-[#FFFFFF] rounded-full mr-2">
+                                                <img
+                                                    src={icon}
+                                                    alt="icon"
+                                                    className="w-[25px] h-[25px] bg-white rounded-full"
+                                                />
                                             </div>
                                             <div>
-                                                <p className="text-sm font-medium font-Unbounded">{amount}</p>
-                                                <p className="text-xs font-medium text-light-dark text-right">
-                                                    {price}
-                                                </p>
+                                                <p className="text-sm font-medium font-Unbounded">{name}</p>
+                                                <p className="text-xs text-light-dark">{sub}</p>
                                             </div>
                                         </div>
-                                    ))}
+                                        <div>
+                                            <p className="text-sm font-medium font-Unbounded">{amount}</p>
+                                            <p className="text-xs font-medium text-light-dark text-right">{price}</p>
+                                        </div>
+                                    </div>
+                                ))}
                         </div>
                     </div>
                 </div>
@@ -143,39 +104,36 @@ const SelectToken = () => {
                     </div>
                     <div className="flex flex-col w-full rounded-lg bg-dark py-3 pl-5 mt-5">
                         <div className="h-[450px] overflow-auto w-full pr-5">
-                            {data.NETWORK &&
-                                data.NETWORK.token
-                                    .filter((e: any) => {
-                                        const string = e.name.toLowerCase() + ' ' + e.sub.toLowerCase();
-                                        return string.search(value.toLocaleLowerCase()) !== -1;
-                                    })
-                                    .map(({ name, sub, icon, amount, price }: DemoDataProps, i: number) => (
-                                        <div
-                                            key={i}
-                                            onClick={() => setToken({ name, sub, icon, amount, price })}
-                                            className="flex items-center justify-between border-b-[1px] border-[#36363A] py-3 cursor-pointer"
-                                        >
-                                            <div className="flex items-center">
-                                                <div className="flex items-center justify-center border-2 border-[#FFFFFF] rounded-full mr-2">
-                                                    <img
-                                                        src={icon}
-                                                        alt="icon"
-                                                        className="w-[25px] h-[25px] bg-white rounded-full"
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <p className="text-sm font-medium font-Unbounded">{name}</p>
-                                                    <p className="text-xs text-light-dark">{sub}</p>
-                                                </div>
+                            {tokens
+                                .filter((e: any) => {
+                                    const string = e.name.toLowerCase() + ' ' + e.sub.toLowerCase();
+                                    return string.search(value.toLocaleLowerCase()) !== -1;
+                                })
+                                .map(({ name, sub, icon, amount, price, idx }: any, i: number) => (
+                                    <div
+                                        key={i}
+                                        onClick={() => setToken({ name, sub, icon, amount, price, idx })}
+                                        className="flex items-center justify-between border-b-[1px] border-[#36363A] py-3 cursor-pointer"
+                                    >
+                                        <div className="flex items-center">
+                                            <div className="flex items-center justify-center border-2 border-[#FFFFFF] rounded-full mr-2">
+                                                <img
+                                                    src={icon}
+                                                    alt="icon"
+                                                    className="w-[25px] h-[25px] bg-white rounded-full"
+                                                />
                                             </div>
                                             <div>
-                                                <p className="text-sm font-medium font-Unbounded">{amount}</p>
-                                                <p className="text-xs font-medium text-light-dark text-right">
-                                                    {price}
-                                                </p>
+                                                <p className="text-sm font-medium font-Unbounded">{name}</p>
+                                                <p className="text-xs text-light-dark">{sub}</p>
                                             </div>
                                         </div>
-                                    ))}
+                                        <div>
+                                            <p className="text-sm font-medium font-Unbounded">{`${amount} ${name}`}</p>
+                                            <p className="text-xs font-medium text-light-dark text-right">{`$${price}`}</p>
+                                        </div>
+                                    </div>
+                                ))}
                         </div>
                     </div>
                 </div>

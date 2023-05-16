@@ -1,4 +1,5 @@
-import useLocalStorage from 'hooks/useLocalStorage';
+import { useState } from 'react';
+// import useLocalStorage from 'hooks/useLocalStorage';
 
 import { ConfigContext, initialState } from 'contexts/config';
 import useMediaQuery from 'hooks/useMediaQuery';
@@ -10,8 +11,11 @@ type ConfigProviderProps = {
 const ConfigProvider: React.FC<ConfigProviderProps> = ({ children }) => {
     const isMobile = useMediaQuery('(max-width:767px)');
 
-    const origin = window?.location.origin ?? 'wavy';
-    const [config, setConfig] = useLocalStorage(origin, {
+    // const origin = window?.location.origin ?? 'wavy';
+    // const [config, setConfig] = useLocalStorage(origin, {
+    //     ...initialState
+    // });
+    const [config, setConfig] = useState({
         ...initialState
     });
 
@@ -21,8 +25,18 @@ const ConfigProvider: React.FC<ConfigProviderProps> = ({ children }) => {
             [key]: data
         }));
     };
+    const initData = (data: any) => {
+        setConfig((prevState: any) => ({
+            ...prevState,
+            ...data
+        }));
+    };
 
-    return <ConfigContext.Provider value={{ ...config, isMobile, changeData }}>{children}</ConfigContext.Provider>;
+    return (
+        <ConfigContext.Provider value={{ ...config, isMobile, changeData, initData }}>
+            {children}
+        </ConfigContext.Provider>
+    );
 };
 
 export default ConfigProvider;

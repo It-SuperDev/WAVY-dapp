@@ -6,11 +6,8 @@ import { OutlineButton, PrimaryButton } from './Styled';
 // Icon
 import { ReactComponent as EastIcon } from 'assets/img/icon/arrow-right.svg';
 
-import useConfig from 'hooks/useConfig';
-
-const MobileSwapConfirm = ({ close }: any) => {
+const MobileSwapConfirm = ({ close, data, equal }: any) => {
     const navigate = useNavigate();
-    const data = useConfig();
 
     const prevent = (e: any) => {
         e.preventDefault();
@@ -30,19 +27,19 @@ const MobileSwapConfirm = ({ close }: any) => {
                 <div className="py-[30px]">
                     <div className="w-full flex items-center justify-around mb-8">
                         <div className="flex flex-col items-center">
-                            <img src={data.NETWORK.swap.from.icon} alt="token" className="w-[50px] h-[50px] mb-3" />
+                            <img src={data.from.icon} alt="token" className="w-[50px] h-[50px] mb-3" />
                             <p className="text-sm mb-2">From</p>
                             <p className="text-base font-bold font-Unbounded">
-                                {`${data.NETWORK.swap.from.value} ${data.NETWORK.swap.from.name}`}
+                                {`${data.from.amount / 10} ${data.from.name}`}
                             </p>
                         </div>
                         <EastIcon />
                         <div className="flex flex-col items-center">
-                            <img src={data.NETWORK.swap.to.icon} alt="token" className="w-[50px] h-[50px]  mb-3" />
+                            <img src={data.to.icon} alt="token" className="w-[50px] h-[50px]  mb-3" />
                             <p className="text-sm mb-2">Receive</p>
-                            <p className="text-base font-bold font-Unbounded">
-                                {`${data.NETWORK.swap.to.value} ${data.NETWORK.swap.to.name}`}
-                            </p>
+                            <p className="text-base font-bold font-Unbounded">{`${data.to.amount / 10} ${
+                                data.to.name
+                            }`}</p>
                         </div>
                     </div>
                     <div className="flex flex-col w-full rounded-lg px-5 py-4 bg-[#242429]">
@@ -50,7 +47,7 @@ const MobileSwapConfirm = ({ close }: any) => {
                             <p>Conversion Fee</p> <p>No fees</p>
                         </div>
                         <div className="flex w-full items-center justify-between text-sm">
-                            <p>Rate</p> <p>{data.NETWORK.swap.equal}</p>
+                            <p>Rate</p> <p>{`1 ${data.from.name} = ${equal} ${data.to.name}`}</p>
                         </div>
                     </div>
                     <div className="flex justify-between items-center w-full mt-20">

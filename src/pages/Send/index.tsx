@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Component
@@ -15,55 +16,72 @@ import useConfig from 'hooks/useConfig';
 const Send = () => {
     const navigate = useNavigate();
     const data = useConfig();
-    const { isMobile, changeData } = data;
+    const { isMobile, changeData, SEND, NETWORK } = data;
+
+    const sendData = useMemo(() => {
+        return {
+            sender: NETWORK.token[SEND.sIdx],
+            receiver: NETWORK.token[SEND.rIdx]
+        };
+    }, [NETWORK.token, SEND]);
 
     const changOrder = () => {
-        const temp = data.NETWORK.send.send;
-        let final = data.NETWORK;
-        final.send.send = final.send.receive;
-        final.send.receive = temp;
-        changeData({ key: 'NETWORK', data: final });
+        const tRIsx = SEND.sIdx;
+        const tSIsx = SEND.rIdx;
+        const tSEND = { ...SEND, sIdx: tSIsx, rIdx: tRIsx };
+        changeData({ key: 'SEND', data: tSEND });
+    };
+
+    const selectToken = (param: number, order: string) => {
+        changeData({ key: 'TOKEN_SELECT', data: ['SEND', order, param] });
+        navigate('/select');
     };
 
     if (isMobile) {
         return (
             <MobileCard title="Send" back={() => navigate('/')}>
-                <div className="w-full flex items-end justify-between px-5 mb-10">
+                <div className="w-full flex items-end justify-between px-5 mb-10 relative">
                     <div className="flex flex-col">
                         <p className="text-sm text-[#ACACAE] mb-2">Send</p>
                         <div
-                            className="flex items-center cursor-pointer bg-[#242429] border-[0.6px] border-[#ACACAE] rounded-xl px-5 py-1"
-                            onClick={() => navigate('/select')}
+                            className="flex items-center cursor-pointer bg-[#242429] border-[0.6px] border-[#ACACAE] rounded-xl px-5 py-2"
+                            onClick={() => selectToken(SEND.rIdx, 'sIdx')}
                         >
                             <img
-                                src={data.NETWORK.send.send.icon}
+                                src={sendData.sender.icon}
                                 alt="token"
-                                className="w-[35px] h-[35px] bg-white rounded-full"
+                                className="w-[24px] h-[24px] bg-white rounded-full"
                             />
-                            <span className="text-sm mx-2">{data.NETWORK.send.send.name}</span>
+                            <span className="text-sm mx-2">{sendData.sender.name}</span>
                             <KeyboardArrowDownIcon className="w-3" />
                         </div>
                     </div>
-                    <img src={exchange} alt="token" className="w-[30px] h-[30px]" onClick={changOrder} />
+                    <img
+                        src={exchange}
+                        alt="token"
+                        className="w-[30px] h-[30px] cursor-pointer absolute bottom-0"
+                        style={{ left: 'calc(50% - 12px)' }}
+                        onClick={changOrder}
+                    />
                     <div className="flex flex-col">
                         <p className="text-sm text-[#ACACAE] mb-2">Receive</p>
                         <div
-                            className="flex items-center cursor-pointer bg-[#242429] border-[0.6px] border-[#ACACAE] rounded-xl px-5 py-1"
-                            onClick={() => navigate('/select')}
+                            className="flex items-center cursor-pointer bg-[#242429] border-[0.6px] border-[#ACACAE] rounded-xl px-5 py-2"
+                            onClick={() => selectToken(SEND.sIdx, 'rIdx')}
                         >
                             <img
-                                src={data.NETWORK.send.receive.icon}
+                                src={sendData.receiver.icon}
                                 alt="token"
-                                className="w-[35px] h-[35px] bg-white rounded-full"
+                                className="w-[24px] h-[24px] bg-white rounded-full"
                             />
-                            <span className="text-sm mx-2">{data.NETWORK.send.receive.name}</span>
+                            <span className="text-sm mx-2">{sendData.receiver.name}</span>
                             <KeyboardArrowDownIcon className="w-3" />
                         </div>
                     </div>
                 </div>
                 <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5">
                     <div>
-                        {data.NETWORK.send.list.map(({ rate, available, limit }: any, i: number) => (
+                        {SEND.list.map(({ rate, limit }: any, i: number) => (
                             <div
                                 key={i}
                                 onClick={() => navigate(`check/${i}`)}
@@ -75,11 +93,11 @@ const Send = () => {
                                         <div className="flex items-center justify-between w-full">
                                             <div className="flex items-center cursor-pointer mt-1 mb-2">
                                                 <img
-                                                    src={data.NETWORK.send.send.icon}
+                                                    src={sendData.sender.icon}
                                                     alt="token"
                                                     className="w-[24px] h-[24px] bg-white rounded-full"
                                                 />
-                                                <span className="text-base ml-2">{data.NETWORK.send.send.name}</span>
+                                                <span className="text-base ml-2">{sendData.sender.name}</span>
                                             </div>
                                             <EastIcon />
                                         </div>
@@ -88,11 +106,11 @@ const Send = () => {
                                         <p className="text-xs">You receive</p>
                                         <div className="flex items-center cursor-pointer mt-1 mb-2">
                                             <img
-                                                src={data.NETWORK.send.receive.icon}
+                                                src={sendData.receiver.icon}
                                                 alt="token"
                                                 className="w-[24px] h-[24px] bg-white rounded-full"
                                             />
-                                            <span className="text-base ml-2">{data.NETWORK.send.receive.name}</span>
+                                            <span className="text-base ml-2">{sendData.receiver.name}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +121,7 @@ const Send = () => {
                                     </div>
                                     <div className="flex items-center">
                                         <p className="text-xs text-light-dark mr-1">Available</p>
-                                        <p className="text-sm">{available}</p>
+                                        <p className="text-sm">{`${sendData.receiver.amount} ${sendData.receiver.name}`}</p>
                                     </div>
                                     <div className="flex items-center">
                                         <p className="text-xs text-light-dark mr-1">limit</p>
@@ -134,40 +152,46 @@ const Send = () => {
     } else {
         return (
             <Card title="Send" back={() => navigate('/')}>
-                <div className="w-full flex items-center justify-between">
+                <div className="w-full flex items-center justify-between relative">
                     <div className="flex items-center">
                         <p className="text-base mr-2">Send</p>
                         <div
-                            className="flex items-center cursor-pointer border-[0.6px] border-[#ACACAE] rounded-md px-2 py-1"
-                            onClick={() => navigate('/select')}
+                            className="flex items-center cursor-pointer border-[0.6px] border-[#ACACAE] rounded-md px-2 py-2"
+                            onClick={() => selectToken(SEND.rIdx, 'sIdx')}
                         >
                             <img
-                                src={data.NETWORK.send.send.icon}
+                                src={sendData.sender.icon}
                                 alt="token"
                                 className="w-[24px] h-[24px] bg-white rounded-full"
                             />
-                            <span className="text-base mx-2">{data.NETWORK.send.send.name}</span>
-                            <KeyboardArrowDownIcon />
+                            <span className="text-base mx-2">{sendData.sender.name}</span>
+                            <KeyboardArrowDownIcon className="w-3" />
                         </div>
                     </div>
-                    <img src={exchange} alt="token" className="w-[24px] h-[24px]" onClick={changOrder} />
+                    <img
+                        src={exchange}
+                        alt="token"
+                        className="w-[24px] h-[24px] cursor-pointer absolute bottom-0"
+                        style={{ left: 'calc(50% - 12px)' }}
+                        onClick={changOrder}
+                    />
                     <div className="flex items-center">
                         <p className="text-base mr-2">Receive</p>
                         <div
-                            className="flex items-center cursor-pointer border-[0.6px] border-[#ACACAE] rounded-md px-2 py-1"
-                            onClick={() => navigate('/select')}
+                            className="flex items-center cursor-pointer border-[0.6px] border-[#ACACAE] rounded-md px-2 py-2"
+                            onClick={() => selectToken(SEND.sIdx, 'rIdx')}
                         >
                             <img
-                                src={data.NETWORK.send.receive.icon}
+                                src={sendData.receiver.icon}
                                 alt="token"
                                 className="w-[24px] h-[24px] bg-white rounded-full"
                             />
-                            <span className="text-base mx-2">{data.NETWORK.send.receive.name}</span>
-                            <KeyboardArrowDownIcon />
+                            <span className="text-base mx-2">{sendData.receiver.name}</span>
+                            <KeyboardArrowDownIcon className="w-3" />
                         </div>
                     </div>
                 </div>
-                {data.NETWORK.send.list.map(({ rate, available, limit }: any, i: number) => (
+                {SEND.list.map(({ rate, limit }: any, i: number) => (
                     <div
                         key={i}
                         onClick={() => navigate(`check/${i}`)}
@@ -178,11 +202,11 @@ const Send = () => {
                             <div className="flex items-center justify-between w-full">
                                 <div className="flex items-center cursor-pointer mt-1 mb-2">
                                     <img
-                                        src={data.NETWORK.send.send.icon}
+                                        src={sendData.sender.icon}
                                         alt="token"
                                         className="w-[24px] h-[24px] bg-white rounded-full"
                                     />
-                                    <span className="text-base ml-2">{data.NETWORK.send.send.name}</span>
+                                    <span className="text-base ml-2">{sendData.sender.name}</span>
                                 </div>
                                 <EastIcon />
                             </div>
@@ -195,15 +219,15 @@ const Send = () => {
                             <p className="text-xs">You receive</p>
                             <div className="flex items-center cursor-pointer mt-1 mb-2">
                                 <img
-                                    src={data.NETWORK.send.receive.icon}
+                                    src={sendData.receiver.icon}
                                     alt="token"
                                     className="w-[24px] h-[24px] bg-white rounded-full"
                                 />
-                                <span className="text-base ml-2">{data.NETWORK.send.receive.name}</span>
+                                <span className="text-base ml-2">{sendData.receiver.name}</span>
                             </div>
                             <div>
                                 <p className="text-xs text-light-dark">Available</p>
-                                <p className="text-sm">{available}</p>
+                                <p className="text-sm">{`${sendData.receiver.amount} ${sendData.receiver.name}`}</p>
                             </div>
                         </div>
                         <div className="flex flex-col justify-end">

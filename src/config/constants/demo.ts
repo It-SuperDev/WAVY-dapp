@@ -27,23 +27,6 @@ import exodusIcon from 'assets/img/wallet/exodus.svg';
 import phantomIcon from 'assets/img/wallet/phantom.svg';
 import tronwalletIcon from 'assets/img/wallet/tron.svg';
 
-// flag
-import arsFlag from 'assets/img/flg/ars.svg';
-import audFlag from 'assets/img/flg/aud.svg';
-import brsFlag from 'assets/img/flg/brs.svg';
-import cadFlag from 'assets/img/flg/cad.svg';
-import cnyFlag from 'assets/img/flg/cny.svg';
-import eurFlag from 'assets/img/flg/eur.svg';
-import gbpFlag from 'assets/img/flg/gbp.svg';
-import ghsFlag from 'assets/img/flg/ghs.svg';
-import kesFlag from 'assets/img/flg/kes.svg';
-import ngnFlag from 'assets/img/flg/ngn.svg';
-import rwfFlag from 'assets/img/flg/rwf.svg';
-import tryFlag from 'assets/img/flg/try.svg';
-import tzsFlag from 'assets/img/flg/tzs.svg';
-import usdFlag from 'assets/img/flg/usd.svg';
-import zarFlag from 'assets/img/flg/zar.svg';
-
 // network icons
 import stellarIcon from 'assets/img/network/stellar.svg';
 import polygonIcon from 'assets/img/network/polygon.svg';
@@ -52,14 +35,9 @@ import ethereumIcon from 'assets/img/network/ethereum.svg';
 import solanaIcon from 'assets/img/network/solana.svg';
 import tronIcon from 'assets/img/network/tron.svg';
 
-// coins
-import usdIcon from 'assets/img/coin/united_states.svg';
 // stellar
 import arsIcon from 'assets/img/coin/stellar/ars.svg';
 import arstIcon from 'assets/img/coin/stellar/arst.svg';
-import auddIcon from 'assets/img/coin/stellar/audd.svg';
-import brlIcon from 'assets/img/coin/stellar/brl.svg';
-import eurcIcon from 'assets/img/coin/stellar/eurc.svg';
 import ghscIcon from 'assets/img/coin/stellar/ghsc.svg';
 import kesIcon from 'assets/img/coin/stellar/kes.svg';
 // polygon
@@ -71,10 +49,7 @@ import ngncIcon from 'assets/img/coin/polygon/ngnc.svg';
 import trybIcon from 'assets/img/coin/polygon/tryb.svg';
 import usdcIcon from 'assets/img/coin/polygon/usdc.svg';
 // Ethereum
-import cnhcIcon from 'assets/img/coin/ethereum/cnhc.svg';
 import eurocIcon from 'assets/img/coin/ethereum/euroc.svg';
-import eurtIcon from 'assets/img/coin/ethereum/eurt.svg';
-import gbptIcon from 'assets/img/coin/ethereum/gbpt.svg';
 import qcadIcon from 'assets/img/coin/ethereum/qcad.svg';
 import zarpIcon from 'assets/img/coin/ethereum/zarp.svg';
 // avalanche
@@ -82,7 +57,6 @@ import tgbpIcon from 'assets/img/coin/avalanche/tgbp.svg';
 
 import tcnhIcon from 'assets/img/coin/tron/tcnh.svg';
 import usdtIcon from 'assets/img/coin/tron/usdt.svg';
-import tronUsdtIcon from 'assets/img/coin/tron/usdt-tron.svg';
 
 // connected
 import copyIcon from 'assets/img/icon/copy.svg';
@@ -97,6 +71,9 @@ import moneyGramIcon from 'assets/img/icon/moneyGram.svg';
 // my offer actions
 import editIcon from 'assets/img/icon/edit.svg';
 import deleteIcon from 'assets/img/icon/delete.svg';
+
+import { FLAG } from './nation_flag';
+import { stellar, polygon, avalanche, ethereum, solana, tron } from './token';
 
 export const CURRENCY = [
     {
@@ -289,498 +266,12 @@ export const MY_OFFER_ACTION = [
     }
 ];
 
-export const FLAG = {
-    ARS: {
-        name: 'ARS',
-        icon: arsFlag
-    },
-    USD: {
-        name: 'USD',
-        icon: usdFlag
-    },
-    ZAR: {
-        name: 'ZAR',
-        icon: zarFlag
-    },
-    RWF: {
-        name: 'RWF',
-        icon: rwfFlag
-    },
-    NGN: {
-        name: 'NGN',
-        icon: ngnFlag
-    },
-    TZS: {
-        name: 'TZS',
-        icon: tzsFlag
-    },
-    TRY: {
-        name: 'TRY',
-        icon: tryFlag
-    },
-    KES: {
-        name: 'KES',
-        icon: kesFlag
-    },
-    GHS: {
-        name: 'GHS',
-        icon: ghsFlag
-    },
-    GBP: {
-        name: 'GBP',
-        icon: gbpFlag
-    },
-    EUR: {
-        name: 'EUR',
-        icon: eurFlag
-    },
-    CNY: {
-        name: 'CNY',
-        icon: cnyFlag
-    },
-    CAD: {
-        name: 'CAD',
-        icon: cadFlag
-    },
-    BRS: {
-        name: 'BRS',
-        icon: brsFlag
-    },
-    AUD: {
-        name: 'AUD',
-        icon: audFlag
-    }
-};
-
-export const stellar = [
-    {
-        name: 'ARS',
-        icon: arsIcon,
-        sub: 'Argentine Peso',
-        amount: '20000.54 ARS',
-        price: '$89.04'
-    },
-    {
-        name: 'ARST',
-        icon: arstIcon,
-        sub: 'Argentine Peso',
-        amount: '15882.39 ARST',
-        price: '$70.70'
-    },
-    {
-        name: 'AUDD',
-        icon: auddIcon,
-        sub: 'Australian Dollar',
-        amount: '5000 AUDD',
-        price: '$3,329.67'
-    },
-    {
-        name: 'BRL',
-        icon: brlIcon,
-        sub: 'Brazilian Real',
-        amount: '15000 BRL',
-        price: '$3,004.92'
-    },
-    {
-        name: 'BRLT',
-        icon: brlIcon,
-        sub: 'Brazilian Real',
-        amount: '13000 BRLT',
-        price: '$2,604.26'
-    },
-    {
-        name: 'EURC',
-        icon: eurcIcon,
-        sub: 'Euro',
-        amount: '3000 EURC',
-        price: '$3,285.39'
-    },
-    {
-        name: 'GHSC',
-        icon: ghscIcon,
-        sub: 'Ghanaian Cedi',
-        amount: '3000 GHSC',
-        price: '$254.24'
-    },
-    {
-        name: 'KES',
-        icon: kesIcon,
-        sub: 'Kenyan Shilling',
-        amount: '5000 KES',
-        price: '$10.75'
-    },
-    {
-        name: 'NGNC',
-        icon: ngncIcon,
-        sub: 'Nigerian Naira',
-        amount: '5000 NGNC',
-        price: '$6.75'
-    },
-    {
-        name: 'RWF',
-        icon: kesIcon,
-        sub: 'Rwandan Franc',
-        amount: '5000 RWF',
-        price: '$10.75'
-    },
-    {
-        name: 'TZS',
-        icon: kesIcon,
-        sub: 'Tanzanian Shilling',
-        amount: '5000 TZS',
-        price: '$10.75'
-    },
-    {
-        name: 'USDC',
-        icon: usdcIcon,
-        sub: 'U.S dollar',
-        amount: '3000 USDC',
-        price: '$3,000.00'
-    }
-];
-export const polygon = [
-    {
-        name: 'BRZ',
-        icon: brzIcon,
-        sub: 'Brazilian Real',
-        amount: '13000 BRZ',
-        price: '$2,604.26'
-    },
-    {
-        name: 'CADC',
-        icon: cadcIcon,
-        sub: 'Canadian Dollar',
-        amount: '5000 CADC',
-        price: '$3,669.07'
-    },
-    {
-        name: 'EURS',
-        icon: eursIcon,
-        sub: 'Euro',
-        amount: '3000 EURS',
-        price: '$3,311.55'
-    },
-    {
-        name: 'JEUR',
-        icon: jeurIcon,
-        sub: 'Euro',
-        amount: '3000 JEUR',
-        price: '$3,311.55'
-    },
-    {
-        name: 'NGNC',
-        icon: ngncIcon,
-        sub: 'Nigerian Naira',
-        amount: '5000 NGNC',
-        price: '$6.75'
-    },
-    {
-        name: 'TRYB',
-        icon: trybIcon,
-        sub: 'Turkish Lira',
-        amount: '5000 TRYB',
-        price: '$6.75'
-    },
-    {
-        name: 'USDC',
-        icon: usdcIcon,
-        sub: 'U.S dollar',
-        amount: '3000 USDC',
-        price: '$3,000.00'
-    },
-    {
-        name: 'USDT',
-        icon: usdtIcon,
-        sub: 'U.S dollar',
-        amount: '3000 USDT',
-        price: '$3,000.00'
-    }
-];
-export const avalanche = [
-    {
-        name: 'BRZ',
-        icon: brzIcon,
-        sub: 'Brazilian Real',
-        amount: '13000 BRZ',
-        price: '$2,604.26'
-    },
-    {
-        name: 'EURT',
-        icon: eurtIcon,
-        sub: 'Euro',
-        amount: '13000 EURT',
-        price: '$2,604.26'
-    },
-    {
-        name: 'JEUR',
-        icon: jeurIcon,
-        sub: 'Euro',
-        amount: '3000 JEUR',
-        price: '$3,311.55'
-    },
-    {
-        name: 'NGNC',
-        icon: ngncIcon,
-        sub: 'Nigerian Naira',
-        amount: '5000 NGNC',
-        price: '$6.75'
-    },
-    {
-        name: 'TGBP',
-        icon: tgbpIcon,
-        sub: 'British Pound',
-        amount: '3000 TGBP',
-        price: '$3,122.60'
-    },
-    {
-        name: 'TRYB',
-        icon: trybIcon,
-        sub: 'Turkish Lira',
-        amount: '5000 TRYB',
-        price: '$6.75'
-    },
-    {
-        name: 'USDC',
-        icon: usdcIcon,
-        sub: 'U.S dollar',
-        amount: '3000 USDC',
-        price: '$3,000.00'
-    },
-    {
-        name: 'USDT',
-        icon: usdtIcon,
-        sub: 'U.S dollar',
-        amount: '3000 USDT',
-        price: '$3,000.00'
-    }
-];
-export const ethereum = [
-    {
-        name: 'BRZ',
-        icon: brzIcon,
-        sub: 'Brazilian Real',
-        amount: '13000 BRZ',
-        price: '$2,604.26'
-    },
-    {
-        name: 'CADC',
-        sub: 'Canadian Dollar',
-        icon: cadcIcon,
-        amount: '5000 CADC',
-        price: '$3,669.07'
-    },
-    {
-        name: 'CNHC',
-        sub: 'Chiness Yuan',
-        icon: cnhcIcon,
-        amount: '5000 CNHC',
-        price: '$3,669.07'
-    },
-    {
-        name: 'EUROC',
-        sub: 'Euro',
-        icon: eurocIcon,
-        amount: '5000 EUROC',
-        price: '$3,669.07'
-    },
-    {
-        name: 'EURT',
-        icon: eurtIcon,
-        sub: 'Euro',
-        amount: '13000 EURT',
-        price: '$2,604.26'
-    },
-    {
-        name: 'EURS',
-        sub: 'Euro',
-        icon: eursIcon,
-        amount: '3000 EURS',
-        price: '$3,311.55'
-    },
-    {
-        name: 'GBPT',
-        sub: 'British Pound',
-        icon: gbptIcon,
-        amount: '3000 GBPT',
-        price: '$889.20'
-    },
-    {
-        name: 'JEUR',
-        sub: 'Euro',
-        icon: jeurIcon,
-        amount: '3000 JEUR',
-        price: '$3,311.55'
-    },
-    {
-        name: 'QCAD',
-        sub: 'Canadian Dollar',
-        icon: qcadIcon,
-        amount: '3000 QCAD',
-        price: '$3,311.55'
-    },
-    {
-        name: 'TGBP',
-        icon: tgbpIcon,
-        sub: 'British Pound',
-        amount: '3000 TGBP',
-        price: '$3,122.60'
-    },
-    {
-        name: 'TRYB',
-        icon: trybIcon,
-        sub: 'Turkish Lira',
-        amount: '5000 TRYB',
-        price: '$6.75'
-    },
-    {
-        name: 'USDC',
-        icon: usdcIcon,
-        sub: 'U.S dollar',
-        amount: '3000 USDC',
-        price: '$3,000.00'
-    },
-    {
-        name: 'USDT',
-        icon: usdtIcon,
-        sub: 'U.S dollar',
-        amount: '3000 USDT',
-        price: '$3,000.00'
-    },
-    {
-        name: 'ZARP',
-        icon: zarpIcon,
-        sub: 'South African Rand',
-        amount: '3000 ZARP',
-        price: '$3,000.00'
-    }
-];
-export const solana = [
-    {
-        name: 'BRZ',
-        icon: brzIcon,
-        sub: 'Brazilian Real',
-        amount: '13000 BRZ',
-        price: '$2,604.26'
-    },
-    {
-        name: 'NGNC',
-        icon: ngncIcon,
-        sub: 'Nigerian Naira',
-        amount: '5000 NGNC',
-        price: '$6.75'
-    },
-    {
-        name: 'TRYB',
-        icon: trybIcon,
-        sub: 'Turkish Lira',
-        amount: '5000 TRYB',
-        price: '$6.75'
-    },
-    {
-        name: 'USDC',
-        icon: usdcIcon,
-        sub: 'U.S dollar',
-        amount: '3000 USDC',
-        price: '$3,000.00'
-    },
-    {
-        name: 'USDT',
-        icon: usdtIcon,
-        sub: 'U.S dollar',
-        amount: '3000 USDT',
-        price: '$3,000.00'
-    }
-];
-export const tron = [
-    {
-        name: 'EURS',
-        sub: 'Euro',
-        icon: eursIcon,
-        amount: '3000 EURS',
-        price: '$3,311.55'
-    },
-    {
-        name: 'TCNH',
-        sub: 'Chines yuan',
-        icon: tcnhIcon,
-        amount: '3000 TCNH',
-        price: '$3,311.55'
-    },
-    {
-        name: 'USDC',
-        sub: 'U.S dollar',
-        icon: usdcIcon,
-        amount: '3000 USDC',
-        price: '$3,000.00'
-    },
-    {
-        name: 'USDT',
-        sub: 'U.S dollar',
-        icon: tronUsdtIcon,
-        amount: '3000 USDT',
-        price: '$3,000.00'
-    }
-];
-
 export const NETWORK = [
     {
         name: 'Stellar Mainnet',
         sub: 'Stellar',
         icon: stellarIcon,
         token: stellar,
-        topUp: {
-            first: {
-                name: 'USD',
-                icon: usdIcon
-            },
-            second: {
-                name: 'USDC',
-                icon: usdcIcon
-            },
-            method: TOP_METHOD
-        },
-        swap: {
-            from: {
-                value: 10000,
-                available: 'Available: 20000.54 ARS',
-                name: 'ARS',
-                icon: arsIcon
-            },
-            to: {
-                value: 20.57,
-                available: 'Available: 3000 EURC',
-                name: 'EURC',
-                icon: eurcIcon
-            },
-            equal: '1 EURC = 486.04 ARS'
-        },
-        send: {
-            send: {
-                name: 'KES',
-                icon: kesIcon
-            },
-            receive: {
-                name: 'AUDD',
-                icon: auddIcon
-            },
-            list: [
-                {
-                    rate: ' 1 AUDD = 90.67 KES',
-                    available: '3000 AUDD',
-                    limit: '1 - 500 AUDD'
-                },
-                {
-                    rate: ' 1 AUDD = 89.52 KES',
-                    available: '2500 AUDD',
-                    limit: '1 - 600 AUDD'
-                },
-                {
-                    rate: ' 1 AUDD = 91.25 KES',
-                    available: '1250 AUDD',
-                    limit: '1 - 800 AUDD'
-                }
-            ]
-        },
         wallet: [
             {
                 name: 'Freighter',
@@ -795,22 +286,6 @@ export const NETWORK = [
                 icon: walletconnectIcon1
             }
         ],
-        newOffer: {
-            send: {
-                name: 'TZS',
-                icon: kesIcon,
-                value: 30000,
-                available: 'Available: 30000 TZS'
-            },
-            receive: {
-                name: 'NGNC',
-                icon: ngncIcon,
-                value: 5988.02
-            },
-            rate: 5.01,
-            min: 1,
-            max: 500
-        },
         offers: [
             {
                 send: {
@@ -875,58 +350,6 @@ export const NETWORK = [
         sub: 'Polygon',
         icon: polygonIcon,
         token: polygon,
-        topUp: {
-            first: {
-                name: 'USD',
-                icon: usdIcon
-            },
-            second: {
-                name: 'USDC',
-                icon: usdcIcon
-            }
-        },
-        swap: {
-            from: {
-                value: 144,
-                available: 'Available: 5000 CADC',
-                name: 'CADC',
-                icon: cadcIcon
-            },
-            to: {
-                value: 2068.09,
-                available: 'Available: 2880.33 TRYB',
-                name: 'TRYB',
-                icon: trybIcon
-            },
-            equal: '1 CADC = 14.36 TRYB'
-        },
-        send: {
-            send: {
-                name: 'JEUR',
-                icon: jeurIcon
-            },
-            receive: {
-                name: 'BRZ',
-                icon: brzIcon
-            },
-            list: [
-                {
-                    rate: '1 JEUR = 5.48 BRZ',
-                    available: '3000 JEUR',
-                    limit: '1 - 500 JEUR'
-                },
-                {
-                    rate: '1 JEUR = 5.45 BRZ',
-                    available: '2500 JEUR',
-                    limit: '1 - 600 JEUR'
-                },
-                {
-                    rate: '1 JEUR = 5.40 BRZ',
-                    available: '1250 JEUR',
-                    limit: '1 - 800 JEUR'
-                }
-            ]
-        },
         wallet: [
             {
                 name: 'MetaMask',
@@ -941,22 +364,6 @@ export const NETWORK = [
                 icon: walletconnectIcon
             }
         ],
-        newOffer: {
-            send: {
-                name: 'JEUR',
-                icon: jeurIcon,
-                value: 2500,
-                available: 'Available: 3000 JEUR'
-            },
-            receive: {
-                name: 'BRZ',
-                icon: brzIcon,
-                value: 13700
-            },
-            rate: 5.48,
-            min: 1,
-            max: 200
-        },
         offers: [
             {
                 send: {
@@ -1021,58 +428,6 @@ export const NETWORK = [
         sub: 'Avalanche',
         icon: avalancheIcon,
         token: avalanche,
-        topUp: {
-            first: {
-                name: 'USD',
-                icon: usdIcon
-            },
-            second: {
-                name: 'USDC',
-                icon: usdcIcon
-            }
-        },
-        swap: {
-            from: {
-                value: 0.0,
-                available: 'Available: 3000 EURT',
-                name: 'EURT',
-                icon: eurtIcon
-            },
-            to: {
-                value: 2068.09,
-                available: 'Available: 5000 NGNC',
-                name: 'NGNC',
-                icon: ngncIcon
-            },
-            equal: '1 EURT = 821.98 NGNC'
-        },
-        send: {
-            send: {
-                name: 'JEUR',
-                icon: jeurIcon
-            },
-            receive: {
-                name: 'BRZ',
-                icon: brzIcon
-            },
-            list: [
-                {
-                    rate: '1 JEUR = 5.48 BRZ',
-                    available: '3000 JEUR',
-                    limit: '1 - 500 JEUR'
-                },
-                {
-                    rate: '1 JEUR = 5.45 BRZ',
-                    available: '2500 JEUR',
-                    limit: '1 - 600 JEUR'
-                },
-                {
-                    rate: '1 JEUR = 5.40 BRZ',
-                    available: '1250 JEUR',
-                    limit: '1 - 800 JEUR'
-                }
-            ]
-        },
         wallet: [
             {
                 name: 'MetaMask',
@@ -1087,43 +442,6 @@ export const NETWORK = [
                 icon: walletconnectIcon
             }
         ],
-        bridge: {
-            from: {
-                name: 'USDC',
-                icon: usdcIcon,
-                available: 'Available: 3000 USDC',
-                value: 0,
-                network: {
-                    icon: avalancheIcon,
-                    name: 'Avalanche'
-                }
-            },
-            to: {
-                name: 'USDC',
-                icon: usdcIcon,
-                value: 0,
-                network: {
-                    icon: ethereumIcon,
-                    name: 'Ethereum'
-                }
-            }
-        },
-        newOffer: {
-            send: {
-                name: 'TGBP',
-                icon: tgbpIcon,
-                value: 2000,
-                available: 'Available: 2500.33 TGBP'
-            },
-            receive: {
-                name: 'TRYB',
-                icon: trybIcon,
-                value: 48400
-            },
-            rate: 24.2,
-            min: 1,
-            max: 500
-        },
         offers: [
             {
                 send: {
@@ -1174,58 +492,6 @@ export const NETWORK = [
         sub: 'Ethereum',
         icon: ethereumIcon,
         token: ethereum,
-        topUp: {
-            first: {
-                name: 'USD',
-                icon: usdIcon
-            },
-            second: {
-                name: 'USDC',
-                icon: usdcIcon
-            }
-        },
-        swap: {
-            from: {
-                value: 2068.09,
-                available: 'Available: 5045.40 TRYB',
-                name: 'TRYB',
-                icon: trybIcon
-            },
-            to: {
-                value: 734.05,
-                available: 'Available: 5000 CNHC',
-                name: 'CNHC',
-                icon: cnhcIcon
-            },
-            equal: '1 CNHC = 2.82 TRYB'
-        },
-        send: {
-            send: {
-                name: 'JEUR',
-                icon: jeurIcon
-            },
-            receive: {
-                name: 'BRZ',
-                icon: brzIcon
-            },
-            list: [
-                {
-                    rate: '1 JEUR = 5.48 BRZ',
-                    available: '3000 JEUR',
-                    limit: '1 - 500 JEUR'
-                },
-                {
-                    rate: '1 JEUR = 5.45 BRZ',
-                    available: '2500 JEUR',
-                    limit: '1 - 600 JEUR'
-                },
-                {
-                    rate: '1 JEUR = 5.40 BRZ',
-                    available: '1250 JEUR',
-                    limit: '1 - 800 JEUR'
-                }
-            ]
-        },
         wallet: [
             {
                 name: 'MetaMask',
@@ -1240,43 +506,6 @@ export const NETWORK = [
                 icon: walletconnectIcon
             }
         ],
-        bridge: {
-            from: {
-                name: 'USDC',
-                icon: usdcIcon,
-                available: 'Available: 3000 USDC',
-                value: 0,
-                network: {
-                    icon: ethereumIcon,
-                    name: 'Ethereum'
-                }
-            },
-            to: {
-                name: 'USDC',
-                icon: usdcIcon,
-                value: 0,
-                network: {
-                    icon: avalancheIcon,
-                    name: 'Avalanche'
-                }
-            }
-        },
-        newOffer: {
-            send: {
-                name: 'EUROC',
-                icon: eurocIcon,
-                value: 2000,
-                available: 'Available: 2450 EUROC'
-            },
-            receive: {
-                name: 'BRZ',
-                icon: brzIcon,
-                value: 10960
-            },
-            rate: 5.48,
-            min: 1,
-            max: 200
-        },
         offers: [
             {
                 send: {
@@ -1341,58 +570,6 @@ export const NETWORK = [
         sub: 'Solana',
         icon: solanaIcon,
         token: solana,
-        topUp: {
-            first: {
-                name: 'USD',
-                icon: usdIcon
-            },
-            second: {
-                name: 'USDC',
-                icon: usdcIcon
-            }
-        },
-        swap: {
-            from: {
-                value: 255,
-                available: 'Available: 1500 USDT',
-                name: 'USDT',
-                icon: usdtIcon
-            },
-            to: {
-                value: 187787.1,
-                available: 'Available: 5000 NGNC',
-                name: 'NGNC',
-                icon: ngncIcon
-            },
-            equal: '1 USDT = 736.42 NGNC'
-        },
-        send: {
-            send: {
-                name: 'TRYB',
-                icon: trybIcon
-            },
-            receive: {
-                name: 'BRZ',
-                icon: brzIcon
-            },
-            list: [
-                {
-                    rate: '1 BRZ = 3.90 TRYB',
-                    available: '3000 TRYB',
-                    limit: '1 - 500 TRYB'
-                },
-                {
-                    rate: '1 BRZ = 3.93 TRYB',
-                    available: '2500 TRYB',
-                    limit: '1 - 600 TRYB'
-                },
-                {
-                    rate: '1 BRZ = 3.91 TRYB',
-                    available: '1250 TRYB',
-                    limit: '1 - 800 TRYB'
-                }
-            ]
-        },
         wallet: [
             {
                 name: 'Exodus Wallet',
@@ -1407,22 +584,6 @@ export const NETWORK = [
                 icon: walletconnectIcon
             }
         ],
-        newOffer: {
-            send: {
-                name: 'USDC',
-                icon: usdcIcon,
-                value: 2000,
-                available: 'Available: 3000 USDC'
-            },
-            receive: {
-                name: 'TRYB',
-                icon: trybIcon,
-                value: 40800
-            },
-            rate: 20.4,
-            min: 500,
-            max: 2000
-        },
         offers: [
             {
                 send: {
@@ -1487,58 +648,6 @@ export const NETWORK = [
         sub: 'Tron',
         icon: tronIcon,
         token: tron,
-        topUp: {
-            first: {
-                name: 'USD',
-                icon: usdIcon
-            },
-            second: {
-                name: 'USDC',
-                icon: usdcIcon
-            }
-        },
-        swap: {
-            from: {
-                value: 255,
-                available: 'Available: 1500 USDT',
-                name: 'USDT',
-                icon: usdtIcon
-            },
-            to: {
-                value: 1763.89,
-                available: 'Available: 2880.33 TCNH',
-                name: 'TCNH',
-                icon: tcnhIcon
-            },
-            equal: '1 USDT = 6.92 TCNH'
-        },
-        send: {
-            send: {
-                name: 'TCNH',
-                icon: tcnhIcon
-            },
-            receive: {
-                name: 'EURS',
-                icon: eursIcon
-            },
-            list: [
-                {
-                    rate: '1 EURS = 7.64 TCNH',
-                    available: '3000 TCNH',
-                    limit: '1 - 500 TCNH'
-                },
-                {
-                    rate: '1 EURS = 7.67 TCNH',
-                    available: '2500 TCNH',
-                    limit: '1 - 600 TCNH'
-                },
-                {
-                    rate: '1 EURS = 6.99 TCNH',
-                    available: '1250 TCNH',
-                    limit: '1 - 800 TCNH'
-                }
-            ]
-        },
         wallet: [
             {
                 name: 'TronLink',
@@ -1549,22 +658,6 @@ export const NETWORK = [
                 icon: walletconnectIcon
             }
         ],
-        newOffer: {
-            send: {
-                name: 'USDC',
-                icon: usdcIcon,
-                value: 2000,
-                available: 'Available: 3000 USDC'
-            },
-            receive: {
-                name: 'TCNH',
-                icon: tcnhIcon,
-                value: 13800
-            },
-            rate: 6.9,
-            min: 500,
-            max: 2000
-        },
         offers: [
             {
                 send: {
@@ -1597,3 +690,103 @@ export const NETWORK = [
         ]
     }
 ];
+
+export const SEND_DATA = {
+    sIdx: 0,
+    rIdx: 1,
+    list: [
+        {
+            rate: 90.67,
+            limit: '1 - 500'
+        },
+        {
+            rate: 89.52,
+            limit: '1 - 600'
+        },
+        {
+            rate: 91.25,
+            limit: '1 - 800'
+        }
+    ]
+};
+
+export const SWAP_DATA = {
+    sIdx: 0,
+    rIdx: 1,
+    equal: 486.04
+};
+
+export const OFFER = {
+    sIdx: 0,
+    rIdx: 1,
+    rate: 205.3,
+    min: 10,
+    max: 500
+};
+
+export const BRIDGE = {
+    sIdx: 0,
+    rIdx: 0,
+    sNet: 1,
+    rNet: 3
+};
+
+export const TOPUP = {
+    sIdx: 0,
+    rIdx: 0,
+    method: 0
+};
+
+export const WITHDRAW = {
+    sIdx: 0,
+    rIdx: 0,
+    method: 0
+};
+
+export const getMatch = (name: string) => {
+    switch (name) {
+        case 'BRZ':
+        case 'BRL':
+        case 'BRLT':
+            return FLAG['BRS'];
+        case 'EURC':
+        case 'EUROC':
+        case 'EURT':
+        case 'JEUR':
+        case 'EURS':
+            return FLAG['EUR'];
+        case 'CADC':
+        case 'QCAD':
+            return FLAG['CAD'];
+        case 'CNHC':
+        case 'TCNH':
+            return FLAG['CNY'];
+        case 'USDC':
+        case 'USDT':
+            return FLAG['USD'];
+        case 'ARS':
+        case 'ARST':
+            return FLAG['ARS'];
+        case 'GBPT':
+        case 'TGBP':
+            return FLAG['GBP'];
+        case 'GHSC':
+            return FLAG['GHS'];
+        case 'TZS':
+            return FLAG['TZS'];
+        case 'RWF':
+            return FLAG['RWF'];
+        case 'KES':
+            return FLAG['KES'];
+        case 'TRYB':
+            return FLAG['TRY'];
+        case 'AUDD':
+            return FLAG['AUD'];
+        case 'ZARP':
+            return FLAG['ZAR'];
+        case 'NGNC':
+            return FLAG['NGN'];
+        default:
+            return FLAG['USD'];
+    }
+};

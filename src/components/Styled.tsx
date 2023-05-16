@@ -64,7 +64,7 @@ export const WhiteButton = styled.button`
 export const Input = styled.input`
     padding: 0;
     border: unset;
-    font-size: 32px;
+    font-size: 30px;
     line-height: 1;
     color: #ffffff;
     margin-top: 4px;

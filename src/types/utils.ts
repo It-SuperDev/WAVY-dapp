@@ -23,6 +23,7 @@ export type VlaueInputProps = {
     errorMessage?: string;
     error?: boolean;
     value?: number;
+    token?: any;
     tokenList?: DemoDataProps[];
     classes?: string;
     disable?: boolean;
