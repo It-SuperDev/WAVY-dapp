@@ -19,17 +19,21 @@ const Send = () => {
     const navigate = useNavigate();
     const data = useConfig();
 
-    const [anchor, setAnchor] = useState<null | HTMLElement>(null);
+    const [anchor, setAnchor] = useState<boolean>(false);
     const [index, setIndex] = useState(0);
     const [deleteModal, setDeleteModal] = useState(false);
 
     const anchorHandle = (event: any, i: number) => {
-        setAnchor(event.currentTarget);
+        console.log('========');
+        setAnchor(true);
         setIndex(i);
     };
-    const handleClose = () => {
-        setAnchor(null);
+    const handleClose = (e: any) => {
+        e.preventDefault();
+        setAnchor(false);
+        setIndex(0);
     };
+
     const callBack = (i: number) => {
         if (!i) {
             navigate('/send/edit-offer');
@@ -40,7 +44,7 @@ const Send = () => {
                 navigate(`/send/delete-offer/${index}`);
             }
         }
-        handleClose();
+        setAnchor(false);
     };
 
     if (data.isMobile) {
@@ -183,21 +187,21 @@ const Send = () => {
                                     </div>
                                 </div>
                                 <div className="flex flex-col justify-end relative">
-                                    <div
-                                        onClick={(e: any) => anchorHandle(e, i)}
-                                        className="absolute flex items-center justify-center cursor-pointer w-[30px] h-[30px] border-light-dark border-[0.6px] rounded-full top-0 right-0"
-                                    >
-                                        <MoreIcon />
-                                        {index === i && (
+                                    <div className="absolute flex items-center justify-center cursor-pointer w-[30px] h-[30px] border-light-dark border-[0.6px] rounded-full top-0 right-0">
+                                        <div className="px-3" onClick={(e: any) => anchorHandle(e, i)}>
+                                            <MoreIcon />
+                                        </div>
+                                        {index === i && anchor && (
                                             <div className="relative">
                                                 <MenuList
                                                     top={20}
+                                                    left={-20}
                                                     minWidth={160}
                                                     data={MY_OFFER_ACTION}
                                                     anchor={anchor}
                                                     close={handleClose}
                                                     callback={callBack}
-                                                    size={25}
+                                                    size={24}
                                                 />
                                             </div>
                                         )}

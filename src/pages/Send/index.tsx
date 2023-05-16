@@ -171,7 +171,7 @@ const Send = () => {
                     <img
                         src={exchange}
                         alt="token"
-                        className="w-[24px] h-[24px] cursor-pointer absolute bottom-0"
+                        className="w-[24px] h-[24px] cursor-pointer absolute"
                         style={{ left: 'calc(50% - 12px)' }}
                         onClick={changOrder}
                     />
@@ -235,7 +235,7 @@ const Send = () => {
                             <div className="line-flex">
                                 <div className="inline-flex py-2 px-2 items-center text-xs cursor-pointer mt-1 mb-2 rounded-lg bg-dark-primary">
                                     Accept offer
-                                    <EastIcon />
+                                    <EastIcon className="w-4 ml-2" />
                                 </div>
                             </div>
                             <div>
