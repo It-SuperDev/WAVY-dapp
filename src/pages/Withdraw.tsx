@@ -66,6 +66,7 @@ const Withdraw = () => {
                                             available={true}
                                             value={0.0}
                                             token={withdrawData.send}
+                                            onChange={() => setPage(1)}
                                         />
                                         <p className="text-[#B8ACFF] my-4">Fee: 0.00</p>
                                         <ValueInput title="Receive" value={0.0} token={withdrawData.receive} />

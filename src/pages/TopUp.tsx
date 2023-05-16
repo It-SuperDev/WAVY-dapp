@@ -68,6 +68,7 @@ const TopUp = () => {
                                             available={true}
                                             value={0.0}
                                             token={topUpData.receive}
+                                            onChange={() => setPage(1)}
                                         />
 
                                         <div className="rounded-lg w-full border-[0.6px]  bg-[#242429] rounded-lg py-3 px-6 mt-9 mb-16 flex items-center">

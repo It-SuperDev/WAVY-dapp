@@ -115,13 +115,9 @@ const Index = () => {
                         <p className="text-base w-[40px] mx-5">From </p>
                         <div className="flex items-center cursor-pointer border-[0.6px] border-[#ACACAE] rounded-md px-2 py-2">
                             <div className="w-[24px] h-[24px] bg-white rounded-full border-[2px] flex items-center justify-center">
-                                <img
-                                    src={data.NETWORK.bridge.from.network.icon}
-                                    alt="token"
-                                    className="bg-white rounded-full"
-                                />
+                                <img src={bridgeData.from.icon} alt="token" className="bg-white rounded-full" />
                             </div>
-                            <span className="text-base mx-2">{data.NETWORK.bridge.from.network.name}</span>
+                            <span className="text-base mx-2">{bridgeData.from.name}</span>
                         </div>
                     </div>
                     <ValueInput
@@ -140,13 +136,9 @@ const Index = () => {
                             onClick={() => navigate('/select-net')}
                         >
                             <div className="w-[24px] h-[24px] bg-white rounded-full border-[2px] flex items-center justify-center">
-                                <img
-                                    src={data.NETWORK.bridge.to.network.icon}
-                                    alt="token"
-                                    className="bg-white rounded-full"
-                                />
+                                <img src={bridgeData.to.icon} alt="token" className="bg-white rounded-full" />
                             </div>
-                            <span className="text-base mx-2">{data.NETWORK.bridge.to.network.name}</span>
+                            <span className="text-base mx-2">{bridgeData.to.name}</span>
                             <KeyboardArrowDownIcon className="w-4" />
                         </div>
                     </div>
@@ -158,6 +150,7 @@ const Index = () => {
                         onChange={() => selectToken('rIdx')}
                         token={bridgeData.receive}
                     />
+
                     <PrimaryButton className="w-full text-center py-4 mt-10" onClick={() => navigate('/send/process')}>
                         Continue
                     </PrimaryButton>
