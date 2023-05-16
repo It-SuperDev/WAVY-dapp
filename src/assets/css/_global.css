@@ -4,6 +4,7 @@ body {
     padding: 0px !important;
     background: linear-gradient(180deg, #151428 0%, #000000 100%);
     color: #ffffff;
+    font-family: 'CoinbaseDisplay';
 }
 
 input:focus-visible {
