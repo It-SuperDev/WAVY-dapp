@@ -38,7 +38,11 @@ const TopUp = () => {
         const receive = network.token[topUp.rIdx];
         const send = getMatch(receive.name);
         const method: any = getPaymentMethod(network.sub, receive.name, 'topup');
-        dispatch(changeMethod({ list: method }));
+        if (method.length === 1 && !method[0].child) {
+            dispatch(changeMethod({ title: method[0].title, icon: method[0].icon, list: method }));
+        } else {
+            dispatch(changeMethod({ list: method }));
+        }
         setTopUpData({
             send: { ...send, amount: 80840 },
             receive,
@@ -62,7 +66,7 @@ const TopUp = () => {
     };
 
     const goMethodPage = () => {
-        navigate('method');
+        if (methods.list.length > 1) navigate('method');
     };
 
     if (isMobile) {
@@ -190,6 +194,7 @@ const TopUp = () => {
                             className="bg-[#090912] rounded-lg py-3 px-6 mt-4 mb-16 flex items-center"
                         >
                             <img src={methods.icon} className="h-[24px] w-[24px] mr-2" /> <span>{methods.title}</span>
+                            <KeyboardArrowDownIcon className="ml-auto" />
                         </div>
                     ) : (
                         <div

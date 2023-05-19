@@ -38,7 +38,11 @@ const TopUp = () => {
         const receive = network.token[topUp.rIdx];
         const send = getMatch(receive.name);
         const method: any = getPaymentMethod(network.sub, receive.name, 'topup');
-        dispatch(changeMethod({ list: method }));
+        if (method.length === 1 && !method[0].child) {
+            dispatch(changeMethod({ title: method[0].title, icon: method[0].icon, list: method }));
+        } else {
+            dispatch(changeMethod({ list: method }));
+        }
         setTopUpData({
             send: { ...send, amount: 80840 },
             receive,
@@ -62,7 +66,7 @@ const TopUp = () => {
     };
 
     const goMethodPage = () => {
-        navigate('method');
+        if (methods.list.length > 1) navigate('method');
     };
 
     if (isMobile) {
