@@ -16,6 +16,7 @@ import { setSendToken } from 'redux/send';
 import { setSwapToken } from 'redux/swap';
 import { setBridgeToken } from 'redux/bridge';
 import { setTopUpToken } from 'redux/topUp';
+import { changeMethod } from 'redux/info';
 
 const SelectToken = () => {
     const navigate = useNavigate();
@@ -40,6 +41,7 @@ const SelectToken = () => {
                 break;
             case 'TOPUP':
                 dispatch(setTopUpToken({ [selectToken.type]: one.idx }));
+                dispatch(changeMethod({ title: '', icon: '', list: [] }));
         }
         dispatch(changeSetToken({ key: '', order: 0, type: '' }));
         navigate(-1);

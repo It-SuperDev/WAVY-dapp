@@ -1,5 +1,5 @@
-import { useState, useMemo } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Icon
 import { ReactComponent as BankIcon } from '../assets/img/icon/bank.svg';
@@ -14,45 +14,55 @@ import ValueInput from 'components/ValueInput';
 // Constant
 import useConfig from 'hooks/useConfig';
 import MobileMethod from 'components/MobileMethod';
-import { getMatch } from 'config/constants/demo';
+import { getMatch, getPaymentMethod } from 'config/constants/demo';
 import { useAppDispatch, useAppSelector } from 'hooks/useRedux';
 import { changeSetToken } from 'redux/selectToken';
-import { setWithdrawToken } from 'redux/withdraw';
+import { setTopUpToken } from 'redux/topUp';
+import { changeMethod } from 'redux/info';
 
-const Withdraw = () => {
+const TopUp = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     const { isMobile } = useConfig();
-    const withdraw = useAppSelector((state) => state.withdraw);
+    const topUp = useAppSelector((state) => state.topUp);
     const network = useAppSelector((state) => state.network);
+    const { methods } = useAppSelector((state) => state.info);
 
     const [value, setValue] = useState('');
     const [page, setPage] = useState(1);
     const [tokenName, setTokenName] = useState('');
+    const [topUpData, setTopUpData] = useState({ send: {}, receive: {}, method: [] });
 
-    const withdrawData = useMemo(() => {
-        const send = network.token[withdraw.sIdx];
-        const receive = getMatch(send.name);
-        return {
-            send,
-            receive
-        };
-    }, [network, withdraw]);
+    useEffect(() => {
+        const receive = network.token[topUp.rIdx];
+        const send = getMatch(receive.name);
+        const method: any = getPaymentMethod(network.sub, receive.name, 'topup');
+        dispatch(changeMethod({ list: method }));
+        setTopUpData({
+            send: { ...send, amount: 80840 },
+            receive,
+            method
+        });
+    }, [network, topUp]);
 
     const selectToken = () => {
-        dispatch(changeSetToken({ key: 'WITHDRAW', order: -1, type: 'sIdx', tokens: network.token }));
+        dispatch(changeSetToken({ key: 'TOPUP', order: -1, type: 'rIdx', tokens: network.token }));
         navigate('/select');
     };
 
     const setToken = (token: any, i: number) => {
         setTokenName(token.name);
-        dispatch(setWithdrawToken({ sIdx: i }));
+        dispatch(setTopUpToken({ rIdx: i }));
         setPage(2);
     };
 
     const callback = () => {
         setPage(3);
+    };
+
+    const goMethodPage = () => {
+        navigate('method');
     };
 
     if (isMobile) {
@@ -68,18 +78,18 @@ const Withdraw = () => {
                                             title="Amount"
                                             available={true}
                                             value={0.0}
-                                            token={withdrawData.send}
+                                            token={topUpData.receive}
                                             onChange={() => setPage(1)}
                                         />
                                         <p className="text-[#B8ACFF] my-4">Fee: 0.00</p>
-                                        <ValueInput title="Receive" value={0.0} token={withdrawData.receive} />
+                                        <ValueInput title="Receive" value={0.0} token={topUpData.send} />
 
                                         <div className="rounded-lg w-full border-[0.6px]  bg-[#242429] rounded-lg py-3 px-6 mt-9 mb-16 flex items-center">
-                                            <BankIcon className="h-[30px] w-[30px] mr-4" />
+                                            <img src={methods.icon} className="h-[30px] w-[30px] mr-4" />
                                             <div>
-                                                <p>Bank account</p>
+                                                <p>{methods.title}</p>
                                                 <p className="text-xs text-[#ACACAE]">
-                                                    Withdraw your stable to a bank account
+                                                    Withdraw with your bank account
                                                 </p>
                                             </div>
                                         </div>
@@ -148,7 +158,7 @@ const Withdraw = () => {
                                 </div>
                                 {page === 2 && (
                                     <MobileMethod
-                                        isTop={false}
+                                        isTop={true}
                                         close={() => setPage(1)}
                                         callback={callback}
                                         tokenName={tokenName}
@@ -168,21 +178,26 @@ const Withdraw = () => {
                         title="Amount"
                         available={true}
                         value={0.0}
-                        token={withdrawData.send}
+                        token={topUpData.receive}
                         onChange={selectToken}
                     />
                     <p className="bg-[#090912] rounded-lg py-1 px-6 text-[#B8ACFF] my-4">Fee: 0.00</p>
-                    <ValueInput title="Receive" value={0.0} token={withdrawData.receive} />
-                    {network.sub === 'Stellar' && withdrawData.send.name === 'USDC' ? (
-                        <Link to="method">
-                            <div className="bg-[#090912] rounded-lg py-2 px-6 mt-4 mb-16 flex items-center justify-between">
-                                <span>Choose payment method</span>
-                                <KeyboardArrowDownIcon />
-                            </div>
-                        </Link>
+                    <ValueInput title="Receive" value={0.0} token={topUpData.send} />
+
+                    {methods && methods.title ? (
+                        <div
+                            onClick={goMethodPage}
+                            className="bg-[#090912] rounded-lg py-3 px-6 mt-4 mb-16 flex items-center"
+                        >
+                            <img src={methods.icon} className="h-[24px] w-[24px] mr-2" /> <span>{methods.title}</span>
+                        </div>
                     ) : (
-                        <div className="bg-[#090912] rounded-lg py-3 px-6 mt-4 mb-16 flex items-center">
-                            <BankIcon className="h-[24px] w-[24px] mr-2" /> <span>Bank Transfer</span>
+                        <div
+                            onClick={goMethodPage}
+                            className="bg-[#090912] rounded-lg py-2 px-6 mt-4 mb-16 flex items-center justify-between"
+                        >
+                            <span>Choose payment method</span>
+                            <KeyboardArrowDownIcon />
                         </div>
                     )}
                     <button className="w-full text-center py-4 bg-[#5a4ee8] rounded-lg cursor-pointer">Continue</button>
@@ -192,4 +207,4 @@ const Withdraw = () => {
     }
 };
 
-export default Withdraw;
+export default TopUp;

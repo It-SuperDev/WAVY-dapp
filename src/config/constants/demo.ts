@@ -75,6 +75,16 @@ import deleteIcon from 'assets/img/icon/delete.svg';
 import { FLAG } from './nation_flag';
 import { stellar, polygon, avalanche, ethereum, solana, tron } from './token';
 
+// payment methods
+import multipleIcon from 'assets/img/icon/multiple-payment.svg';
+import interacIcon from 'assets/img/icon/interac.svg';
+import linkIcon from 'assets/img/icon/link.svg';
+import mykoboIcon from 'assets/img/icon/mykobo.svg';
+import cardIcon from 'assets/img/icon/card.svg';
+import mtPelerinIcon from 'assets/img/icon/mt_pelerin.svg';
+import mobileMoneyIcon from 'assets/img/icon/mobileMoney.svg';
+import billerIcon from 'assets/img/icon/biller.svg';
+
 export const CURRENCY = [
     {
         name: 'Nigerian Naira',
@@ -724,5 +734,457 @@ export const getMatch = (name: string) => {
             return FLAG['NGN'];
         default:
             return FLAG['USD'];
+    }
+};
+
+export const getPaymentMethod = (network: string, token: string, type: string) => {
+    if (type === 'topup') {
+        switch (token) {
+            case 'ARST':
+            case 'AUDD':
+            case 'BRLT':
+            case 'BRZ':
+            case 'CNHC':
+            case 'GBPT':
+            case 'NGNC':
+            case 'TCNH':
+            case 'TGBP':
+            case 'TRYB':
+            case 'ZARP':
+                return [
+                    {
+                        title: 'Bank Transfer',
+                        sub: 'Top up with your Bank Account',
+                        icon: bankIcon
+                    }
+                ];
+            case 'ARS':
+            case 'BRL':
+                return [
+                    {
+                        title: 'Multiple payment options',
+                        sub: 'Bank Account, Cash, Card or Bill Payment ',
+                        icon: multipleIcon
+                    }
+                ];
+            case 'CADC':
+                return [
+                    {
+                        title: 'Bank Transfer',
+                        sub: 'Top up with your Bank Account ',
+                        icon: bankIcon
+                    },
+                    {
+                        title: 'Interac',
+                        sub: 'Top up with an Interac e-Transfer ',
+                        icon: interacIcon
+                    }
+                ];
+            case 'EURC':
+                return [
+                    {
+                        title: 'Bank Transfer',
+                        sub: 'Top up with your Bank Account ',
+                        icon: bankIcon,
+                        child: [
+                            {
+                                title: 'LINK',
+                                icon: linkIcon
+                            },
+                            {
+                                title: 'MYKOBO',
+                                icon: mykoboIcon
+                            }
+                        ]
+                    }
+                ];
+            case 'EUROC':
+                return [
+                    {
+                        title: 'Bank Transfer',
+                        sub: 'Top up with your Bank Account ',
+                        icon: bankIcon,
+                        child: [
+                            {
+                                title: 'LINK',
+                                icon: linkIcon
+                            },
+                            {
+                                title: 'Mt Pelerin',
+                                icon: mtPelerinIcon
+                            }
+                        ]
+                    },
+                    {
+                        title: 'Card',
+                        sub: 'Top up with your Card',
+                        icon: cardIcon
+                    }
+                ];
+            case 'EURS':
+            case 'EURT':
+                return [
+                    {
+                        title: 'Bank Transfer',
+                        sub: 'Top up with your Bank Account ',
+                        icon: bankIcon
+                    },
+                    {
+                        title: 'Card',
+                        sub: 'Top up with your Card',
+                        icon: cardIcon
+                    }
+                ];
+            case 'GHSC':
+                return [
+                    {
+                        title: 'Mobile Money',
+                        sub: 'Top up with your Mobile Money Wallet',
+                        icon: mobileMoneyIcon
+                    }
+                ];
+            case 'JEUR':
+                if (network === 'Polygon') {
+                    return [
+                        {
+                            title: 'Bank Transfer',
+                            sub: 'Top up with your Bank Account ',
+                            icon: bankIcon
+                        },
+                        {
+                            title: 'Card',
+                            sub: 'Top up with your Card',
+                            icon: cardIcon
+                        }
+                    ];
+                } else {
+                    return [
+                        {
+                            title: 'Bank Transfer',
+                            sub: 'Top up with your Bank Account ',
+                            icon: bankIcon
+                        }
+                    ];
+                }
+            case 'KES':
+            case 'RWF':
+            case 'TZS':
+                return [
+                    {
+                        title: 'Bank Transfer',
+                        sub: 'Top up with your Bank Account ',
+                        icon: bankIcon
+                    },
+                    {
+                        title: 'Mobile Money',
+                        sub: 'Top up with your Mobile Money Wallet',
+                        icon: mobileMoneyIcon
+                    }
+                ];
+            case 'QCAD':
+                return [
+                    {
+                        title: 'Bank Transfer',
+                        sub: 'Top up with your Bank Account ',
+                        icon: bankIcon
+                    },
+                    {
+                        title: 'Biller',
+                        sub: 'Top up with your Biller ',
+                        icon: billerIcon
+                    }
+                ];
+            case 'USDC':
+                if (network === 'Stellar') {
+                    return [
+                        {
+                            title: 'Bank Transfer',
+                            sub: 'Top up with your Bank Account ',
+                            icon: bankIcon
+                        },
+                        {
+                            title: 'MoneyGram',
+                            sub: 'Top up with your MoneyGram station ',
+                            icon: moneyGramIcon
+                        }
+                    ];
+                } else {
+                    return [
+                        {
+                            title: 'Bank Transfer',
+                            sub: 'Top up with your Bank Account ',
+                            icon: bankIcon,
+                            child: [
+                                {
+                                    title: 'LINK',
+                                    icon: linkIcon
+                                },
+                                {
+                                    title: 'Mt Pelerin',
+                                    icon: mtPelerinIcon
+                                }
+                            ]
+                        },
+                        {
+                            title: 'Card',
+                            sub: 'Top up with your Card',
+                            icon: cardIcon
+                        }
+                    ];
+                }
+            case 'USDT':
+                if (network === 'Ethereum' || network === 'Polygon' || network === 'Avalanche') {
+                    return [
+                        {
+                            title: 'Bank Transfer',
+                            sub: 'Top up with your Bank Account ',
+                            icon: bankIcon,
+                            child: [
+                                {
+                                    title: 'LINK',
+                                    icon: linkIcon
+                                },
+                                {
+                                    title: 'Mt Pelerin',
+                                    icon: mtPelerinIcon
+                                }
+                            ]
+                        },
+                        {
+                            title: 'Card',
+                            sub: 'Top up with your Card',
+                            icon: cardIcon
+                        }
+                    ];
+                } else {
+                    return [
+                        {
+                            title: 'Bank Transfer',
+                            sub: 'Top up with your Bank Account ',
+                            icon: bankIcon
+                        }
+                    ];
+                }
+            default:
+                return {
+                    title: 'Bank Transfer',
+                    sub: 'Top up with your Bank Account ',
+                    icon: bankIcon
+                };
+        }
+    } else {
+        switch (token) {
+            case 'ARST':
+            case 'AUDD':
+            case 'BRLT':
+            case 'BRZ':
+            case 'CNHC':
+            case 'GBPT':
+            case 'NGNC':
+            case 'TCNH':
+            case 'TGBP':
+            case 'TRYB':
+            case 'ZARP':
+                return [
+                    {
+                        title: 'Bank Transfer',
+                        sub: 'Withdraw to  your Bank Account',
+                        icon: bankIcon
+                    }
+                ];
+            case 'ARS':
+            case 'BRL':
+                return [
+                    {
+                        title: 'Multiple payment options',
+                        sub: 'Bank Account, Cash, Card or Bill Payment ',
+                        icon: multipleIcon
+                    }
+                ];
+            case 'CADC':
+                return [
+                    {
+                        title: 'Bank Transfer',
+                        sub: 'Withdraw to  your Bank Account ',
+                        icon: bankIcon
+                    },
+                    {
+                        title: 'Interac',
+                        sub: 'Withdraw with an Interac e-Transfer',
+                        icon: interacIcon
+                    }
+                ];
+            case 'EURC':
+                return [
+                    {
+                        title: 'Bank Transfer',
+                        sub: 'Withdraw to  your Bank Account',
+                        icon: bankIcon,
+                        child: [
+                            {
+                                title: 'LINK',
+                                icon: linkIcon
+                            },
+                            {
+                                title: 'MYKOBO',
+                                icon: mykoboIcon
+                            }
+                        ]
+                    }
+                ];
+            case 'EUROC':
+                return [
+                    {
+                        title: 'Bank Transfer',
+                        sub: 'Withdraw with your Bank Account ',
+                        icon: bankIcon,
+                        child: [
+                            {
+                                title: 'LINK',
+                                icon: linkIcon
+                            },
+                            {
+                                title: 'Mt Pelerin',
+                                icon: mtPelerinIcon
+                            }
+                        ]
+                    }
+                ];
+            case 'EURS':
+            case 'EURT':
+                return [
+                    {
+                        title: 'Bank Transfer',
+                        sub: 'Withdraw with your Bank Account ',
+                        icon: bankIcon
+                    }
+                ];
+            case 'GHSC':
+                return [
+                    {
+                        title: 'Mobile Money',
+                        sub: 'Withdraw with your Mobile Money Wallet',
+                        icon: mobileMoneyIcon
+                    }
+                ];
+            case 'JEUR':
+                if (network === 'Polygon') {
+                    return [
+                        {
+                            title: 'Bank Transfer',
+                            sub: 'Withdraw with your Bank Account ',
+                            icon: bankIcon
+                        }
+                    ];
+                } else {
+                    return [
+                        {
+                            title: 'Bank Transfer',
+                            sub: 'Top up with your Bank Account ',
+                            icon: bankIcon
+                        }
+                    ];
+                }
+            case 'KES':
+            case 'RWF':
+            case 'TZS':
+                return [
+                    {
+                        title: 'Bank Transfer',
+                        sub: 'Withdraw with your Bank Account ',
+                        icon: bankIcon
+                    },
+                    {
+                        title: 'Mobile Money',
+                        sub: 'Withdraw with your Mobile Money Wallet',
+                        icon: mobileMoneyIcon
+                    }
+                ];
+            case 'QCAD':
+                return [
+                    {
+                        title: 'Bank Transfer',
+                        sub: 'Withdraw with your Bank Account ',
+                        icon: bankIcon
+                    },
+                    {
+                        title: 'Biller',
+                        sub: 'Withdraw with your Biller ',
+                        icon: billerIcon
+                    }
+                ];
+            case 'USDC':
+                if (network === 'Stellar') {
+                    return [
+                        {
+                            title: 'Bank Transfer',
+                            sub: 'Withdraw with your Bank Account ',
+                            icon: bankIcon
+                        },
+                        {
+                            title: 'MoneyGram',
+                            sub: 'Withdraw with your MoneyGram station ',
+                            icon: moneyGramIcon
+                        }
+                    ];
+                } else {
+                    return [
+                        {
+                            title: 'Bank Transfer',
+                            sub: 'Withdraw with your Bank Account ',
+                            icon: bankIcon,
+                            child: [
+                                {
+                                    title: 'LINK',
+                                    icon: linkIcon
+                                },
+                                {
+                                    title: 'Mt Pelerin',
+                                    icon: mtPelerinIcon
+                                }
+                            ]
+                        }
+                    ];
+                }
+            case 'USDT':
+                if (network === 'Ethereum' || network === 'Polygon' || network === 'Avalanche') {
+                    return [
+                        {
+                            title: 'Bank Transfer',
+                            sub: 'Withdraw with your Bank Account ',
+                            icon: bankIcon,
+                            child: [
+                                {
+                                    title: 'LINK',
+                                    icon: linkIcon
+                                },
+                                {
+                                    title: 'Mt Pelerin',
+                                    icon: mtPelerinIcon
+                                }
+                            ]
+                        },
+                        {
+                            title: 'Card',
+                            sub: 'Withdraw with your Card',
+                            icon: cardIcon
+                        }
+                    ];
+                } else {
+                    return [
+                        {
+                            title: 'Bank Transfer',
+                            sub: 'Withdraw with your Bank Account ',
+                            icon: bankIcon
+                        }
+                    ];
+                }
+            default:
+                return {
+                    title: 'Bank Transfer',
+                    sub: 'Withdraw with your Bank Account ',
+                    icon: bankIcon
+                };
+        }
     }
 };

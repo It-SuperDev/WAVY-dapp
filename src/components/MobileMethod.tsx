@@ -1,18 +1,37 @@
+import { useState, useEffect } from 'react';
 // Icons
 import { ReactComponent as CloseIcon } from 'assets/img/icon/close.svg';
 import { ReactComponent as ChevronRightIcon } from 'assets/img/icon/chevron-right.svg';
 
 import { TOP_METHOD, WITHDRAW_METHOD } from 'config/constants/demo';
-import { useAppSelector } from 'hooks/useRedux';
+import { useAppDispatch, useAppSelector } from 'hooks/useRedux';
+import { changeMethod } from 'redux/info';
 
 const MobileMethod = ({ isTop, size, close, callback, tokenName }: any) => {
     const prevent = (e: any) => {
         e.preventDefault();
     };
-
+    const dispatch = useAppDispatch();
     const network = useAppSelector((state) => state.network);
+    const { methods } = useAppSelector((state) => state.info);
+    const [showChild, setShowChild] = useState(false);
+    const [childrens, setChildrens] = useState([]);
 
     const data = isTop ? TOP_METHOD : WITHDRAW_METHOD;
+
+    const selectMethod = (method: { title: string; icon: string; sub: string; child?: any }) => {
+        if (method.child) {
+            setChildrens(method.child);
+            setShowChild(true);
+        } else {
+            dispatch(changeMethod({ title: method.title, icon: method.icon }));
+            callback();
+        }
+    };
+
+    useEffect(() => {
+        setShowChild(false);
+    }, []);
 
     return (
         <>
@@ -31,62 +50,54 @@ const MobileMethod = ({ isTop, size, close, callback, tokenName }: any) => {
                     )}
                     <div>
                         <h2 className="text-center text-xl font-bold font-Unbounded ">
-                            {isTop ? 'Top up with' : 'Withdraw to'}
+                            {showChild ? 'Choose a provider' : isTop ? 'Top up with' : 'Withdraw to'}
                         </h2>
                         <p className="text-center text-sm text-[#ACACAE]">
-                            {isTop ? 'Select top up option' : 'Select withdrawal option'}
+                            {showChild
+                                ? 'Select a provider to Top Up with your Bank account'
+                                : isTop
+                                ? 'Select top up option'
+                                : 'Select withdrawal option'}
                         </p>
                     </div>
                 </div>
                 <div className="py-[30px]">
                     <div className="py-2">
-                        {network.sub !== 'Stellar' ? (
-                            <div className="flex flex-col">
-                                <li
-                                    className="cursor-pointer px-5 py-4 mb-2 bg-[#242429] rounded-lg flex items-center "
-                                    onClick={() => callback()}
-                                >
-                                    <div className="bg-[#494979] mr-2 w-[34px] h-[34px] flex items-center justify-center rounded-full">
-                                        <img src={data[0].icon} className="h-[20px] w-[20px]" alt="currency" />
-                                    </div>
-                                    <div className="mr-auto">
-                                        <p> {data[0].name}</p>
-                                        <p className="text-xs text-[#ACACAE] whitespace-pre-wrap"> {data[0].sub}</p>
-                                    </div>
-                                    <ChevronRightIcon className="w-4 h-4" />
-                                </li>
-                            </div>
-                        ) : (
-                            <>
-                                {(() => {
-                                    const redata = tokenName === 'USDC' ? data : data.slice(0, -1);
-                                    return redata.map(
-                                        (
-                                            { name, sub, icon }: { name: string; sub: string; icon: string },
-                                            i: number
-                                        ) => (
-                                            <div className="flex flex-col" key={i}>
-                                                <li
-                                                    className="cursor-pointer px-5 py-4 mb-2 bg-[#242429] rounded-lg flex items-center "
-                                                    onClick={() => callback(i)}
-                                                >
-                                                    <div className="bg-[#494979] mr-2 w-[34px] h-[34px] flex items-center justify-center rounded-full">
-                                                        <img src={icon} className="h-[20px] w-[20px]" alt="currency" />
-                                                    </div>
-                                                    <div className="mr-auto">
-                                                        <p> {name}</p>
-                                                        <p className="text-xs text-[#ACACAE] whitespace-pre-wrap">
-                                                            {sub}
-                                                        </p>
-                                                    </div>
-                                                    <ChevronRightIcon className="w-4 h-4" />
-                                                </li>
-                                            </div>
-                                        )
-                                    );
-                                })()}
-                            </>
-                        )}
+                        {showChild
+                            ? childrens.map((one: any, i: number) => (
+                                  <div className="flex flex-col" key={i}>
+                                      <li
+                                          className="cursor-pointer px-5 py-4 mb-2 bg-[#242429] rounded-lg flex items-center "
+                                          onClick={() => selectMethod(one)}
+                                      >
+                                          <div className="bg-[#494979] mr-2 w-[34px] h-[34px] flex items-center justify-center rounded-full">
+                                              <img src={one.icon} className="h-[20px] w-[20px]" alt="currency" />
+                                          </div>
+                                          <div className="mr-auto">
+                                              <p> {one.title}</p>
+                                              <p className="text-xs text-[#ACACAE] whitespace-pre-wrap">{one.sub}</p>
+                                          </div>
+                                          <ChevronRightIcon className="w-4 h-4" />
+                                      </li>
+                                  </div>
+                              ))
+                            : methods.list.map((one: any, i: number) => (
+                                  <div className="flex flex-col" key={i}>
+                                      <li
+                                          className="cursor-pointer px-5 py-4 mb-2 bg-[#242429] rounded-lg flex items-center "
+                                          onClick={() => selectMethod(one)}
+                                      >
+                                          <div className="bg-[#494979] mr-2 w-[34px] h-[34px] flex items-center justify-center rounded-full">
+                                              <img src={one.icon} className="h-[20px] w-[20px]" alt="currency" />
+                                          </div>
+                                          <div className="mr-auto">
+                                              <p> {one.title}</p>
+                                              <p className="text-xs text-[#ACACAE] whitespace-pre-wrap">{one.sub}</p>
+                                          </div>
+                                          <ChevronRightIcon className="w-4 h-4" />
+                                      </li>
+                                  </div>
+                              ))}
                     </div>
                 </div>
             </div>
