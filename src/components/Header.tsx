@@ -1,38 +1,33 @@
-import React, { useMemo, useState, useEffect, useRef } from 'react';
+import { useMemo, useState, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'hooks/useRedux';
+import { changeNet } from 'redux/network';
 
 // Componant
 import InfoList from './InfoList';
 import MoreInfo from './MoreInfo';
 import MenuList from './MenuList';
 import MobileList from './MobileList';
-import { ConnectButton, HeaderButton, IconButton } from './Styled';
 
 // Icon
 import logo from '../assets/img/logo.svg';
 import admin from '../assets/img/icon/admin.svg';
 
 // Constants
-import {
-    CURRENCY,
-    LANGUAGE,
-    NETWORK,
-    CONNECTED,
-    LOGOUT,
-    SEND_DATA,
-    SWAP_DATA,
-    OFFER,
-    BRIDGE,
-    TOPUP,
-    WITHDRAW
-} from '../config/constants/demo';
+import { CURRENCY, LANGUAGE, NETWORK, CONNECTED, LOGOUT } from '../config/constants/demo';
+
 import useConfig from 'hooks/useConfig';
+import { changeBridge } from 'redux/bridge';
+import { changeCurrency, changeConnect, changeLanguage } from 'redux/info';
 
 const Header = () => {
-    const { pathname } = useLocation();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const gData = useConfig();
-    const { changeData, initData, isMobile } = gData;
+
+    const { isMobile } = useConfig();
+    const { pathname } = useLocation();
+    const network = useAppSelector((state) => state.network);
+    const { currency, language, connect } = useAppSelector((state) => state.info);
 
     const isHeader = useMemo(() => {
         return !(pathname === '/dashboard' || pathname === '/login' || pathname === '/stables');
@@ -44,96 +39,89 @@ const Header = () => {
 
     const connectBtn = useRef();
 
-    const [logout, setLogout] = useState(false);
-    const [connect, setConnect] = useState(-1);
-    const [currentNet, setCurrentNet] = useState(0);
-    const [currentLang, setCurrentLang] = useState(1);
-    const [currentCurrency, setCurrentCurrency] = useState(1);
-
-    const [netAnchor, setNetAnchor] = useState<null | HTMLElement>(null);
-    const [langAnchor, setLangAnchor] = useState<null | HTMLElement>(null);
-    const [infoAnchor, setInfoAnchor] = useState<null | HTMLElement>(null);
-    const [currencyAnchor, setCurrencyAnchor] = useState<null | HTMLElement>(null);
-    const [walletAnchor, setWalletAnchor] = useState<null | HTMLElement>(null);
-    const [mobileInfo, setMobileInfo] = useState(false);
     const [copied, setCopied] = useState(false);
+    const [logout, setLogout] = useState(false);
+    const [netAnchor, setNetAnchor] = useState(false);
+    const [langAnchor, setLangAnchor] = useState(false);
+    const [mobileInfo, setMobileInfo] = useState(false);
+    const [infoAnchor, setInfoAnchor] = useState(false);
+    const [walletAnchor, setWalletAnchor] = useState(false);
+    const [currencyAnchor, setCurrencyAnchor] = useState(false);
 
-    const currencyHandle = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setCurrencyAnchor(event.currentTarget);
+    const currencyHandle = () => {
+        setCurrencyAnchor(true);
     };
     const currencyClose = () => {
-        setCurrencyAnchor(null);
+        setCurrencyAnchor(false);
     };
     const setCurrency = (i: number) => {
-        setCurrentCurrency(i);
-        changeData({ key: 'CURRENCY', data: CURRENCY[i].mark });
+        dispatch(changeCurrency(CURRENCY[i]));
         currencyClose();
     };
 
-    const langHandle = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setLangAnchor(event.currentTarget);
+    const langHandle = () => {
+        setLangAnchor(true);
     };
     const langClose = () => {
-        setLangAnchor(null);
+        setLangAnchor(false);
     };
     const setLang = (i: number) => {
-        setCurrentLang(i);
+        dispatch(changeLanguage(LANGUAGE[i]));
         langClose();
     };
 
-    const netHandle = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setNetAnchor(event.currentTarget);
+    const netHandle = () => {
+        setNetAnchor(true);
     };
     const netClose = () => {
-        setNetAnchor(null);
+        setNetAnchor(false);
     };
     const setNet = (i: number) => {
-        setCurrentNet(i);
-        if (connect !== -1) setConnect(0);
-        changeData({ key: 'connect', data: NETWORK[currentNet].wallet[0] });
         netClose();
-        changeData({ key: 'NETWORK', data: NETWORK[i] });
+        if (connect !== null) {
+            dispatch(changeConnect(NETWORK[i].wallet[0]));
+        }
+
+        dispatch(changeNet(NETWORK[i]));
+
         if (i === 1 || i === 3) {
-            changeData({
-                key: 'BRIDGE',
-                data: {
+            dispatch(
+                changeBridge({
                     sIdx: 0,
                     rIdx: 0,
                     sNet: i,
                     rNet: i === 1 ? 3 : 1
-                }
-            });
+                })
+            );
         }
     };
 
-    const walletHandle = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setWalletAnchor(event.currentTarget);
+    const walletHandle = () => {
+        setWalletAnchor(true);
     };
     const walletClose = () => {
-        setWalletAnchor(null);
+        setWalletAnchor(false);
     };
     const setWallet = (i: number) => {
-        setConnect(i);
-        changeData({ key: 'connect', data: NETWORK[currentNet].wallet[i] });
+        dispatch(changeConnect(network.wallet[i]));
         walletClose();
     };
 
-    const infoHandle = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const infoHandle = () => {
         if (isMobile) {
             setMobileInfo(true);
         } else {
-            setInfoAnchor(event.currentTarget);
+            setInfoAnchor(true);
         }
     };
     const infoClose = () => {
-        setInfoAnchor(null);
+        setInfoAnchor(false);
     };
     const setInfo = (i: number) => {
-        setInfoAnchor(null);
+        setInfoAnchor(false);
         if (i) {
-            setConnect(-1);
+            dispatch(changeConnect(null));
             navigate('/');
-            changeData({ key: 'connect', data: null });
         } else {
             setCopied(true);
             setTimeout(() => setCopied(false), 1000);
@@ -145,37 +133,23 @@ const Header = () => {
         setLogout(false);
     };
 
-    useEffect(() => {
-        initData({
-            NETWORK: NETWORK[0],
-            SEND: SEND_DATA,
-            SWAP: SWAP_DATA,
-            OFFER,
-            BRIDGE,
-            TOPUP,
-            WITHDRAW,
-            connect: null,
-            CURRENCY: '$'
-        });
-        // eslint-disable-next-line
-    }, []);
-
     return (
         <header className="flex items-center justify-between w-full md:pt-10 pt-2 md:px-0 px-5">
             <div className="hidden md:flex items-center">
                 <Link to="/">
                     <img src={logo} alt="logo" className="h-10 my-[2px]" />
                 </Link>
+
                 {isHeader && (
                     <>
                         <div className="ml-10 relative">
-                            <HeaderButton
-                                className="md:bg-[#2e2d4e] bg-[#242429] md:border-[0px] border-[0.5px] border-[#ACACAE]"
+                            <button
+                                className="rounded-lg px-[20px] py-[10px] flex items-center text-base md:bg-[#2e2d4e] bg-[#242429] md:border-[0px] border-[0.5px] border-[#ACACAE]"
                                 onClick={currencyHandle}
                             >
-                                <img src={CURRENCY[currentCurrency].icon} alt="currency" className="mr-2" />
-                                {CURRENCY[currentCurrency].name}
-                            </HeaderButton>
+                                <img src={currency.icon} alt="currency" className="mr-2 w-[24px] h-[24px]" />
+                                {currency.name}
+                            </button>
                             <MenuList
                                 top={50}
                                 minWidth={200}
@@ -186,9 +160,12 @@ const Header = () => {
                             />
                         </div>
                         <div className="ml-5 relative">
-                            <IconButton onClick={langHandle} className="bg-[#2e2d4e]">
-                                <img src={LANGUAGE[currentLang].icon} alt="lang" />
-                            </IconButton>
+                            <button
+                                onClick={langHandle}
+                                className="rounded-lg p-[10px] flex items-center cursor-pointer bg-[#2e2d4e]"
+                            >
+                                <img src={language.icon} alt="lang" className="w-[24px] h-[24px]" />
+                            </button>
                             <MenuList
                                 top={50}
                                 minWidth={200}
@@ -207,9 +184,9 @@ const Header = () => {
 
             {copied && (
                 <div className="absolute flex top-0 left-0 z-30 w-full justify-center">
-                    <ConnectButton className="bg-[#5A4EE8] md:text-base px-[20px]  md:py-[8px] py-[5px] text-sm absolute md:rounded-lg rounded-full md:top-[40px] top-[8px]">
+                    <div className="bg-[#5A4EE8] flex items-center text-base cursor-pointer md:text-base px-[20px]  md:py-[8px] py-[5px] text-sm absolute md:rounded-lg rounded-full md:top-[40px] top-[8px]">
                         Address copied
-                    </ConnectButton>
+                    </div>
                 </div>
             )}
 
@@ -217,12 +194,12 @@ const Header = () => {
                 {isHeader && (
                     <>
                         <div className="relative">
-                            <IconButton
+                            <button
                                 onClick={netHandle}
-                                className="md:bg-[#2e2d4e] bg-[#242429] md:border-[0px] border-[0.5px] border-[#ACACAE] h-[44px]"
+                                className="rounded-lg p-[10px] flex items-center cursor-pointer md:bg-[#2e2d4e] bg-[#242429] md:border-[0px] border-[0.5px] border-[#ACACAE] h-[44px]"
                             >
-                                <img src={NETWORK[currentNet].icon} alt="net" />
-                            </IconButton>
+                                <img src={network.icon} alt="net" className="w-[24px] h-[24px]" />
+                            </button>
                             {!isMobile && (
                                 <MenuList
                                     top={50}
@@ -235,32 +212,28 @@ const Header = () => {
                             )}
                         </div>
                         <div className="ml-5 h-[44px] relative">
-                            {connect === -1 ? (
-                                <HeaderButton
-                                    className="md:bg-[#2e2d4e] bg-[#242429] md:border-[0px] border-[0.5px] border-[#ACACAE]"
+                            {connect === null ? (
+                                <button
+                                    className="rounded-lg px-[20px] py-[10px] flex items-center text-base md:bg-[#2e2d4e] bg-[#242429] md:border-[0px] border-[0.5px] border-[#ACACAE]"
                                     onClick={walletHandle}
                                     ref={connectBtn}
                                 >
                                     {isMobile ? 'Connect' : 'Connect wallet'}
-                                </HeaderButton>
+                                </button>
                             ) : (
-                                <HeaderButton
-                                    className="md:bg-[#2e2d4e] bg-[#242429] md:border-[0px] border-[0.5px] border-[#ACACAE]"
+                                <button
+                                    className="rounded-lg px-[20px] py-[10px] flex items-center text-base md:bg-[#2e2d4e] bg-[#242429] md:border-[0px] border-[0.5px] border-[#ACACAE]"
                                     onClick={infoHandle}
                                 >
-                                    <img
-                                        src={NETWORK[currentNet].wallet[connect].icon}
-                                        alt="currency"
-                                        className="mr-2"
-                                    />
+                                    <img src={connect.icon} alt="currency" className="mr-2 w-[24px] h-[24px]" />
                                     GALH....Z7I7
-                                </HeaderButton>
+                                </button>
                             )}
                             {!isMobile && (
                                 <>
                                     <MenuList
                                         top={50}
-                                        data={NETWORK[currentNet].wallet}
+                                        data={network.wallet}
                                         minWidth={150}
                                         anchor={walletAnchor}
                                         close={walletClose}
@@ -281,13 +254,13 @@ const Header = () => {
                 )}
                 {isAdmin && (
                     <div className="ml-5 relative">
-                        <HeaderButton
-                            className="md:bg-[#2e2d4e] bg-[#242429] md:border-[0px] border-[0.5px] border-[#ACACAE]"
+                        <button
+                            className="rounded-lg px-[20px] py-[10px] flex items-center text-base md:bg-[#2e2d4e] bg-[#242429] md:border-[0px] border-[0.5px] border-[#ACACAE]"
                             onClick={() => setLogout(true)}
                         >
-                            <img src={admin} alt="currency" className="mr-2" />
+                            <img src={admin} alt="currency" className="mr-2 w-[24px] h-[24px]" />
                             Admin
-                        </HeaderButton>
+                        </button>
                         {logout && (
                             <>
                                 <div className="absolute left-0 py-2 rounded-lg bg-[#2e2d4e] z-20 top-[50px] min-w-[150px]">
@@ -330,7 +303,7 @@ const Header = () => {
                         <MobileList
                             title="Connect wallet"
                             sub="Connect your wallet compatible with the  network"
-                            data={NETWORK[currentNet].wallet}
+                            data={network.wallet}
                             close={walletClose}
                             callback={setWallet}
                         />
@@ -341,9 +314,9 @@ const Header = () => {
                             infoData={CONNECTED}
                             infoHandle={infoHandle}
                             infoCallback={setInfo}
-                            wallet={NETWORK[currentNet].wallet}
-                            langIcon={LANGUAGE[currentLang].icon}
-                            currency={CURRENCY[currentCurrency]}
+                            wallet={network.wallet}
+                            langIcon={language.icon}
+                            currency={currency}
                             currencyCallback={setCurrency}
                             langCallback={setLang}
                             close={() => setMobileInfo(false)}

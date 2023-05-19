@@ -1,8 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-// component
-import { CardDiv, PrimaryButton, WhiteButton } from 'components/Styled';
 
 import Dialog from 'components/Dialog';
 
@@ -11,18 +8,17 @@ import { ReactComponent as CloseIcon } from 'assets/img/icon/close.svg';
 import { ReactComponent as SuccessIcon } from 'assets/img/icon/success.svg';
 import { ReactComponent as BackIcon } from '../assets/img/icon/arrow_back.svg';
 
-import { NETWORK } from 'config/constants/demo';
-import { DemoDataProps } from 'types/config';
-
-import useConfig from 'hooks/useConfig';
+import { useAppSelector } from 'hooks/useRedux';
 
 const Dashboard = () => {
     const navigate = useNavigate();
-    const contextData = useConfig();
+    const selectedNet = useAppSelector((state) => state.selectedNet);
 
     const [open, setOpen] = useState(false);
     const [delopen, setDelOpen] = useState(false);
     const [endOpen, setEndOpen] = useState(0);
+
+    const [delToken, setDelToken] = useState({ name: '', icon: '', sub: '' });
 
     const handleClose = () => {
         setOpen(false);
@@ -34,8 +30,9 @@ const Dashboard = () => {
     const delHandleClose = () => {
         setDelOpen(false);
     };
-    const delHandleOpen = () => {
+    const delHandleOpen = (one: any) => {
         setDelOpen(true);
+        setDelToken(one);
     };
 
     const endHandleClose = () => {
@@ -47,27 +44,23 @@ const Dashboard = () => {
         handleClose();
     };
 
-    useEffect(() => {
-        if (!contextData || !contextData.SelectedNet) navigate('/dashboard');
-    }, [contextData, navigate]);
-
     return (
         <>
-            <CardDiv className="card p-8 min-w-[760px]">
+            <div className="card p-8 min-w-[760px]">
                 <div className="flex items-center justify-between relative mb-10 mx-[24px]">
                     <div
                         onClick={() => navigate(-1)}
                         className="absolute -left-10 flex justify-center items-center p-1 rounded-full hover:bg-[#ffffff1a] cursor-pointer"
                     >
-                        <BackIcon className="h-4 w-4" />
+                        <BackIcon className="h-6 w-6" />
                     </div>
                     <div className="flex items-center">
                         <img
-                            src={contextData.SelectedNet.icon}
+                            src={selectedNet.icon}
                             alt="logo"
-                            className="rounded-full bg-white h-[40px] w-[40px] mr-2"
+                            className="rounded-full bg-white h-[30px] w-[30px] mr-2"
                         />
-                        <h1 className="text-3xl font-bold font-Unbounded">{`${contextData.SelectedNet.sub} Stables`}</h1>
+                        <h1 className="text-3xl font-bold font-Unbounded">{`${selectedNet.sub} Stables`}</h1>
                     </div>
                     <button onClick={handleOpen} className="px-6 py-3 rounded-md bg-primary text-xs">
                         Add Stables
@@ -75,10 +68,10 @@ const Dashboard = () => {
                 </div>
                 <div className="px-5 mb-5">
                     <div className="grid grid-cols-3 gap-4 mt-10">
-                        {contextData.SelectedNet.token.map(({ name, sub, icon }: DemoDataProps, i: number) => (
+                        {selectedNet.token.map(({ name, sub, icon }: any, i: number) => (
                             <div
                                 key={i}
-                                onClick={delHandleOpen}
+                                onClick={() => delHandleOpen({ name, sub, icon })}
                                 className="min-w-[30%] flex w-full cursor-pointer items-center justify-between rounded-lg border-[0.6px] border-[#ACACAE] py-4 px-5"
                             >
                                 <div className="flex items-center">
@@ -98,7 +91,7 @@ const Dashboard = () => {
                         ))}
                     </div>
                 </div>
-            </CardDiv>
+            </div>
             <Dialog open={open} onClose={handleClose}>
                 <div className="flex items-center justify-center relative mb-10 mt-3 mx-[24px]">
                     <div
@@ -157,9 +150,12 @@ const Dashboard = () => {
                             </div>
                         </>
                     )}
-                    <PrimaryButton onClick={() => endHandleOpen(1)} className="w-full mt-[65px] py-4">
+                    <button
+                        onClick={() => endHandleOpen(1)}
+                        className="w-full mt-[65px] py-4 bg-[#5a4ee8] rounded-lg cursor-pointer"
+                    >
                         Add Stables
-                    </PrimaryButton>
+                    </button>
                 </div>
             </Dialog>
             <Dialog open={delopen} onClose={delHandleClose}>
@@ -171,18 +167,14 @@ const Dashboard = () => {
                         <CloseIcon className="h-4 w-4" />
                     </div>
                     <div className="flex items-center">
-                        <img
-                            src={NETWORK[0].icon}
-                            alt="logo"
-                            className="rounded-full bg-white h-[40px] w-[40px] mr-2"
-                        />
-                        <h1 className="text-3xl font-bold font-Unbounded">ARS</h1>
+                        <img src={delToken.icon} alt="logo" className="rounded-full bg-white h-[40px] w-[40px] mr-2" />
+                        <h1 className="text-3xl font-bold font-Unbounded">{delToken.name}</h1>
                     </div>
                 </div>
                 <div className="w-full px-10 mb-[30px]">
                     <div className="mb-7">
                         <p className="text-xs mb-1">Asset Code</p>
-                        <p className="text-sm text-light-dark">ARS</p>
+                        <p className="text-sm text-light-dark">{delToken.name}</p>
                     </div>
                     <div className="mb-7">
                         <p className="text-xs mb-1">Currency</p>
@@ -198,9 +190,12 @@ const Dashboard = () => {
                         <p className="text-xs mb-1">Org URL</p>
                         <p className="text-sm text-light-dark">api.anclap.com</p>
                     </div>
-                    <WhiteButton onClick={() => endHandleOpen(2)} className="w-full mt-[40px] py-4">
+                    <button
+                        onClick={() => endHandleOpen(2)}
+                        className="w-full mt-[40px] py-4 bg-[#FFFFFF] rounded-lg text-[#151518] cursor-pointer"
+                    >
                         <span className="text-red-700">Remove Stable</span>
-                    </WhiteButton>
+                    </button>
                 </div>
             </Dialog>
             <Dialog open={Boolean(endOpen)} onClose={endHandleClose}>

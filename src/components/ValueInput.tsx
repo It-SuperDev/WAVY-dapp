@@ -3,7 +3,6 @@ import { useState } from 'react';
 // Icon
 import { ReactComponent as KeyboardArrowDownIcon } from 'assets/img/icon/chevron-down.svg';
 
-import { Input } from './Styled';
 import useConfig from 'hooks/useConfig';
 
 const ValueInput = ({ title, value, available, token, classes, disable, hideTitle, onChange }: any) => {
@@ -34,13 +33,13 @@ const ValueInput = ({ title, value, available, token, classes, disable, hideTitl
                         style={{ borderColor: isError ? '#FF0004' : '#ACACAE' }}
                     >
                         <div className="flex flex-row w-full align-center justify-start">
-                            <Input
+                            <input
                                 type="number"
                                 min="0"
                                 pattern="[0-9]*"
                                 value={val}
                                 onChange={handleValue}
-                                className="w-1/2"
+                                className="w-1/2 p-0 border-none text-[30px] leading-none text-[#ffffff] mt-[4px] bg-transparent"
                                 style={{ fontSize: '18px !important' }}
                             />
                             <div className="flex items-center justify-center">
@@ -72,7 +71,12 @@ const ValueInput = ({ title, value, available, token, classes, disable, hideTitl
                 </div>
                 <div className="flex flex-row w-full align-center justify-between">
                     <div className="flex flex-col w-4/5">
-                        <Input type="number" value={val} onChange={handleValue} className="w-full" />
+                        <input
+                            type="number"
+                            value={val}
+                            onChange={handleValue}
+                            className="w-full p-0 border-none text-[30px] leading-none text-[#ffffff] mt-[4px] bg-transparent"
+                        />
                         {isError ? <span className="text-xs text-rose-700">Insufficient balance</span> : null}
                     </div>
                     <div className="flex items-center justify-center">

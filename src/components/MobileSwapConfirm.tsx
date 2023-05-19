@@ -1,8 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 
-// Component
-import { OutlineButton, PrimaryButton } from './Styled';
-
 // Icon
 import { ReactComponent as EastIcon } from 'assets/img/icon/arrow-right.svg';
 
@@ -51,12 +48,18 @@ const MobileSwapConfirm = ({ close, data, equal }: any) => {
                         </div>
                     </div>
                     <div className="flex justify-between items-center w-full mt-20">
-                        <OutlineButton className="text-center text-bold py-4 w-[150px]" onClick={close}>
+                        <button
+                            className="text-center text-bold py-4 w-[150px] bg-transparent border-[2px] border-solid border-[#ffffff] rounded-lg cursor-pointer"
+                            onClick={close}
+                        >
                             Back
-                        </OutlineButton>
-                        <PrimaryButton className="text-center py-4 w-[150px]" onClick={() => navigate('/swap/process')}>
+                        </button>
+                        <button
+                            className="text-center py-4 w-[150px] bg-[#5a4ee8] rounded-lg cursor-pointer"
+                            onClick={() => navigate('/swap/process')}
+                        >
                             Confirm
-                        </PrimaryButton>
+                        </button>
                     </div>
                 </div>
             </div>

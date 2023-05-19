@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // component
-import { CardDiv } from 'components/Styled';
 import MobileCard from 'components/MobileCard';
 
 import useConfig from 'hooks/useConfig';
@@ -40,7 +39,7 @@ const Loading = () => {
         );
     } else {
         return (
-            <CardDiv className="card py-7 min-h-[500px] w-[550px]">
+            <div className="card py-7 min-h-[500px] w-[550px]">
                 <div className="flex flex-col items-center justify-center h-[500px] w-full">
                     <div className="loader"></div>
                     <h4 className="text-xl font-medium text-center font-Unbounded mt-[55px] mb-6">
@@ -50,7 +49,7 @@ const Loading = () => {
                         Stables are being swapped and should be <br /> deposited in your wallet any moment now
                     </p>
                 </div>
-            </CardDiv>
+            </div>
         );
     }
 };

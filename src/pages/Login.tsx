@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 import Card from 'components/Card';
-import { PrimaryButton } from 'components/Styled';
 import { ReactComponent as UserIcon } from 'assets/img/icon/user.svg';
 import { ReactComponent as LockIcon } from 'assets/img/icon/lock.svg';
 
@@ -20,7 +19,7 @@ const Login = () => {
                 </div>
             </div>
             <Link to="/dashboard" className="w-full">
-                <PrimaryButton className="w-full text-center py-4">Login</PrimaryButton>
+                <button className="w-full text-center py-4 bg-[#5a4ee8] rounded-lg cursor-pointer">Login</button>
             </Link>
         </Card>
     );

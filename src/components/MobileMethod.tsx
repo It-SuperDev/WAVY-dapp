@@ -2,15 +2,15 @@
 import { ReactComponent as CloseIcon } from 'assets/img/icon/close.svg';
 import { ReactComponent as ChevronRightIcon } from 'assets/img/icon/chevron-right.svg';
 
-import useConfig from 'hooks/useConfig';
 import { TOP_METHOD, WITHDRAW_METHOD } from 'config/constants/demo';
+import { useAppSelector } from 'hooks/useRedux';
 
 const MobileMethod = ({ isTop, size, close, callback, tokenName }: any) => {
     const prevent = (e: any) => {
         e.preventDefault();
     };
 
-    const gData = useConfig();
+    const network = useAppSelector((state) => state.network);
 
     const data = isTop ? TOP_METHOD : WITHDRAW_METHOD;
 
@@ -40,7 +40,7 @@ const MobileMethod = ({ isTop, size, close, callback, tokenName }: any) => {
                 </div>
                 <div className="py-[30px]">
                     <div className="py-2">
-                        {gData.NETWORK.sub !== 'Stellar' ? (
+                        {network.sub !== 'Stellar' ? (
                             <div className="flex flex-col">
                                 <li
                                     className="cursor-pointer px-5 py-4 mb-2 bg-[#242429] rounded-lg flex items-center "

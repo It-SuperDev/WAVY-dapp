@@ -142,73 +142,6 @@ export const LANGUAGE = [
     }
 ];
 
-export const WALLET = [
-    {
-        name: 'Freighter',
-        icon: freighterIcon
-    },
-    {
-        name: 'xBull',
-        icon: xbullIcon
-    },
-    {
-        name: 'walletConnect',
-        icon: walletconnectIcon
-    }
-];
-
-export const TOKEN_LIST = [
-    {
-        name: 'BRZ',
-        sub: 'Brazilian Real',
-        icon: brzIcon,
-        amount: '200.54 BRZ',
-        price: '$39.88'
-    },
-    {
-        name: 'CADC',
-        sub: 'Canadian Dollar',
-        icon: cadcIcon,
-        amount: '5000 CADC',
-        price: '$3,669.07'
-    },
-    {
-        name: 'EURS',
-        sub: 'Euro',
-        icon: eursIcon,
-        amount: '3000 EURS',
-        price: '$3,311.55'
-    },
-    {
-        name: 'JEUR',
-        sub: 'Euro',
-        icon: jeurIcon,
-        amount: '3000 JEUR',
-        price: '$3,311.55'
-    },
-    {
-        name: 'NGNC',
-        sub: 'Nigerian Naira',
-        icon: ngncIcon,
-        amount: '5000 NGNC',
-        price: '$6.75'
-    },
-    {
-        name: 'TRYB',
-        sub: 'Turkish Lira',
-        icon: trybIcon,
-        amount: '2880.33 TRYB',
-        price: '$147.91'
-    },
-    {
-        name: 'USDC',
-        sub: 'U.S dollar',
-        icon: usdcIcon,
-        amount: '3000 USDC',
-        price: '$3,000.00'
-    }
-];
-
 export const CONNECTED = [
     {
         name: 'Copy address',
@@ -694,6 +627,9 @@ export const NETWORK = [
 export const SEND_DATA = {
     sIdx: 0,
     rIdx: 1,
+    rate: 205.3,
+    min: 10,
+    max: 500,
     list: [
         {
             rate: 90.67,

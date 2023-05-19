@@ -8,36 +8,37 @@ import { ReactComponent as KeyboardArrowDownIcon } from 'assets/img/icon/chevron
 import Card from 'components/Card';
 import MobileCard from 'components/MobileCard';
 import ValueInput from 'components/ValueInput';
-import { PrimaryButton } from 'components/Styled';
 
 // Constatn
 import useConfig from 'hooks/useConfig';
 import MobileList from 'components/MobileList';
 import { NETWORK } from 'config/constants/demo';
+import { useAppDispatch, useAppSelector } from 'hooks/useRedux';
+import { changeSetToken } from 'redux/selectToken';
 
 const Index = () => {
     const navigate = useNavigate();
-    const data = useConfig();
-    const { isMobile, BRIDGE, changeData } = data;
+    const dispatch = useAppDispatch();
+
+    const { isMobile } = useConfig();
+    const bridge = useAppSelector((state) => state.bridge);
+    const network = useAppSelector((state) => state.network);
 
     const bridgeData = useMemo(() => {
-        if (BRIDGE) {
-            return {
-                from: NETWORK[BRIDGE.sNet],
-                to: NETWORK[BRIDGE.rNet],
-                send: data.NETWORK.token[BRIDGE.sIdx],
-                receive: NETWORK[BRIDGE.rNet].token[BRIDGE.rIdx]
-            };
-        }
-        return {};
+        return {
+            from: NETWORK[bridge.sNet],
+            to: NETWORK[bridge.rNet],
+            send: network.token[bridge.sIdx],
+            receive: NETWORK[bridge.rNet].token[bridge.rIdx]
+        };
         // eslint-disable-next-line
-    }, [BRIDGE]);
+    }, [bridge]);
 
-    const [network, setNetwork] = useState(false);
+    const [setNet, setNetwork] = useState(false);
 
-    const selectToken = (order: string) => {
-        const netIdx = order === 'sIdx' ? BRIDGE.sNet : BRIDGE.rNet;
-        changeData({ key: 'TOKEN_SELECT', data: ['BRIDGE', order, -1, netIdx] });
+    const selectToken = (type: string) => {
+        const netIdx = type === 'sIdx' ? bridge.sNet : bridge.rNet;
+        dispatch(changeSetToken({ key: 'BRIDGE', order: -1, type, tokens: NETWORK[netIdx].token }));
         navigate('/select');
     };
 
@@ -86,15 +87,15 @@ const Index = () => {
                             token={bridgeData.receive}
                         />
 
-                        <PrimaryButton
-                            className="w-full text-center py-4 mt-20"
+                        <button
+                            className="w-full text-center py-4 mt-20 bg-[#5a4ee8] rounded-lg cursor-pointer"
                             onClick={() => navigate('/send/process')}
                         >
                             Continue
-                        </PrimaryButton>
+                        </button>
                     </div>
                 </div>
-                {network && (
+                {setNet && (
                     <MobileList
                         title="Choose network"
                         sub="Choose your preferred network"
@@ -151,9 +152,12 @@ const Index = () => {
                         token={bridgeData.receive}
                     />
 
-                    <PrimaryButton className="w-full text-center py-4 mt-10" onClick={() => navigate('/send/process')}>
+                    <button
+                        className="w-full text-center py-4 mt-10 bg-[#5a4ee8] rounded-lg cursor-pointer"
+                        onClick={() => navigate('/send/process')}
+                    >
                         Continue
-                    </PrimaryButton>
+                    </button>
                 </div>
             </Card>
         );

@@ -1,26 +1,26 @@
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { CardDiv, PrimaryButton } from 'components/Styled';
-
 // Icons
 import { ReactComponent as SuccessIcon } from 'assets/img/icon/success.svg';
 import useConfig from 'hooks/useConfig';
 import MobileCard from 'components/MobileCard';
+import { useAppSelector } from 'hooks/useRedux';
 
 const Success = () => {
     const navigate = useNavigate();
-    const data = useConfig();
-    const { SWAP, NETWORK } = data;
+    const { isMobile } = useConfig();
+    const swap = useAppSelector((state) => state.swap);
+    const network = useAppSelector((state) => state.network);
 
     const swapData = useMemo(() => {
         return {
-            from: NETWORK.token[SWAP.sIdx],
-            to: NETWORK.token[SWAP.rIdx]
+            from: network.token[swap.sIdx],
+            to: network.token[swap.rIdx]
         };
-    }, [NETWORK.token, SWAP]);
+    }, [network.token, swap]);
 
-    if (data.isMobile) {
+    if (isMobile) {
         return (
             <MobileCard>
                 <div
@@ -34,15 +34,17 @@ const Success = () => {
                     <div className="flex flex-col items-center justify-center w-full">
                         <SuccessIcon className="my-[33px] h-[100px] w-[100px]" />
                         <h4 className="text-sm font-medium font-Unbounded text-center  mb-5">
-                            {`${swapData.from.amount / 20} ${swapData.from.name} has been converted to ${swapData.to.name}`}
+                            {`${swapData.from.amount / 20} ${swapData.from.name} has been converted to ${
+                                swapData.to.name
+                            }`}
                         </h4>
                         <div className="flex flex-col my-8 w-full">
-                            <PrimaryButton
-                                className="text-center py-4 w-full text-sm font-medium"
+                            <button
+                                className="text-center py-4 w-full text-sm font-medium bg-[#5a4ee8] rounded-lg cursor-pointer"
                                 onClick={() => navigate('/swap')}
                             >
                                 Done
-                            </PrimaryButton>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -50,7 +52,7 @@ const Success = () => {
         );
     } else {
         return (
-            <CardDiv className="card py-7 min-h-[500px] w-[550px] px-[10px]">
+            <div className="card py-7 min-h-[500px] w-[550px] px-[10px]">
                 <h2 className="text-4xl font-bold font-Unbounded text-center">
                     Conversion <br />
                     Successful!
@@ -61,14 +63,14 @@ const Success = () => {
                         {`${swapData.from.amount / 20} ${swapData.from.name} has been converted to ${swapData.to.name}`}
                     </h4>
 
-                    <PrimaryButton
-                        className="text-center py-4 w-full text-base font-medium"
+                    <button
+                        className="text-center py-4 w-full text-base font-medium bg-[#5a4ee8] rounded-lg cursor-pointer"
                         onClick={() => navigate('/swap')}
                     >
                         Done
-                    </PrimaryButton>
+                    </button>
                 </div>
-            </CardDiv>
+            </div>
         );
     }
 };

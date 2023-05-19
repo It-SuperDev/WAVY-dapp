@@ -1,12 +1,9 @@
 // Icon
 import { ReactComponent as BackIcon } from '../assets/img/icon/arrow_back.svg';
 
-// Styled
-import { CardDiv } from './Styled';
-
 const Card = ({ children, title, back, lg }: { children: any; title?: string; back?: any; lg?: number }) => {
     return (
-        <CardDiv
+        <div
             className={
                 lg ? `py-7 min-h-[500px] w-[650px] rounded-lg card` : 'card py-7 min-h-[500px] w-[550px] rounded-lg'
             }
@@ -23,7 +20,7 @@ const Card = ({ children, title, back, lg }: { children: any; title?: string; ba
                 {title && <h2 className="text-center text-2xl font-bold font-Unbounded ">{title}</h2>}
             </div>
             <div className="flex flex-col items-center px-[64px]">{children}</div>
-        </CardDiv>
+        </div>
     );
 };
 

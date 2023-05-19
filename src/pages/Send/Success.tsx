@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
 import MobileCard from 'components/MobileCard';
-import { PrimaryButton, WhiteButton, CardDiv } from 'components/Styled';
 
 // Icons
 import { ReactComponent as SuccessIcon } from 'assets/img/icon/success.svg';
@@ -28,18 +27,18 @@ const Success = () => {
                             The stables have been settled to both <br /> wallet addresses
                         </h4>
                         <div className="flex flex-col my-8 w-full">
-                            <WhiteButton
-                                className="text-center py-4 px-2 min-w-[150px] text-sm font-medium mb-4"
+                            <button
+                                className="text-center py-4 px-2 min-w-[150px] text-sm font-medium mb-4 bg-[#FFFFFF] rounded-lg text-[#151518] cursor-pointer"
                                 onClick={() => navigate('/send/offers')}
                             >
                                 View on Network Explorer
-                            </WhiteButton>
-                            <PrimaryButton
-                                className="text-center py-4 min-w-[170px] text-sm font-medium"
+                            </button>
+                            <button
+                                className="text-center py-4 min-w-[170px] text-sm font-medium bg-[#5a4ee8] rounded-lg cursor-pointer"
                                 onClick={() => navigate('/send')}
                             >
                                 Done
-                            </PrimaryButton>
+                            </button>
                         </div>
                         <p className="text-center text-md">
                             Incase of any disputes, contact our support <br /> team at{' '}
@@ -53,7 +52,7 @@ const Success = () => {
         );
     } else {
         return (
-            <CardDiv className="card py-7 min-h-[500px] w-[550px] px-[10px]">
+            <div className="card py-7 min-h-[500px] w-[550px] px-[10px]">
                 <h2 className="text-4xl font-bold font-Unbounded text-center">
                     Transaction <br />
                     Successful!
@@ -64,18 +63,18 @@ const Success = () => {
                         The stables have been settled to both <br /> wallet addresses
                     </h4>
                     <div className="flex justify-between items-center my-8 w-full">
-                        <WhiteButton
-                            className="text-center py-4 px-2 min-w-[150px] text-xs font-medium"
+                        <button
+                            className="text-center py-4 px-2 min-w-[150px] text-xs font-medium bg-[#FFFFFF] rounded-lg text-[#151518] cursor-pointer"
                             onClick={() => navigate('/send/offers')}
                         >
                             View on Network Explorer
-                        </WhiteButton>
-                        <PrimaryButton
-                            className="text-center py-4 min-w-[170px] text-xs font-medium"
+                        </button>
+                        <button
+                            className="text-center py-4 min-w-[170px] text-xs font-medium bg-[#5a4ee8] rounded-lg cursor-pointer"
                             onClick={() => navigate('/send')}
                         >
                             Done
-                        </PrimaryButton>
+                        </button>
                     </div>
                     <p className="text-center text-md mb-5">
                         Incase of any disputes, contact our support <br /> team at{' '}
@@ -84,7 +83,7 @@ const Success = () => {
                         </a>
                     </p>
                 </div>
-            </CardDiv>
+            </div>
         );
     }
 };

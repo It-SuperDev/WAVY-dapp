@@ -1,12 +1,9 @@
 // Icon
 import { ReactComponent as BackIcon } from '../assets/img/icon/arrow_back.svg';
 
-// Styled
-import { CardDiv } from './Styled';
-
 const MobileCard = ({ children, title, back, fontSize }: any) => {
     return (
-        <CardDiv className="card pt-7 h-screen w-screen fixed top-0 bottom-0 right-0 left-0 overflow-auto bg-[#151518] z-10">
+        <div className="card pt-7 h-screen w-screen fixed top-0 bottom-0 right-0 left-0 overflow-auto bg-[#151518] z-10">
             <div className="flex items-center justify-center relative mb-10 mx-[20px]">
                 {back && (
                     <div
@@ -26,7 +23,7 @@ const MobileCard = ({ children, title, back, fontSize }: any) => {
                 )}
             </div>
             <div className="">{children}</div>
-        </CardDiv>
+        </div>
     );
 };
 

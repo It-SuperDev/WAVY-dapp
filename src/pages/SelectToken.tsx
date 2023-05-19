@@ -10,36 +10,48 @@ import MobileCard from 'components/MobileCard';
 
 // Constant
 import useConfig from 'hooks/useConfig';
-import { NETWORK as AllNets } from 'config/constants/demo';
+import { useAppDispatch, useAppSelector } from 'hooks/useRedux';
+import { changeSetToken } from 'redux/selectToken';
+import { setSendToken } from 'redux/send';
+import { setSwapToken } from 'redux/swap';
+import { setBridgeToken } from 'redux/bridge';
+import { setTopUpToken } from 'redux/topUp';
 
 const SelectToken = () => {
     const navigate = useNavigate();
-    const gData = useConfig();
-    const { isMobile, NETWORK, TOKEN_SELECT } = gData;
+    const dispatch = useAppDispatch();
+
+    const selectToken = useAppSelector((state) => state.selectToken);
+
+    const { isMobile } = useConfig();
 
     const [value, setValue] = useState('');
 
     const setToken = (one: any) => {
-        let temp = gData[TOKEN_SELECT[0]];
-        temp[TOKEN_SELECT[1]] = one.idx;
+        switch (selectToken.key) {
+            case 'SEND':
+                dispatch(setSendToken({ [selectToken.type]: one.idx }));
+                break;
+            case 'SWAP':
+                dispatch(setSwapToken({ [selectToken.type]: one.idx }));
+                break;
+            case 'BRIDGE':
+                dispatch(setBridgeToken({ [selectToken.type]: one.idx }));
+                break;
+            case 'TOPUP':
+                dispatch(setTopUpToken({ [selectToken.type]: one.idx }));
+        }
+        dispatch(changeSetToken({ key: '', order: 0, type: '' }));
         navigate(-1);
     };
 
     const tokens = useMemo(() => {
-        if (NETWORK && NETWORK.token && TOKEN_SELECT) {
-            let tokenData = [];
-            if (TOKEN_SELECT[3]) {
-                tokenData = AllNets[TOKEN_SELECT[3]].token;
-            } else {
-                tokenData = NETWORK.token;
-            }
-            return tokenData
+        if (selectToken.tokens) {
+            return selectToken.tokens
                 .map((e: any, i: number) => ({ ...e, idx: i }))
-                .filter((_: any, i: number) => i !== TOKEN_SELECT[2]);
-        } else {
-            return [];
-        }
-    }, [NETWORK, TOKEN_SELECT]);
+                .filter((_: any, i: number) => i !== selectToken.order);
+        } else return [];
+    }, [selectToken]);
 
     if (isMobile) {
         return (

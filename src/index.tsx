@@ -1,11 +1,13 @@
 import App from './App';
 
-import { Root, ConfigProvider, APIProvider } from './providers';
+import { Root, ConfigProvider, APIProvider, Provider, store } from './providers';
 
 Root.render(
-    <ConfigProvider>
-        <APIProvider>
-            <App />
-        </APIProvider>
-    </ConfigProvider>
+    <Provider store={store}>
+        <ConfigProvider>
+            <APIProvider>
+                <App />
+            </APIProvider>
+        </ConfigProvider>
+    </Provider>
 );

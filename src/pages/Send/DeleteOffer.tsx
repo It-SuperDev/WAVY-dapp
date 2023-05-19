@@ -2,28 +2,27 @@ import { ReactComponent as EastIcon } from 'assets/img/icon/arrow-right.svg';
 import { ReactComponent as InfoIcon } from 'assets/img/icon/info.svg';
 
 import Card from 'components/Card';
-import { OutlineButton, PrimaryButton } from 'components/Styled';
 import { useNavigate, useParams } from 'react-router-dom';
-import useConfig from 'hooks/useConfig';
+import { useAppSelector } from 'hooks/useRedux';
 
 const ConfirmOffer = () => {
     const navigate = useNavigate();
-    const data = useConfig();
+    const network = useAppSelector((state) => state.network);
     const { idx } = useParams();
 
     return (
         <Card title="Confirm Offer Delete">
             <div className="w-full flex items-center justify-around mb-8">
                 <div className="flex flex-col items-center">
-                    <img src={data.NETWORK.offers[idx].send.icon} alt="token" className="w-[60px] h-[60px] mb-3" />
+                    <img src={network.offers[idx].send.icon} alt="token" className="w-[60px] h-[60px] mb-3" />
                     <p className="text-sm mb-2">From</p>
-                    <p className="text-base font-bold font-Unbounded">{data.NETWORK.offers[idx].send.name}</p>
+                    <p className="text-base font-bold font-Unbounded">{network.offers[idx].send.name}</p>
                 </div>
                 <EastIcon />
                 <div className="flex flex-col items-center">
-                    <img src={data.NETWORK.offers[idx].receive.icon} alt="token" className="w-[60px] h-[60px]  mb-3" />
+                    <img src={network.offers[idx].receive.icon} alt="token" className="w-[60px] h-[60px]  mb-3" />
                     <p className="text-sm mb-2">Receive</p>
-                    <p className="text-base font-bold font-Unbounded">{data.NETWORK.offers[idx].receive.name}</p>
+                    <p className="text-base font-bold font-Unbounded">{network.offers[idx].receive.name}</p>
                 </div>
             </div>
             <div className="flex">
@@ -34,12 +33,18 @@ const ConfirmOffer = () => {
                 </p>
             </div>
             <div className="flex justify-between items-center w-full mt-20">
-                <OutlineButton className="text-center text-bold py-4 w-[150px]" onClick={() => navigate(-1)}>
+                <button
+                    className="text-center text-bold py-4 w-[150px] bg-transparent border-[2px] border-solid border-[#ffffff] rounded-lg cursor-pointer"
+                    onClick={() => navigate(-1)}
+                >
                     Back
-                </OutlineButton>
-                <PrimaryButton className="text-center py-4 w-[150px]" onClick={() => navigate('/send/delete-process')}>
+                </button>
+                <button
+                    className="text-center py-4 w-[150px] bg-[#5a4ee8] rounded-lg cursor-pointer"
+                    onClick={() => navigate('/send/delete-process')}
+                >
                     Confirm
-                </PrimaryButton>
+                </button>
             </div>
         </Card>
     );

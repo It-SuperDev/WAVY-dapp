@@ -7,34 +7,36 @@ import { ReactComponent as SwapIcon } from 'assets/img/icon/swap-btn.svg';
 // component
 import Card from 'components/Card';
 import ValueInput from 'components/ValueInput';
-import { PrimaryButton } from 'components/Styled';
 
 // Constatn
 import useConfig from 'hooks/useConfig';
 import MobileCard from 'components/MobileCard';
 import MobileSwapConfirm from 'components/MobileSwapConfirm';
+import { useAppDispatch, useAppSelector } from 'hooks/useRedux';
+import { changeSetToken } from 'redux/selectToken';
+import { setSwapToken } from 'redux/swap';
 
 const Swap = () => {
     const navigate = useNavigate();
-    const data = useConfig();
-    const { isMobile, changeData, SWAP, NETWORK } = data;
+    const dispatch = useAppDispatch();
+
+    const { isMobile } = useConfig();
+    const swap = useAppSelector((state) => state.swap);
+    const network = useAppSelector((state) => state.network);
 
     const swapData = useMemo(() => {
         return {
-            from: NETWORK.token[SWAP.sIdx],
-            to: NETWORK.token[SWAP.rIdx]
+            from: network.token[swap.sIdx],
+            to: network.token[swap.rIdx]
         };
-    }, [NETWORK.token, SWAP]);
+    }, [network.token, swap]);
 
     const changOrder = () => {
-        const tRIsx = SWAP.sIdx;
-        const tSIsx = SWAP.rIdx;
-        const tSEND = { ...SWAP, sIdx: tSIsx, rIdx: tRIsx };
-        changeData({ key: 'SWAP', data: tSEND });
+        dispatch(setSwapToken({ sIdx: swap.rIdx, rIdx: swap.sIdx }));
     };
 
-    const selectToken = (param: number, order: string) => {
-        changeData({ key: 'TOKEN_SELECT', data: ['SWAP', order, param] });
+    const selectToken = (order: number, type: string) => {
+        dispatch(changeSetToken({ key: 'SWAP', order, type, tokens: network.token }));
         navigate('/select');
     };
 
@@ -53,7 +55,7 @@ const Swap = () => {
                             available={true}
                             value={swapData.from.amount / 10}
                             token={swapData.from}
-                            onChange={() => selectToken(SWAP.rIdx, 'sIdx')}
+                            onChange={() => selectToken(swap.rIdx, 'sIdx')}
                         />
 
                         <div className="flex justify-center my-3">
@@ -65,17 +67,20 @@ const Swap = () => {
                             available={true}
                             value={swapData.to.amount / 10}
                             token={swapData.to}
-                            onChange={() => selectToken(SWAP.sIdx, 'rIdx')}
+                            onChange={() => selectToken(swap.sIdx, 'rIdx')}
                         />
-                        <p className="rounded-lg py-1 text-[#CCC8F8] my-4">{`1 ${swapData.from.name} = ${SWAP.equal} ${swapData.to.name}`}</p>
+                        <p className="rounded-lg py-1 text-[#CCC8F8] my-4">{`1 ${swapData.from.name} = ${swap.equal} ${swapData.to.name}`}</p>
 
-                        <PrimaryButton className="w-full text-center py-4 mt-10" onClick={() => setIsConfirm(true)}>
+                        <button
+                            className="w-full text-center py-4 mt-10 bg-[#5a4ee8] rounded-lg cursor-pointer"
+                            onClick={() => setIsConfirm(true)}
+                        >
                             Preview Swap
-                        </PrimaryButton>
+                        </button>
                     </div>
                 </div>
                 {isConfirm && (
-                    <MobileSwapConfirm data={swapData} equal={SWAP.equal} close={() => setIsConfirm(false)} />
+                    <MobileSwapConfirm data={swapData} equal={swap.equal} close={() => setIsConfirm(false)} />
                 )}
             </MobileCard>
         );
@@ -88,7 +93,7 @@ const Swap = () => {
                         available={true}
                         value={swapData.from.amount / 10}
                         token={swapData.from}
-                        onChange={() => selectToken(SWAP.rIdx, 'sIdx')}
+                        onChange={() => selectToken(swap.rIdx, 'sIdx')}
                     />
                     <div className="flex justify-center my-3">
                         <SwapIcon className="h-[28px] w-[28px] cursor-pointer" onClick={changOrder} />
@@ -98,13 +103,16 @@ const Swap = () => {
                         available={true}
                         value={swapData.to.amount / 10}
                         token={swapData.to}
-                        onChange={() => selectToken(SWAP.sIdx, 'rIdx')}
+                        onChange={() => selectToken(swap.sIdx, 'rIdx')}
                     />
-                    <p className="bg-[#090912] rounded-lg py-1 px-6 text-[#B8ACFF] my-4">{`1 ${swapData.from.name} = ${SWAP.equal} ${swapData.to.name}`}</p>
+                    <p className="bg-[#090912] rounded-lg py-1 px-6 text-[#B8ACFF] my-4">{`1 ${swapData.from.name} = ${swap.equal} ${swapData.to.name}`}</p>
 
-                    <PrimaryButton className="w-full text-center py-4 mt-10" onClick={() => navigate('preview')}>
+                    <button
+                        className="w-full text-center py-4 mt-10 bg-[#5a4ee8] rounded-lg cursor-pointer"
+                        onClick={() => navigate('preview')}
+                    >
                         Preview Swap
-                    </PrimaryButton>
+                    </button>
                 </div>
             </Card>
         );

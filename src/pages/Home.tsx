@@ -11,21 +11,24 @@ import { ReactComponent as BankIcon } from '../assets/img/icon/bank.svg';
 import { ReactComponent as WalletIcon } from '../assets/img/icon/wallet.svg';
 import { ReactComponent as RightIcon } from '../assets/img/icon/right.svg';
 
-import { CardDiv, ConnectButton } from 'components/Styled';
 import useConfig from 'hooks/useConfig';
+import { useAppSelector } from 'hooks/useRedux';
 
 const Home = () => {
+    const { connect, currency } = useAppSelector((state) => state.info);
+    const network = useAppSelector((state) => state.network);
+
     const allowBridgNet = ['Avalanche', 'Ethereum'];
-    const data = useConfig();
+    const { isMobile } = useConfig();
     const navigate = useNavigate();
     const [visible, setVisible] = useState(true);
     const [propt, setPropt] = useState(false);
     const [spend, setSpend] = useState(false);
 
     const goPage = (params: string) => {
-        if (data.connect) {
+        if (connect) {
             if (params === '/bridge')
-                if (allowBridgNet.findIndex((e: string) => e === data.NETWORK.sub) === -1) {
+                if (allowBridgNet.findIndex((e: string) => e === network.sub) === -1) {
                     setSpend(true);
                     setTimeout(() => setSpend(false), 1000);
                     return;
@@ -38,7 +41,7 @@ const Home = () => {
     };
 
     const goSpend = () => {
-        if (!data.connect) {
+        if (!connect) {
             setPropt(true);
             setTimeout(() => setPropt(false), 1000);
         } else {
@@ -54,7 +57,7 @@ const Home = () => {
     return (
         <>
             <div className="flex flex-col w-full md:w-auto">
-                <CardDiv className={`card py-7 md:w-[550px] w-full md:px-0 px-5 rounded-xl`}>
+                <div className={`card py-7 md:w-[550px] w-full md:px-0 px-5 rounded-xl`}>
                     <div className="flex flex-col md:w-[400px] w-full items-center mx-auto">
                         <div className="rounded-lg w-full border-[#ACACAE] border-[0.6px] px-6 py-7 gradient-box">
                             <div className="flex items-center">
@@ -69,11 +72,11 @@ const Home = () => {
                                 )}
                             </div>
                             <h1 className="gradient-text md:text-5xl text-4xl font-Unbounded font-medium mt-2">
-                                {data.connect
+                                {connect
                                     ? visible
-                                        ? `${data.CURRENCY}15,749.54`
-                                        : `${data.CURRENCY}****`
-                                    : `${data.CURRENCY}0.00`}
+                                        ? `${currency.mark}15,749.54`
+                                        : `${currency.mark}****`
+                                    : `${currency.mark}0.00`}
                             </h1>
                         </div>
                         <div className="flex justify-between w-full md:mt-11 mt-5 md:mb-11 mb-0">
@@ -102,10 +105,10 @@ const Home = () => {
                                 <p className="text-md mt-2">Spend</p>
                             </div>
                         </div>
-                        {!data.isMobile && (
+                        {!isMobile && (
                             <div
                                 className="flex flex-col w-full rounded-t-3xl"
-                                style={data.isMobile ? { height: '280px' } : {}}
+                                style={isMobile ? { height: '280px' } : {}}
                             >
                                 <div
                                     onClick={() => goPage('/top-up')}
@@ -136,8 +139,8 @@ const Home = () => {
                             </div>
                         )}
                     </div>
-                </CardDiv>
-                {data.isMobile && (
+                </div>
+                {isMobile && (
                     <div
                         className="flex flex-col w-full  px-5 pt-12 bg-[#242429] rounded-t-3xl"
                         style={{ height: 'calc(100vh - 380px)', minHeight: '230px' }}
@@ -176,15 +179,15 @@ const Home = () => {
                     </div>
                 )}
             </div>
-            {!data.connect && propt && (
-                <ConnectButton className="bg-[#5A4EE8] md:text-base px-[20px]  md:py-[8px] py-[5px] text-sm absolute md:rounded-lg rounded-full md:top-[40px] top-[8px]">
+            {!connect && propt && (
+                <div className="bg-[#5A4EE8] flex items-center text-base cursor-pointer md:text-base px-[20px]  md:py-[8px] py-[5px] text-sm absolute md:rounded-lg rounded-full md:top-[40px] top-[8px]">
                     Connect your wallet
-                </ConnectButton>
+                </div>
             )}
             {spend && (
-                <ConnectButton className="bg-[#5A4EE8] md:text-base px-[20px]  md:py-[8px] py-[5px] text-sm absolute md:rounded-lg rounded-full md:top-[40px] top-[8px]">
+                <div className="bg-[#5A4EE8] flex items-center text-base cursor-pointer md:text-base px-[20px]  md:py-[8px] py-[5px] text-sm absolute md:rounded-lg rounded-full md:top-[40px] top-[8px]">
                     Coming soon
-                </ConnectButton>
+                </div>
             )}
         </>
     );

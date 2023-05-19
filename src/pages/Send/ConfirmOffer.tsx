@@ -7,20 +7,26 @@ import { ReactComponent as EastIcon } from 'assets/img/icon/arrow-right.svg';
 // Component
 import Card from 'components/Card';
 import MobileCard from 'components/MobileCard';
-import { OutlineButton, PrimaryButton } from 'components/Styled';
 
 import useConfig from 'hooks/useConfig';
+import { useAppSelector } from 'hooks/useRedux';
 
 const ConfirmOffer = () => {
     const navigate = useNavigate();
-    const { isMobile, OFFER, NETWORK } = useConfig();
+
+    const network = useAppSelector((state) => state.network);
+    const send = useAppSelector((state) => state.send);
+
+    const { isMobile } = useConfig();
 
     const offerData = useMemo(() => {
-        return {
-            send: NETWORK.token[OFFER.sIdx],
-            receive: NETWORK.token[OFFER.rIdx]
-        };
-    }, [NETWORK.token, OFFER]);
+        if (network.token) {
+            return {
+                send: network.token[send.sIdx],
+                receive: network.token[send.rIdx]
+            };
+        }
+    }, [network.token, send]);
 
     if (isMobile) {
         return (
@@ -48,25 +54,28 @@ const ConfirmOffer = () => {
                         </div>
                         <div className="flex w-full items-center justify-between my-2 text-sm">
                             <p>Exchange rate</p>{' '}
-                            <p>{`1 ${offerData.send.name} = ${OFFER.rate} ${offerData.receive.name}`}</p>
+                            <p>{`1 ${offerData.send.name} = ${send.rate} ${offerData.receive.name}`}</p>
                         </div>
                         <div className="flex w-full items-center justify-between my-2 text-sm">
-                            <p>Limit</p> <p>{`${OFFER.min} - ${OFFER.max} ${offerData.receive.name}`}</p>
+                            <p>Limit</p> <p>{`${send.min} - ${send.max} ${offerData.receive.name}`}</p>
                         </div>
                         <div className="flex w-full items-center justify-between text-sm">
                             <p>Available</p> <p>{`30000 ${offerData.send.name}`}</p>
                         </div>
                     </div>
                     <div className="flex justify-between items-center w-full mt-20">
-                        <OutlineButton
-                            className="text-center text-bold py-4 w-[150px]"
+                        <button
+                            className="text-center text-bold py-4 w-[150px] bg-transparent border-[2px] border-solid border-[#ffffff] rounded-lg cursor-pointer"
                             onClick={() => navigate('/send/create-offer')}
                         >
                             Back
-                        </OutlineButton>
-                        <PrimaryButton className="text-center py-4 w-[150px]" onClick={() => navigate('/send/offers')}>
+                        </button>
+                        <button
+                            className="text-center py-4 w-[150px] bg-[#5a4ee8] rounded-lg cursor-pointer"
+                            onClick={() => navigate('/send/offers')}
+                        >
                             Continue
-                        </PrimaryButton>
+                        </button>
                     </div>
                 </div>
             </MobileCard>
@@ -96,22 +105,28 @@ const ConfirmOffer = () => {
                     </div>
                     <div className="flex w-full items-center justify-between mb-5 text-sm">
                         <p>Exchange rate</p>{' '}
-                        <p>{`1 ${offerData.send.name} = ${OFFER.rate} ${offerData.receive.name}`}</p>
+                        <p>{`1 ${offerData.send.name} = ${send.rate} ${offerData.receive.name}`}</p>
                     </div>
                     <div className="flex w-full items-center justify-between mb-5 text-sm">
-                        <p>Limit</p> <p>{`${OFFER.min} - ${OFFER.max} ${offerData.receive.name}`}</p>
+                        <p>Limit</p> <p>{`${send.min} - ${send.max} ${offerData.receive.name}`}</p>
                     </div>
                     <div className="flex w-full items-center justify-between text-sm">
                         <p>Available</p> <p>{`30000 ${offerData.send.name}`}</p>
                     </div>
                 </div>
                 <div className="flex justify-between items-center w-full mt-10">
-                    <OutlineButton className="text-center text-bold py-4 w-[150px]" onClick={() => navigate(-1)}>
+                    <button
+                        className="text-center text-bold py-4 w-[150px] bg-transparent border-[2px] border-solid border-[#ffffff] rounded-lg cursor-pointer"
+                        onClick={() => navigate(-1)}
+                    >
                         Back
-                    </OutlineButton>
-                    <PrimaryButton className="text-center py-4 w-[150px]" onClick={() => navigate('/send/offers')}>
+                    </button>
+                    <button
+                        className="text-center py-4 w-[150px] bg-[#5a4ee8] rounded-lg cursor-pointer"
+                        onClick={() => navigate('/send/offers')}
+                    >
                         Continue
-                    </PrimaryButton>
+                    </button>
                 </div>
             </Card>
         );

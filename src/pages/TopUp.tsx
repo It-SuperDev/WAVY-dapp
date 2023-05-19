@@ -10,41 +10,44 @@ import { ReactComponent as KeyboardArrowDownIcon } from 'assets/img/icon/chevron
 import Card from 'components/Card';
 import MobileCard from 'components/MobileCard';
 import ValueInput from 'components/ValueInput';
-import { PrimaryButton } from 'components/Styled';
 
 // Constant
 import useConfig from 'hooks/useConfig';
 import MobileMethod from 'components/MobileMethod';
 import { getMatch } from 'config/constants/demo';
+import { useAppDispatch, useAppSelector } from 'hooks/useRedux';
+import { changeSetToken } from 'redux/selectToken';
+import { setTopUpToken } from 'redux/topUp';
 
 const TopUp = () => {
     const navigate = useNavigate();
-    const data = useConfig();
-    const { isMobile, changeData, TOPUP, NETWORK } = data;
+    const dispatch = useAppDispatch();
+
+    const { isMobile } = useConfig();
+    const topUp = useAppSelector((state) => state.topUp);
+    const network = useAppSelector((state) => state.network);
 
     const [value, setValue] = useState('');
     const [page, setPage] = useState(1);
     const [tokenName, setTokenName] = useState('');
 
     const topUpData = useMemo(() => {
-        if (NETWORK && TOPUP) {
-            const receive = NETWORK.token[TOPUP.rIdx];
-            const send = getMatch(receive.name);
-            return {
-                send: { ...send, amount: 80840 },
-                receive
-            };
-        }
-    }, [NETWORK, TOPUP]);
+        const receive = network.token[topUp.rIdx];
+        const send = getMatch(receive.name);
+        return {
+            send: { ...send, amount: 80840 },
+            receive
+        };
+    }, [network, topUp]);
 
     const selectToken = () => {
-        changeData({ key: 'TOKEN_SELECT', data: ['TOPUP', 'rIdx', -1] });
+        dispatch(changeSetToken({ key: 'TOPUP', order: -1, type: 'rIdx', tokens: network.token }));
         navigate('/select');
     };
 
     const setToken = (token: any, i: number) => {
         setTokenName(token.name);
-        changeData({ key: 'TOPUP', data: { ...TOPUP, rIdx: i } });
+        dispatch(setTopUpToken({ rIdx: i }));
         setPage(2);
     };
 
@@ -78,7 +81,9 @@ const TopUp = () => {
                                                 <p className="text-xs text-[#ACACAE]">Top up with your bank account</p>
                                             </div>
                                         </div>
-                                        <PrimaryButton className="w-full text-center py-4">Continue</PrimaryButton>
+                                        <button className="w-full text-center py-4 bg-[#5a4ee8] rounded-lg cursor-pointer">
+                                            Continue
+                                        </button>
                                     </div>
                                 </div>
                             </MobileCard>
@@ -97,46 +102,45 @@ const TopUp = () => {
                                     </div>
                                     <div className="flex flex-col w-full rounded-lg py-3 my-5 pl-5  mb-[120px] rounded-lg bg-[#242429]">
                                         <div className="w-full pr-5">
-                                            {NETWORK &&
-                                                NETWORK.token
-                                                    .map((e: any, i: number) => ({ ...e, idx: i }))
-                                                    .filter((e: any) => {
-                                                        const string = e.name.toLowerCase() + ' ' + e.sub.toLowerCase();
-                                                        return string.search(value.toLocaleLowerCase()) !== -1;
-                                                    })
-                                                    .map(({ name, sub, icon, amount, price, idx }: any, i: number) => (
-                                                        <div
-                                                            key={i}
-                                                            onClick={() =>
-                                                                setToken({ name, sub, icon, amount, price }, idx)
-                                                            }
-                                                            className="flex items-center justify-between border-b-[1px] border-[#36363A] py-3 cursor-pointer"
-                                                        >
-                                                            <div className="flex items-center">
-                                                                <div className="flex items-center justify-center border-2 border-[#FFFFFF] rounded-full mr-2">
-                                                                    <img
-                                                                        src={icon}
-                                                                        alt="icon"
-                                                                        className="w-[25px] h-[25px] bg-white rounded-full"
-                                                                    />
-                                                                </div>
-                                                                <div>
-                                                                    <p className="text-sm font-medium font-Unbounded">
-                                                                        {name}
-                                                                    </p>
-                                                                    <p className="text-xs text-light-dark">{sub}</p>
-                                                                </div>
+                                            {network.token
+                                                .map((e: any, i: number) => ({ ...e, idx: i }))
+                                                .filter((e: any) => {
+                                                    const string = e.name.toLowerCase() + ' ' + e.sub.toLowerCase();
+                                                    return string.search(value.toLocaleLowerCase()) !== -1;
+                                                })
+                                                .map(({ name, sub, icon, amount, price, idx }: any, i: number) => (
+                                                    <div
+                                                        key={i}
+                                                        onClick={() =>
+                                                            setToken({ name, sub, icon, amount, price }, idx)
+                                                        }
+                                                        className="flex items-center justify-between border-b-[1px] border-[#36363A] py-3 cursor-pointer"
+                                                    >
+                                                        <div className="flex items-center">
+                                                            <div className="flex items-center justify-center border-2 border-[#FFFFFF] rounded-full mr-2">
+                                                                <img
+                                                                    src={icon}
+                                                                    alt="icon"
+                                                                    className="w-[25px] h-[25px] bg-white rounded-full"
+                                                                />
                                                             </div>
                                                             <div>
                                                                 <p className="text-sm font-medium font-Unbounded">
-                                                                    {amount}
+                                                                    {name}
                                                                 </p>
-                                                                <p className="text-xs font-medium text-light-dark text-right">
-                                                                    {price}
-                                                                </p>
+                                                                <p className="text-xs text-light-dark">{sub}</p>
                                                             </div>
                                                         </div>
-                                                    ))}
+                                                        <div>
+                                                            <p className="text-sm font-medium font-Unbounded">
+                                                                {amount}
+                                                            </p>
+                                                            <p className="text-xs font-medium text-light-dark text-right">
+                                                                {price}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                ))}
                                         </div>
                                     </div>
                                 </div>
@@ -167,7 +171,7 @@ const TopUp = () => {
                         token={topUpData.receive}
                         onChange={selectToken}
                     />
-                    {NETWORK.sub === 'Stellar' && topUpData.receive.name === 'USDC' ? (
+                    {network.sub === 'Stellar' && topUpData.receive.name === 'USDC' ? (
                         <Link to="method">
                             <div className="bg-[#090912] rounded-lg py-2 px-6 mt-4 mb-16 flex items-center justify-between">
                                 <span>Choose payment method</span>
@@ -179,7 +183,7 @@ const TopUp = () => {
                             <BankIcon className="h-[24px] w-[24px] mr-2" /> <span>Bank Transfer</span>
                         </div>
                     )}
-                    <PrimaryButton className="w-full text-center py-4">Continue</PrimaryButton>
+                    <button className="w-full text-center py-4 bg-[#5a4ee8] rounded-lg cursor-pointer">Continue</button>
                 </div>
             </Card>
         );

@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
-import useConfig from 'hooks/useConfig';
 import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from 'hooks/useRedux';
 
 const Auth = ({ children }: any) => {
     const navigate = useNavigate();
-    const data = useConfig();
+    const { connect } = useAppSelector((state) => state.info);
 
     useEffect(() => {
-        if (!data.connect) navigate('/');
-    }, [data, navigate]);
+        if (!connect) navigate('/');
+    }, [connect, navigate]);
 
     return children;
 };

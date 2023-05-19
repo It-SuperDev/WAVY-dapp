@@ -7,24 +7,24 @@ import { ReactComponent as EastIcon } from 'assets/img/icon/arrow-right.svg';
 import { ReactComponent as MoreIcon } from 'assets/img/icon/more.svg';
 
 // Styled
-import { PrimaryButton, CardDiv } from 'components/Styled';
 import MenuList from 'components/MenuList';
 import { MY_OFFER_ACTION } from 'config/constants/demo';
 import useConfig from 'hooks/useConfig';
 import MobileCard from 'components/MobileCard';
 import MobileList from 'components/MobileList';
 import MobileDeleteOffer from 'components/MobileDeleteOffer';
+import { useAppSelector } from 'hooks/useRedux';
 
 const Send = () => {
     const navigate = useNavigate();
-    const data = useConfig();
+    const { isMobile } = useConfig();
+    const network = useAppSelector((state) => state.network);
 
     const [anchor, setAnchor] = useState<boolean>(false);
     const [index, setIndex] = useState(0);
     const [deleteModal, setDeleteModal] = useState(false);
 
     const anchorHandle = (event: any, i: number) => {
-        console.log('========');
         setAnchor(true);
         setIndex(i);
     };
@@ -38,7 +38,7 @@ const Send = () => {
         if (!i) {
             navigate('/send/edit-offer');
         } else {
-            if (data.isMobile) {
+            if (isMobile) {
                 setDeleteModal(true);
             } else {
                 navigate(`/send/delete-offer/${index}`);
@@ -47,12 +47,12 @@ const Send = () => {
         setAnchor(false);
     };
 
-    if (data.isMobile) {
+    if (isMobile) {
         return (
             <MobileCard title="My offers" back={() => navigate('/send')}>
                 <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5">
                     <div>
-                        {data.NETWORK.offers.map((one: any, i: number) => (
+                        {network.offers.map((one: any, i: number) => (
                             <div
                                 key={i}
                                 className="w-full grid mb-4 border-light-dark border-[0.6px] px-5 py-6 rounded-lg flex flex-col"
@@ -128,12 +128,12 @@ const Send = () => {
                     <div className="h-[200px]" />
                 </div>
                 <div className="flex w-full fixed items-center justify-between bottom-0 px-5 pt-6 pb-12 bg-[#151518] rounded-t-3xl">
-                    <PrimaryButton
-                        className="px-3 text-center py-4 min-w-[150px] text-sm w-full"
+                    <button
+                        className="px-3 text-center py-4 min-w-[150px] text-sm w-full bg-[#5a4ee8] rounded-lg cursor-pointer"
                         onClick={() => navigate('/send/create-offer')}
                     >
                         Create a new offer
-                    </PrimaryButton>
+                    </button>
                 </div>
                 {Boolean(anchor) && (
                     <MobileList data={MY_OFFER_ACTION} close={handleClose} callback={callBack} notClose={true} />
@@ -143,7 +143,7 @@ const Send = () => {
         );
     } else {
         return (
-            <CardDiv className="card py-7 min-h-[500px] w-[650px]">
+            <div className="card py-7 min-h-[500px] w-[650px]">
                 <div className="flex items-center justify-center relative mb-10 mx-[24px]">
                     <div
                         onClick={() => navigate('/send')}
@@ -156,7 +156,7 @@ const Send = () => {
                 </div>
                 <div className="flex flex-col min-h-[400px] justify-between">
                     <div className="flex flex-col items-center h-full px-[64px]">
-                        {data.NETWORK.offers.map((one: any, i: number) => (
+                        {network.offers.map((one: any, i: number) => (
                             <div
                                 key={i}
                                 className="bg-[#19181F] w-full grid mt-4 border-light-dark border-[0.6px] px-3 py-2 rounded-lg grid-cols-3"
@@ -246,15 +246,15 @@ const Send = () => {
                         ))}
                     </div>
                     <div className="flex justify-center mt-5">
-                        <PrimaryButton
-                            className="text-center py-4 w-[60%]"
+                        <button
+                            className="text-center py-4 w-[60%] bg-[#5a4ee8] rounded-lg cursor-pointer"
                             onClick={() => navigate('/send/create-offer')}
                         >
                             Create a new offer
-                        </PrimaryButton>
+                        </button>
                     </div>
                 </div>
-            </CardDiv>
+            </div>
         );
     }
 };

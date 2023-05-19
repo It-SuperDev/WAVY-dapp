@@ -71,6 +71,12 @@ input[type=number] {
     -webkit-text-fill-color: transparent;
 }
 
+.card {
+    background: linear-gradient(180deg, rgba(36, 36, 41, 0) 0%, #242429 100%);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 10px 0px;
+    border-radius: 10px;
+}
+
 @media screen and (max-width: 760px) {
     body {
         background: #151518;
@@ -80,6 +86,6 @@ input[type=number] {
         box-shadow: unset !important;
         background: unset !important;
         background-color: #151518 !important;
-
+        border-radius: 0px;
     }
 }

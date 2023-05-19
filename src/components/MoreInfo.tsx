@@ -47,16 +47,16 @@ const MoreInfo = ({
                 onClick={prevent}
             >
                 <div className="flex items-center justify-between">
-                    {connect === -1 ? (
+                    {connect === null ? (
                         <div className="text-base">No wallet connected</div>
                     ) : (
                         <div className="flex items-center" onClick={infoHandle}>
-                            <img src={wallet[connect].icon} alt="currency" className="mr-2" />
+                            <img src={connect.icon} alt="currency" className="mr-2" />
                             GALH....Z7I7
                         </div>
                     )}
                     <div className="flex items-center justify-between">
-                        {connect !== -1 ? (
+                        {connect !== null ? (
                             <>
                                 <CopyToClipboard
                                     text={'0xCC70F722FA203D78580314817B7875cd90FED2d5'}

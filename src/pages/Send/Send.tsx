@@ -4,25 +4,26 @@ import { useNavigate, useParams } from 'react-router-dom';
 // component
 import Card from 'components/Card';
 import ValueInput from 'components/ValueInput';
-import { PrimaryButton, OutlineButton } from 'components/Styled';
 import { ReactComponent as InfoIcon } from 'assets/img/icon/info.svg';
 // Constatn
 import useConfig from 'hooks/useConfig';
 import MobileCard from 'components/MobileCard';
+import { useAppSelector } from 'hooks/useRedux';
 
 const TopUp = () => {
     const navigate = useNavigate();
     const { index } = useParams();
-    const data = useConfig();
-    const { isMobile, SEND, NETWORK } = data;
+    const send = useAppSelector((state) => state.send);
+    const network = useAppSelector((state) => state.network);
+
+    const { isMobile } = useConfig();
 
     const sendData = useMemo(() => {
         return {
-            sender: NETWORK.token[SEND.sIdx],
-            receiver: NETWORK.token[SEND.rIdx]
+            sender: network.token[send.sIdx],
+            receiver: network.token[send.rIdx]
         };
-    }, [NETWORK.token, SEND]);
-
+    }, [network.token, send]);
     if (isMobile) {
         return (
             <MobileCard title="Send">
@@ -36,7 +37,7 @@ const TopUp = () => {
                     <div className="w-full">
                         <ValueInput title="Amount" available={true} value={0.0} token={sendData.sender} />
 
-                        <p className="text-[#B8ACFF] relative -top-5">{`1${sendData.sender.name} = ${SEND.list[index].rate} ${sendData.receiver.name}`}</p>
+                        <p className="text-[#B8ACFF] relative -top-5">{`1${sendData.sender.name} = ${send.list[index].rate} ${sendData.receiver.name}`}</p>
 
                         <ValueInput title="Receive" value={0.0} token={sendData.receiver} />
 
@@ -47,21 +48,24 @@ const TopUp = () => {
                             </div>
                             <div className="flex items-center justify-between mt-2">
                                 <span className="text-sm text-light-dark">Limit</span>
-                                <span className="text-sm">{`${SEND.list[index].limit} ${sendData.sender.name}`}</span>
+                                <span className="text-sm">{`${send.list[index].limit} ${sendData.sender.name}`}</span>
                             </div>
                         </div>
                     </div>
 
                     <div className="flex justify-between items-center w-full">
-                        <OutlineButton
-                            className="text-center text-bold py-4 w-[150px]"
+                        <button
+                            className="text-center text-bold py-4 w-[150px] bg-transparent border-[2px] border-solid border-[#ffffff] rounded-lg cursor-pointer"
                             onClick={() => navigate('/send')}
                         >
                             Cancel
-                        </OutlineButton>
-                        <PrimaryButton className="text-center py-4 w-[150px]" onClick={() => navigate('/send/process')}>
+                        </button>
+                        <button
+                            className="text-center py-4 w-[150px] bg-[#5a4ee8] rounded-lg cursor-pointer"
+                            onClick={() => navigate('/send/process')}
+                        >
                             Release tokens
-                        </PrimaryButton>
+                        </button>
                     </div>
                 </div>
             </MobileCard>
@@ -78,7 +82,7 @@ const TopUp = () => {
                         </p>
                     </div>
                     <ValueInput title="Amount" available={true} value={0.0} token={sendData.sender} />
-                    <p className="bg-[#090912] rounded-lg py-1 px-6 text-[#B8ACFF] my-4">{`1${sendData.sender.name} = ${SEND.list[index].rate} ${sendData.receiver.name}`}</p>
+                    <p className="bg-[#090912] rounded-lg py-1 px-6 text-[#B8ACFF] my-4">{`1${sendData.sender.name} = ${send.list[index].rate} ${sendData.receiver.name}`}</p>
                     <ValueInput title="Receive" value={0.0} token={sendData.receiver} />
                     <div className="bg-[#090912] rounded-lg py-3 px-6 mt-4 mb-10 flex flex-col">
                         <div className="flex items-center justify-between">
@@ -87,20 +91,23 @@ const TopUp = () => {
                         </div>
                         <div className="flex items-center justify-between mt-2">
                             <span className="text-sm text-light-dark">Limit</span>
-                            <span className="text-sm">{`${SEND.list[index].limit} ${sendData.sender.name}`}</span>
+                            <span className="text-sm">{`${send.list[index].limit} ${sendData.sender.name}`}</span>
                         </div>
                     </div>
 
                     <div className="flex justify-between items-center w-full">
-                        <OutlineButton
-                            className="text-center text-bold py-4 w-[150px]"
+                        <button
+                            className="text-center text-bold py-4 w-[150px] bg-transparent border-[2px] border-solid border-[#ffffff] rounded-lg cursor-pointer"
                             onClick={() => navigate('/send')}
                         >
                             Cancel
-                        </OutlineButton>
-                        <PrimaryButton className="text-center py-4 w-[150px]" onClick={() => navigate('/send/process')}>
+                        </button>
+                        <button
+                            className="text-center py-4 w-[150px] bg-[#5a4ee8] rounded-lg cursor-pointer"
+                            onClick={() => navigate('/send/process')}
+                        >
                             Continue
-                        </PrimaryButton>
+                        </button>
                     </div>
                 </div>
             </Card>

@@ -1,20 +1,19 @@
-import { CardDiv } from 'components/Styled';
 import { NETWORK } from 'config/constants/demo';
-import useConfig from 'hooks/useConfig';
+import { useAppDispatch } from 'hooks/useRedux';
 import { useNavigate } from 'react-router-dom';
+import { selectNet } from 'redux/selectedNet';
 import { DemoDataProps } from 'types/config';
 
 const Dashboard = () => {
-    const { changeData } = useConfig();
     const nativate = useNavigate();
-
+    const dispatch = useAppDispatch();
     const setNet = (one) => {
-        changeData({ key: 'SelectedNet', data: one });
+        dispatch(selectNet(one));
         nativate('/stables');
     };
 
     return (
-        <CardDiv className="card p-8">
+        <div className="card p-8">
             <div className="px-10 mb-5">
                 <h1 className="text-4xl font-bold font-Unbounded">Welcome, Admin</h1>
 
@@ -37,7 +36,7 @@ const Dashboard = () => {
                     ))}
                 </div>
             </div>
-        </CardDiv>
+        </div>
     );
 };
 

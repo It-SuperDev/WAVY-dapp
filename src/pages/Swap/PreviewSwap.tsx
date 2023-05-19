@@ -6,20 +6,19 @@ import { ReactComponent as EastIcon } from 'assets/img/icon/arrow-right.svg';
 
 // component
 import Card from 'components/Card';
-import { PrimaryButton, OutlineButton } from 'components/Styled';
-import useConfig from 'hooks/useConfig';
+import { useAppSelector } from 'hooks/useRedux';
 
 const PreviewSwap = () => {
     const navigate = useNavigate();
-    const data = useConfig();
-    const { SWAP, NETWORK } = data;
+    const swap = useAppSelector((state) => state.swap);
+    const network = useAppSelector((state) => state.network);
 
     const swapData = useMemo(() => {
         return {
-            from: NETWORK.token[SWAP.sIdx],
-            to: NETWORK.token[SWAP.rIdx]
+            from: network.token[swap.sIdx],
+            to: network.token[swap.rIdx]
         };
-    }, [NETWORK.token, SWAP]);
+    }, [network.token, swap]);
 
     return (
         <Card title="Confirm Conversion">
@@ -45,16 +44,22 @@ const PreviewSwap = () => {
                     <p>Conversion Fee</p> <p>No fees</p>
                 </div>
                 <div className="flex w-full items-center justify-between text-sm">
-                    <p>Rate</p> <p>{`1 ${swapData.from.name} = ${SWAP.equal} ${swapData.to.name}`}</p>
+                    <p>Rate</p> <p>{`1 ${swapData.from.name} = ${swap.equal} ${swapData.to.name}`}</p>
                 </div>
             </div>
             <div className="flex justify-between items-center w-full mt-10">
-                <OutlineButton className="text-center text-bold py-4 w-[150px]" onClick={() => navigate('/swap')}>
+                <button
+                    className="text-center text-bold py-4 w-[150px] bg-transparent border-[2px] border-solid border-[#ffffff] rounded-lg cursor-pointer"
+                    onClick={() => navigate('/swap')}
+                >
                     Back
-                </OutlineButton>
-                <PrimaryButton className="text-center py-4 w-[150px]" onClick={() => navigate('/swap/process')}>
+                </button>
+                <button
+                    className="text-center py-4 w-[150px] bg-[#5a4ee8] rounded-lg cursor-pointer"
+                    onClick={() => navigate('/swap/process')}
+                >
                     Continue
-                </PrimaryButton>
+                </button>
             </div>
         </Card>
     );

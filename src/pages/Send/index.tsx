@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 // Component
 import Card from 'components/Card';
 import MobileCard from 'components/MobileCard';
-import { PrimaryButton, WhiteButton } from 'components/Styled';
 
 // Icon
 import exchange from 'assets/img/icon/exchange.svg';
@@ -12,28 +11,34 @@ import { ReactComponent as EastIcon } from 'assets/img/icon/arrow-right.svg';
 import { ReactComponent as KeyboardArrowDownIcon } from 'assets/img/icon/chevron-down.svg';
 
 import useConfig from 'hooks/useConfig';
+import { useAppSelector, useAppDispatch } from 'hooks/useRedux';
+import { changeSend } from 'redux/send';
+import { changeSetToken } from 'redux/selectToken';
 
 const Send = () => {
     const navigate = useNavigate();
-    const data = useConfig();
-    const { isMobile, changeData, SEND, NETWORK } = data;
+    const dispatch = useAppDispatch();
+
+    const { isMobile } = useConfig();
+    const send = useAppSelector((state) => state.send);
+    const network = useAppSelector((state) => state.network);
 
     const sendData = useMemo(() => {
         return {
-            sender: NETWORK.token[SEND.sIdx],
-            receiver: NETWORK.token[SEND.rIdx]
+            sender: network.token[send.sIdx],
+            receiver: network.token[send.rIdx]
         };
-    }, [NETWORK.token, SEND]);
+    }, [network.token, send]);
 
     const changOrder = () => {
-        const tRIsx = SEND.sIdx;
-        const tSIsx = SEND.rIdx;
-        const tSEND = { ...SEND, sIdx: tSIsx, rIdx: tRIsx };
-        changeData({ key: 'SEND', data: tSEND });
+        const tRIsx = send.sIdx;
+        const tSIsx = send.rIdx;
+        const tSEND = { ...send, sIdx: tSIsx, rIdx: tRIsx };
+        dispatch(changeSend(tSEND));
     };
 
-    const selectToken = (param: number, order: string) => {
-        changeData({ key: 'TOKEN_SELECT', data: ['SEND', order, param] });
+    const selectToken = (order: number, type: string) => {
+        dispatch(changeSetToken({ key: 'SEND', order, type, tokens: network.token }));
         navigate('/select');
     };
 
@@ -45,7 +50,7 @@ const Send = () => {
                         <p className="text-sm text-[#ACACAE] mb-2">Send</p>
                         <div
                             className="flex items-center cursor-pointer bg-[#242429] border-[0.6px] border-[#ACACAE] rounded-xl px-5 py-2"
-                            onClick={() => selectToken(SEND.rIdx, 'sIdx')}
+                            onClick={() => selectToken(send.rIdx, 'sIdx')}
                         >
                             <img
                                 src={sendData.sender.icon}
@@ -67,7 +72,7 @@ const Send = () => {
                         <p className="text-sm text-[#ACACAE] mb-2">Receive</p>
                         <div
                             className="flex items-center cursor-pointer bg-[#242429] border-[0.6px] border-[#ACACAE] rounded-xl px-5 py-2"
-                            onClick={() => selectToken(SEND.sIdx, 'rIdx')}
+                            onClick={() => selectToken(send.sIdx, 'rIdx')}
                         >
                             <img
                                 src={sendData.receiver.icon}
@@ -81,7 +86,7 @@ const Send = () => {
                 </div>
                 <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5">
                     <div>
-                        {SEND.list.map(({ rate, limit }: any, i: number) => (
+                        {send.list.map(({ rate, limit }: any, i: number) => (
                             <div
                                 key={i}
                                 onClick={() => navigate(`check/${i}`)}
@@ -134,18 +139,18 @@ const Send = () => {
                     <div className="h-[200px]" />
                 </div>
                 <div className="flex w-full fixed items-center justify-between bottom-0 px-5 py-6 bg-[#151518] rounded-t-3xl">
-                    <WhiteButton
-                        className="text-center text-bold py-4 px-3 min-w-[150px] text-sm font-medium"
+                    <button
+                        className="text-center text-bold py-4 px-3 min-w-[150px] text-sm font-medium bg-[#FFFFFF] rounded-lg text-[#151518] cursor-pointer"
                         onClick={() => navigate('offers')}
                     >
                         My offers
-                    </WhiteButton>
-                    <PrimaryButton
-                        className="px-3 text-center py-4 min-w-[150px] text-sm"
+                    </button>
+                    <button
+                        className="px-3 text-center py-4 min-w-[150px] bg-[#5a4ee8] rounded-lg cursor-pointe text-sm"
                         onClick={() => navigate('create-offer')}
                     >
                         Create a new offer
-                    </PrimaryButton>
+                    </button>
                 </div>
             </MobileCard>
         );
@@ -157,7 +162,7 @@ const Send = () => {
                         <p className="text-base mr-2">Send</p>
                         <div
                             className="flex items-center cursor-pointer border-[0.6px] border-[#ACACAE] rounded-md px-2 py-2"
-                            onClick={() => selectToken(SEND.rIdx, 'sIdx')}
+                            onClick={() => selectToken(send.rIdx, 'sIdx')}
                         >
                             <img
                                 src={sendData.sender.icon}
@@ -179,7 +184,7 @@ const Send = () => {
                         <p className="text-base mr-2">Receive</p>
                         <div
                             className="flex items-center cursor-pointer border-[0.6px] border-[#ACACAE] rounded-md px-2 py-2"
-                            onClick={() => selectToken(SEND.sIdx, 'rIdx')}
+                            onClick={() => selectToken(send.sIdx, 'rIdx')}
                         >
                             <img
                                 src={sendData.receiver.icon}
@@ -191,7 +196,7 @@ const Send = () => {
                         </div>
                     </div>
                 </div>
-                {SEND.list.map(({ rate, limit }: any, i: number) => (
+                {send.list.map(({ rate, limit }: any, i: number) => (
                     <div
                         key={i}
                         onClick={() => navigate(`check/${i}`)}
@@ -246,18 +251,18 @@ const Send = () => {
                     </div>
                 ))}
                 <div className="flex justify-around items-center mt-5 w-full">
-                    <WhiteButton
-                        className="text-center text-bold py-4 px-3 min-w-[150px] text-base font-medium"
+                    <button
+                        className="text-center text-bold py-4 px-3 min-w-[150px] text-base font-medium bg-[#FFFFFF] rounded-lg text-[#151518] cursor-pointer"
                         onClick={() => navigate('offers')}
                     >
                         My offers
-                    </WhiteButton>
-                    <PrimaryButton
-                        className="px-3 text-center py-4 min-w-[150px]"
+                    </button>
+                    <button
+                        className="px-3 text-center py-4 min-w-[150px] bg-[#5a4ee8] rounded-lg cursor-pointer"
                         onClick={() => navigate('create-offer')}
                     >
                         Create a new offer
-                    </PrimaryButton>
+                    </button>
                 </div>
             </Card>
         );
