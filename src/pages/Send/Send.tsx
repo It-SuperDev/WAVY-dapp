@@ -33,7 +33,7 @@ const TopUp = () => {
                         been agreed on or when the order has been cancelled.
                     </p>
                 </div>
-                <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5 flex flex-col justify-between">
+                <div className="bg-[#242429] rounded-t-3xl py-[30px] px-5 flex flex-col justify-between pb-[130px]">
                     <div className="w-full">
                         <ValueInput title="Amount" available={true} value={0.0} token={sendData.sender} />
 

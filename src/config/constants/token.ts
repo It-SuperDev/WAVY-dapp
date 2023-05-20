@@ -145,6 +145,13 @@ export const polygon = [
         price: 3311.55
     },
     {
+        name: 'EURT',
+        icon: eurtIcon,
+        sub: 'Euro',
+        amount: 13000,
+        price: 2604.26
+    },
+    {
         name: 'JEUR',
         icon: jeurIcon,
         sub: 'Euro',
@@ -178,13 +185,6 @@ export const polygon = [
         sub: 'U.S dollar',
         amount: 3000,
         price: 3000.0
-    },
-    {
-        name: 'EURT',
-        icon: eurtIcon,
-        sub: 'Euro',
-        amount: 13000,
-        price: 2604.26
     }
 ];
 
