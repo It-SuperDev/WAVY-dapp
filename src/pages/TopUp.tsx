@@ -110,7 +110,7 @@ const TopUp = () => {
                                 {page === 4 && (
                                     <MobileMethod
                                         isTop={true}
-                                        close={() => setPage(1)}
+                                        close={() => setPage(3)}
                                         callback={callback}
                                         tokenName={tokenName}
                                     />
