@@ -69,6 +69,10 @@ const TopUp = () => {
         if (methods.list.length > 1 || methods.list[0].child) navigate('method');
     };
 
+    const goback = () => {
+        setPage(2);
+    };
+
     if (isMobile) {
         return (
             <>
@@ -88,7 +92,10 @@ const TopUp = () => {
                                             onChange={() => setPage(1)}
                                         />
 
-                                        <div className="rounded-lg w-full border-[0.6px]  bg-[#242429] rounded-lg py-3 px-6 mt-9 mb-16 flex items-center">
+                                        <div
+                                            onClick={goback}
+                                            className="rounded-lg w-full border-[0.6px]  bg-[#242429] rounded-lg py-3 px-6 mt-9 mb-16 flex items-center"
+                                        >
                                             <img src={methods.icon} className="h-[30px] w-[30px] mr-4" alt="img" />
                                             <div>
                                                 <p>{methods.title}</p>
