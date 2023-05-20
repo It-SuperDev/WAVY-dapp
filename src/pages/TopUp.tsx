@@ -70,7 +70,7 @@ const TopUp = () => {
     };
 
     const goback = () => {
-        setPage(2);
+        setPage(4);
     };
 
     if (isMobile) {
