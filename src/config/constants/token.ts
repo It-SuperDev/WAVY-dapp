@@ -112,6 +112,13 @@ export const stellar = [
         sub: 'U.S dollar',
         amount: 3000,
         price: 3000.0
+    },
+    {
+        name: 'QCAD',
+        sub: 'Canadian Dollar',
+        icon: qcadIcon,
+        amount: 3000,
+        price: 3311.55
     }
 ];
 
@@ -171,6 +178,13 @@ export const polygon = [
         sub: 'U.S dollar',
         amount: 3000,
         price: 3000.0
+    },
+    {
+        name: 'EURT',
+        icon: eurtIcon,
+        sub: 'Euro',
+        amount: 13000,
+        price: 2604.26
     }
 ];
 
@@ -179,13 +193,6 @@ export const avalanche = [
         name: 'BRZ',
         icon: brzIcon,
         sub: 'Brazilian Real',
-        amount: 13000,
-        price: 2604.26
-    },
-    {
-        name: 'EURT',
-        icon: eurtIcon,
-        sub: 'Euro',
         amount: 13000,
         price: 2604.26
     },
@@ -275,13 +282,6 @@ export const ethereum = [
         icon: gbptIcon,
         amount: 3000,
         price: 889.2
-    },
-    {
-        name: 'JEUR',
-        sub: 'Euro',
-        icon: jeurIcon,
-        amount: 3000,
-        price: 3311.55
     },
     {
         name: 'QCAD',

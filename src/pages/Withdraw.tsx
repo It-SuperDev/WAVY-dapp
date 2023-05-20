@@ -66,7 +66,7 @@ const TopUp = () => {
     };
 
     const goMethodPage = () => {
-        if (methods.list.length > 1) navigate('method');
+        if (methods.list.length > 1 || methods.list[0].child) navigate('method');
     };
 
     if (isMobile) {
