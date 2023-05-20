@@ -70,14 +70,14 @@ const TopUp = () => {
     };
 
     const goback = () => {
-        setPage(2);
+        setPage(4);
     };
 
     if (isMobile) {
         return (
             <>
                 {(() => {
-                    if (page === 3) {
+                    if (page === 3 || page === 4) {
                         return (
                             <MobileCard title="Withdraw" back={() => setPage(1)}>
                                 <div className="flex flex-col w-full px-5">
@@ -109,6 +109,14 @@ const TopUp = () => {
                                         </button>
                                     </div>
                                 </div>
+                                {page === 4 && (
+                                    <MobileMethod
+                                        isTop={false}
+                                        close={() => setPage(1)}
+                                        callback={callback}
+                                        tokenName={tokenName}
+                                    />
+                                )}
                             </MobileCard>
                         );
                     } else {
@@ -169,7 +177,7 @@ const TopUp = () => {
                                 </div>
                                 {page === 2 && (
                                     <MobileMethod
-                                        isTop={true}
+                                        isTop={false}
                                         close={() => setPage(1)}
                                         callback={callback}
                                         tokenName={tokenName}

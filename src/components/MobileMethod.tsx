@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { ReactComponent as CloseIcon } from 'assets/img/icon/close.svg';
 import { ReactComponent as ChevronRightIcon } from 'assets/img/icon/chevron-right.svg';
 
-import { TOP_METHOD, WITHDRAW_METHOD } from 'config/constants/demo';
 import { useAppDispatch, useAppSelector } from 'hooks/useRedux';
 import { changeMethod } from 'redux/info';
 
@@ -12,12 +11,9 @@ const MobileMethod = ({ isTop, size, close, callback, tokenName }: any) => {
         e.preventDefault();
     };
     const dispatch = useAppDispatch();
-    const network = useAppSelector((state) => state.network);
     const { methods } = useAppSelector((state) => state.info);
     const [showChild, setShowChild] = useState(false);
     const [childrens, setChildrens] = useState([]);
-
-    const data = isTop ? TOP_METHOD : WITHDRAW_METHOD;
 
     const selectMethod = (method: { title: string; icon: string; sub: string; child?: any }) => {
         if (method.child) {

@@ -77,7 +77,7 @@ const TopUp = () => {
         return (
             <>
                 {(() => {
-                    if (page === 3) {
+                    if (page === 3 || page === 4) {
                         return (
                             <MobileCard title="Top up" back={() => setPage(1)}>
                                 <div className="flex flex-col w-full px-5">
@@ -107,6 +107,14 @@ const TopUp = () => {
                                         </button>
                                     </div>
                                 </div>
+                                {page === 4 && (
+                                    <MobileMethod
+                                        isTop={true}
+                                        close={() => setPage(1)}
+                                        callback={callback}
+                                        tokenName={tokenName}
+                                    />
+                                )}
                             </MobileCard>
                         );
                     } else {
