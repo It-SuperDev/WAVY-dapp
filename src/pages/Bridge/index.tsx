@@ -15,6 +15,7 @@ import MobileList from 'components/MobileList';
 import { NETWORK } from 'config/constants/demo';
 import { useAppDispatch, useAppSelector } from 'hooks/useRedux';
 import { changeSetToken } from 'redux/selectToken';
+import { setBridgeNet } from 'redux/bridge';
 
 const Index = () => {
     const navigate = useNavigate();
@@ -99,9 +100,14 @@ const Index = () => {
                     <MobileList
                         title="Choose network"
                         sub="Choose your preferred network"
-                        data={NETWORK.slice(0, -1)}
+                        data={NETWORK.filter((_: any, j: number) => j !== bridge.sNet)}
                         close={() => setNetwork(false)}
                         callback={(i: number) => {
+                            if (i >= bridge.sNet) {
+                                dispatch(setBridgeNet({ rNet: i + 1 }));
+                            } else {
+                                dispatch(setBridgeNet({ rNet: i }));
+                            }
                             setNetwork(false);
                         }}
                     />

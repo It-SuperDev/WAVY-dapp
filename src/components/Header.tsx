@@ -17,7 +17,7 @@ import admin from '../assets/img/icon/admin.svg';
 import { CURRENCY, LANGUAGE, NETWORK, CONNECTED, LOGOUT } from '../config/constants/demo';
 
 import useConfig from 'hooks/useConfig';
-import { changeBridge } from 'redux/bridge';
+import { changeBridge, setBridgeNet } from 'redux/bridge';
 import { changeCurrency, changeConnect, changeLanguage } from 'redux/info';
 
 const Header = () => {
@@ -27,6 +27,7 @@ const Header = () => {
     const { isMobile } = useConfig();
     const { pathname } = useLocation();
     const network = useAppSelector((state) => state.network);
+    const bridge = useAppSelector((state) => state.bridge);
     const { currency, language, connect } = useAppSelector((state) => state.info);
 
     const isHeader = useMemo(() => {
@@ -83,6 +84,11 @@ const Header = () => {
         }
 
         dispatch(changeNet(NETWORK[i]));
+        if (bridge.rNet === i) {
+            dispatch(setBridgeNet({ sNet: i, rNet: 0 }));
+        } else {
+            dispatch(setBridgeNet({ sNet: i }));
+        }
 
         if (i === 1 || i === 3) {
             dispatch(
