@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Icon
-import { ReactComponent as BankIcon } from '../assets/img/icon/bank.svg';
 import { ReactComponent as SearchIcon } from 'assets/img/icon/search.svg';
 import { ReactComponent as KeyboardArrowDownIcon } from 'assets/img/icon/chevron-down.svg';
 
@@ -38,7 +37,6 @@ const TopUp = () => {
         const receive = network.token[topUp.rIdx];
         const send = getMatch(receive.name);
         const method: any = getPaymentMethod(network.sub, receive.name, 'topup');
-        console.log(method, 'methodmethodmethod');
         if (method.length === 1 && !method[0].child) {
             dispatch(changeMethod({ title: method[0].title, icon: method[0].icon, list: method }));
         } else {
@@ -49,6 +47,7 @@ const TopUp = () => {
             receive,
             method
         });
+        // eslint-disable-next-line
     }, [network, topUp]);
 
     const selectToken = () => {
@@ -90,7 +89,7 @@ const TopUp = () => {
                                         />
 
                                         <div className="rounded-lg w-full border-[0.6px]  bg-[#242429] rounded-lg py-3 px-6 mt-9 mb-16 flex items-center">
-                                            <img src={methods.icon} className="h-[30px] w-[30px] mr-4" />
+                                            <img src={methods.icon} className="h-[30px] w-[30px] mr-4" alt="img" />
                                             <div>
                                                 <p>{methods.title}</p>
                                                 <p className="text-xs text-[#ACACAE]">Top up with your bank account</p>
@@ -191,7 +190,8 @@ const TopUp = () => {
                             onClick={goMethodPage}
                             className="bg-[#090912] rounded-lg py-3 px-6 mt-4 mb-16 flex items-center"
                         >
-                            <img src={methods.icon} className="h-[24px] w-[24px] mr-2" /> <span>{methods.title}</span>
+                            <img src={methods.icon} className="h-[24px] w-[24px] mr-2" alt="method" />{' '}
+                            <span>{methods.title}</span>
                             <KeyboardArrowDownIcon className="ml-auto" />
                         </div>
                     ) : (

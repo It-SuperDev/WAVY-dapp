@@ -30,7 +30,6 @@ export const networkSlice = createSlice({
                 state.methods.title = action.payload.title;
             }
             if (action.payload.hasOwnProperty('icon')) {
-                console.log(action.payload, 'action.payload', action.payload.hasOwnProperty('title'));
                 state.methods.icon = action.payload.icon;
             }
             if (action.payload.hasOwnProperty('list')) {
