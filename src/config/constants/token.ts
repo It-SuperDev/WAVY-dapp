@@ -86,6 +86,13 @@ export const stellar = [
         price: 10.75
     },
     {
+        name: 'QCAD',
+        sub: 'Canadian Dollar',
+        icon: qcadIcon,
+        amount: 3000,
+        price: 3311.55
+    },
+    {
         name: 'NGNC',
         icon: ngncIcon,
         sub: 'Nigerian Naira',
@@ -112,13 +119,6 @@ export const stellar = [
         sub: 'U.S dollar',
         amount: 3000,
         price: 3000.0
-    },
-    {
-        name: 'QCAD',
-        sub: 'Canadian Dollar',
-        icon: qcadIcon,
-        amount: 3000,
-        price: 3311.55
     }
 ];
 
